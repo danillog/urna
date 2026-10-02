@@ -85,6 +85,9 @@ describe("app", () => {
     expect($("map-title").textContent).toBe("Prefeitos eleitos em 1996");
     ($("map-legend").querySelector("button") as HTMLButtonElement).click();
     expect($("map").classList.contains("focusing")).toBe(true);
+    // The highlight is a layer of copies; the count matches the legend.
+    const pressed = $("map-legend").querySelector('[aria-pressed="true"] .n')!.textContent!;
+    expect($("map").querySelectorAll(".focus-layer path").length).toBe(Number(pressed.replace(/\./g, "")));
     expect(window.location.search).toContain("focus=");
 
     click("map-office-president"); // 1994 and 1998 are equally near 1996: the later one wins

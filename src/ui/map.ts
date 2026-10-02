@@ -40,10 +40,18 @@ function wheelDelta(event: WheelEvent): number {
  *
  * Zoom: buttons, double click, pinch, and ctrl/⌘ + wheel (a bare wheel keeps
  * scrolling the page). Dragging pans once zoomed in.
+ *
+ * Keeping it fast: restyling thousands of SVG paths is what costs, not the
+ * JavaScript. Switching elections only touches paths whose class changed, and
+ * highlighting a party never restyles the base map: a veil covers it and copies
+ * of the highlighted municipalities are drawn on top.
  */
 export class MunicipalityMap {
   private readonly svg: SVGSVGElement;
   private readonly paths: SVGPathElement[];
+  /** Class currently set on each path, to skip writes that would change nothing. */
+  private readonly classes: string[] = [];
+  private readonly focusLayer: SVGGElement;
   private readonly tip: HTMLDivElement;
   private readonly behavior: ZoomBehavior<SVGSVGElement, unknown>;
   private readonly stateBounds = new Map<string, Bounds>();
@@ -82,7 +90,10 @@ export class MunicipalityMap {
     const borders = document.createElementNS(SVG_NS, "path");
     borders.setAttribute("class", "state-borders");
     borders.setAttribute("d", path(mesh(map.topology, object, (a, b) => ufOf.get(a) !== ufOf.get(b))) ?? "");
-    viewport.append(group, borders);
+    // Highlight layer: a veil over the map, then copies of the highlighted municipalities.
+    this.focusLayer = document.createElementNS(SVG_NS, "g");
+    this.focusLayer.setAttribute("class", "focus-layer");
+    viewport.append(group, this.focusLayer, borders);
     this.svg.appendChild(viewport);
 
     this.behavior = zoom<SVGSVGElement, unknown>()
@@ -144,10 +155,29 @@ export class MunicipalityMap {
 
   /** Sets every municipality's class and the text shown on hover. */
   paint(label: string, classFor: (i: number) => string, tooltipFor: (i: number) => string): void {
-    this.svg.setAttribute("aria-label", label);
-    this.paths.forEach((p, i) => p.setAttribute("class", classFor(i)));
-    this.tooltipFor = tooltipFor;
     this.hideTooltip(); // its numbers belong to the previous election
+    this.svg.setAttribute("aria-label", label);
+    this.paths.forEach((p, i) => {
+      const c = classFor(i);
+      if (this.classes[i] !== c) {
+        p.setAttribute("class", c);
+        this.classes[i] = c;
+      }
+    });
+    this.tooltipFor = tooltipFor;
+  }
+
+  /** Brings these municipalities forward and fades the rest; null clears it. */
+  highlight(indices: number[] | null): void {
+    this.hideTooltip();
+    this.focusLayer.replaceChildren();
+    this.host.classList.toggle("focusing", indices !== null);
+    if (!indices) return;
+    const veil = document.createElementNS(SVG_NS, "rect");
+    veil.setAttribute("class", "veil");
+    veil.setAttribute("width", String(WIDTH));
+    veil.setAttribute("height", String(HEIGHT));
+    this.focusLayer.append(veil, ...indices.map((i) => this.paths[i]!.cloneNode() as SVGPathElement));
   }
 
   zoomBy(factor: number): void {

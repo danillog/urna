@@ -10,6 +10,7 @@ import {
   winsByGroup,
   type MapData,
   type MapOffice,
+  type GroupWins,
   type MapRace,
 } from "../model/map-data";
 import type { MunicipalMap, RoundId } from "../types";
@@ -96,6 +97,10 @@ export class MapView {
   private hintTimer: number | undefined;
   /** State currently framed, to move the camera only when the selection changes. */
   private framed: string | null | undefined = undefined;
+  /** Election on screen, so a party click only redraws the highlight. */
+  private shown: { key: string; race: MapRace; wins: GroupWins[] } | null = null;
+  private timelineOffice: MapOffice | null = null;
+  private highlighted: string | null = null;
 
   constructor(
     private readonly data: MapData,
@@ -173,7 +178,17 @@ export class MapView {
 
   render(map: MunicipalMap): void {
     const s = this.state;
-    const race = this.data.race(raceKey(s.office, s.year, s.round))!;
+    const key = raceKey(s.office, s.year, s.round);
+    this.drawing ??= new MunicipalityMap(byId("map"), map, () => this.showHint());
+    if (this.shown?.key !== key) this.renderElection(map, key);
+    this.renderCamera();
+    this.renderFocus();
+  }
+
+  /** Everything that depends on the election itself. */
+  private renderElection(map: MunicipalMap, key: string): void {
+    const s = this.state;
+    const race = this.data.race(key)!;
     const president = s.office === "president";
 
     byId("map-offices")
@@ -194,30 +209,45 @@ export class MapView {
     const title = president ? t.mapTitlePresident(s.year, t.round[s.round]) : t.mapTitleMayor(s.year);
     byId("map-title").textContent = title;
     const wins = winsByGroup(race);
+    this.shown = { key, race, wins };
+    this.highlighted = null; // the base map changes under it
     byId("map-meta").textContent = t.mapMunicipalities(integer(wins.reduce((n, w) => n + w.wins, 0)));
     byId("map-note").textContent = president ? t.mapNotePresident : t.mapNoteMayor;
     this.renderLegend(race, wins);
 
-    byId<HTMLSelectElement>("map-uf").value = s.uf ?? "";
-    this.drawing ??= new MunicipalityMap(byId("map"), map, () => this.showHint());
-    if (this.framed !== s.uf) {
-      this.drawing.fit(s.uf, this.framed !== undefined); // no animation on first load
-      this.framed = s.uf;
-    }
-    const focus = s.focus && wins.some((w) => w.group === s.focus) ? s.focus : null;
-    byId("map").classList.toggle("focusing", focus !== null);
-    this.drawing.paint(
+    this.drawing!.paint(
       t.mapAria(title),
       (i) => {
         const w = race.winner[i]!;
         if (w === NONE) return "no-data";
-        const group = race.groups[w]!;
-        const color = race.groupColors[group] ?? "gray";
-        const step = president ? ` s${shade(margin(race, i))}` : "";
-        return `c-${color}${step}${focus === group ? " focus" : ""}`;
+        const color = race.groupColors[race.groups[w]!] ?? "gray";
+        return president ? `c-${color} s${shade(margin(race, i))}` : `c-${color}`;
       },
       (i) => tooltip(map, race, i),
     );
+  }
+
+  private renderCamera(): void {
+    const uf = this.state.uf;
+    byId<HTMLSelectElement>("map-uf").value = uf ?? "";
+    if (this.framed !== uf) {
+      this.drawing!.fit(uf, this.framed !== undefined); // no animation on first load
+      this.framed = uf;
+    }
+  }
+
+  /** The highlighted party or candidate: legend state plus the map's highlight layer. */
+  private renderFocus(): void {
+    const { race, wins } = this.shown!;
+    const focus = wins.some((w) => w.group === this.state.focus) ? this.state.focus : null;
+    byId("map-legend")
+      .querySelectorAll<HTMLButtonElement>(".map-chip")
+      .forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.group === focus)));
+    if (focus === this.highlighted) return;
+    this.highlighted = focus;
+    const indices: number[] = [];
+    if (focus) race.winner.forEach((w, i) => w !== NONE && race.groups[w] === focus && indices.push(i));
+    this.drawing!.highlight(focus ? indices : null);
   }
 
   private showHint(): void {
@@ -235,15 +265,23 @@ export class MapView {
     slider.value = String(years.indexOf(this.state.year));
     slider.setAttribute("aria-valuetext", String(this.state.year));
     const list = byId("map-years");
-    list.innerHTML = "";
-    for (const year of years) {
-      const b = button(String(year), { className: "timeline-year", pressed: year === this.state.year });
-      b.addEventListener("click", () => this.set({ year }, { stop: true }));
-      list.appendChild(b);
+    if (this.timelineOffice !== this.state.office) {
+      this.timelineOffice = this.state.office;
+      list.replaceChildren(
+        ...years.map((year) => {
+          const b = button(String(year), { className: "timeline-year" });
+          b.dataset.year = String(year);
+          b.addEventListener("click", () => this.set({ year }, { stop: true }));
+          return b;
+        }),
+      );
     }
+    list
+      .querySelectorAll<HTMLButtonElement>("button")
+      .forEach((b) => b.setAttribute("aria-pressed", String(Number(b.dataset.year) === this.state.year)));
   }
 
-  private renderLegend(race: MapRace, wins: ReturnType<typeof winsByGroup>): void {
+  private renderLegend(race: MapRace, wins: GroupWins[]): void {
     const el = byId("map-legend");
     el.innerHTML = "";
     const president = race.office === "president";
@@ -255,8 +293,9 @@ export class MapView {
       const label = w.group === OTHERS ? t.mapOthers : escapeHtml(w.label);
       const b = button(`${swatches}<span>${label}</span><span class="n">${integer(w.wins)}</span>`, {
         className: "chip map-chip",
-        pressed: this.state.focus === w.group,
+        pressed: false,
       });
+      b.dataset.group = w.group;
       b.title = t.mapFocus;
       b.addEventListener("click", () => this.set({ focus: this.state.focus === w.group ? null : w.group }));
       el.appendChild(b);

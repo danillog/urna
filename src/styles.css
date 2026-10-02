@@ -658,19 +658,22 @@ table.clickable tbody tr:focus-visible {
   width: 100%;
   height: auto;
 }
-.municipalities path {
+.municipalities path,
+.focus-layer path {
   fill: color-mix(in srgb, var(--mc, var(--c-gray)) var(--mix, 100%), var(--surface));
-  transition: opacity 0.2s;
 }
-.municipalities path.active {
+:is(.municipalities, .focus-layer) path.active {
   stroke: var(--ink);
   stroke-width: 1.5;
 }
 .municipalities path.no-data {
   fill: var(--grid);
 }
-.map.focusing .municipalities path:not(.focus):not(.active) {
-  opacity: 0.18;
+/* One semi-transparent rect fades the whole map; highlighted copies sit above it. */
+.focus-layer .veil {
+  fill: var(--surface);
+  opacity: 0.8;
+  pointer-events: none;
 }
 .state-borders {
   fill: none;
@@ -816,14 +819,15 @@ table.clickable tbody tr:focus-visible {
 }
 /* Line widths stay the same at any zoom level. */
 .municipalities path,
+.focus-layer path,
 .state-borders {
   vector-effect: non-scaling-stroke;
 }
-.map.zoomed .municipalities path {
+.map.zoomed :is(.municipalities, .focus-layer) path {
   stroke: var(--surface);
   stroke-width: 0.4;
 }
-.map.zoomed .municipalities path.active {
+.map.zoomed :is(.municipalities, .focus-layer) path.active {
   stroke: var(--ink);
   stroke-width: 1.5;
 }
