@@ -265,7 +265,8 @@ export class MapView {
     byId("map-round-group").hidden = true;
     this.renderTimeline();
     this.renderPlayButton();
-    const title = t.mapTitleIdhm(s.year);
+    const level = this.data.idhmLevel(s.year);
+    const title = level === "municipality" ? t.mapTitleIdhm(s.year) : t.mapTitleIdhmStates(s.year);
     byId("map-title").textContent = title;
     const groupOf = (i: number) => (values[i] ? String(step("hdi", values[i]! / 1000)) : null);
     const counts = STEPS.hdi.map(() => 0);
@@ -278,7 +279,8 @@ export class MapView {
     });
     this.shown = { key, groups: new Set(STEPS.hdi.map((_, k) => String(k))), groupOf };
     this.highlighted = null;
-    byId("map-meta").textContent = t.mapMunicipalities(integer(n));
+    byId("map-meta").textContent =
+      level === "municipality" ? t.mapMunicipalities(integer(n)) : t.mapIdhmStatesMeta;
     byId("map-note").textContent = t.mapNoteIdhm;
     const legend = byId("map-legend");
     legend.replaceChildren(
@@ -306,9 +308,11 @@ export class MapView {
         const v = values[i]! / 1000;
         if (!v) return `<div class="tt-h">${place}</div><div class="tt-s">${t.mapIdhmNoData}</div>`;
         const before = first[i]! / 1000;
+        const label = level === "municipality" ? "IDHM" : t.mapIdhmStateLabel(map.municipalities.uf[i]!);
         return (
           `<div class="tt-h">${place}</div>` +
-          `<div class="row"><span class="key"><i class="map-key q${step("hdi", v)}"></i>IDHM</span><b>${t.indicator.hdi.format(v)}</b></div>` +
+          `<div class="row"><span class="key"><i class="map-key q${step("hdi", v)}"></i>${label}</span><b>${t.indicator.hdi.format(v)}</b></div>` +
+          (level === "state" ? `<div class="tt-s tt-foot">${t.mapIdhmStateNote}</div>` : "") +
           `<div class="tt-s tt-foot">${t.hdiTier[hdiTier(v)]}</div>` +
           (before && s.year !== this.data.years("idhm")[0]
             ? `<div class="tt-s tt-foot">${t.indicatorThen(t.indicator.hdi.format(before), this.data.years("idhm")[0]!)}</div>`
