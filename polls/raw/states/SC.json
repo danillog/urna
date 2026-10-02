@@ -1,0 +1,286 @@
+{
+ "uf": "SC",
+ "state": "Santa Catarina",
+ "gov_t1": {
+  "candidates": {
+   "Jorginho Mello": "PL",
+   "João Rodrigues": "PSD",
+   "Gelson Merísio": "PSB",
+   "Marcelo Brigadeiro": "MISSÃO"
+  },
+  "polls": [
+   {
+    "p": "Neokemp",
+    "date": "2026-05-06",
+    "n": 1008,
+    "method": "",
+    "v": {
+     "Jorginho Mello": 54.2,
+     "João Rodrigues": 18.3,
+     "Gelson Merísio": 7.8,
+     "Marcelo Brigadeiro": 2.8,
+     "Outros": 1.0,
+     "BNI": 15.9
+    }
+   },
+   {
+    "p": "Neokemp",
+    "date": "2026-07-24",
+    "n": 1008,
+    "method": "",
+    "v": {
+     "Jorginho Mello": 52.8,
+     "João Rodrigues": 20.3,
+     "Gelson Merísio": 8.2,
+     "Marcelo Brigadeiro": 2.5,
+     "Outros": 1.7,
+     "BNI": 14.5
+    }
+   },
+   {
+    "p": "Quaest",
+    "date": "2026-08-23",
+    "n": 804,
+    "method": "",
+    "v": {
+     "Jorginho Mello": 50,
+     "João Rodrigues": 17,
+     "Gelson Merísio": 4,
+     "Marcelo Brigadeiro": 1,
+     "Outros": 4,
+     "BNI": 24
+    }
+   },
+   {
+    "p": "Neokemp",
+    "date": "2026-08-25",
+    "n": 1008,
+    "method": "",
+    "v": {
+     "Jorginho Mello": 51.6,
+     "João Rodrigues": 22.4,
+     "Gelson Merísio": 12.3,
+     "Marcelo Brigadeiro": 1.4,
+     "Outros": 1.3,
+     "BNI": 11.0
+    }
+   },
+   {
+    "p": "AtlasIntel",
+    "date": "2026-09-09",
+    "n": 1211,
+    "method": "",
+    "v": {
+     "Jorginho Mello": 51.6,
+     "João Rodrigues": 18.5,
+     "Gelson Merísio": 17.6,
+     "Marcelo Brigadeiro": 2.9,
+     "Outros": 2.3,
+     "BNI": 7.1
+    }
+   },
+   {
+    "p": "Neokemp",
+    "date": "2026-09-12",
+    "n": 1008,
+    "method": "",
+    "v": {
+     "Jorginho Mello": 51.2,
+     "João Rodrigues": 24.0,
+     "Gelson Merísio": 15.1,
+     "Marcelo Brigadeiro": 1.8,
+     "Outros": 2.5,
+     "BNI": 5.6
+    }
+   },
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-09-16",
+    "n": 1600,
+    "method": "",
+    "v": {
+     "Jorginho Mello": 49,
+     "João Rodrigues": 15,
+     "Gelson Merísio": 8,
+     "Marcelo Brigadeiro": 2,
+     "Outros": 2,
+     "BNI": 24
+    }
+   },
+   {
+    "p": "Paraná Pesquisas",
+    "date": "2026-09-22",
+    "n": 1384,
+    "method": "",
+    "v": {
+     "Jorginho Mello": 58.8,
+     "João Rodrigues": 16.5,
+     "Gelson Merísio": 11.3,
+     "Marcelo Brigadeiro": 1.2,
+     "Outros": 3.0,
+     "BNI": 9.4
+    }
+   },
+   {
+    "p": "Quaest",
+    "date": "2026-09-23",
+    "n": 804,
+    "method": "",
+    "v": {
+     "Jorginho Mello": 54,
+     "João Rodrigues": 13,
+     "Gelson Merísio": 10,
+     "Marcelo Brigadeiro": 1,
+     "Outros": 2,
+     "BNI": 20
+    }
+   }
+  ]
+ },
+ "gov_t2": {
+  "matchup": [
+   "Jorginho Mello",
+   "João Rodrigues"
+  ],
+  "candidates": {
+   "Jorginho Mello": "PL",
+   "João Rodrigues": "PSD"
+  },
+  "polls": [
+   {
+    "p": "Quaest",
+    "date": "2026-08-23",
+    "n": 804,
+    "method": "",
+    "v": {
+     "Jorginho Mello": 56,
+     "João Rodrigues": 24,
+     "BNI": 20
+    }
+   },
+   {
+    "p": "AtlasIntel",
+    "date": "2026-09-09",
+    "n": 1211,
+    "method": "",
+    "v": {
+     "Jorginho Mello": 55.1,
+     "João Rodrigues": 32.4,
+     "BNI": 12.5
+    }
+   },
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-09-16",
+    "n": 1600,
+    "method": "",
+    "v": {
+     "Jorginho Mello": 57,
+     "João Rodrigues": 26,
+     "BNI": 17
+    }
+   },
+   {
+    "p": "Quaest",
+    "date": "2026-09-23",
+    "n": 804,
+    "method": "",
+    "v": {
+     "Jorginho Mello": 58,
+     "João Rodrigues": 23,
+     "BNI": 19
+    }
+   }
+  ]
+ },
+ "sen_t1": {
+  "candidates": {
+   "Carol De Toni": "PL",
+   "Carlos Bolsonaro": "PL",
+   "Esperidião Amin": "PP",
+   "Décio Lima": "PT",
+   "Afrânio Boppré": "PSOL",
+   "Lunelli": "MDB"
+  },
+  "note": "Consolidated 1st+2nd votes reduced to 100% (Quaest, AtlasIntel, Real Time Big Data). Paraná Pesquisas (raw sum of two votes, >100%) and Neokemp (1st and 2nd vote reported separately) excluded.",
+  "polls": [
+   {
+    "p": "Quaest",
+    "date": "2026-08-23",
+    "n": 804,
+    "method": "",
+    "v": {
+     "Esperidião Amin": 19,
+     "Carlos Bolsonaro": 16,
+     "Carol De Toni": 12,
+     "Décio Lima": 9,
+     "BNI": 34
+    }
+   },
+   {
+    "p": "AtlasIntel",
+    "date": "2026-09-09",
+    "n": 1211,
+    "method": "",
+    "v": {
+     "Carol De Toni": 28.4,
+     "Esperidião Amin": 20.2,
+     "Carlos Bolsonaro": 14.9,
+     "Décio Lima": 11.9,
+     "Afrânio Boppré": 9.3,
+     "Lunelli": 4.8,
+     "Outros": 4.2,
+     "BNI": 6.4
+    }
+   },
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-09-16",
+    "n": 1600,
+    "method": "",
+    "v": {
+     "Carol De Toni": 24,
+     "Esperidião Amin": 20,
+     "Carlos Bolsonaro": 20,
+     "Décio Lima": 11,
+     "Afrânio Boppré": 10,
+     "Lunelli": 4,
+     "Outros": 4,
+     "BNI": 7
+    }
+   },
+   {
+    "p": "Quaest",
+    "date": "2026-09-23",
+    "n": 804,
+    "method": "",
+    "v": {
+     "Carol De Toni": 17,
+     "Carlos Bolsonaro": 16,
+     "Esperidião Amin": 15,
+     "Décio Lima": 10,
+     "Afrânio Boppré": 4,
+     "Lunelli": 3,
+     "Outros": 4,
+     "BNI": 31
+    }
+   }
+  ]
+ },
+ "notes": "Final governor field: Jorginho Mello (PL, incumbent), João Rodrigues (PSD), Gelson Merísio (PSB), Marcelo Brigadeiro (Missão); minor candidates (Professor Marcus Sodré PSTU, Laís Chaud UP, Ralf Zimmer PRD, Bruno Pedreiro PCO) in Outros. Jorginho is above 50% of total votes in most polls, so a 1st-round win is likely; gov_t2 (Jorginho x João Rodrigues) has only 4 polls. Futura Inteligência June poll was removed by TRE-SC court order (no numbers). Quaest 2026-08-23 senate: Gazeta/Metrópoles only itemise Amin, Carlos, De Toni and Décio; the other candidates (incl. Boppré and Lunelli) are grouped as 11% 'others' and are therefore left out of that row. Neokemp senate polls (Jul, Aug) report 1st and 2nd vote separately and were not consolidated (would require estimation). No polls found for Jan-Apr 2026 with the final field. Methods not stated in the sources read (RTBD SC poll described by one outlet as forms on social networks; not confirmed, left blank).",
+ "sources": [
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/neokemp-governador-santa-catarina-maio-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/neokemp-governador-santa-catarina-julho-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-governador-santa-catarina-agosto-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/neokemp-governador-santa-catarina-agosto-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/atlasintel-governador-santa-catarina-setembro-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/neokemp-governador-santa-catarina-setembro-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-governador-santa-catarina-setembro-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/parana-pesquisas-governador-santa-catarina-setembro-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-goverador-santa-catarina-setembro-2026/",
+  "https://www.metropoles.com/brasil/quaest-amin-tem-19-ao-senado-por-sc-carlos-bolsonaro-16-e-de-toni-12",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/atlasintel-senador-santa-catarina-setembro-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-senador-santa-catarina-setembro-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-senador-santa-catarina-setembro-2026/"
+ ]
+}

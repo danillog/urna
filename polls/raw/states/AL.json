@@ -1,0 +1,331 @@
+{
+ "uf": "AL",
+ "state": "Alagoas",
+ "gov_t1": {
+  "candidates": {
+   "JHC": "PSDB",
+   "Renan Filho": "MDB",
+   "Lenilda Luna": "UP",
+   "Márcio Jambo": "Democrata"
+  },
+  "polls": [
+   {
+    "p": "Paraná Pesquisas",
+    "date": "2026-07-01",
+    "n": 1400,
+    "method": "presencial",
+    "v": {
+     "JHC": 45.9,
+     "Renan Filho": 41.0,
+     "Lenilda Luna": 1.4,
+     "BNI": 11.8
+    }
+   },
+   {
+    "p": "Quaest",
+    "date": "2026-08-23",
+    "n": 804,
+    "method": "",
+    "v": {
+     "Renan Filho": 42,
+     "JHC": 40,
+     "Lenilda Luna": 1,
+     "Márcio Jambo": 0,
+     "BNI": 17
+    }
+   },
+   {
+    "p": "Paraná Pesquisas",
+    "date": "2026-08-29",
+    "n": 1400,
+    "method": "presencial",
+    "v": {
+     "JHC": 47.2,
+     "Renan Filho": 41.3,
+     "Lenilda Luna": 1.0,
+     "Márcio Jambo": 0.4,
+     "BNI": 10.2
+    }
+   },
+   {
+    "p": "AtlasIntel",
+    "date": "2026-09-09",
+    "n": 1208,
+    "method": "",
+    "v": {
+     "JHC": 49.3,
+     "Renan Filho": 46.4,
+     "Márcio Jambo": 1.2,
+     "Lenilda Luna": 0.2,
+     "BNI": 2.8
+    }
+   },
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-09-14",
+    "n": 1600,
+    "method": "",
+    "v": {
+     "Renan Filho": 46,
+     "JHC": 43,
+     "Lenilda Luna": 1,
+     "Márcio Jambo": 0,
+     "BNI": 10
+    }
+   },
+   {
+    "p": "Paraná Pesquisas",
+    "date": "2026-09-20",
+    "n": 1400,
+    "method": "presencial",
+    "v": {
+     "JHC": 48.6,
+     "Renan Filho": 41.6,
+     "Lenilda Luna": 0.6,
+     "Márcio Jambo": 0.6,
+     "BNI": 8.4
+    }
+   },
+   {
+    "p": "DataTrends",
+    "date": "2026-09-21",
+    "n": 1200,
+    "method": "telefone",
+    "v": {
+     "Renan Filho": 45,
+     "JHC": 44,
+     "Lenilda Luna": 1,
+     "Márcio Jambo": 0,
+     "BNI": 10
+    }
+   },
+   {
+    "p": "Quaest",
+    "date": "2026-09-24",
+    "n": 804,
+    "method": "",
+    "v": {
+     "JHC": 43,
+     "Renan Filho": 41,
+     "Lenilda Luna": 0,
+     "Márcio Jambo": 0,
+     "Outros": 1,
+     "BNI": 16
+    }
+   },
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-09-24",
+    "n": 1600,
+    "method": "presencial",
+    "v": {
+     "Renan Filho": 47,
+     "JHC": 44,
+     "Lenilda Luna": 0,
+     "Márcio Jambo": 0,
+     "BNI": 9
+    }
+   }
+  ]
+ },
+ "gov_t2": {
+  "matchup": [
+   "JHC",
+   "Renan Filho"
+  ],
+  "candidates": {
+   "JHC": "PSDB",
+   "Renan Filho": "MDB"
+  },
+  "polls": [
+   {
+    "p": "Paraná Pesquisas",
+    "date": "2026-07-01",
+    "n": 1400,
+    "method": "presencial",
+    "v": {
+     "JHC": 47.5,
+     "Renan Filho": 42.0,
+     "BNI": 10.5
+    }
+   },
+   {
+    "p": "Quaest",
+    "date": "2026-08-23",
+    "n": 804,
+    "method": "",
+    "v": {
+     "JHC": 42,
+     "Renan Filho": 42,
+     "BNI": 16
+    }
+   },
+   {
+    "p": "Paraná Pesquisas",
+    "date": "2026-08-29",
+    "n": 1400,
+    "method": "presencial",
+    "v": {
+     "JHC": 48.9,
+     "Renan Filho": 42.6,
+     "BNI": 8.5
+    }
+   },
+   {
+    "p": "AtlasIntel",
+    "date": "2026-09-09",
+    "n": 1208,
+    "method": "",
+    "v": {
+     "JHC": 49.9,
+     "Renan Filho": 46.7,
+     "BNI": 3.3
+    }
+   },
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-09-14",
+    "n": 1600,
+    "method": "",
+    "v": {
+     "JHC": 43,
+     "Renan Filho": 47,
+     "BNI": 10
+    }
+   },
+   {
+    "p": "Paraná Pesquisas",
+    "date": "2026-09-20",
+    "n": 1400,
+    "method": "presencial",
+    "v": {
+     "JHC": 49.6,
+     "Renan Filho": 43.2,
+     "BNI": 7.3
+    }
+   },
+   {
+    "p": "DataTrends",
+    "date": "2026-09-21",
+    "n": 1200,
+    "method": "telefone",
+    "v": {
+     "JHC": 46,
+     "Renan Filho": 47,
+     "BNI": 7
+    }
+   },
+   {
+    "p": "Quaest",
+    "date": "2026-09-24",
+    "n": 804,
+    "method": "",
+    "v": {
+     "JHC": 45,
+     "Renan Filho": 42,
+     "BNI": 13
+    }
+   },
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-09-24",
+    "n": 1600,
+    "method": "presencial",
+    "v": {
+     "JHC": 45,
+     "Renan Filho": 47,
+     "BNI": 8
+    }
+   }
+  ]
+ },
+ "sen_t1": {
+  "candidates": {
+   "Marina JHC": "PSDB",
+   "Arthur Lira": "PP",
+   "Renan Calheiros": "MDB",
+   "Davi Davino Filho": "Republicanos",
+   "Dr. Wanderley": "MDB",
+   "Alexandre Fleming": "UP"
+  },
+  "note": "Consolidated two-vote result reduced to 100% (Quaest, Real Time Big Data). Paraná Pesquisas publishes the raw sum of two votes (>100%) and is excluded for consistency.",
+  "polls": [
+   {
+    "p": "Quaest",
+    "date": "2026-08-23",
+    "n": 804,
+    "method": "",
+    "v": {
+     "Arthur Lira": 20,
+     "Renan Calheiros": 18,
+     "Marina JHC": 15,
+     "Davi Davino Filho": 10,
+     "Dr. Wanderley": 5,
+     "Alexandre Fleming": 0,
+     "Outros": 1,
+     "BNI": 31
+    }
+   },
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-09-14",
+    "n": 1600,
+    "method": "",
+    "v": {
+     "Renan Calheiros": 22,
+     "Marina JHC": 21,
+     "Arthur Lira": 19,
+     "Davi Davino Filho": 17,
+     "Dr. Wanderley": 6,
+     "Alexandre Fleming": 1,
+     "Outros": 0,
+     "BNI": 14
+    }
+   },
+   {
+    "p": "Quaest",
+    "date": "2026-09-24",
+    "n": 804,
+    "method": "",
+    "v": {
+     "Marina JHC": 20,
+     "Arthur Lira": 20,
+     "Renan Calheiros": 17,
+     "Davi Davino Filho": 10,
+     "Dr. Wanderley": 7,
+     "Outros": 0,
+     "BNI": 26
+    }
+   },
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-09-24",
+    "n": 1600,
+    "method": "",
+    "v": {
+     "Marina JHC": 23,
+     "Renan Calheiros": 22,
+     "Arthur Lira": 20,
+     "Davi Davino Filho": 17,
+     "Dr. Wanderley": 6,
+     "Alexandre Fleming": 1,
+     "Outros": 0,
+     "BNI": 11
+    }
+   }
+  ]
+ },
+ "notes": "Race is JHC (PSDB, ex-mayor of Maceió) vs Renan Filho (MDB); essentially a two-way tie. No 2026 polls found before July (en.wikipedia page has no poll tables). RTBD 21-24 Sep: Gazeta published valid votes; total-vote figures (1st round 47/44/BN5/NS4; 2nd round 47/45/BN5/NS3) taken from Exame. Senate: Alfredo Gaspar (PL) and Eudócia Caldas appeared in the June/July Paraná Pesquisas senate scenario but are not in the September field (Marina JHC is the PSDB candidate); that poll's senate row dropped anyway (sum-of-two-votes convention). Paraná Pesquisas senate (sum of 2 votes) for reference: Aug 29 Lira 40.4, Renan 36.8, Marina 28.4, Davi 24.4, Wanderley 10.8; Sep 20 Lira 41.2, Marina 37.8, Renan 34.6, Davi 25.7, Wanderley 12.3. Márcio Jambo party given as 'Democrata' by Gazeta.",
+ "sources": [
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/parana-pesquisas-governador-senador-alagoas-julho-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-governador-senador-alagoas-agosto-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/parana-pesquisas-governador-senador-alagoas-agosto/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/atlasintel-governador-alagoas-setembro-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-governador-senador-alagoas-setembro-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/parana-pesquisas-governador-senado-alagoas-setembro-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-governador-senador-alagoas-setembro-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-governador-senador-alagoas-setembro-2026-2/",
+  "https://revistaforum.com.br/politica/disputa-governo-al/",
+  "https://exame.com/brasil/real-time-big-data-renan-filho-tem-47-e-jhc-44-no-1o-turno-em-alagoas/"
+ ]
+}

@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.vite/
+*.local
+.DS_Store
+# legacy build outputs
+pesquisas-eleitorais.html
+polls/data_min.json
+polls/data_states.json
+resultados_presidente_municipio.csv

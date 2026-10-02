@@ -1,0 +1,175 @@
+{
+ "uf": "MS",
+ "state": "Mato Grosso do Sul",
+ "gov_t1": {
+  "candidates": {
+   "Riedel": "PP",
+   "Fábio Trad": "PT",
+   "Catan": "NOVO",
+   "Delcídio": "PRD"
+  },
+  "polls": [
+   {
+    "p": "Quaest",
+    "date": "2026-08-24",
+    "n": 804,
+    "method": "",
+    "v": {
+     "Riedel": 40,
+     "Fábio Trad": 13,
+     "Delcídio": 8,
+     "Catan": 3,
+     "Outros": 5,
+     "BNI": 31
+    }
+   },
+   {
+    "p": "AtlasIntel",
+    "date": "2026-09-01",
+    "n": 1204,
+    "method": "online",
+    "v": {
+     "Riedel": 49,
+     "Fábio Trad": 26,
+     "Catan": 12.4,
+     "Delcídio": 0.3,
+     "Outros": 0.8,
+     "BNI": 11.5
+    }
+   },
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-09-09",
+    "n": 1600,
+    "method": "",
+    "v": {
+     "Riedel": 42,
+     "Fábio Trad": 26,
+     "Catan": 13,
+     "Delcídio": 5,
+     "Outros": 6,
+     "BNI": 8
+    }
+   },
+   {
+    "p": "Quaest",
+    "date": "2026-09-24",
+    "n": 804,
+    "method": "",
+    "v": {
+     "Riedel": 51,
+     "Fábio Trad": 12,
+     "Delcídio": 6,
+     "Catan": 3,
+     "Outros": 4,
+     "BNI": 24
+    }
+   }
+  ]
+ },
+ "gov_t2": {
+  "matchup": [
+   "Riedel",
+   "Fábio Trad"
+  ],
+  "candidates": {
+   "Riedel": "PP",
+   "Fábio Trad": "PT"
+  },
+  "polls": [
+   {
+    "p": "Quaest",
+    "date": "2026-08-24",
+    "n": 804,
+    "method": "",
+    "v": {
+     "Riedel": 59,
+     "Fábio Trad": 22
+    }
+   },
+   {
+    "p": "AtlasIntel",
+    "date": "2026-09-01",
+    "n": 1204,
+    "method": "online",
+    "v": {
+     "Riedel": 57.4,
+     "Fábio Trad": 30.7,
+     "BNI": 11.9
+    }
+   },
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-09-09",
+    "n": 1600,
+    "method": "",
+    "v": {
+     "Riedel": 57,
+     "Fábio Trad": 32,
+     "BNI": 11
+    }
+   },
+   {
+    "p": "Quaest",
+    "date": "2026-09-24",
+    "n": 804,
+    "method": "",
+    "v": {
+     "Riedel": 63,
+     "Fábio Trad": 20,
+     "BNI": 17
+    }
+   }
+  ]
+ },
+ "sen_t1": {
+  "candidates": {
+   "Azambuja": "PL",
+   "Capitão Contar": "PL",
+   "Soraya": "PSB",
+   "Vander Loubet": "PT",
+   "Beto do Movimento": "PSOL"
+  },
+  "note": "Consolidated 1st+2nd votes reduced to 100% (Quaest and Real Time Big Data wording).",
+  "polls": [
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-09-09",
+    "n": 1600,
+    "method": "",
+    "v": {
+     "Azambuja": 32,
+     "Capitão Contar": 23,
+     "Vander Loubet": 12,
+     "Soraya": 11,
+     "Beto do Movimento": 6,
+     "Outros": 6,
+     "BNI": 10
+    }
+   },
+   {
+    "p": "Quaest",
+    "date": "2026-09-24",
+    "n": 804,
+    "method": "",
+    "v": {
+     "Capitão Contar": 23,
+     "Azambuja": 22,
+     "Soraya": 10,
+     "Vander Loubet": 8,
+     "Beto do Movimento": 2,
+     "Outros": 5,
+     "BNI": 30
+    }
+   }
+  ]
+ },
+ "notes": "Thin coverage: the web-search budget ran out while researching MS, and the en.wikipedia MS pages were not fetchable, so only the Aug-Sep polls from Quaest, AtlasIntel and Real Time Big Data were collected; no Jan-Jul polls. Final governor field: Eduardo Riedel (PP, incumbent), Fábio Trad (PT), João Henrique Catan (NOVO), Delcídio Amaral (PRD); minor candidates (Economista Renato Gomes DC, Lucien Rezende PSOL, Jeferson Bezerra Agir, Daniel Lemes PCO) in Outros. Institutes disagree strongly on Catan (Quaest 3% vs Atlas/RTBD 12-13%) and Delcídio (Atlas 0.3% vs Quaest 6-8%). Quaest 2026-08-24 values come from a Revista Fórum roundup (Gazeta article not reached); its 2nd round BNI is not available. AtlasIntel method stated as digital random recruitment (RCN67). Senate has only 2 polls; Quaest 2026-08-24 and AtlasIntel senate figures were not found. Riedel is near/above 50% of total votes in several polls, so a 1st-round win is plausible.",
+ "sources": [
+  "https://revistaforum.com.br/politica/disputa-governo-ms/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/atlasintel-governador-mato-grosso-do-sul-setembro-2026/",
+  "https://www.rcn67.com.br/campo-grande/riedel-e-flavio-bolsonaro-lideram-intencoes-de-voto-em-mato-grosso-do-sul-aponta-pesquisa",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-governador-senado-mato-grosso-do-sul-setembro-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-governador-senador-mato-grosso-do-sul-setembro-2026/"
+ ]
+}

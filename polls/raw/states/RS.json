@@ -1,0 +1,465 @@
+{
+ "uf": "RS",
+ "state": "Rio Grande do Sul",
+ "gov_t1": {
+  "candidates": {
+   "Zucco": "PL",
+   "Juliana Brizola": "PDT",
+   "Gabriel Souza": "MDB",
+   "Maranata": "PSDB"
+  },
+  "polls": [
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-03-16",
+    "n": 1500,
+    "method": "",
+    "v": {
+     "Zucco": 35,
+     "Juliana Brizola": 30,
+     "Gabriel Souza": 16,
+     "Maranata": 2,
+     "BNI": 17
+    }
+   },
+   {
+    "p": "Futura",
+    "date": "2026-04-07",
+    "n": 800,
+    "method": "",
+    "v": {
+     "Juliana Brizola": 35.2,
+     "Zucco": 26.9,
+     "Gabriel Souza": 9.1,
+     "BNI": 28.7
+    }
+   },
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-06-22",
+    "n": 1600,
+    "method": "",
+    "v": {
+     "Juliana Brizola": 37,
+     "Zucco": 32,
+     "Gabriel Souza": 18,
+     "Maranata": 3,
+     "BNI": 10
+    }
+   },
+   {
+    "p": "Paraná Pesquisas",
+    "date": "2026-07-19",
+    "n": 1500,
+    "method": "",
+    "v": {
+     "Zucco": 34.2,
+     "Juliana Brizola": 30.1,
+     "Gabriel Souza": 13.0,
+     "Maranata": 4.7,
+     "Outros": 1.8,
+     "BNI": 16.2
+    }
+   },
+   {
+    "p": "Quaest",
+    "date": "2026-07-28",
+    "n": 1104,
+    "method": "",
+    "v": {
+     "Juliana Brizola": 24,
+     "Zucco": 22,
+     "Gabriel Souza": 6,
+     "Maranata": 3,
+     "Outros": 2,
+     "BNI": 43
+    }
+   },
+   {
+    "p": "Paraná Pesquisas",
+    "date": "2026-08-20",
+    "n": 1504,
+    "method": "presencial",
+    "v": {
+     "Zucco": 34.4,
+     "Juliana Brizola": 31.4,
+     "Gabriel Souza": 11.3,
+     "Maranata": 4.1,
+     "Outros": 3.6,
+     "BNI": 14.0
+    }
+   },
+   {
+    "p": "Quaest",
+    "date": "2026-08-23",
+    "n": 900,
+    "method": "",
+    "v": {
+     "Zucco": 26,
+     "Juliana Brizola": 23,
+     "Gabriel Souza": 9,
+     "BNI": 39
+    }
+   },
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-08-24",
+    "n": 1600,
+    "method": "",
+    "v": {
+     "Juliana Brizola": 38,
+     "Zucco": 32,
+     "Gabriel Souza": 19,
+     "Maranata": 4,
+     "Outros": 1,
+     "BNI": 6
+    }
+   },
+   {
+    "p": "AtlasIntel",
+    "date": "2026-09-01",
+    "n": 1783,
+    "method": "",
+    "v": {
+     "Zucco": 44.3,
+     "Juliana Brizola": 37.5,
+     "Gabriel Souza": 10.4,
+     "Maranata": 2.3,
+     "Outros": 0,
+     "BNI": 5.5
+    }
+   },
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-09-09",
+    "n": 1600,
+    "method": "",
+    "v": {
+     "Zucco": 36,
+     "Juliana Brizola": 35,
+     "Gabriel Souza": 22,
+     "Maranata": 3,
+     "Outros": 1,
+     "BNI": 3
+    }
+   },
+   {
+    "p": "Paraná Pesquisas",
+    "date": "2026-09-18",
+    "n": 1352,
+    "method": "",
+    "v": {
+     "Zucco": 36.4,
+     "Juliana Brizola": 31.3,
+     "Gabriel Souza": 12.9,
+     "Maranata": 3.1,
+     "Outros": 3.8,
+     "BNI": 12.4
+    }
+   },
+   {
+    "p": "AtlasIntel",
+    "date": "2026-09-20",
+    "n": 1819,
+    "method": "online",
+    "v": {
+     "Zucco": 41.6,
+     "Juliana Brizola": 36.1,
+     "Gabriel Souza": 13.5,
+     "Maranata": 0.8,
+     "Outros": 0.1,
+     "BNI": 7.9
+    }
+   },
+   {
+    "p": "Quaest",
+    "date": "2026-09-23",
+    "n": 900,
+    "method": "",
+    "v": {
+     "Zucco": 29,
+     "Juliana Brizola": 23,
+     "Gabriel Souza": 10,
+     "Maranata": 3,
+     "Outros": 2,
+     "BNI": 33
+    }
+   },
+   {
+    "p": "Neokemp",
+    "date": "2026-09-24",
+    "n": 1008,
+    "method": "",
+    "v": {
+     "Zucco": 44.9,
+     "Juliana Brizola": 28.8,
+     "Gabriel Souza": 15.7,
+     "Maranata": 2.0,
+     "Outros": 0.4,
+     "BNI": 8.3
+    }
+   }
+  ]
+ },
+ "gov_t2": {
+  "matchup": [
+   "Zucco",
+   "Juliana Brizola"
+  ],
+  "candidates": {
+   "Zucco": "PL",
+   "Juliana Brizola": "PDT"
+  },
+  "polls": [
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-03-16",
+    "n": 1500,
+    "method": "",
+    "v": {
+     "Zucco": 40,
+     "Juliana Brizola": 37,
+     "BNI": 23
+    }
+   },
+   {
+    "p": "Futura",
+    "date": "2026-04-07",
+    "n": 800,
+    "method": "",
+    "v": {
+     "Zucco": 33.4,
+     "Juliana Brizola": 40.6,
+     "BNI": 26.0
+    }
+   },
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-06-22",
+    "n": 1600,
+    "method": "",
+    "v": {
+     "Zucco": 41,
+     "Juliana Brizola": 44,
+     "BNI": 15
+    }
+   },
+   {
+    "p": "Quaest",
+    "date": "2026-07-28",
+    "n": 1104,
+    "method": "",
+    "v": {
+     "Zucco": 31,
+     "Juliana Brizola": 35,
+     "BNI": 34
+    }
+   },
+   {
+    "p": "Quaest",
+    "date": "2026-08-23",
+    "n": 900,
+    "method": "",
+    "v": {
+     "Zucco": 33,
+     "Juliana Brizola": 36
+    }
+   },
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-08-24",
+    "n": 1600,
+    "method": "",
+    "v": {
+     "Zucco": 41,
+     "Juliana Brizola": 45,
+     "BNI": 14
+    }
+   },
+   {
+    "p": "AtlasIntel",
+    "date": "2026-09-01",
+    "n": 1783,
+    "method": "",
+    "v": {
+     "Zucco": 48.5,
+     "Juliana Brizola": 43.9,
+     "BNI": 7.6
+    }
+   },
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-09-09",
+    "n": 1600,
+    "method": "",
+    "v": {
+     "Zucco": 44,
+     "Juliana Brizola": 44,
+     "BNI": 12
+    }
+   },
+   {
+    "p": "AtlasIntel",
+    "date": "2026-09-20",
+    "n": 1819,
+    "method": "online",
+    "v": {
+     "Zucco": 49.7,
+     "Juliana Brizola": 39.3,
+     "BNI": 11
+    }
+   },
+   {
+    "p": "Quaest",
+    "date": "2026-09-23",
+    "n": 900,
+    "method": "",
+    "v": {
+     "Zucco": 40,
+     "Juliana Brizola": 34,
+     "BNI": 26
+    }
+   }
+  ]
+ },
+ "sen_t1": {
+  "candidates": {
+   "Marcel van Hattem": "NOVO",
+   "Manuela d'Ávila": "PSOL",
+   "Sanderson": "PL",
+   "Paulo Pimenta": "PT",
+   "Rigotto": "MDB",
+   "Frederico Antunes": "PSD"
+  },
+  "note": "Consolidated 1st+2nd votes scaled so the total (incl. BNI) is 100%, as published by Quaest, Real Time Big Data and Neokemp. Paraná Pesquisas and Futura publish the raw sum of both votes (>100%) and are therefore excluded.",
+  "polls": [
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-03-16",
+    "n": 1500,
+    "method": "",
+    "v": {
+     "Manuela d'Ávila": 18,
+     "Marcel van Hattem": 18,
+     "Sanderson": 17,
+     "Paulo Pimenta": 13,
+     "Rigotto": 12,
+     "BNI": 22
+    }
+   },
+   {
+    "p": "Quaest",
+    "date": "2026-07-28",
+    "n": 1104,
+    "method": "",
+    "v": {
+     "Manuela d'Ávila": 12,
+     "Rigotto": 9,
+     "Paulo Pimenta": 9,
+     "Marcel van Hattem": 7,
+     "Sanderson": 6,
+     "BNI": 54
+    }
+   },
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-08-24",
+    "n": 1600,
+    "method": "",
+    "v": {
+     "Marcel van Hattem": 20,
+     "Manuela d'Ávila": 19,
+     "Sanderson": 17,
+     "Rigotto": 15,
+     "Paulo Pimenta": 15,
+     "Frederico Antunes": 5,
+     "Outros": 2,
+     "BNI": 7
+    }
+   },
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-09-09",
+    "n": 1600,
+    "method": "",
+    "v": {
+     "Marcel van Hattem": 22,
+     "Manuela d'Ávila": 18,
+     "Sanderson": 18,
+     "Paulo Pimenta": 16,
+     "Rigotto": 14,
+     "Frederico Antunes": 5,
+     "Outros": 2,
+     "BNI": 5
+    }
+   },
+   {
+    "p": "Quaest",
+    "date": "2026-09-23",
+    "n": 900,
+    "method": "",
+    "v": {
+     "Manuela d'Ávila": 14,
+     "Marcel van Hattem": 11,
+     "Paulo Pimenta": 10,
+     "Sanderson": 10,
+     "Rigotto": 9,
+     "Frederico Antunes": 2,
+     "Outros": 3,
+     "BNI": 41
+    }
+   },
+   {
+    "p": "Neokemp",
+    "date": "2026-09-24",
+    "n": 1008,
+    "method": "",
+    "v": {
+     "Marcel van Hattem": 26.3,
+     "Sanderson": 23.0,
+     "Manuela d'Ávila": 19.2,
+     "Paulo Pimenta": 14.9,
+     "Rigotto": 5.8,
+     "Frederico Antunes": 1.6,
+     "Outros": 1.1,
+     "BNI": 8.0
+    }
+   },
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-09-28",
+    "n": 1600,
+    "method": "",
+    "v": {
+     "Marcel van Hattem": 23,
+     "Sanderson": 19,
+     "Manuela d'Ávila": 18,
+     "Paulo Pimenta": 16,
+     "Rigotto": 12,
+     "Frederico Antunes": 4,
+     "Outros": 2,
+     "BNI": 5
+    }
+   }
+  ]
+ },
+ "notes": "Final governor field: Zucco (PL), Juliana Brizola (PDT), Gabriel Souza (MDB), Marcelo Maranata (PSDB) plus minor candidates (Priscila Voigt UP, Rejane de Oliveira PSTU, Cesar Pontes PCO) summed into Outros. RTBD 2026-03-16 and Futura 2026-04-07 use the scenario without Edegar Pretto (PT, not a candidate); Futura's scenario has no Maranata. Futura Souza value: Gazeta gives 9.1, Wikipedia 9.2. Quaest 2026-08-23: only Zucco/Brizola/Souza and BN 12 + undecided 27 were available (others <3% combined, not itemised); its 2nd round BNI not published in the source read. Real Time Big Data 2026-09-24/28 governor numbers are published only in valid votes, so its 1st and 2nd round rows were dropped (its senate row is kept). RTBD reports very low BNI (3-10%) in the stimulated question compared with Quaest (33-43%); these are the published figures. AtlasIntel 2026-09-01 fieldwork: Gazeta/Revista Fórum say Aug 27-Sep 1 (Poder360 summary suggested Sep 1-3). AtlasIntel 2nd round values for 2026-09-20 are total votes from Jornal do Comércio (Gazeta only gave valid). Methodus (Feb 2026) skipped: only scenario includes Pretto. Neokemp senate Rigotto 5.8% is far below other institutes (9-15%), verified verbatim in Gazeta.",
+ "sources": [
+  "https://www.cnnbrasil.com.br/eleicoes/real-time-big-data-zucco-lidera-cenarios-ao-governo-do-rio-grande-do-sul/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-governador-senador-rio-grande-do-sul-marco-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/futura-inteligencia-governador-senador-rio-grande-do-sul-abril-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-governador-rio-grande-do-sul-junho-2026/",
+  "https://www.brasildefato.com.br/2026/07/22/pesquisa-paga-pelo-pl-mostra-empate-tecnico-entre-zucco-e-brizola-pelo-governo-gaucho/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/genial-quaest-governador-senador-rio-grande-do-sul-julho-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/parana-pesquisas-governo-senador-rio-grande-do-sul-agosto-2026/",
+  "https://agorars.com/politica/eleicoes/quaest-rs-zucco-juliana-brizola-governo-agosto-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-governador-senado-rio-grande-do-sul-agosto-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/atlasintel-governador-rio-grande-do-sul-setembro-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-governador-senado-rio-grande-do-sul-setembro-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/parana-pesquisas-governador-senador-rio-grande-do-sul-setembro-2026/",
+  "https://www.jornaldocomercio.com/politica/2026/09/1264394-zucco-tem-416-e-juliana-brizola-361-mostra-pesquisa-atlasintel.html",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-governador-senador-rio-grande-do-sul-setembro-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/neokemp-governador-senador-rio-grande-do-sul-setembro-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-governador-senado-rio-grande-do-sul-setembro-2026-2/"
+ ]
+}

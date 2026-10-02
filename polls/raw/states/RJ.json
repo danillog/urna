@@ -1,0 +1,573 @@
+{
+ "uf": "RJ",
+ "state": "Rio de Janeiro",
+ "gov_t1": {
+  "candidates": {
+   "Eduardo Paes": "PSD",
+   "Douglas Ruas": "PL",
+   "Garotinho": "Republicanos",
+   "Coronel Busnello": "MISSÃO",
+   "William Siri": "PSOL",
+   "André Marinho": "NOVO"
+  },
+  "polls": [
+   {
+    "p": "Paraná Pesquisas",
+    "date": "2026-06-03",
+    "n": 1680,
+    "method": "",
+    "v": {
+     "Eduardo Paes": 48.3,
+     "Douglas Ruas": 12.6,
+     "Garotinho": 9.2,
+     "William Siri": 0.6,
+     "André Marinho": 4.2,
+     "Outros": 5.7,
+     "BNI": 19.4
+    }
+   },
+   {
+    "p": "Gerp",
+    "date": "2026-07-15",
+    "n": 1000,
+    "method": "telefone",
+    "v": {
+     "Eduardo Paes": 47,
+     "Douglas Ruas": 11,
+     "Garotinho": 15,
+     "André Marinho": 2,
+     "Outros": 3,
+     "BNI": 22
+    }
+   },
+   {
+    "p": "Quaest",
+    "date": "2026-07-25",
+    "n": 1200,
+    "method": "",
+    "v": {
+     "Eduardo Paes": 38,
+     "Douglas Ruas": 10,
+     "Garotinho": 10,
+     "Coronel Busnello": 1,
+     "William Siri": 2,
+     "André Marinho": 1,
+     "Outros": 3,
+     "BNI": 35
+    }
+   },
+   {
+    "p": "Datafolha",
+    "date": "2026-08-21",
+    "n": 1204,
+    "method": "",
+    "v": {
+     "Eduardo Paes": 41,
+     "Douglas Ruas": 19,
+     "Garotinho": 9,
+     "Coronel Busnello": 2,
+     "William Siri": 2,
+     "André Marinho": 2,
+     "Outros": 5,
+     "BNI": 20
+    }
+   },
+   {
+    "p": "Paraná Pesquisas",
+    "date": "2026-08-24",
+    "n": 1600,
+    "method": "",
+    "v": {
+     "Eduardo Paes": 44.5,
+     "Douglas Ruas": 15.5,
+     "Garotinho": 11.6,
+     "Coronel Busnello": 2.3,
+     "William Siri": 1.3,
+     "André Marinho": 3.1,
+     "Outros": 4.6,
+     "BNI": 17.2
+    }
+   },
+   {
+    "p": "Quaest",
+    "date": "2026-08-24",
+    "n": 1302,
+    "method": "",
+    "v": {
+     "Eduardo Paes": 37,
+     "Douglas Ruas": 14,
+     "Garotinho": 7,
+     "Coronel Busnello": 1,
+     "William Siri": 3,
+     "André Marinho": 0,
+     "Outros": 2,
+     "BNI": 36
+    }
+   },
+   {
+    "p": "AtlasIntel",
+    "date": "2026-08-31",
+    "n": 1784,
+    "method": "",
+    "v": {
+     "Eduardo Paes": 43.6,
+     "Douglas Ruas": 27.6,
+     "Garotinho": 10.7,
+     "Coronel Busnello": 5.6,
+     "William Siri": 3.2,
+     "André Marinho": 4.3,
+     "Outros": 0.9,
+     "BNI": 4.1
+    }
+   },
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-09-01",
+    "n": 2000,
+    "method": "",
+    "v": {
+     "Eduardo Paes": 35,
+     "Douglas Ruas": 21,
+     "Garotinho": 7,
+     "Coronel Busnello": 4,
+     "William Siri": 5,
+     "André Marinho": 3,
+     "Outros": 2,
+     "BNI": 23
+    }
+   },
+   {
+    "p": "Paraná Pesquisas",
+    "date": "2026-09-07",
+    "n": 1600,
+    "method": "",
+    "v": {
+     "Eduardo Paes": 43.5,
+     "Douglas Ruas": 20.3,
+     "Garotinho": 9.8,
+     "Coronel Busnello": 1.6,
+     "William Siri": 1.1,
+     "André Marinho": 3.4,
+     "Outros": 4.0,
+     "BNI": 16.1
+    }
+   },
+   {
+    "p": "Quaest",
+    "date": "2026-09-07",
+    "n": 1302,
+    "method": "",
+    "v": {
+     "Eduardo Paes": 39,
+     "Douglas Ruas": 18,
+     "Garotinho": 8,
+     "Coronel Busnello": 1,
+     "William Siri": 1,
+     "André Marinho": 1,
+     "Outros": 2,
+     "BNI": 30
+    }
+   },
+   {
+    "p": "Datafolha",
+    "date": "2026-09-10",
+    "n": 1204,
+    "method": "",
+    "v": {
+     "Eduardo Paes": 43,
+     "Douglas Ruas": 25,
+     "Garotinho": 10,
+     "Coronel Busnello": 2,
+     "William Siri": 2,
+     "André Marinho": 2,
+     "Outros": 3,
+     "BNI": 12
+    }
+   },
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-09-12",
+    "n": 2000,
+    "method": "",
+    "v": {
+     "Eduardo Paes": 35,
+     "Douglas Ruas": 25,
+     "Garotinho": 7,
+     "Coronel Busnello": 4,
+     "William Siri": 5,
+     "André Marinho": 3,
+     "Outros": 2,
+     "BNI": 19
+    }
+   },
+   {
+    "p": "AtlasIntel",
+    "date": "2026-09-20",
+    "n": 1829,
+    "method": "",
+    "v": {
+     "Eduardo Paes": 45.7,
+     "Douglas Ruas": 32.4,
+     "Garotinho": 8.9,
+     "Coronel Busnello": 3.1,
+     "William Siri": 2.0,
+     "André Marinho": 1.6,
+     "Outros": 0.9,
+     "BNI": 5.3
+    }
+   },
+   {
+    "p": "Paraná Pesquisas",
+    "date": "2026-09-22",
+    "n": 1600,
+    "method": "",
+    "v": {
+     "Eduardo Paes": 43.1,
+     "Douglas Ruas": 26.7,
+     "Garotinho": 8.4,
+     "Coronel Busnello": 1.2,
+     "William Siri": 1.3,
+     "André Marinho": 2.7,
+     "Outros": 3.1,
+     "BNI": 13.6
+    }
+   },
+   {
+    "p": "Quaest",
+    "date": "2026-09-22",
+    "n": 1302,
+    "method": "",
+    "v": {
+     "Eduardo Paes": 36,
+     "Douglas Ruas": 23,
+     "Garotinho": 8,
+     "Coronel Busnello": 1,
+     "William Siri": 1,
+     "André Marinho": 1,
+     "Outros": 2,
+     "BNI": 28
+    }
+   },
+   {
+    "p": "Datafolha",
+    "date": "2026-09-24",
+    "n": 1204,
+    "method": "",
+    "v": {
+     "Eduardo Paes": 43,
+     "Douglas Ruas": 30,
+     "Garotinho": 8,
+     "Coronel Busnello": 2,
+     "William Siri": 2,
+     "André Marinho": 2,
+     "Outros": 3,
+     "BNI": 10
+    }
+   }
+  ]
+ },
+ "gov_t2": {
+  "matchup": [
+   "Eduardo Paes",
+   "Douglas Ruas"
+  ],
+  "candidates": {
+   "Eduardo Paes": "PSD",
+   "Douglas Ruas": "PL"
+  },
+  "polls": [
+   {
+    "p": "Paraná Pesquisas",
+    "date": "2026-06-03",
+    "n": 1680,
+    "method": "",
+    "v": {
+     "Eduardo Paes": 60.0,
+     "Douglas Ruas": 24.5,
+     "BNI": 15.4
+    }
+   },
+   {
+    "p": "Gerp",
+    "date": "2026-07-15",
+    "n": 1000,
+    "method": "telefone",
+    "v": {
+     "Eduardo Paes": 63,
+     "Douglas Ruas": 21,
+     "BNI": 16
+    }
+   },
+   {
+    "p": "Quaest",
+    "date": "2026-07-25",
+    "n": 1200,
+    "method": "",
+    "v": {
+     "Eduardo Paes": 48,
+     "Douglas Ruas": 16,
+     "BNI": 32
+    }
+   },
+   {
+    "p": "Quaest",
+    "date": "2026-08-24",
+    "n": 1302,
+    "method": "",
+    "v": {
+     "Eduardo Paes": 50,
+     "Douglas Ruas": 20,
+     "BNI": 30
+    }
+   },
+   {
+    "p": "AtlasIntel",
+    "date": "2026-08-31",
+    "n": 1784,
+    "method": "",
+    "v": {
+     "Eduardo Paes": 51.9,
+     "Douglas Ruas": 38.2,
+     "BNI": 10.0
+    }
+   },
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-09-01",
+    "n": 2000,
+    "method": "",
+    "v": {
+     "Eduardo Paes": 41,
+     "Douglas Ruas": 30,
+     "BNI": 29
+    }
+   },
+   {
+    "p": "Quaest",
+    "date": "2026-09-07",
+    "n": 1302,
+    "method": "",
+    "v": {
+     "Eduardo Paes": 52,
+     "Douglas Ruas": 26,
+     "BNI": 22
+    }
+   },
+   {
+    "p": "Datafolha",
+    "date": "2026-09-10",
+    "n": 1204,
+    "method": "",
+    "v": {
+     "Eduardo Paes": 54,
+     "Douglas Ruas": 34,
+     "BNI": 12
+    }
+   },
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-09-12",
+    "n": 2000,
+    "method": "",
+    "v": {
+     "Eduardo Paes": 42,
+     "Douglas Ruas": 33,
+     "BNI": 25
+    }
+   },
+   {
+    "p": "AtlasIntel",
+    "date": "2026-09-20",
+    "n": 1829,
+    "method": "",
+    "v": {
+     "Eduardo Paes": 49.2,
+     "Douglas Ruas": 40.6,
+     "BNI": 10.3
+    }
+   },
+   {
+    "p": "Quaest",
+    "date": "2026-09-22",
+    "n": 1302,
+    "method": "",
+    "v": {
+     "Eduardo Paes": 44,
+     "Douglas Ruas": 31,
+     "BNI": 25
+    }
+   },
+   {
+    "p": "Datafolha",
+    "date": "2026-09-24",
+    "n": 1204,
+    "method": "",
+    "v": {
+     "Eduardo Paes": 54,
+     "Douglas Ruas": 38,
+     "BNI": 7
+    }
+   }
+  ]
+ },
+ "sen_t1": {
+  "candidates": {
+   "Benedita": "PT",
+   "Carlos Jordy": "PL",
+   "Carlos Portinho": "PL",
+   "Crivella": "Republicanos",
+   "Pedro Paulo": "PSD",
+   "Mônica Benício": "PSOL"
+  },
+  "note": "Consolidated first+second vote, reduced to 100% (Datafolha, Quaest, Real Time Big Data). Paraná Pesquisas publishes the raw sum of the two votes (Benedita ~30%, totals ~150%) so its senate rows (22-24 Aug, 5-7 Sep, 20-22 Sep) are excluded. July polls excluded (Carlos Jordy absent; Molon, Márcio Canella, Sávio Neves listed).",
+  "polls": [
+   {
+    "p": "Datafolha",
+    "date": "2026-08-21",
+    "n": 1204,
+    "method": "",
+    "v": {
+     "Benedita": 15,
+     "Carlos Jordy": 8,
+     "Carlos Portinho": 8,
+     "Crivella": 6,
+     "Pedro Paulo": 6,
+     "Mônica Benício": 6,
+     "Outros": 14,
+     "BNI": 35
+    }
+   },
+   {
+    "p": "Quaest",
+    "date": "2026-08-24",
+    "n": 1302,
+    "method": "",
+    "v": {
+     "Benedita": 10,
+     "Carlos Jordy": 7,
+     "Carlos Portinho": 5,
+     "Crivella": 6,
+     "Pedro Paulo": 3,
+     "Mônica Benício": 5,
+     "Outros": 7,
+     "BNI": 57
+    }
+   },
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-09-01",
+    "n": 2000,
+    "method": "",
+    "v": {
+     "Benedita": 14,
+     "Carlos Jordy": 11,
+     "Carlos Portinho": 9,
+     "Crivella": 14,
+     "Pedro Paulo": 13,
+     "Mônica Benício": 9,
+     "Outros": 13,
+     "BNI": 17
+    }
+   },
+   {
+    "p": "Quaest",
+    "date": "2026-09-07",
+    "n": 1302,
+    "method": "",
+    "v": {
+     "Benedita": 15,
+     "Carlos Jordy": 6,
+     "Carlos Portinho": 6,
+     "Crivella": 8,
+     "Pedro Paulo": 6,
+     "Mônica Benício": 4,
+     "BNI": 49
+    }
+   },
+   {
+    "p": "Datafolha",
+    "date": "2026-09-10",
+    "n": 1204,
+    "method": "",
+    "v": {
+     "Benedita": 18,
+     "Carlos Jordy": 10,
+     "Carlos Portinho": 10,
+     "Crivella": 7,
+     "Pedro Paulo": 7,
+     "Mônica Benício": 6,
+     "Outros": 13,
+     "BNI": 31
+    }
+   },
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-09-12",
+    "n": 2000,
+    "method": "",
+    "v": {
+     "Benedita": 15,
+     "Carlos Jordy": 15,
+     "Carlos Portinho": 10,
+     "Crivella": 13,
+     "Pedro Paulo": 12,
+     "Mônica Benício": 9,
+     "Outros": 11,
+     "BNI": 15
+    }
+   },
+   {
+    "p": "Quaest",
+    "date": "2026-09-22",
+    "n": 1302,
+    "method": "",
+    "v": {
+     "Benedita": 15,
+     "Carlos Jordy": 10,
+     "Carlos Portinho": 10,
+     "Crivella": 7,
+     "Pedro Paulo": 6,
+     "Mônica Benício": 4,
+     "Outros": 6,
+     "BNI": 42
+    }
+   },
+   {
+    "p": "Datafolha",
+    "date": "2026-09-24",
+    "n": 1204,
+    "method": "",
+    "v": {
+     "Benedita": 19,
+     "Carlos Jordy": 12,
+     "Carlos Portinho": 12,
+     "Crivella": 7,
+     "Pedro Paulo": 9,
+     "Mônica Benício": 6,
+     "Outros": 9,
+     "BNI": 25
+    }
+   }
+  ]
+ },
+ "notes": "Governor: Garotinho (Republicanos) was ruled ineligible by the TRE on 11 Sep 2026 (per en.wikipedia) but pollsters kept him in their main scenario through late September (presumably running sub judice); rows use the WITH-Garotinho scenario throughout. Several pollsters (AtlasIntel, RTBD, Paraná) also publish a scenario without him where Ruas gains ~3-6 pts (e.g. AtlasIntel 15-20 Sep: Paes 44.4, Ruas 38.2; Paraná 20-22 Sep: Paes 46.3, Ruas 28.8; RTBD 9-12 Sep: Paes 36, Ruas 27) - switch if Garotinho is off the ballot. Outros = Cyro Garcia (PSTU), Juliete Pantoja (UP), Luan Monteiro (PCO) plus, in older rows, withdrawn minor names: Paraná 2026-06-03 (Wilson Witzel 3.1 + Bombeiro Rafa Luz 2.6; no Busnello), Gerp 2026-07-15 (scenario 2: Witzel 3; no Busnello/Siri), Quaest 2026-07-25 (Witzel 1). No usable Jan-May polls found (the PL candidate was undefined before Ruas; April 2026 indirect special election for governor). Paraná Pesquisas and Datafolha (Aug) did not publish a 2nd round in some releases. Quaest 2026-09-07 senate: 'others 8% combined' was ambiguous, so Outros omitted.",
+ "sources": [
+  "https://en.wikipedia.org/wiki/2026_Rio_de_Janeiro_general_election",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/parana-pesquisas-governador-senador-rio-de-janeiro-junho-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/gerp-governador-rio-de-janeiro-julho-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/genial-quaest-governador-senador-rio-de-janeiro-julho-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/datafolha-governador-senador-rio-de-janeiro-agosto-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/parana-pesquisas-governador-senado-rio-de-janeiro-agosto-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-governador-senador-rio-de-janeiro-agosto-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/atlasintel-governador-rio-de-janeiro-setembro-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-governador-senador-rio-de-janeiro-setembro-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/parana-pesquisas-governador-senado-rio-de-janeiro-setembro-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-governador-senador-rio-de-janeiro-setembro-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/datafolha-governador-senador-rio-de-janeiro-setembro-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-governador-senador-rio-de-janeiro-setembro-2026-2/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/atlasintel-governador-rio-de-janeiro-setembro-2026-2/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/parana-pesquisas-governador-senado-rio-de-janeiro-setembro-2026-2/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-governador-senador-rio-de-janeiro-setembro-2026-2/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/datafolha-governador-senador-rio-de-janeiro-setembro-2026-2/"
+ ]
+}

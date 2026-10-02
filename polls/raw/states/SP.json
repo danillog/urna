@@ -1,0 +1,906 @@
+{
+ "uf": "SP",
+ "state": "São Paulo",
+ "gov_t1": {
+  "candidates": {
+   "Tarcísio": "Republicanos",
+   "Haddad": "PT"
+  },
+  "polls": [
+   {
+    "p": "Paraná Pesquisas",
+    "date": "2026-02-10",
+    "n": 1580,
+    "method": "",
+    "v": {
+     "Tarcísio": 51,
+     "Haddad": 27.7,
+     "Outros": 11.0,
+     "BNI": 10.3
+    }
+   },
+   {
+    "p": "Datafolha",
+    "date": "2026-03-05",
+    "n": 1608,
+    "method": "",
+    "v": {
+     "Tarcísio": 44,
+     "Haddad": 31,
+     "Outros": 13,
+     "BNI": 12
+    }
+   },
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-03-07",
+    "n": 2000,
+    "method": "",
+    "v": {
+     "Tarcísio": 47,
+     "Haddad": 31,
+     "Outros": 15,
+     "BNI": 7
+    }
+   },
+   {
+    "p": "AtlasIntel",
+    "date": "2026-03-27",
+    "n": 2254,
+    "method": "",
+    "v": {
+     "Tarcísio": 49.1,
+     "Haddad": 42.6,
+     "Outros": 6.2,
+     "BNI": 2.1
+    }
+   },
+   {
+    "p": "Paraná Pesquisas",
+    "date": "2026-04-14",
+    "n": 1600,
+    "method": "",
+    "v": {
+     "Tarcísio": 47.8,
+     "Haddad": 33.1,
+     "Outros": 8.1,
+     "BNI": 11.1
+    }
+   },
+   {
+    "p": "Vox Brasil",
+    "date": "2026-04-25",
+    "n": 1480,
+    "method": "",
+    "v": {
+     "Tarcísio": 48.2,
+     "Haddad": 32.3,
+     "Outros": 10.6,
+     "BNI": 8.9
+    }
+   },
+   {
+    "p": "Quaest",
+    "date": "2026-04-27",
+    "n": 1650,
+    "method": "",
+    "v": {
+     "Tarcísio": 38,
+     "Haddad": 26,
+     "Outros": 10,
+     "BNI": 26
+    }
+   },
+   {
+    "p": "Paraná Pesquisas",
+    "date": "2026-05-20",
+    "n": 1640,
+    "method": "",
+    "v": {
+     "Tarcísio": 47.3,
+     "Haddad": 33.5,
+     "Outros": 7.7,
+     "BNI": 11.2
+    }
+   },
+   {
+    "p": "Vox Brasil",
+    "date": "2026-05-28",
+    "n": 1480,
+    "method": "",
+    "v": {
+     "Tarcísio": 45.8,
+     "Haddad": 34.8,
+     "Outros": 10.5,
+     "BNI": 8.9
+    }
+   },
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-06-15",
+    "n": 2000,
+    "method": "",
+    "v": {
+     "Tarcísio": 46,
+     "Haddad": 33,
+     "Outros": 14,
+     "BNI": 7
+    }
+   },
+   {
+    "p": "Paraná Pesquisas",
+    "date": "2026-06-18",
+    "n": 1600,
+    "method": "",
+    "v": {
+     "Tarcísio": 45.6,
+     "Haddad": 34.1,
+     "Outros": 7.6,
+     "BNI": 12.7
+    }
+   },
+   {
+    "p": "Vox Brasil",
+    "date": "2026-06-27",
+    "n": 1480,
+    "method": "",
+    "v": {
+     "Tarcísio": 51.8,
+     "Haddad": 37.5,
+     "BNI": 10.5
+    }
+   },
+   {
+    "p": "Datafolha",
+    "date": "2026-07-03",
+    "n": 1608,
+    "method": "",
+    "v": {
+     "Tarcísio": 46,
+     "Haddad": 30,
+     "Outros": 13,
+     "BNI": 11
+    }
+   },
+   {
+    "p": "Quaest",
+    "date": "2026-07-27",
+    "n": 1650,
+    "method": "",
+    "v": {
+     "Tarcísio": 41,
+     "Haddad": 26,
+     "Outros": 5,
+     "BNI": 28
+    }
+   },
+   {
+    "p": "Paraná Pesquisas",
+    "date": "2026-07-28",
+    "n": 1680,
+    "method": "",
+    "v": {
+     "Tarcísio": 48.8,
+     "Haddad": 35.1,
+     "Outros": 3.7,
+     "BNI": 12.7
+    }
+   },
+   {
+    "p": "Vox Brasil",
+    "date": "2026-07-31",
+    "n": 1480,
+    "method": "",
+    "v": {
+     "Tarcísio": 52.9,
+     "Haddad": 34.3,
+     "Outros": 3.6,
+     "BNI": 9.2
+    }
+   },
+   {
+    "p": "Ideia",
+    "date": "2026-08-08",
+    "n": 1800,
+    "method": "",
+    "v": {
+     "Tarcísio": 50.6,
+     "Haddad": 33.6,
+     "Outros": 4.5,
+     "BNI": 11.4
+    }
+   },
+   {
+    "p": "Paraná Pesquisas",
+    "date": "2026-08-18",
+    "n": 1680,
+    "method": "",
+    "v": {
+     "Tarcísio": 50,
+     "Haddad": 33.8,
+     "Outros": 3.9,
+     "BNI": 12.3
+    }
+   },
+   {
+    "p": "Datafolha",
+    "date": "2026-08-21",
+    "n": 1610,
+    "method": "",
+    "v": {
+     "Tarcísio": 45,
+     "Haddad": 27,
+     "Outros": 13,
+     "BNI": 15
+    }
+   },
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-08-22",
+    "n": 2000,
+    "method": "",
+    "v": {
+     "Tarcísio": 52,
+     "Haddad": 35,
+     "Outros": 2,
+     "BNI": 11
+    }
+   },
+   {
+    "p": "Quaest",
+    "date": "2026-08-24",
+    "n": 1800,
+    "method": "",
+    "v": {
+     "Tarcísio": 40,
+     "Haddad": 27,
+     "Outros": 6,
+     "BNI": 27
+    }
+   },
+   {
+    "p": "AtlasIntel",
+    "date": "2026-08-31",
+    "n": 1810,
+    "method": "",
+    "v": {
+     "Tarcísio": 51.1,
+     "Haddad": 39.9,
+     "Outros": 3.5,
+     "BNI": 5.5
+    }
+   },
+   {
+    "p": "Quaest",
+    "date": "2026-09-07",
+    "n": 1800,
+    "method": "",
+    "v": {
+     "Tarcísio": 42,
+     "Haddad": 27,
+     "Outros": 4,
+     "BNI": 27
+    }
+   },
+   {
+    "p": "Paraná Pesquisas",
+    "date": "2026-09-10",
+    "n": 1680,
+    "method": "",
+    "v": {
+     "Tarcísio": 49.7,
+     "Haddad": 34.5,
+     "Outros": 4.5,
+     "BNI": 11.4
+    }
+   },
+   {
+    "p": "Datafolha",
+    "date": "2026-09-10",
+    "n": 1610,
+    "method": "",
+    "v": {
+     "Tarcísio": 49,
+     "Haddad": 29,
+     "Outros": 11,
+     "BNI": 11
+    }
+   },
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-09-12",
+    "n": 2000,
+    "method": "",
+    "v": {
+     "Tarcísio": 53,
+     "Haddad": 36,
+     "Outros": 2,
+     "BNI": 9
+    }
+   },
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-09-19",
+    "n": 2000,
+    "method": "",
+    "v": {
+     "Tarcísio": 53,
+     "Haddad": 38,
+     "Outros": 1,
+     "BNI": 8
+    }
+   },
+   {
+    "p": "AtlasIntel",
+    "date": "2026-09-20",
+    "n": 1800,
+    "method": "",
+    "v": {
+     "Tarcísio": 55.2,
+     "Haddad": 41,
+     "Outros": 0.5,
+     "BNI": 3.3
+    }
+   },
+   {
+    "p": "Paraná Pesquisas",
+    "date": "2026-09-21",
+    "n": 1600,
+    "method": "",
+    "v": {
+     "Tarcísio": 50.7,
+     "Haddad": 33.3,
+     "Outros": 5.1,
+     "BNI": 11.0
+    }
+   },
+   {
+    "p": "Quaest",
+    "date": "2026-09-22",
+    "n": 1800,
+    "method": "",
+    "v": {
+     "Tarcísio": 44,
+     "Haddad": 27,
+     "Outros": 4,
+     "BNI": 25
+    }
+   },
+   {
+    "p": "Datafolha",
+    "date": "2026-09-23",
+    "n": 1610,
+    "method": "",
+    "v": {
+     "Tarcísio": 50,
+     "Haddad": 30,
+     "Outros": 9,
+     "BNI": 11
+    }
+   }
+  ]
+ },
+ "gov_t2": {
+  "matchup": [
+   "Tarcísio",
+   "Haddad"
+  ],
+  "candidates": {
+   "Tarcísio": "Republicanos",
+   "Haddad": "PT"
+  },
+  "polls": [
+   {
+    "p": "Paraná Pesquisas",
+    "date": "2026-02-10",
+    "n": 1580,
+    "method": "",
+    "v": {
+     "Tarcísio": 58.7,
+     "Haddad": 32.4,
+     "BNI": 8.8
+    }
+   },
+   {
+    "p": "Datafolha",
+    "date": "2026-03-05",
+    "n": 1608,
+    "method": "",
+    "v": {
+     "Tarcísio": 52,
+     "Haddad": 37,
+     "BNI": 11
+    }
+   },
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-03-07",
+    "n": 2000,
+    "method": "",
+    "v": {
+     "Tarcísio": 50,
+     "Haddad": 37,
+     "BNI": 13
+    }
+   },
+   {
+    "p": "AtlasIntel",
+    "date": "2026-03-27",
+    "n": 2254,
+    "method": "",
+    "v": {
+     "Tarcísio": 53.5,
+     "Haddad": 43.2,
+     "BNI": 3.3
+    }
+   },
+   {
+    "p": "Paraná Pesquisas",
+    "date": "2026-04-14",
+    "n": 1600,
+    "method": "",
+    "v": {
+     "Tarcísio": 53.4,
+     "Haddad": 37.3,
+     "BNI": 9.3
+    }
+   },
+   {
+    "p": "Vox Brasil",
+    "date": "2026-04-25",
+    "n": 1480,
+    "method": "",
+    "v": {
+     "Tarcísio": 54.2,
+     "Haddad": 34.6,
+     "BNI": 11.2
+    }
+   },
+   {
+    "p": "Quaest",
+    "date": "2026-04-27",
+    "n": 1650,
+    "method": "",
+    "v": {
+     "Tarcísio": 49,
+     "Haddad": 32,
+     "BNI": 19
+    }
+   },
+   {
+    "p": "Paraná Pesquisas",
+    "date": "2026-05-20",
+    "n": 1640,
+    "method": "",
+    "v": {
+     "Tarcísio": 52.7,
+     "Haddad": 37.6,
+     "BNI": 9.7
+    }
+   },
+   {
+    "p": "Vox Brasil",
+    "date": "2026-05-28",
+    "n": 1480,
+    "method": "",
+    "v": {
+     "Tarcísio": 48.3,
+     "Haddad": 36.5,
+     "BNI": 15.2
+    }
+   },
+   {
+    "p": "Paraná Pesquisas",
+    "date": "2026-06-18",
+    "n": 1600,
+    "method": "",
+    "v": {
+     "Tarcísio": 51.4,
+     "Haddad": 37.9,
+     "BNI": 10.7
+    }
+   },
+   {
+    "p": "Datafolha",
+    "date": "2026-07-03",
+    "n": 1608,
+    "method": "",
+    "v": {
+     "Tarcísio": 53,
+     "Haddad": 37,
+     "BNI": 10
+    }
+   },
+   {
+    "p": "Quaest",
+    "date": "2026-07-27",
+    "n": 1650,
+    "method": "",
+    "v": {
+     "Tarcísio": 48,
+     "Haddad": 32,
+     "BNI": 20
+    }
+   },
+   {
+    "p": "Paraná Pesquisas",
+    "date": "2026-07-28",
+    "n": 1680,
+    "method": "",
+    "v": {
+     "Tarcísio": 51.8,
+     "Haddad": 38.3,
+     "BNI": 9.8
+    }
+   },
+   {
+    "p": "Vox Brasil",
+    "date": "2026-07-31",
+    "n": 1480,
+    "method": "",
+    "v": {
+     "Tarcísio": 53.5,
+     "Haddad": 35.8,
+     "BNI": 10.7
+    }
+   },
+   {
+    "p": "Ideia",
+    "date": "2026-08-08",
+    "n": 1800,
+    "method": "",
+    "v": {
+     "Tarcísio": 53.4,
+     "Haddad": 37,
+     "BNI": 9.6
+    }
+   },
+   {
+    "p": "Paraná Pesquisas",
+    "date": "2026-08-18",
+    "n": 1680,
+    "method": "",
+    "v": {
+     "Tarcísio": 53,
+     "Haddad": 36.9,
+     "BNI": 10.1
+    }
+   },
+   {
+    "p": "Datafolha",
+    "date": "2026-08-21",
+    "n": 1610,
+    "method": "",
+    "v": {
+     "Tarcísio": 54,
+     "Haddad": 35,
+     "BNI": 11
+    }
+   },
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-08-22",
+    "n": 2000,
+    "method": "",
+    "v": {
+     "Tarcísio": 54,
+     "Haddad": 36,
+     "BNI": 10
+    }
+   },
+   {
+    "p": "Quaest",
+    "date": "2026-08-24",
+    "n": 1800,
+    "method": "",
+    "v": {
+     "Tarcísio": 47,
+     "Haddad": 30,
+     "BNI": 23
+    }
+   },
+   {
+    "p": "AtlasIntel",
+    "date": "2026-08-31",
+    "n": 1810,
+    "method": "",
+    "v": {
+     "Tarcísio": 53.2,
+     "Haddad": 42.6,
+     "BNI": 4.2
+    }
+   },
+   {
+    "p": "Quaest",
+    "date": "2026-09-07",
+    "n": 1800,
+    "method": "",
+    "v": {
+     "Tarcísio": 48,
+     "Haddad": 31,
+     "BNI": 21
+    }
+   },
+   {
+    "p": "Paraná Pesquisas",
+    "date": "2026-09-10",
+    "n": 1680,
+    "method": "",
+    "v": {
+     "Tarcísio": 52.9,
+     "Haddad": 37.5,
+     "BNI": 9.7
+    }
+   },
+   {
+    "p": "Datafolha",
+    "date": "2026-09-10",
+    "n": 1610,
+    "method": "",
+    "v": {
+     "Tarcísio": 56,
+     "Haddad": 35,
+     "BNI": 9
+    }
+   },
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-09-12",
+    "n": 2000,
+    "method": "",
+    "v": {
+     "Tarcísio": 57,
+     "Haddad": 38,
+     "BNI": 5
+    }
+   },
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-09-19",
+    "n": 2000,
+    "method": "",
+    "v": {
+     "Tarcísio": 57,
+     "Haddad": 39,
+     "BNI": 4
+    }
+   },
+   {
+    "p": "AtlasIntel",
+    "date": "2026-09-20",
+    "n": 1800,
+    "method": "",
+    "v": {
+     "Tarcísio": 55.6,
+     "Haddad": 41.7,
+     "BNI": 2.7
+    }
+   },
+   {
+    "p": "Paraná Pesquisas",
+    "date": "2026-09-21",
+    "n": 1600,
+    "method": "",
+    "v": {
+     "Tarcísio": 54,
+     "Haddad": 36.4,
+     "BNI": 9.6
+    }
+   },
+   {
+    "p": "Quaest",
+    "date": "2026-09-22",
+    "n": 1800,
+    "method": "",
+    "v": {
+     "Tarcísio": 49,
+     "Haddad": 30,
+     "BNI": 21
+    }
+   }
+  ]
+ },
+ "sen_t1": {
+  "candidates": {
+   "Derrite": "PP",
+   "Marina Silva": "REDE",
+   "Tebet": "PSB",
+   "André do Prado": "PL",
+   "Salles": "NOVO",
+   "Geraldo Rufino": "PODE"
+  },
+  "note": "Consolidated first+second vote, reduced to 100% (Datafolha/Quaest/Real Time Big Data convention: each candidate's share of all votes cast, BNI included). Polls that publish the raw SUM of two votes (Paraná Pesquisas, Vox Brasil, Futura; totals ~150-200) were excluded to keep one convention. Only Aug-Sep 2026 polls included: before August the field lacked André do Prado (PL) and included withdrawn names (França, Boulos, Paulinho, Mello Araújo, Frias).",
+  "polls": [
+   {
+    "p": "Datafolha",
+    "date": "2026-08-21",
+    "n": 1610,
+    "method": "",
+    "v": {
+     "Derrite": 7,
+     "Marina Silva": 12,
+     "Tebet": 12,
+     "André do Prado": 10,
+     "Salles": 6,
+     "Geraldo Rufino": 4,
+     "Outros": 14,
+     "BNI": 35
+    }
+   },
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-08-22",
+    "n": 2000,
+    "method": "",
+    "v": {
+     "Derrite": 18,
+     "Marina Silva": 14,
+     "Tebet": 17,
+     "André do Prado": 15,
+     "Salles": 10,
+     "Geraldo Rufino": 2,
+     "Outros": 7,
+     "BNI": 17
+    }
+   },
+   {
+    "p": "Quaest",
+    "date": "2026-08-24",
+    "n": 1800,
+    "method": "",
+    "v": {
+     "Derrite": 12,
+     "Marina Silva": 12,
+     "Tebet": 11,
+     "André do Prado": 7,
+     "Salles": 5,
+     "Geraldo Rufino": 2,
+     "Outros": 7,
+     "BNI": 45
+    }
+   },
+   {
+    "p": "Quaest",
+    "date": "2026-09-07",
+    "n": 1800,
+    "method": "",
+    "v": {
+     "Derrite": 14,
+     "Marina Silva": 14,
+     "Tebet": 12,
+     "André do Prado": 7,
+     "Salles": 3,
+     "Geraldo Rufino": 1,
+     "Outros": 4,
+     "BNI": 45
+    }
+   },
+   {
+    "p": "Datafolha",
+    "date": "2026-09-10",
+    "n": 1610,
+    "method": "",
+    "v": {
+     "Derrite": 10,
+     "Marina Silva": 13,
+     "Tebet": 13,
+     "André do Prado": 11,
+     "Salles": 5,
+     "Geraldo Rufino": 3,
+     "Outros": 14,
+     "BNI": 32
+    }
+   },
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-09-12",
+    "n": 2000,
+    "method": "",
+    "v": {
+     "Derrite": 19,
+     "Marina Silva": 13,
+     "Tebet": 17,
+     "André do Prado": 17,
+     "Salles": 10,
+     "Geraldo Rufino": 2,
+     "Outros": 5,
+     "BNI": 15
+    }
+   },
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-09-19",
+    "n": 2000,
+    "method": "",
+    "v": {
+     "Derrite": 20,
+     "Marina Silva": 14,
+     "Tebet": 17,
+     "André do Prado": 18,
+     "Salles": 9,
+     "Geraldo Rufino": 2,
+     "Outros": 7,
+     "BNI": 13
+    }
+   },
+   {
+    "p": "Quaest",
+    "date": "2026-09-22",
+    "n": 1800,
+    "method": "presencial",
+    "v": {
+     "Derrite": 16,
+     "Marina Silva": 13,
+     "Tebet": 12,
+     "André do Prado": 8,
+     "Salles": 3,
+     "Geraldo Rufino": 1,
+     "Outros": 5,
+     "BNI": 42
+    }
+   },
+   {
+    "p": "Datafolha",
+    "date": "2026-09-23",
+    "n": 1610,
+    "method": "presencial",
+    "v": {
+     "Derrite": 12,
+     "Marina Silva": 15,
+     "Tebet": 14,
+     "André do Prado": 12,
+     "Salles": 4,
+     "Geraldo Rufino": 3,
+     "Outros": 9,
+     "BNI": 29
+    }
+   },
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-09-28",
+    "n": 2000,
+    "method": "",
+    "v": {
+     "Derrite": 22,
+     "Marina Silva": 15,
+     "Tebet": 18,
+     "André do Prado": 20,
+     "Salles": 6,
+     "Geraldo Rufino": 3,
+     "Outros": 5,
+     "BNI": 11
+    }
+   }
+  ]
+ },
+ "notes": "Final governor field (TSE): Tarcísio (Republicanos), Haddad (PT), Vera Lúcia (PSTU), Carlos Machado (PCB), Izadora Dias (PCO), Policial Edjane (Agir), Vivian Mendes (UP); the 5 minor candidates are summed in Outros. Kim Kataguiri (withdrew 20 Jun), Paulo Serra (PSDB, withdrew 21 Jun) and Felipe d'Avila (Novo) were in the Tarcísio x Haddad scenario of every poll up to mid-June; those rows (2026-02-10 through 2026-06-18, except Vox 2026-06-27) are KEPT with the withdrawn candidates folded into Outros (they totalled 7-15 pts) - drop them if you want the spec's strict rule. Jan-Aug-08 rows come from en.wikipedia (2026 São Paulo general election) and passed sum checks; Datafolha 2026-03-05 corrected from the Gazeta do Povo article (Wikipedia copy showed BNI 7; article gives branco/nulo 11 + indecisos 1, plus d'Avila 3). Real Time Big Data 2026-09-28 governor poll was published only in valid votes, so it is excluded from gov_t1 and gov_t2 (valid: Tarcísio 57, Haddad 42). Vox Brasil 2026-06-27 second round not found. No January 2026 governor polls found. Datafolha 2026-07-03 date from Wikipedia (1-3 Jul).",
+ "sources": [
+  "https://en.wikipedia.org/wiki/2026_S%C3%A3o_Paulo_general_election",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/datafolha-governador-sao-paulo-marco-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/parana-pesquisas-governador-sao-paulo-agosto-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/datafolha-governador-sao-paulo-agosto-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-governador-sao-paulo-agosto-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-governador-sao-paulo-agosto-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/atlasintel-governador-sao-paulo-setembro-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-governador-sao-paulo-setembro-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/parana-pesquisas-governador-sao-paulo-setembro-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/datafolha-governador-sao-paulo-setembro-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-governador-sao-paulo-setembro-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-governador-sao-paulo-setembro-2026-2/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/atlasintel-governador-sao-paulo-setembro-2026-2/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/parana-pesquisas-governador-sao-paulo-setembro-2026-2/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-governador-sao-paulo-setembro-2026-2/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/datafolha-governador-sao-paulo-setembro-2026-2/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-governador-sao-paulo-setembro-2026-3/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/datafolha-senado-sao-paulo-agosto-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-senador-sao-paulo-agosto-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-senador-sao-paulo-agosto-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-senador-sao-paulo-setembro-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/datafolha-senado-sao-paulo-setembro-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-senador-sao-paulo-setembro-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-senado-sao-paulo-setembro-2026-2/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-senador-sao-paulo-setembro-2026-2/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/datafolha-senador-sao-paulo-setembro-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-senado-sao-paulo-setembro-2026-2-2/"
+ ]
+}

@@ -1,0 +1,397 @@
+{
+ "uf": "ES",
+ "state": "Espírito Santo",
+ "gov_t1": {
+  "candidates": {
+   "Ferraço": "MDB",
+   "Pazolini": "Republicanos",
+   "Helder Salomão": "PT",
+   "Breno Barcelos": "MISSÃO",
+   "Rafael Demuner": "UP"
+  },
+  "polls": [
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-03-14",
+    "n": 2000,
+    "method": "",
+    "v": {
+     "Ferraço": 35,
+     "Pazolini": 35,
+     "Helder Salomão": 8,
+     "BNI": 22
+    }
+   },
+   {
+    "p": "Quaest",
+    "date": "2026-03-25",
+    "n": 1104,
+    "method": "",
+    "v": {
+     "Ferraço": 33,
+     "Pazolini": 21,
+     "Helder Salomão": 8,
+     "BNI": 38
+    }
+   },
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-06-08",
+    "n": 1600,
+    "method": "",
+    "v": {
+     "Ferraço": 39,
+     "Pazolini": 33,
+     "Helder Salomão": 10,
+     "BNI": 18
+    }
+   },
+   {
+    "p": "Quaest",
+    "date": "2026-07-13",
+    "n": 804,
+    "method": "",
+    "v": {
+     "Ferraço": 37,
+     "Pazolini": 25,
+     "Helder Salomão": 11,
+     "BNI": 27
+    }
+   },
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-07-21",
+    "n": 1600,
+    "method": "",
+    "v": {
+     "Ferraço": 41,
+     "Pazolini": 30,
+     "Helder Salomão": 10,
+     "BNI": 19
+    }
+   },
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-08-26",
+    "n": 1600,
+    "method": "",
+    "v": {
+     "Ferraço": 42,
+     "Pazolini": 33,
+     "Helder Salomão": 11,
+     "Breno Barcelos": 2,
+     "BNI": 12
+    }
+   },
+   {
+    "p": "Quaest",
+    "date": "2026-08-26",
+    "n": 804,
+    "method": "",
+    "v": {
+     "Ferraço": 35,
+     "Pazolini": 28,
+     "Helder Salomão": 10,
+     "Breno Barcelos": 2,
+     "Rafael Demuner": 1,
+     "BNI": 24
+    }
+   },
+   {
+    "p": "AtlasIntel",
+    "date": "2026-08-31",
+    "n": 1194,
+    "method": "",
+    "v": {
+     "Ferraço": 28.7,
+     "Pazolini": 41,
+     "Helder Salomão": 18.4,
+     "Breno Barcelos": 6.8,
+     "Rafael Demuner": 0.3,
+     "BNI": 4.8
+    }
+   },
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-09-08",
+    "n": 1600,
+    "method": "",
+    "v": {
+     "Ferraço": 43,
+     "Pazolini": 33,
+     "Helder Salomão": 13,
+     "Breno Barcelos": 2,
+     "Rafael Demuner": 0,
+     "BNI": 9
+    }
+   },
+   {
+    "p": "Paraná Pesquisas",
+    "date": "2026-09-22",
+    "n": 1304,
+    "method": "",
+    "v": {
+     "Ferraço": 38.3,
+     "Pazolini": 40,
+     "Helder Salomão": 9,
+     "Breno Barcelos": 1.1,
+     "Rafael Demuner": 0.5,
+     "BNI": 11.0
+    }
+   },
+   {
+    "p": "Quaest",
+    "date": "2026-09-24",
+    "n": 804,
+    "method": "",
+    "v": {
+     "Ferraço": 33,
+     "Pazolini": 31,
+     "Helder Salomão": 12,
+     "Breno Barcelos": 1,
+     "Rafael Demuner": 1,
+     "BNI": 22
+    }
+   }
+  ]
+ },
+ "gov_t2": {
+  "matchup": [
+   "Ferraço",
+   "Pazolini"
+  ],
+  "candidates": {
+   "Ferraço": "MDB",
+   "Pazolini": "Republicanos"
+  },
+  "polls": [
+   {
+    "p": "Quaest",
+    "date": "2026-03-25",
+    "n": 1104,
+    "method": "",
+    "v": {
+     "Ferraço": 33,
+     "Pazolini": 34,
+     "BNI": 33
+    }
+   },
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-06-08",
+    "n": 1600,
+    "method": "",
+    "v": {
+     "Ferraço": 43,
+     "Pazolini": 37,
+     "BNI": 20
+    }
+   },
+   {
+    "p": "Quaest",
+    "date": "2026-07-13",
+    "n": 804,
+    "method": "",
+    "v": {
+     "Ferraço": 43,
+     "Pazolini": 30,
+     "BNI": 27
+    }
+   },
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-08-26",
+    "n": 1600,
+    "method": "",
+    "v": {
+     "Ferraço": 47,
+     "Pazolini": 37,
+     "BNI": 16
+    }
+   },
+   {
+    "p": "Quaest",
+    "date": "2026-08-26",
+    "n": 804,
+    "method": "",
+    "v": {
+     "Ferraço": 45,
+     "Pazolini": 35,
+     "BNI": 20
+    }
+   },
+   {
+    "p": "AtlasIntel",
+    "date": "2026-08-31",
+    "n": 1194,
+    "method": "",
+    "v": {
+     "Ferraço": 39.2,
+     "Pazolini": 46,
+     "BNI": 14.8
+    }
+   },
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-09-08",
+    "n": 1600,
+    "method": "",
+    "v": {
+     "Ferraço": 49,
+     "Pazolini": 38,
+     "BNI": 13
+    }
+   },
+   {
+    "p": "Quaest",
+    "date": "2026-09-24",
+    "n": 804,
+    "method": "",
+    "v": {
+     "Ferraço": 43,
+     "Pazolini": 38,
+     "BNI": 19
+    }
+   }
+  ]
+ },
+ "sen_t1": {
+  "candidates": {
+   "Casagrande": "PSB",
+   "Meneguelli": "PSD",
+   "Contarato": "PT",
+   "Maguinha Malta": "PL",
+   "Rose de Freitas": "MDB",
+   "Evair de Melo": "Republicanos"
+  },
+  "note": "Consolidated first+second vote, reduced to 100% (Quaest, Real Time Big Data). Paraná Pesquisas 18-22 Sep publishes the raw sum of two votes (Casagrande 49.8) and is excluded. Scenarios with Paulo Hartung (PSD; in senate polls until July, not in the final field) were skipped: RTBD 2026-03-14 uses its scenario 2 (no Hartung, no Evair), Quaest 2026-07-13 uses its scenario 4 (no Hartung/Pazolini). RTBD Jun 6-8 and Quaest Mar 22-25 only had Hartung scenarios available and were skipped.",
+  "polls": [
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-03-14",
+    "n": 2000,
+    "method": "",
+    "v": {
+     "Casagrande": 30,
+     "Meneguelli": 14,
+     "Contarato": 8,
+     "Maguinha Malta": 11,
+     "Rose de Freitas": 13,
+     "Outros": 7,
+     "BNI": 18
+    }
+   },
+   {
+    "p": "Quaest",
+    "date": "2026-07-13",
+    "n": 804,
+    "method": "",
+    "v": {
+     "Casagrande": 31,
+     "Meneguelli": 10,
+     "Contarato": 9,
+     "Maguinha Malta": 6,
+     "Rose de Freitas": 12,
+     "Evair de Melo": 4,
+     "Outros": 6,
+     "BNI": 22
+    }
+   },
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-08-26",
+    "n": 1600,
+    "method": "",
+    "v": {
+     "Casagrande": 30,
+     "Meneguelli": 14,
+     "Contarato": 9,
+     "Maguinha Malta": 9,
+     "Rose de Freitas": 10,
+     "Evair de Melo": 6,
+     "Outros": 13,
+     "BNI": 9
+    }
+   },
+   {
+    "p": "Quaest",
+    "date": "2026-08-26",
+    "n": 804,
+    "method": "",
+    "v": {
+     "Casagrande": 28,
+     "Meneguelli": 10,
+     "Contarato": 9,
+     "Maguinha Malta": 6,
+     "Rose de Freitas": 9,
+     "Evair de Melo": 5,
+     "BNI": 23
+    }
+   },
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-09-08",
+    "n": 1600,
+    "method": "",
+    "v": {
+     "Casagrande": 28,
+     "Meneguelli": 12,
+     "Contarato": 9,
+     "Maguinha Malta": 9,
+     "Rose de Freitas": 9,
+     "Evair de Melo": 9,
+     "Outros": 15,
+     "BNI": 9
+    }
+   },
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-09-24",
+    "n": 1600,
+    "method": "",
+    "v": {
+     "Casagrande": 29,
+     "Meneguelli": 13,
+     "Contarato": 11,
+     "Maguinha Malta": 10,
+     "Rose de Freitas": 9,
+     "Evair de Melo": 10,
+     "Outros": 10,
+     "BNI": 8
+    }
+   },
+   {
+    "p": "Quaest",
+    "date": "2026-09-24",
+    "n": 804,
+    "method": "",
+    "v": {
+     "Casagrande": 25,
+     "Meneguelli": 11,
+     "Contarato": 9,
+     "Maguinha Malta": 9,
+     "Rose de Freitas": 7,
+     "Evair de Melo": 6,
+     "Outros": 6,
+     "BNI": 26
+    }
+   }
+  ]
+ },
+ "notes": "Governor field (TSE): Ferraço (MDB), Pazolini (Republicanos), Helder Salomão (PT), Breno Barcelos (Missão), Rafael Demuner (UP) - all named, no Outros. Pre-August rows use the pollster's scenario with only Ferraço/Pazolini/Salomão (scenarios with Magno Malta, Paulo Hartung or Arnaldinho Borgo, who did not run for governor, were ignored); Barcelos/Demuner absent from those rows. Real Time Big Data 21-24 Sep governor poll was published only in valid votes (Ferraço 47, Pazolini 37, Salomão 15; 2nd round Ferraço 55 x Pazolini 45) -> excluded from gov_t1/gov_t2 (its senate numbers are total/consolidated and kept). RTBD 20-21 Jul had second-round numbers not extracted. Paraná 18-22 Sep had no 2nd round. Big house effects: AtlasIntel and Paraná show Pazolini ahead; RTBD and Quaest show Ferraço ahead. Quaest 2026-08-26 senate: minor candidates given only as '1-2% each', Outros omitted. Paraná Pesquisas May 2025 poll excluded (2025).",
+ "sources": [
+  "https://en.wikipedia.org/wiki/2026_Espir%C3%ADto_Santo_general_election",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-governador-senador-espirito-santo-marco-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-governador-senador-espirito-santo-marco-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-governador-senador-espirito-santo-junho-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-governador-senador-espirito-santo-julho-2026/",
+  "https://www.cartacapital.com.br/politica/a-disputa-pelo-governo-do-espirito-santo-segundo-nova-pesquisa/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-governador-senado-espirito-santo-agosto-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-governador-senador-espirito-santo-agosto-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/atlasintel-governador-espirito-santo-setembro-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-governador-senado-espirito-santo-setembro-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/parana-pesquisas-governador-senado-espirito-santo-setembro-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-governador-senador-espirito-santo-setembro-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-governador-senador-espirito-santo-setembro-2026/"
+ ]
+}

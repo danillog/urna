@@ -1,0 +1,509 @@
+{
+ "uf": "CE",
+ "state": "Ceará",
+ "gov_t1": {
+  "candidates": {
+   "Ciro Gomes": "PSDB",
+   "Elmano": "PT",
+   "Delegado Huggo": "MISSÃO",
+   "Vera Lúcia": "NOVO"
+  },
+  "polls": [
+   {
+    "p": "AtlasIntel",
+    "date": "2026-08-11",
+    "n": 1774,
+    "method": "",
+    "v": {
+     "Ciro Gomes": 49.3,
+     "Elmano": 44.6,
+     "Delegado Huggo": 2.8,
+     "Outros": 0.8,
+     "BNI": 2.5
+    }
+   },
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-08-19",
+    "n": 1600,
+    "method": "presencial",
+    "v": {
+     "Ciro Gomes": 44,
+     "Elmano": 44,
+     "Delegado Huggo": 1,
+     "Vera Lúcia": 1,
+     "Outros": 1,
+     "BNI": 9
+    }
+   },
+   {
+    "p": "AtlasIntel",
+    "date": "2026-09-02",
+    "n": 1834,
+    "method": "",
+    "v": {
+     "Ciro Gomes": 48.4,
+     "Elmano": 45.8,
+     "Delegado Huggo": 1.0,
+     "BNI": 4.2
+    }
+   },
+   {
+    "p": "Datafolha",
+    "date": "2026-09-03",
+    "n": 1204,
+    "method": "",
+    "v": {
+     "Ciro Gomes": 46,
+     "Elmano": 37,
+     "Delegado Huggo": 0,
+     "Vera Lúcia": 1,
+     "Outros": 2
+    }
+   },
+   {
+    "p": "Quaest",
+    "date": "2026-09-03",
+    "n": 900,
+    "method": "",
+    "v": {
+     "Ciro Gomes": 45,
+     "Elmano": 34,
+     "Delegado Huggo": 1,
+     "BNI": 20
+    }
+   },
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-09-07",
+    "n": 1600,
+    "method": "",
+    "v": {
+     "Ciro Gomes": 43,
+     "Elmano": 46,
+     "Delegado Huggo": 2,
+     "Vera Lúcia": 1,
+     "Outros": 1,
+     "BNI": 7
+    }
+   },
+   {
+    "p": "Datafolha",
+    "date": "2026-09-17",
+    "n": 1204,
+    "method": "presencial",
+    "v": {
+     "Ciro Gomes": 47,
+     "Elmano": 40,
+     "Delegado Huggo": 1,
+     "Vera Lúcia": 2,
+     "Outros": 1,
+     "BNI": 9
+    }
+   },
+   {
+    "p": "Paraná Pesquisas",
+    "date": "2026-09-17",
+    "n": 1352,
+    "method": "",
+    "v": {
+     "Ciro Gomes": 47.4,
+     "Elmano": 39.9,
+     "Delegado Huggo": 1.3,
+     "Vera Lúcia": 0.4,
+     "BNI": 10.0
+    }
+   },
+   {
+    "p": "AtlasIntel",
+    "date": "2026-09-20",
+    "n": 1815,
+    "method": "",
+    "v": {
+     "Ciro Gomes": 48.0,
+     "Elmano": 48.5,
+     "Delegado Huggo": 1.3,
+     "Outros": 0.2,
+     "BNI": 1.8
+    }
+   },
+   {
+    "p": "Quaest",
+    "date": "2026-09-22",
+    "n": 900,
+    "method": "",
+    "v": {
+     "Ciro Gomes": 43,
+     "Elmano": 41,
+     "Delegado Huggo": 1,
+     "Vera Lúcia": 1,
+     "Outros": 0,
+     "BNI": 14
+    }
+   },
+   {
+    "p": "Datafolha",
+    "date": "2026-09-24",
+    "n": 1204,
+    "method": "presencial",
+    "v": {
+     "Ciro Gomes": 44,
+     "Elmano": 43,
+     "Delegado Huggo": 1,
+     "Vera Lúcia": 1,
+     "Outros": 0,
+     "BNI": 11
+    }
+   },
+   {
+    "p": "Paraná Pesquisas",
+    "date": "2026-09-25",
+    "n": 1352,
+    "method": "",
+    "v": {
+     "Ciro Gomes": 46.0,
+     "Elmano": 42.2,
+     "Delegado Huggo": 1.1,
+     "Vera Lúcia": 0.4,
+     "BNI": 9.4
+    }
+   }
+  ]
+ },
+ "gov_t2": {
+  "matchup": [
+   "Ciro Gomes",
+   "Elmano"
+  ],
+  "candidates": {
+   "Ciro Gomes": "PSDB",
+   "Elmano": "PT"
+  },
+  "polls": [
+   {
+    "p": "Paraná Pesquisas",
+    "date": "2026-01-21",
+    "n": 1502,
+    "method": "",
+    "v": {
+     "Ciro Gomes": 51.9,
+     "Elmano": 37.2,
+     "BNI": 10.9
+    }
+   },
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-07-14",
+    "n": 1600,
+    "method": "presencial",
+    "v": {
+     "Ciro Gomes": 45,
+     "Elmano": 47,
+     "BNI": 8
+    }
+   },
+   {
+    "p": "Quaest",
+    "date": "2026-07-28",
+    "n": 1002,
+    "method": "",
+    "v": {
+     "Ciro Gomes": 48,
+     "Elmano": 35,
+     "BNI": 17
+    }
+   },
+   {
+    "p": "AtlasIntel",
+    "date": "2026-08-11",
+    "n": 1774,
+    "method": "",
+    "v": {
+     "Ciro Gomes": 53.4,
+     "Elmano": 44.8,
+     "BNI": 1.8
+    }
+   },
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-08-19",
+    "n": 1600,
+    "method": "presencial",
+    "v": {
+     "Ciro Gomes": 45,
+     "Elmano": 46,
+     "BNI": 9
+    }
+   },
+   {
+    "p": "AtlasIntel",
+    "date": "2026-09-02",
+    "n": 1834,
+    "method": "",
+    "v": {
+     "Ciro Gomes": 50.0,
+     "Elmano": 46.1,
+     "BNI": 3.9
+    }
+   },
+   {
+    "p": "Datafolha",
+    "date": "2026-09-03",
+    "n": 1204,
+    "method": "",
+    "v": {
+     "Ciro Gomes": 50,
+     "Elmano": 42,
+     "BNI": 8
+    }
+   },
+   {
+    "p": "Quaest",
+    "date": "2026-09-03",
+    "n": 900,
+    "method": "",
+    "v": {
+     "Ciro Gomes": 49,
+     "Elmano": 36,
+     "BNI": 15
+    }
+   },
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-09-07",
+    "n": 1600,
+    "method": "",
+    "v": {
+     "Ciro Gomes": 46,
+     "Elmano": 47,
+     "BNI": 7
+    }
+   },
+   {
+    "p": "Datafolha",
+    "date": "2026-09-17",
+    "n": 1204,
+    "method": "presencial",
+    "v": {
+     "Ciro Gomes": 51,
+     "Elmano": 43,
+     "BNI": 5
+    }
+   },
+   {
+    "p": "Paraná Pesquisas",
+    "date": "2026-09-17",
+    "n": 1352,
+    "method": "",
+    "v": {
+     "Ciro Gomes": 50.4,
+     "Elmano": 42.4
+    }
+   },
+   {
+    "p": "AtlasIntel",
+    "date": "2026-09-20",
+    "n": 1815,
+    "method": "",
+    "v": {
+     "Ciro Gomes": 49.4,
+     "Elmano": 49.7,
+     "BNI": 0.9
+    }
+   },
+   {
+    "p": "Quaest",
+    "date": "2026-09-22",
+    "n": 900,
+    "method": "",
+    "v": {
+     "Ciro Gomes": 45,
+     "Elmano": 42,
+     "BNI": 13
+    }
+   },
+   {
+    "p": "Datafolha",
+    "date": "2026-09-24",
+    "n": 1204,
+    "method": "presencial",
+    "v": {
+     "Ciro Gomes": 48,
+     "Elmano": 46
+    }
+   },
+   {
+    "p": "Paraná Pesquisas",
+    "date": "2026-09-25",
+    "n": 1352,
+    "method": "",
+    "v": {
+     "Ciro Gomes": 48.7,
+     "Elmano": 44.3,
+     "BNI": 7.0
+    }
+   }
+  ]
+ },
+ "sen_t1": {
+  "candidates": {
+   "Cid Gomes": "PSB",
+   "Luizianne": "REDE",
+   "Capitão Wagner": "UNIÃO",
+   "Alcides Fernandes": "PL",
+   "Guilherme Theophilo": "NOVO",
+   "Catarina Matos": "UP"
+  },
+  "note": "Consolidated 1st+2nd votes reduced to 100% (share of all mentions incl. blank/null/undecided), as published by AtlasIntel, Quaest, Datafolha and Real Time Big Data. Paraná Pesquisas (sum of both votes, >100%) and AtlasIntel Sep 15-20 (valid votes only) excluded.",
+  "polls": [
+   {
+    "p": "AtlasIntel",
+    "date": "2026-08-11",
+    "n": 1774,
+    "method": "",
+    "v": {
+     "Cid Gomes": 23.7,
+     "Luizianne": 24.0,
+     "Capitão Wagner": 21.7,
+     "Alcides Fernandes": 15.9,
+     "Guilherme Theophilo": 1.1,
+     "Catarina Matos": 0.4,
+     "Outros": 0.3,
+     "BNI": 13.0
+    }
+   },
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-08-19",
+    "n": 1600,
+    "method": "presencial",
+    "v": {
+     "Cid Gomes": 27,
+     "Luizianne": 21,
+     "Capitão Wagner": 21,
+     "Alcides Fernandes": 14,
+     "Guilherme Theophilo": 5,
+     "Catarina Matos": 0,
+     "Outros": 0,
+     "BNI": 12
+    }
+   },
+   {
+    "p": "AtlasIntel",
+    "date": "2026-09-02",
+    "n": 1834,
+    "method": "",
+    "v": {
+     "Cid Gomes": 24.4,
+     "Luizianne": 24.2,
+     "Capitão Wagner": 19.1,
+     "Alcides Fernandes": 15.7,
+     "Guilherme Theophilo": 0.8,
+     "Catarina Matos": 2.3,
+     "Outros": 0.5,
+     "BNI": 12.9
+    }
+   },
+   {
+    "p": "Quaest",
+    "date": "2026-09-03",
+    "n": 900,
+    "method": "",
+    "v": {
+     "Cid Gomes": 23,
+     "Luizianne": 13,
+     "Capitão Wagner": 20,
+     "Alcides Fernandes": 5,
+     "Guilherme Theophilo": 1,
+     "Catarina Matos": 1,
+     "Outros": 1,
+     "BNI": 36
+    }
+   },
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-09-07",
+    "n": 1600,
+    "method": "",
+    "v": {
+     "Cid Gomes": 27,
+     "Luizianne": 20,
+     "Capitão Wagner": 20,
+     "Alcides Fernandes": 17,
+     "Guilherme Theophilo": 5,
+     "BNI": 11
+    }
+   },
+   {
+    "p": "Datafolha",
+    "date": "2026-09-17",
+    "n": 1204,
+    "method": "presencial",
+    "v": {
+     "Cid Gomes": 24,
+     "Luizianne": 18,
+     "Capitão Wagner": 21,
+     "Alcides Fernandes": 9,
+     "Guilherme Theophilo": 2,
+     "Catarina Matos": 2,
+     "Outros": 2,
+     "BNI": 22
+    }
+   },
+   {
+    "p": "Quaest",
+    "date": "2026-09-22",
+    "n": 900,
+    "method": "",
+    "v": {
+     "Cid Gomes": 25,
+     "Luizianne": 19,
+     "Capitão Wagner": 21,
+     "Alcides Fernandes": 8,
+     "Guilherme Theophilo": 0,
+     "Catarina Matos": 1,
+     "Outros": 0,
+     "BNI": 26
+    }
+   },
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-09-24",
+    "n": 1600,
+    "method": "",
+    "v": {
+     "Cid Gomes": 26,
+     "Luizianne": 21,
+     "Capitão Wagner": 20,
+     "Alcides Fernandes": 20,
+     "Guilherme Theophilo": 4,
+     "Catarina Matos": 1,
+     "Outros": 0,
+     "BNI": 8
+    }
+   }
+  ]
+ },
+ "notes": "No usable Jan-Jun 1st-round polls: Paraná Pesquisas Jan 17-21 (Ciro 44.8, Elmano 34.2) included Eduardo Girão (Novo, 7.9%), who left the race -> 1st round skipped, 2nd round kept. Also skipped 1st round for RTBD Jul 13-14 (Girão 7%) and Quaest Jul 24-28 (Girão 3% + Jarir Pereira/PSOL 1%) - their 2nd rounds are kept. Datafolha Sep 14-17: Gazeta's methodology line says 'entrevistados pelo Real Time Big Data' (template error); O Povo's own page confirms it is Datafolha (1,204 in-person interviews, CE-01290/2026). Datafolha Aug31-Sep3: blank/null/undecided lines left empty in source -> BNI omitted. Excluded governor rows in valid votes only: RTBD Sep 21-24 (Elmano 52 x Ciro 45; 2nd round 53 x 47) and Gazeta's version of Paraná Sep 23-25 (total votes taken instead from Band/Poder360). Datafolha Sep 22-24 2nd round: source lists Ciro 48, Elmano 46, blank/null 6, undecided 2 (sums to 102) -> BNI omitted. AtlasIntel Aug-11 Novo candidate was Pedro Brito (0.8%, Outros); later Vera Lúcia. Paraná Sep-17 2nd round BNI not reported. Race: Ciro x Elmano tightened sharply in September; AtlasIntel Sep-20 and RTBD have Elmano narrowly ahead, Datafolha/Quaest/Paraná have Ciro narrowly ahead.",
+ "sources": [
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/atlasintel-governador-senador-ceara-setembro-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/atlasintel-governador-senador-ceara-setembro-2026-2/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/datafolha-governador-ceara-setembro-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/datafolha-governador-ceara-setembro-2026-2/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/datafolha-governador-senador-ceara-setembro-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-governador-senador-ceara-setembro-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-governador-senador-ceara-setembro-2026-2/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-governador-senador-ceara-setembro-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-governador-senado-ceara-setembro-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/parana-pesquisas-governador-senado-ceara-setembro-2026-2/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/atlasintel-governador-senado-ceara-agosto-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/genial-quaest-governador-senado-ceara-julho-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-governador-senador-ceara-agosto-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-governador-senador-ceara-julho-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/pesquisa-parana-pesquisas-governador-senador-ceara-janeiro-2026/",
+  "https://mais.opovo.com.br/reportagens-especiais/eleicoes-datafolha-pesquisa-2026/2026/09/23/confira-integra-da-3-pesquisa-datafolha-para-o-governo-do-ceara.html",
+  "https://www.band.com.br/politica/eleicoes/ciro-gomes-lidera-corrida-ao-governo-do-ceara-com-474-elmano-tem-399",
+  "https://www.band.com.br/politica/eleicoes/parana-pesquisas-ciro-gomes-lidera-disputa-no-ce-com-46-elmano-tem-422",
+  "https://www.poder360.com.br/poder-eleicoes-2026/ciro-gomes-lidera-disputa-pelo-governo-do-ceara-diz-pesquisa/"
+ ]
+}

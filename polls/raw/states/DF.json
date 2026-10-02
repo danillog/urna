@@ -1,0 +1,357 @@
+{
+ "uf": "DF",
+ "state": "Distrito Federal",
+ "gov_t1": {
+  "candidates": {
+   "Celina Leão": "PP",
+   "Leandro Grass": "PT",
+   "Paula Belmonte": "PSDB",
+   "Cappelli": "PSB",
+   "Kiko Caputo": "NOVO",
+   "Professora Samara": "UP"
+  },
+  "polls": [
+   {
+    "p": "Paraná Pesquisas",
+    "date": "2026-07-19",
+    "n": 1500,
+    "method": "presencial",
+    "v": {
+     "Celina Leão": 45.9,
+     "Leandro Grass": 16.3,
+     "Paula Belmonte": 7.2,
+     "Cappelli": 5.7,
+     "Kiko Caputo": 2.6,
+     "BNI": 22.3
+    }
+   },
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-08-18",
+    "n": 1600,
+    "method": "",
+    "v": {
+     "Celina Leão": 45,
+     "Leandro Grass": 20,
+     "Paula Belmonte": 10,
+     "Cappelli": 6,
+     "Outros": 1,
+     "BNI": 18
+    }
+   },
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-09-08",
+    "n": 1600,
+    "method": "",
+    "v": {
+     "Celina Leão": 46,
+     "Leandro Grass": 23,
+     "Paula Belmonte": 10,
+     "Cappelli": 5,
+     "Outros": 2,
+     "BNI": 14
+    }
+   },
+   {
+    "p": "Datafolha",
+    "date": "2026-09-10",
+    "n": 910,
+    "method": "presencial",
+    "v": {
+     "Celina Leão": 45,
+     "Leandro Grass": 19,
+     "Paula Belmonte": 8,
+     "Cappelli": 3,
+     "Kiko Caputo": 3,
+     "Professora Samara": 2,
+     "Outros": 2,
+     "BNI": 17
+    }
+   },
+   {
+    "p": "Quaest",
+    "date": "2026-09-22",
+    "n": 1104,
+    "method": "presencial",
+    "v": {
+     "Celina Leão": 34,
+     "Leandro Grass": 23,
+     "Paula Belmonte": 7,
+     "Cappelli": 2,
+     "Kiko Caputo": 3,
+     "Professora Samara": 1,
+     "Outros": 0,
+     "BNI": 30
+    }
+   },
+   {
+    "p": "Datafolha",
+    "date": "2026-09-24",
+    "n": 910,
+    "method": "presencial",
+    "v": {
+     "Celina Leão": 42,
+     "Leandro Grass": 23,
+     "Paula Belmonte": 7,
+     "Cappelli": 5,
+     "Kiko Caputo": 1,
+     "Professora Samara": 2,
+     "Outros": 1,
+     "BNI": 17
+    }
+   },
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-09-28",
+    "n": 1600,
+    "method": "",
+    "v": {
+     "Celina Leão": 47,
+     "Leandro Grass": 26,
+     "Paula Belmonte": 10,
+     "Cappelli": 4,
+     "Kiko Caputo": 1,
+     "Outros": 2,
+     "BNI": 10
+    }
+   }
+  ]
+ },
+ "gov_t2": {
+  "matchup": [
+   "Celina Leão",
+   "Leandro Grass"
+  ],
+  "candidates": {
+   "Celina Leão": "PP",
+   "Leandro Grass": "PT"
+  },
+  "polls": [
+   {
+    "p": "Instituto Opinião",
+    "date": "2026-08-01",
+    "n": 1109,
+    "method": "presencial",
+    "v": {
+     "Celina Leão": 53.8,
+     "Leandro Grass": 28.6
+    }
+   },
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-08-18",
+    "n": 1600,
+    "method": "",
+    "v": {
+     "Celina Leão": 51,
+     "Leandro Grass": 32,
+     "BNI": 17
+    }
+   },
+   {
+    "p": "AtlasIntel",
+    "date": "2026-09-01",
+    "n": 1193,
+    "method": "",
+    "v": {
+     "Celina Leão": 43.6,
+     "Leandro Grass": 41.1,
+     "BNI": 15.3
+    }
+   },
+   {
+    "p": "Quaest",
+    "date": "2026-09-07",
+    "n": 1104,
+    "method": "",
+    "v": {
+     "Celina Leão": 52,
+     "Leandro Grass": 29,
+     "BNI": 19
+    }
+   },
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-09-08",
+    "n": 1600,
+    "method": "",
+    "v": {
+     "Celina Leão": 50,
+     "Leandro Grass": 32,
+     "BNI": 18
+    }
+   },
+   {
+    "p": "Datafolha",
+    "date": "2026-09-10",
+    "n": 910,
+    "method": "presencial",
+    "v": {
+     "Celina Leão": 56,
+     "Leandro Grass": 30,
+     "BNI": 15
+    }
+   },
+   {
+    "p": "Quaest",
+    "date": "2026-09-22",
+    "n": 1104,
+    "method": "presencial",
+    "v": {
+     "Celina Leão": 48,
+     "Leandro Grass": 30,
+     "BNI": 22
+    }
+   },
+   {
+    "p": "Datafolha",
+    "date": "2026-09-24",
+    "n": 910,
+    "method": "presencial",
+    "v": {
+     "Celina Leão": 53,
+     "Leandro Grass": 34,
+     "BNI": 13
+    }
+   },
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-09-28",
+    "n": 1600,
+    "method": "",
+    "v": {
+     "Celina Leão": 53,
+     "Leandro Grass": 33,
+     "BNI": 14
+    }
+   }
+  ]
+ },
+ "sen_t1": {
+  "candidates": {
+   "Michelle Bolsonaro": "PL",
+   "Leila do Vôlei": "PDT",
+   "Bia Kicis": "PL",
+   "Erika Kokay": "PT",
+   "Sebastião Coelho": "NOVO",
+   "Ronaldo Fonseca": "PSD"
+  },
+  "note": "Consolidated 1st+2nd votes reduced to 100% (as published by Quaest, Datafolha and Real Time Big Data).",
+  "polls": [
+   {
+    "p": "Quaest",
+    "date": "2026-09-07",
+    "n": 1104,
+    "method": "",
+    "v": {
+     "Michelle Bolsonaro": 26,
+     "Leila do Vôlei": 17,
+     "Bia Kicis": 11,
+     "Erika Kokay": 13,
+     "Sebastião Coelho": 2,
+     "Ronaldo Fonseca": 1,
+     "Outros": 1,
+     "BNI": 29
+    }
+   },
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-09-08",
+    "n": 1600,
+    "method": "",
+    "v": {
+     "Michelle Bolsonaro": 26,
+     "Leila do Vôlei": 17,
+     "Bia Kicis": 15,
+     "Erika Kokay": 17,
+     "Sebastião Coelho": 10,
+     "BNI": 14
+    }
+   },
+   {
+    "p": "Datafolha",
+    "date": "2026-09-10",
+    "n": 910,
+    "method": "presencial",
+    "v": {
+     "Michelle Bolsonaro": 21,
+     "Leila do Vôlei": 18,
+     "Bia Kicis": 15,
+     "Erika Kokay": 14,
+     "Sebastião Coelho": 2,
+     "Ronaldo Fonseca": 2,
+     "Outros": 7,
+     "BNI": 20
+    }
+   },
+   {
+    "p": "Quaest",
+    "date": "2026-09-22",
+    "n": 1104,
+    "method": "presencial",
+    "v": {
+     "Michelle Bolsonaro": 26,
+     "Leila do Vôlei": 19,
+     "Bia Kicis": 15,
+     "Erika Kokay": 15,
+     "Sebastião Coelho": 2,
+     "Ronaldo Fonseca": 1,
+     "Outros": 2,
+     "BNI": 20
+    }
+   },
+   {
+    "p": "Datafolha",
+    "date": "2026-09-24",
+    "n": 910,
+    "method": "presencial",
+    "v": {
+     "Michelle Bolsonaro": 22,
+     "Leila do Vôlei": 19,
+     "Bia Kicis": 15,
+     "Erika Kokay": 15,
+     "Sebastião Coelho": 2,
+     "Ronaldo Fonseca": 2,
+     "Outros": 4,
+     "BNI": 20
+    }
+   },
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-09-28",
+    "n": 1600,
+    "method": "",
+    "v": {
+     "Michelle Bolsonaro": 27,
+     "Leila do Vôlei": 18,
+     "Bia Kicis": 18,
+     "Erika Kokay": 16,
+     "Sebastião Coelho": 11,
+     "Ronaldo Fonseca": 1,
+     "Outros": 1,
+     "BNI": 8
+    }
+   }
+  ]
+ },
+ "notes": "José Roberto Arruda (PSD) had his candidacy rejected (TRE-DF, upheld by TSE 5x2 on 2026-09-24); PSD then endorsed Celina Leão. Per spec, governor 1st-round rows use the scenario WITHOUT Arruda; polls that only published an Arruda scenario were skipped for gov_t1: Instituto Opinião 30 Jul-1 Aug (Celina 32.4, Arruda 24.0, Grass 9.8), Datafolha 18-21 Aug (Celina 30, Arruda 28, Grass 11), Quaest 21-24 Aug (Celina 34, Arruda 20, Grass 13), AtlasIntel 27 Aug-1 Sep (Celina 30.7, Grass 29.0, Arruda 14.2), Quaest 4-7 Sep (Celina 35, Arruda 18, Grass 17). Their Celina x Grass runoffs are kept in gov_t2. Instituto Opinião 2t has no BNI published. Celina Leão is PP (Wikipedia still says MDB, outdated). RTBD 'Outros' in gov_t1 is the article's lump for minor candidates. RTBD 2026-09-28 total votes from ncnews.com.br (Gazeta shows only valid votes: Celina 52, Grass 29). Senate: RTBD 2026-09-08 only listed the top five (rest <=2% each), so Ronaldo Fonseca/Outros omitted. Paraná Pesquisas Jul senate uses sum of two votes (and included Rafael Prudente, not running) - excluded. Instituto Veritá poll (PL-commissioned, undated in source, included Izalci) not used. No Jan-Jun 2026 DF polls with the final field were found (en.wikipedia DF pages have no poll tables); coverage is Jul-Sep only; senate is September only.",
+ "sources": [
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/parana-pesquisas-governo-df-julho-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/parana-pesquisas-senado-distrito-federal-julho-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-governador-distrito-federal-agosto-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/datafolha-governador-distrito-federal-agosto-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-governador-distrito-federal-agosto-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/atlasintel-governador-distrito-federal-setembro-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-governador-senador-distrito-federal-setembro-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-governador-senador-distrito-federal-setembro-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/datafolha-governador-senador-distrito-federal-setembro-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-governador-senador-distrito-federal-setembro-2026-2/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/datafolha-governador-senador-distrito-federal-setembro-2026-2/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-governador-senado-distrito-federal-setembro-2026-2/",
+  "https://ncnews.com.br/2026/09/29/pesquisa-real-time-governador-df/",
+  "https://expressaobrasiliense.com/eleicoes-2026/pesquisa-quaest-celina-leao-lidera-com-35-no-df-e-vence-arruda-e-grass-no-2o-turno/",
+  "https://www.congressoemfoco.com.br/noticia/121057/celina-leao-abre-8-4-pontos-sobre-arruda-e-lidera-disputa-pelo-gdf",
+  "https://www.tse.jus.br/comunicacao/noticias/2026/Setembro/tse-mantem-indeferida-candidatura-de-arruda-ao-governo-do-df"
+ ]
+}

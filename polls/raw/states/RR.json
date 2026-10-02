@@ -1,0 +1,25 @@
+{
+  "uf": "RR",
+  "state": "Roraima",
+  "gov_t1": {
+    "candidates": {"Arthur Henrique": "PL", "Soldado Sampaio": "REPUBLICANOS", "Rosi Aires": "PSOL"},
+    "polls": [
+      {"p": "Quaest", "date": "2026-08-26", "n": 804, "method": "presencial", "v": {"Arthur Henrique": 60, "Soldado Sampaio": 27, "Rosi Aires": 1, "Outros": 0, "BNI": 12}},
+      {"p": "Quaest", "date": "2026-09-29", "n": 804, "method": "presencial", "v": {"Arthur Henrique": 57, "Soldado Sampaio": 32, "Rosi Aires": 2, "Outros": 0, "BNI": 9}}
+    ]
+  },
+  "sen_t1": {
+    "candidates": {"Teresa Surita": "MDB", "Nicoletti": "PL", "Helena da Asatur": "PSD", "Chico Rodrigues": "PSB", "Regina Tio Ivo": "NOVO", "Pastor Isamar": "UNIÃO"},
+    "note": "Consolidated 1st + 2nd votes reduced to 100% (share of all votes cast across both choices, blank/null/undecided included), as published by Quaest.",
+    "polls": [
+      {"p": "Quaest", "date": "2026-08-26", "n": 804, "method": "presencial", "v": {"Teresa Surita": 19, "Nicoletti": 17, "Helena da Asatur": 16, "Chico Rodrigues": 11, "Pastor Isamar": 3, "Regina Tio Ivo": 2, "Outros": 8, "BNI": 24}},
+      {"p": "Quaest", "date": "2026-09-29", "n": 804, "method": "presencial", "v": {"Teresa Surita": 22, "Nicoletti": 19, "Helena da Asatur": 17, "Chico Rodrigues": 14, "Regina Tio Ivo": 3, "Pastor Isamar": 3, "Outros": 7, "BNI": 15}}
+    ]
+  },
+  "notes": "Only two polls found (both Quaest via Gazeta do Povo); en.wikipedia Roraima pages other than the special-election one were not fetchable, and the session's web-search budget ran out before other institutes (Real Time Big Data, Paraná Pesquisas, AtlasIntel, local institutes) could be searched - Roraima is under-covered. Context: the TSE annulled Antonio Denarium's 2022 election; a special election on 2026-06-21 (caretaker term to 5 Jan 2027) was won by Arthur Henrique (PL) 60.87% vs Soldado Sampaio (Republicanos) 35.72% and Nelita Frank (PT) 3.40%, with Henrique running sub judice. That is an election result, not a poll, and is not included. gov_t2 omitted (only 2 polls, both Quaest): Arthur Henrique x Soldado Sampaio 60x28 (BNI 12) on 2026-08-26 and 58x33 (BNI 9) on the September poll. September Quaest fieldwork printed by Gazeta do Povo as '21 a 29 de setembro de 2026' (registration RR-03658/2026); the end date may be a typo (possibly 21-24), date kept as printed. Other governor candidates (Clébio Genuíno PCO, Farah Mesquita Solidariedade) polled 0%. Senate Outros: Hélio Lopes/'Hélio Bolsonaro' (PL; 5% Aug, 2% Sep), Hilton Xavier (Avante), Márcio Junqueira (PSDB), Bartô Macuxi (PSOL), Mário Rocha (PSOL), others at 0%.",
+  "sources": [
+    "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-governador-senador-roraima-agosto-2026/",
+    "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-governador-senador-roraima-setembro-2026/",
+    "https://en.wikipedia.org/wiki/2026_Roraima_gubernatorial_special_election"
+  ]
+}

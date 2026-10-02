@@ -1,0 +1,486 @@
+{
+ "uf": "MG",
+ "state": "Minas Gerais",
+ "gov_t1": {
+  "candidates": {
+   "Cleitinho": "Republicanos",
+   "Patrus": "PT",
+   "Kalil": "PDT",
+   "Mateus Simões": "PSD",
+   "Flávio Roscoe": "PL",
+   "Gabriel": "MDB"
+  },
+  "polls": [
+   {
+    "p": "Quaest",
+    "date": "2026-07-26",
+    "n": 1482,
+    "method": "",
+    "v": {
+     "Cleitinho": 35,
+     "Patrus": 10,
+     "Kalil": 12,
+     "Mateus Simões": 6,
+     "Flávio Roscoe": 2,
+     "Gabriel": 4,
+     "Outros": 3,
+     "BNI": 28
+    }
+   },
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-07-29",
+    "n": 2000,
+    "method": "",
+    "v": {
+     "Cleitinho": 37,
+     "Patrus": 14,
+     "Kalil": 15,
+     "Mateus Simões": 10,
+     "Flávio Roscoe": 2,
+     "Gabriel": 7,
+     "Outros": 6,
+     "BNI": 9
+    }
+   },
+   {
+    "p": "Datafolha",
+    "date": "2026-08-20",
+    "n": 1204,
+    "method": "",
+    "v": {
+     "Cleitinho": 32,
+     "Patrus": 12,
+     "Kalil": 12,
+     "Mateus Simões": 4,
+     "Flávio Roscoe": 4,
+     "Gabriel": 4,
+     "Outros": 5,
+     "BNI": 27
+    }
+   },
+   {
+    "p": "Quaest",
+    "date": "2026-08-24",
+    "n": 1506,
+    "method": "",
+    "v": {
+     "Cleitinho": 29,
+     "Patrus": 11,
+     "Kalil": 10,
+     "Mateus Simões": 7,
+     "Flávio Roscoe": 3,
+     "Gabriel": 5,
+     "Outros": 4,
+     "BNI": 31
+    }
+   },
+   {
+    "p": "AtlasIntel",
+    "date": "2026-09-04",
+    "n": 1804,
+    "method": "",
+    "v": {
+     "Cleitinho": 41,
+     "Patrus": 30,
+     "Kalil": 9.2,
+     "Mateus Simões": 4,
+     "Flávio Roscoe": 4,
+     "Gabriel": 4.7,
+     "Outros": 4.5,
+     "BNI": 2.6
+    }
+   },
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-09-07",
+    "n": 2000,
+    "method": "",
+    "v": {
+     "Cleitinho": 31,
+     "Patrus": 17,
+     "Kalil": 12,
+     "Mateus Simões": 11,
+     "Flávio Roscoe": 7,
+     "Gabriel": 8,
+     "Outros": 4,
+     "BNI": 10
+    }
+   },
+   {
+    "p": "Quaest",
+    "date": "2026-09-07",
+    "n": 1506,
+    "method": "",
+    "v": {
+     "Cleitinho": 32,
+     "Patrus": 11,
+     "Kalil": 11,
+     "Mateus Simões": 8,
+     "Flávio Roscoe": 3,
+     "Gabriel": 3,
+     "Outros": 3,
+     "BNI": 31
+    }
+   },
+   {
+    "p": "Datafolha",
+    "date": "2026-09-10",
+    "n": 1204,
+    "method": "",
+    "v": {
+     "Cleitinho": 37,
+     "Patrus": 13,
+     "Kalil": 11,
+     "Mateus Simões": 4,
+     "Flávio Roscoe": 4,
+     "Gabriel": 4,
+     "Outros": 6,
+     "BNI": 21
+    }
+   },
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-09-19",
+    "n": 2000,
+    "method": "",
+    "v": {
+     "Cleitinho": 35,
+     "Patrus": 19,
+     "Kalil": 10,
+     "Mateus Simões": 10,
+     "Flávio Roscoe": 8,
+     "Gabriel": 6,
+     "Outros": 4,
+     "BNI": 8
+    }
+   },
+   {
+    "p": "AtlasIntel",
+    "date": "2026-09-20",
+    "n": 1799,
+    "method": "",
+    "v": {
+     "Cleitinho": 39.3,
+     "Patrus": 31,
+     "Kalil": 8.3,
+     "Mateus Simões": 5.6,
+     "Flávio Roscoe": 7.3,
+     "Gabriel": 2.7,
+     "Outros": 1.9,
+     "BNI": 3.8
+    }
+   },
+   {
+    "p": "Quaest",
+    "date": "2026-09-22",
+    "n": 1506,
+    "method": "",
+    "v": {
+     "Cleitinho": 37,
+     "Patrus": 16,
+     "Kalil": 8,
+     "Mateus Simões": 7,
+     "Flávio Roscoe": 5,
+     "Gabriel": 2,
+     "Outros": 2,
+     "BNI": 23
+    }
+   },
+   {
+    "p": "Datafolha",
+    "date": "2026-09-24",
+    "n": 1204,
+    "method": "",
+    "v": {
+     "Cleitinho": 40,
+     "Patrus": 15,
+     "Kalil": 9,
+     "Mateus Simões": 5,
+     "Flávio Roscoe": 5,
+     "Gabriel": 3,
+     "Outros": 6,
+     "BNI": 19
+    }
+   }
+  ]
+ },
+ "gov_t2": {
+  "matchup": [
+   "Cleitinho",
+   "Patrus"
+  ],
+  "candidates": {
+   "Cleitinho": "Republicanos",
+   "Patrus": "PT"
+  },
+  "polls": [
+   {
+    "p": "Quaest",
+    "date": "2026-07-26",
+    "n": 1482,
+    "method": "",
+    "v": {
+     "Cleitinho": 46,
+     "Patrus": 31,
+     "BNI": 23
+    }
+   },
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-07-29",
+    "n": 2000,
+    "method": "",
+    "v": {
+     "Cleitinho": 48,
+     "Patrus": 36,
+     "BNI": 16
+    }
+   },
+   {
+    "p": "Quaest",
+    "date": "2026-08-24",
+    "n": 1506,
+    "method": "",
+    "v": {
+     "Cleitinho": 51,
+     "Patrus": 26,
+     "BNI": 23
+    }
+   },
+   {
+    "p": "AtlasIntel",
+    "date": "2026-09-04",
+    "n": 1804,
+    "method": "",
+    "v": {
+     "Cleitinho": 53.4,
+     "Patrus": 39.3,
+     "BNI": 7.2
+    }
+   },
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-09-07",
+    "n": 2000,
+    "method": "",
+    "v": {
+     "Cleitinho": 43,
+     "Patrus": 41,
+     "BNI": 16
+    }
+   },
+   {
+    "p": "Quaest",
+    "date": "2026-09-07",
+    "n": 1506,
+    "method": "",
+    "v": {
+     "Cleitinho": 51,
+     "Patrus": 26,
+     "BNI": 23
+    }
+   },
+   {
+    "p": "Datafolha",
+    "date": "2026-09-10",
+    "n": 1204,
+    "method": "",
+    "v": {
+     "Cleitinho": 59,
+     "Patrus": 24,
+     "BNI": 17
+    }
+   },
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-09-19",
+    "n": 2000,
+    "method": "",
+    "v": {
+     "Cleitinho": 43,
+     "Patrus": 42,
+     "BNI": 15
+    }
+   },
+   {
+    "p": "AtlasIntel",
+    "date": "2026-09-20",
+    "n": 1799,
+    "method": "",
+    "v": {
+     "Cleitinho": 53.1,
+     "Patrus": 41.1,
+     "BNI": 5.8
+    }
+   },
+   {
+    "p": "Quaest",
+    "date": "2026-09-22",
+    "n": 1506,
+    "method": "",
+    "v": {
+     "Cleitinho": 50,
+     "Patrus": 26,
+     "BNI": 24
+    }
+   },
+   {
+    "p": "Datafolha",
+    "date": "2026-09-24",
+    "n": 1204,
+    "method": "",
+    "v": {
+     "Cleitinho": 60,
+     "Patrus": 23,
+     "BNI": 17
+    }
+   }
+  ]
+ },
+ "sen_t1": {
+  "candidates": {
+   "Marília Campos": "PT",
+   "Aécio Neves": "PSDB",
+   "Carlos Viana": "PSD",
+   "Domingos Sávio": "PL",
+   "Marcelo Aro": "PP",
+   "Áurea Carolina": "PSOL"
+  },
+  "note": "Consolidated first+second vote, reduced to 100% (as published by Datafolha, Quaest and Real Time Big Data). Only September 2026 polls: July polls included withdrawn names (Eros Biondini, Euclydes Pettersen) and the August Datafolha/Quaest polls listed Gustavo Galassi (PSDB) instead of Aécio Neves.",
+  "polls": [
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-09-07",
+    "n": 2000,
+    "method": "",
+    "v": {
+     "Marília Campos": 21,
+     "Aécio Neves": 14,
+     "Carlos Viana": 13,
+     "Domingos Sávio": 14,
+     "Marcelo Aro": 9,
+     "Áurea Carolina": 6,
+     "Outros": 9,
+     "BNI": 14
+    }
+   },
+   {
+    "p": "Quaest",
+    "date": "2026-09-07",
+    "n": 1506,
+    "method": "",
+    "v": {
+     "Marília Campos": 13,
+     "Aécio Neves": 10,
+     "Carlos Viana": 8,
+     "Domingos Sávio": 6,
+     "Marcelo Aro": 4,
+     "Áurea Carolina": 2,
+     "Outros": 7,
+     "BNI": 50
+    }
+   },
+   {
+    "p": "Datafolha",
+    "date": "2026-09-10",
+    "n": 1204,
+    "method": "",
+    "v": {
+     "Marília Campos": 12,
+     "Aécio Neves": 10,
+     "Carlos Viana": 10,
+     "Domingos Sávio": 8,
+     "Marcelo Aro": 6,
+     "Áurea Carolina": 3,
+     "Outros": 12,
+     "BNI": 38
+    }
+   },
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-09-19",
+    "n": 2000,
+    "method": "",
+    "v": {
+     "Marília Campos": 18,
+     "Aécio Neves": 13,
+     "Carlos Viana": 16,
+     "Domingos Sávio": 16,
+     "Marcelo Aro": 12,
+     "Áurea Carolina": 7,
+     "Outros": 7,
+     "BNI": 12
+    }
+   },
+   {
+    "p": "Quaest",
+    "date": "2026-09-22",
+    "n": 1506,
+    "method": "",
+    "v": {
+     "Marília Campos": 13,
+     "Aécio Neves": 10,
+     "Carlos Viana": 10,
+     "Domingos Sávio": 10,
+     "Marcelo Aro": 6,
+     "Áurea Carolina": 3,
+     "BNI": 44
+    }
+   },
+   {
+    "p": "Datafolha",
+    "date": "2026-09-24",
+    "n": 1204,
+    "method": "",
+    "v": {
+     "Marília Campos": 13,
+     "Aécio Neves": 11,
+     "Carlos Viana": 11,
+     "Domingos Sávio": 9,
+     "Marcelo Aro": 6,
+     "Áurea Carolina": 5,
+     "Outros": 11,
+     "BNI": 35
+    }
+   },
+   {
+    "p": "Real Time Big Data",
+    "date": "2026-09-26",
+    "n": 2000,
+    "method": "",
+    "v": {
+     "Marília Campos": 19,
+     "Aécio Neves": 12,
+     "Carlos Viana": 16,
+     "Domingos Sávio": 16,
+     "Marcelo Aro": 11,
+     "Áurea Carolina": 8,
+     "Outros": 7,
+     "BNI": 12
+    }
+   }
+  ]
+ },
+ "notes": "Governor field (TSE, 11 candidates): Cleitinho (Republicanos), Patrus Ananias (PT), Kalil (PDT), Mateus Simões (PSD), Flávio Roscoe (PL), Gabriel Azevedo (MDB) named; Ben Mendes (Missão), Túlio Lopes (PCB), Indira Xavier (UP), Henrique Áreas (PCO), Rafael Duda (PSTU) summed in Outros. Patrus only entered the polls in July (earlier PT-allied candidate was Rodrigo Pacheco, PSB, who left the race), so all Jan-Jun polls (AtlasIntel 25-30 Mar, Futura 24-28 Mar, Real Time Big Data 19-20 Mar, Quaest 22-26 Apr, etc.) were skipped: their scenarios have Pacheco and no Patrus. July rows (Quaest 22-26 Jul scenario 1, RTBD 25-29 Jul scenario with Roscoe) include Maria da Consolação (PSOL, ~1-3%, not in the final field) inside Outros. Real Time Big Data 23-26 Sep governor poll published only in valid votes (Cleitinho 41, Patrus 22, Kalil 10, Simões 9, Roscoe 9, Gabriel 5) -> excluded from gov_t1/gov_t2 (its senate numbers are in total, consolidated, and are kept). gov_t2: Cleitinho x Patrus chosen (tied with Cleitinho x Kalil as most-polled, 11 vs 11 polls; Patrus is 2nd in all September polls). Datafolha Aug 18-20 had no 2nd-round data. Wide pollster spread: AtlasIntel and RTBD show Patrus ~30%/~19% vs Quaest/Datafolha 11-16%. Quaest 2026-09-22 senate: minor candidates only reported as <=1% each, so Outros omitted. Carlos Viana listed as PSD per 2026 articles.",
+ "sources": [
+  "https://en.wikipedia.org/wiki/2026_Minas_Gerais_gubernatorial_election",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/genial-quaest-governador-senador-minas-gerais-julho-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-governador-senador-minas-gerais-julho-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/datafolha-governador-senador-minas-gerais-agosto-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-governador-senador-minas-gerais-agosto-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/atlasintel-governador-minas-gerais-setembro-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-governador-senado-minas-gerais-setembro-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-governador-senador-minas-gerais-setembro-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/datafolha-governador-senador-minas-gerais-setembro-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-governador-senado-minas-gerais-setembro-2026-2/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/atlasintel-governador-minas-gerais-setembro-2026-2/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-governador-senador-minas-gerais-setembro-2026-2/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/datafolha-governador-senador-minas-gerais-setembro-2026-2/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-governador-senado-minas-gerais-setembro-2026-3/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/genial-quaest-governador-senador-minas-gerais-abril-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/atlasintel-governador-senador-minas-gerais-abril-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/futura-inteligencia-governador-senador-minas-gerais-abril-2026/",
+  "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-governador-minas-gerais-maio-2026/"
+ ]
+}

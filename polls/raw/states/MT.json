@@ -1,0 +1,72 @@
+{
+  "uf": "MT",
+  "state": "Mato Grosso",
+  "gov_t1": {
+    "candidates": {"Pivetta": "Republicanos", "Wellington Fagundes": "PL", "Natasha": "PSD", "Sargento Laudicério": "Agir", "Rafaell Millas": "Missão", "Maurício Coelho": "Mobiliza"},
+    "polls": [
+      {"p": "MT Dados", "date": "2026-05-17", "n": 1500, "method": "presencial", "v": {"Wellington Fagundes": 31, "Pivetta": 24, "Natasha": 8, "BNI": 37}},
+      {"p": "Real Time Big Data", "date": "2026-06-01", "n": 1600, "method": "presencial", "v": {"Wellington Fagundes": 40, "Pivetta": 29, "Natasha": 16, "BNI": 15}},
+      {"p": "MT Dados", "date": "2026-07-21", "n": 2800, "method": "", "v": {"Wellington Fagundes": 28, "Pivetta": 27, "Natasha": 13, "BNI": 33}},
+      {"p": "Real Time Big Data", "date": "2026-08-11", "n": 1600, "method": "presencial", "v": {"Wellington Fagundes": 34, "Pivetta": 26, "Natasha": 13, "Rafaell Millas": 3, "Sargento Laudicério": 1, "BNI": 23}},
+      {"p": "Instituto Veritá", "date": "2026-08-23", "n": 1220, "method": "", "v": {"Pivetta": 32.1, "Wellington Fagundes": 28.8, "Natasha": 10.6, "Rafaell Millas": 4, "Sargento Laudicério": 1.4, "Maurício Coelho": 0.3, "BNI": 22.8}},
+      {"p": "Paraná Pesquisas", "date": "2026-08-23", "n": 1504, "method": "presencial", "v": {"Pivetta": 39, "Wellington Fagundes": 35, "Natasha": 8.7, "Sargento Laudicério": 2.2, "Maurício Coelho": 0.4, "Rafaell Millas": 0.3, "BNI": 14.4}},
+      {"p": "Quaest", "date": "2026-08-24", "n": 804, "method": "presencial", "v": {"Wellington Fagundes": 27, "Pivetta": 23, "Natasha": 8, "Sargento Laudicério": 2, "Rafaell Millas": 2, "Maurício Coelho": 1, "BNI": 37}},
+      {"p": "Real Time Big Data", "date": "2026-09-02", "n": 1600, "method": "presencial", "v": {"Wellington Fagundes": 34, "Pivetta": 27, "Natasha": 13, "Rafaell Millas": 4, "Sargento Laudicério": 1, "BNI": 21}},
+      {"p": "Paraná Pesquisas", "date": "2026-09-08", "n": 1352, "method": "presencial", "v": {"Pivetta": 40.8, "Wellington Fagundes": 30.0, "Natasha": 12.0, "Sargento Laudicério": 1.7, "Maurício Coelho": 0.5, "Rafaell Millas": 0.4, "BNI": 14.6}},
+      {"p": "AtlasIntel", "date": "2026-09-09", "n": 1209, "method": "online", "v": {"Wellington Fagundes": 34.4, "Pivetta": 30.8, "Natasha": 23.2, "Rafaell Millas": 3.5, "Maurício Coelho": 1.3, "Sargento Laudicério": 0.7, "BNI": 6.2}},
+      {"p": "MT Dados", "date": "2026-09-17", "n": 3080, "method": "", "v": {"Pivetta": 34, "Wellington Fagundes": 26, "Natasha": 14, "Sargento Laudicério": 2, "Rafaell Millas": 1, "Maurício Coelho": 1, "BNI": 22}},
+      {"p": "Paraná Pesquisas", "date": "2026-09-17", "n": 1352, "method": "presencial", "v": {"Pivetta": 42.4, "Wellington Fagundes": 29.6, "Natasha": 13.5, "Sargento Laudicério": 0.8, "Maurício Coelho": 0.4, "Rafaell Millas": 0.4, "BNI": 12.9}},
+      {"p": "Instituto Veritá", "date": "2026-09-24", "n": 1220, "method": "", "v": {"Pivetta": 39.1, "Wellington Fagundes": 32.3, "Natasha": 15.0, "Sargento Laudicério": 1.3, "Rafaell Millas": 0.7, "Maurício Coelho": 0.5, "BNI": 11.1}},
+      {"p": "Quaest", "date": "2026-09-24", "n": 804, "method": "presencial", "v": {"Pivetta": 29, "Wellington Fagundes": 27, "Natasha": 11, "Maurício Coelho": 2, "Sargento Laudicério": 2, "Rafaell Millas": 1, "BNI": 28}}
+    ]
+  },
+  "gov_t2": {
+    "matchup": ["Pivetta", "Wellington Fagundes"],
+    "candidates": {"Pivetta": "Republicanos", "Wellington Fagundes": "PL"},
+    "polls": [
+      {"p": "MT Dados", "date": "2026-05-17", "n": 1500, "method": "presencial", "v": {"Wellington Fagundes": 35, "Pivetta": 28, "BNI": 37}},
+      {"p": "Real Time Big Data", "date": "2026-06-01", "n": 1600, "method": "presencial", "v": {"Wellington Fagundes": 44, "Pivetta": 35, "BNI": 21}},
+      {"p": "Real Time Big Data", "date": "2026-08-11", "n": 1600, "method": "presencial", "v": {"Wellington Fagundes": 45, "Pivetta": 32, "BNI": 23}},
+      {"p": "Paraná Pesquisas", "date": "2026-08-23", "n": 1504, "method": "presencial", "v": {"Pivetta": 44.3, "Wellington Fagundes": 40.8, "BNI": 14.9}},
+      {"p": "Quaest", "date": "2026-08-24", "n": 804, "method": "presencial", "v": {"Wellington Fagundes": 38, "Pivetta": 29, "BNI": 33}},
+      {"p": "Real Time Big Data", "date": "2026-09-02", "n": 1600, "method": "presencial", "v": {"Wellington Fagundes": 45, "Pivetta": 33, "BNI": 22}},
+      {"p": "Paraná Pesquisas", "date": "2026-09-08", "n": 1352, "method": "presencial", "v": {"Pivetta": 47.2, "Wellington Fagundes": 38.3, "BNI": 14.5}},
+      {"p": "AtlasIntel", "date": "2026-09-09", "n": 1209, "method": "online", "v": {"Wellington Fagundes": 40.4, "Pivetta": 36.9, "BNI": 22.7}},
+      {"p": "MT Dados", "date": "2026-09-17", "n": 3080, "method": "", "v": {"Pivetta": 38, "Wellington Fagundes": 32, "BNI": 30}},
+      {"p": "Paraná Pesquisas", "date": "2026-09-17", "n": 1352, "method": "presencial", "v": {"Pivetta": 49.1, "Wellington Fagundes": 37.4, "BNI": 13.5}},
+      {"p": "Quaest", "date": "2026-09-24", "n": 804, "method": "presencial", "v": {"Wellington Fagundes": 41, "Pivetta": 36, "BNI": 23}}
+    ]
+  },
+  "sen_t1": {
+    "candidates": {"Mauro Mendes": "União", "Janaina Riva": "MDB", "Zé Medeiros": "PL", "Fávaro": "PSD", "Pedro Taques": "PSB", "Galvan": "Avante"},
+    "note": "Consolidated first+second vote, normalized so all mentions (incl. blank/null/undecided per vote) sum to 100% — as published by Quaest and Real Time Big Data. Polls that publish the raw sum of both votes as % of respondents (columns total ~165-200%: Paraná Pesquisas, MT Dados, Instituto Veritá) are NOT included; see notes.",
+    "polls": [
+      {"p": "Real Time Big Data", "date": "2026-06-01", "n": 1600, "method": "presencial", "v": {"Mauro Mendes": 29, "Janaina Riva": 24, "Fávaro": 15, "Zé Medeiros": 10, "Pedro Taques": 6, "Galvan": 4, "Outros": 4, "BNI": 8}},
+      {"p": "Real Time Big Data", "date": "2026-08-11", "n": 1600, "method": "presencial", "v": {"Mauro Mendes": 27, "Janaina Riva": 25, "Fávaro": 13, "Zé Medeiros": 12, "Pedro Taques": 11, "Galvan": 4, "Outros": 4, "BNI": 4}},
+      {"p": "Quaest", "date": "2026-08-24", "n": 804, "method": "presencial", "v": {"Mauro Mendes": 24, "Janaina Riva": 18, "Pedro Taques": 8, "Zé Medeiros": 6, "Fávaro": 5, "Galvan": 2, "Outros": 5, "BNI": 32}},
+      {"p": "Real Time Big Data", "date": "2026-09-02", "n": 1600, "method": "presencial", "v": {"Mauro Mendes": 27, "Janaina Riva": 26, "Fávaro": 14, "Zé Medeiros": 13, "Pedro Taques": 13, "Galvan": 2, "Outros": 2, "BNI": 3}},
+      {"p": "Quaest", "date": "2026-09-24", "n": 804, "method": "presencial", "v": {"Mauro Mendes": 27, "Janaina Riva": 19, "Pedro Taques": 9, "Zé Medeiros": 9, "Fávaro": 8, "Galvan": 2, "Outros": 3, "BNI": 23}}
+    ]
+  },
+  "notes": "en.wikipedia state pages were not fetchable (cache-only); all data from news articles (Gazeta do Povo, Revista Oeste, Muvuca Popular, Poder360, VIP MT, MT Dados site). GOVERNOR: Jayme Campos (União) appeared in polls until July but is not a candidate; for MT Dados (May, Jul) and RTBD (Jun) the scenario without Jayme was used (those scenarios list only the 3 main candidates). MT Dados uses a hybrid method (in-person + web recruitment), so method left blank. Instituto Veritá's headline numbers (Pivetta 44.1, Wellington 36.3) are VALID votes; the total-vote figures (39.1/32.3/15.0) were used. Paraná Pesquisas 15-17 Sep sample: 1,352 per CNN/Midiajur/Jovem Pan (Revista Oeste said 1,300). Quaest MT sample 804 in both rounds as reported. Pollsters disagree sharply: Paraná/Veritá/MT Dados show Pivetta clearly ahead; Quaest Sep shows a tie; RTBD/AtlasIntel (early Sep) had Wellington ahead. SENATE: raw-sum polls left out (1st+2nd vote as % of respondents): Paraná 21-23 Aug Mendes 52.3, Riva 33.7, Medeiros 18.8, Taques 16.5, Fávaro 14.6; Paraná 6-8 Sep Mendes 55.0, Riva 31.5, Medeiros 21.4, Fávaro 16.6, Taques 15.6; Paraná 15-17 Sep Mendes 52.3, Riva 32.4, Medeiros 23.1, Fávaro 18.9, Taques 15.9; MT Dados 15-20 Aug consolidated Mendes 45, Riva 30, Medeiros 22; MT Dados 11-17 Sep Mendes 48, Riva 35, Medeiros 26, Fávaro 15, Taques 15 (1st vote only: Mendes 33, Riva 19, Medeiros 15, Fávaro 7, Taques 6, Galvan 4, BNI 14); Veritá 20-24 Sep Mendes 55.6, Medeiros 36.1, Riva 32.9, Fávaro 23.5, Taques 10.8 (a second outlet gave different 1st/2nd-vote splits, unverified). The maintainer may prefer the raw-sum convention instead (it includes the latest Veritá poll where Zé Medeiros is 2nd). Altir Peruzzo (PT) in RTBD June is counted in Outros (not in the Sep field).",
+  "sources": [
+    "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-governador-senador-mato-grosso-setembro-2026/",
+    "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-governo-senado-mato-grosso-agosto-2026/",
+    "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/atlasintel-governador-mato-grosso-setembro-2026/",
+    "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-governador-senado-mato-grosso-setembro-2026/",
+    "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-governador-senador-mato-grosso-agosto-2026/",
+    "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-governador-senador-mato-grosso-junho-2026/",
+    "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/parana-pesquisas-governador-senado-mato-grosso-setembro-2026/",
+    "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/parana-pesquisas-governador-senado-mato-grosso-agosto-2026/",
+    "https://revistaoeste.com/politica/pivetta-lidera-disputa-pelo-governo-de-mato-grosso-com-424-diz-parana-pesquisas/",
+    "https://revistaoeste.com/politica/pivetta-lidera-com-441-em-mato-grosso-flavio-vence-lula-por-61-a-28/",
+    "https://www.muvucapopular.com.br/2026/09/28/pivetta-amplia-vantagem-sobre-wellington-e-lidera-disputa-pelo-governo-de-mt-com-391/",
+    "https://vejabemmt.com.br/verita-pivetta-cresce-atinge-32-1-e-vira-sobre-wellington-fagundes/",
+    "https://www.poder360.com.br/poder-eleicoes-2026/wellington-fagundes-e-otaviano-pivetta-empatam-no-2o-turno-no-mt/",
+    "https://mtdados.com.br/pesquisa-governo-mt-2026",
+    "https://mtdados.com.br/pesquisa-governo-mt-2026-julho",
+    "https://mtdados.com.br/pesquisa-governo-mt-2026-4a-rodada",
+    "https://mtdados.com.br/pesquisa-senado-mt-2026-4a-rodada",
+    "https://www.midiajur.com.br/eleicoes-2026/parana-pesquisas-pivetta-tem-424-contra-296-de-wellington-e-135-de-natasha/87016"
+  ]
+}

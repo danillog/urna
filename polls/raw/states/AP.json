@@ -1,0 +1,51 @@
+{
+  "uf": "AP",
+  "state": "Amapá",
+  "gov_t1": {
+    "candidates": {"Dr. Furlan": "PSD", "Clécio": "UNIÃO", "Delegado Marcos": "DC"},
+    "polls": [
+      {"p": "AtlasIntel", "date": "2026-03-28", "n": 1029, "method": "", "v": {"Dr. Furlan": 65.7, "Clécio": 31.0, "Outros": 0.9, "BNI": 2.4}},
+      {"p": "Paraná Pesquisas", "date": "2026-06-13", "n": 1100, "method": "presencial", "v": {"Dr. Furlan": 64.3, "Clécio": 26.1, "Delegado Marcos": 0.7, "BNI": 8.9}},
+      {"p": "Paraná Pesquisas", "date": "2026-07-20", "n": 1100, "method": "presencial", "v": {"Dr. Furlan": 65.5, "Clécio": 26.3, "Delegado Marcos": 0.5, "BNI": 7.8}},
+      {"p": "Real Time Big Data", "date": "2026-07-23", "n": 1600, "method": "", "v": {"Dr. Furlan": 66, "Clécio": 30, "BNI": 4}},
+      {"p": "Quaest", "date": "2026-08-24", "n": 804, "method": "presencial", "v": {"Dr. Furlan": 55, "Clécio": 35, "Delegado Marcos": 0, "Outros": 1, "BNI": 9}},
+      {"p": "Real Time Big Data", "date": "2026-09-07", "n": 1600, "method": "presencial", "v": {"Dr. Furlan": 62, "Clécio": 31, "Delegado Marcos": 2, "BNI": 5}},
+      {"p": "Quaest", "date": "2026-09-23", "n": 804, "method": "presencial", "v": {"Dr. Furlan": 53, "Clécio": 40, "Delegado Marcos": 1, "Outros": 2, "BNI": 4}},
+      {"p": "Paraná Pesquisas", "date": "2026-09-27", "n": 1000, "method": "presencial", "v": {"Dr. Furlan": 55.7, "Clécio": 37.4, "Delegado Marcos": 0.5, "Outros": 0.5, "BNI": 5.9}}
+    ]
+  },
+  "gov_t2": {
+    "matchup": ["Dr. Furlan", "Clécio"],
+    "candidates": {"Dr. Furlan": "PSD", "Clécio": "UNIÃO"},
+    "polls": [
+      {"p": "AtlasIntel", "date": "2026-03-28", "n": 1029, "method": "", "v": {"Dr. Furlan": 65.4, "Clécio": 31.7, "BNI": 2.8}},
+      {"p": "Paraná Pesquisas", "date": "2026-06-13", "n": 1100, "method": "presencial", "v": {"Dr. Furlan": 64.7, "Clécio": 26.5, "BNI": 8.8}},
+      {"p": "Paraná Pesquisas", "date": "2026-07-20", "n": 1100, "method": "presencial", "v": {"Dr. Furlan": 66.0, "Clécio": 26.7, "BNI": 7.3}},
+      {"p": "Quaest", "date": "2026-08-24", "n": 804, "method": "presencial", "v": {"Dr. Furlan": 54, "Clécio": 36, "BNI": 10}},
+      {"p": "Real Time Big Data", "date": "2026-09-07", "n": 1600, "method": "presencial", "v": {"Dr. Furlan": 64, "Clécio": 31, "BNI": 5}},
+      {"p": "Quaest", "date": "2026-09-23", "n": 804, "method": "presencial", "v": {"Dr. Furlan": 54, "Clécio": 39, "BNI": 7}}
+    ]
+  },
+  "sen_t1": {
+    "candidates": {"Rayssa Furlan": "PODE", "Randolfe": "PT", "Lucas Barreto": "PSD", "Alliny Serrão": "UNIÃO", "Acácio Favacho": "MDB", "Capiberibe": "PSB"},
+    "note": "Consolidated 1st + 2nd votes reduced to 100% (share of all votes cast across both choices, blank/null/undecided included). Format used by Quaest and Real Time Big Data. Paraná Pesquisas publishes the plain sum of two votes (totals ~200%) and was not mixed in.",
+    "polls": [
+      {"p": "Real Time Big Data", "date": "2026-07-23", "n": 1600, "method": "", "v": {"Rayssa Furlan": 32, "Randolfe": 18, "Lucas Barreto": 12, "Alliny Serrão": 9, "Capiberibe": 7, "Acácio Favacho": 3, "Outros": 3, "BNI": 16}},
+      {"p": "Quaest", "date": "2026-08-24", "n": 804, "method": "presencial", "v": {"Rayssa Furlan": 27, "Randolfe": 19, "Lucas Barreto": 18, "Alliny Serrão": 9, "Acácio Favacho": 7, "Capiberibe": 4, "Outros": 0, "BNI": 16}},
+      {"p": "Real Time Big Data", "date": "2026-09-07", "n": 1600, "method": "presencial", "v": {"Rayssa Furlan": 30, "Randolfe": 20, "Lucas Barreto": 14, "Alliny Serrão": 9, "Capiberibe": 6, "Acácio Favacho": 5, "Outros": 1, "BNI": 12}},
+      {"p": "Quaest", "date": "2026-09-23", "n": 804, "method": "presencial", "v": {"Rayssa Furlan": 28, "Randolfe": 20, "Lucas Barreto": 19, "Alliny Serrão": 11, "Acácio Favacho": 9, "Capiberibe": 2, "Outros": 2, "BNI": 9}}
+    ]
+  },
+  "notes": "en.wikipedia pages for Amapá were not fetchable (cache-only); all rows come from news articles, mainly Gazeta do Povo. Governor race is essentially Dr. Furlan (PSD, ex-mayor of Macapá) vs incumbent Clécio Luís (União); minor candidates Delegado Marcos Reategui (DC), Carlos Cley (PSTU), Jairo Palheta (PCO) - last two in Outros. Furlan leads every poll, likely 1st-round win; Clécio narrowed the gap in late Sept (Quaest 53x40, Paraná 55.7x37.4). Paraná Pesquisas 2026-09-27: Gazeta do Povo printed the 1st round in valid votes (59.2/39.7) and labelled them confusingly as 2nd round; total-vote 1st-round figures come from Revista Oeste; its 2nd round was only available in valid votes (59.7x40.3) so it is not in gov_t2. Real Time Big Data 2026-07-23 had no 2nd round. Senate: Real Time Big Data 2026-07-23 included Teles Júnior (PDT, 3%, apparently not in the final field; counted in Outros) - drop if strict. Real Time Big Data 2026-09-07 senate sums to 97 as published. Not included (different convention, sum of two votes): Paraná Pesquisas Jun (scenario with Teles Júnior), Jul (partial) and 2026-09-27 (Rayssa 54.0, Randolfe 36.7, Lucas Barreto 36.1, Acácio 21.4, Alliny 20.0, Capiberibe 6.1, B/N 3.5, undecided 2.7). AtlasIntel Mar senate skipped (scenarios with Waldez Góes, not running). 'Capiberibe' = João Capiberibe ('Capi').",
+  "sources": [
+    "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/atlasintel-governador-senador-amapa-abril-2026/",
+    "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/parana-pesquisas-governador-senador-amapa-junho-2026/",
+    "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/parana-pesquisas-governador-senador-amapa-julho-2026/",
+    "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-governador-senador-amapa-julho-2026/",
+    "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-governo-senado-amapa-agosto-2026/",
+    "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-governador-senador-amapa-setembro-2026/",
+    "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-governador-senador-amapa-setembro-2026/",
+    "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/parana-pesquisas-governador-senador-amapa-setembro-2026/",
+    "https://revistaoeste.com/politica/parana-pesquisas-furlan-tem-557-e-clecio-374-no-amapa/"
+  ]
+}
