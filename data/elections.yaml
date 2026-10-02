@@ -2,6 +2,8 @@
 # results, candidate metadata, timeline events and the context shown on the page.
 #
 # Colors are names from the page palette: blue, gold, red, teal, violet, gray.
+# `wikipedia` (election) is the "Opinion polling for ..." page the crawler reads;
+# `wikipedia` (candidate) is how that page labels the candidate, when it differs.
 # Results are TSE shares of valid votes. Copy (context, notes, event labels)
 # is Portuguese because it is rendered as-is on the page.
 
@@ -119,9 +121,10 @@
     última semana. Até agora, só a Quaest (24 a 27/09) e a Nexus/BTG (25 a
     27/09) fizeram campo depois do anúncio, e a Nexus só divulgou o 1º turno em
     votos válidos. O 1º turno é em 4 de outubro.
+  wikipedia: Opinion_polling_for_the_2026_Brazilian_presidential_election
   candidates:
     Lula: { party: PT, color: red }
-    Flávio: { party: PL, color: blue }
+    Flávio: { party: PL, color: blue, wikipedia: F. Bolsonaro }
     Cury: { party: Avante, color: gold }
   events:
     - { date: 2026-08-16, label: Início da campanha }
@@ -132,6 +135,11 @@
       date: 2026-10-04
       # When a poll lists undecided but not "others", others = 100 − the rest.
       derive_others: true
+      # Polls the crawler must not add: [pollster, fieldwork end date, reason].
+      skip_polls:
+        - [AtlasIntel, 2026-09-22, published only as valid votes]
+        - [Nexus, 2026-09-27, published only as valid votes]
+        - [Gerp, 2026-09-28, published only as valid votes]
       notes:
         - >-
           "Outros" soma Renan Santos (Missão), Ronaldo Caiado (PSD), Romeu Zema

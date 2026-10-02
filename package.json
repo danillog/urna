@@ -9,6 +9,7 @@
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
     "data": "uv run python -m pipeline.build",
+    "crawler": "uv run python -m pipeline.crawl",
     "test": "vitest run",
     "test:data": "uv run pytest",
     "typecheck": "tsc --noEmit",

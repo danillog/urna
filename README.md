@@ -83,11 +83,33 @@ npm run check        # typecheck, tests, lint, dataset freshness
 |---|---|
 | `npm run dev` | Dev server with hot reload |
 | `npm run build` | Typecheck and build `dist/index.html` |
+| `npm run crawler` | Find new polls (see below) and regenerate the dataset |
 | `npm run data` | Validate sources and regenerate the dataset |
 | `npm test` / `npm run test:data` | Vitest (web) / pytest (pipeline) |
 | `npm run check` | Everything CI runs |
 
-### Adding a poll
+### Finding new polls
+
+```bash
+npm run crawler              # add new presidential polls, report what is still missing
+npm run crawler -- --dry-run # report only
+git diff data/raw            # review what was added
+```
+
+The crawler reads two sources. Each covers what the other cannot:
+
+| Source | What it gives | What the crawler does with it |
+|---|---|---|
+| [Wikipedia poll tables](https://en.wikipedia.org/wiki/Opinion_polling_for_the_2026_Brazilian_presidential_election) | The numbers, for presidential polls | Appends polls that are missing from the CSVs and flags polls whose numbers disagree with the dataset. |
+| [TSE poll registry](https://dadosabertos.tse.jus.br/dataset/pesquisas-eleitorais-2026) | Every registered poll (pollster, dates, sample), updated daily, but not the results | Confirms each new poll and lists published polls that are still missing, national and per state. |
+
+A Wikipedia poll is added only when:
+- **it is confirmed:** the TSE registry has a matching registration, or its pollster already has polls in that race;
+- **it is unambiguous:** one scenario matches the race (for a runoff, exactly the two candidates), and there is a blank/null/undecided column, since a poll without one may be valid votes only.
+
+Everything else is listed for a human to check. Polls rejected on purpose go in `skip_polls` in `data/elections.yaml`, so they are not proposed again. State polls have no machine-readable source with numbers: the registry checklist says which ones to look up.
+
+### Adding a poll by hand
 
 1. **President:** add a row to `data/raw/presidential/<year>-<round>.csv`:
    ```csv

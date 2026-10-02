@@ -40,5 +40,8 @@ class PollsterRegistry:
                 return p.name
         return raw_name.strip()
 
+    def is_known(self, raw_name: str) -> bool:
+        return any(p.pattern.search(raw_name) for p in self._pollsters)
+
     def methods(self) -> dict[str, str]:
         return {p.name: p.method for p in self._pollsters if p.method}
