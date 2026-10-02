@@ -34,6 +34,7 @@ import yaml
 
 from .build import DATA
 from .sources.http import get
+from .sources.ipea import by_territory
 
 IBGE_DIR = DATA / "raw" / "ibge"
 TSE_DIR = DATA / "raw" / "tse"
@@ -338,6 +339,14 @@ def main() -> int:
         out["races"][f"mayor-{year}"] = race
         print(f"  mayor {year}: {len(final_round(rounds))} municipalities, {len(race['labels'])} parties")
 
+    # Municipal HDI from the 1991, 2000 and 2010 censuses (Atlas of Human Development in
+    # Brazil, via Ipeadata), in thousandths; 0 where a municipality did not exist yet.
+    idhm = by_territory("ADH_IDHM", "Municípios")
+    years = sorted({y for series in idhm.values() for y in series})
+    out["idhm"] = {
+        str(y): pack("H", [round(idhm.get(code, {}).get(y, 0) * 1000) for code in order]) for y in years
+    }
+    print(f"  IDHM: {len(idhm)} municipalities, censuses {years}")
     text = json.dumps(out, ensure_ascii=False, separators=(",", ":")) + "\n"
     OUTPUT.write_text(text, encoding="utf-8")
     print(

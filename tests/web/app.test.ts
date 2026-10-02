@@ -94,6 +94,11 @@ describe("app", () => {
     expect($("map-title").textContent).toBe("Presidente · 1998 · 1º turno");
     expect(($("map-round-r2") as HTMLButtonElement).disabled).toBe(true);
 
+    click("map-office-idhm");
+    expect($("map-title").textContent).toMatch(/IDH dos municípios no Censo de (1991|2000|2010)/);
+    expect($("map").querySelectorAll(".areas path[class^='q']").length).toBeGreaterThan(5000);
+    expect($("map-legend").querySelectorAll(".map-chip").length).toBe(10);
+
     click("tab-polls");
     expect($("polls-view").hidden).toBe(false);
   });

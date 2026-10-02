@@ -25,7 +25,7 @@ import { button, byId } from "./dom";
 import { ChoroplethMap } from "./map";
 
 export type Layer = "politics" | IndicatorKey;
-const LAYERS: Layer[] = ["politics", "hdi", "income", "democracy"];
+const LAYERS: Layer[] = ["politics", "hdi", "income", "prices", "democracy"];
 
 export interface AmericasState {
   year: number;
@@ -206,7 +206,8 @@ export class AmericasView {
   private groupOf(i: number): string | null {
     const layer = this.state.layer;
     if (layer === "politics") return this.familyOf(i);
-    const reading = valueAt(this.indicators, layer, this.areas[i]!.country, this.state.year);
+    const area = this.areas[i]!;
+    const reading = valueAt(this.indicators, layer, area.country, this.state.year, area.code);
     return reading ? String(step(layer, reading.value)) : null;
   }
 
@@ -290,7 +291,8 @@ export class AmericasView {
       return `<div class="tt-h">${escapeHtml(name)}</div><div class="tt-s">${t.americasTerritory}</div>`;
     }
     const head = `<div class="tt-h">${escapeHtml(country.name)}</div><div class="tt-s">${place}</div>`;
-    if (this.state.layer !== "politics") return head + this.indicatorTooltip(this.state.layer, area.country);
+    if (this.state.layer !== "politics")
+      return head + this.indicatorTooltip(this.state.layer, area.country, area.code);
     if (country.system === "non-competitive")
       return head + `<div class="tt-s">${t.americasNonCompetitive}</div>`;
     const e = electionAt(country, this.state.year);
@@ -327,8 +329,10 @@ export class AmericasView {
     );
   }
 
-  private indicatorTooltip(layer: IndicatorKey, iso: string): string {
+  private indicatorTooltip(layer: IndicatorKey, iso: string, region: string): string {
     const copy = t.indicator[layer];
+    const indicator = this.indicators.indicators[layer];
+    if (indicator.regions?.[region]) return this.regionTooltip(layer, iso, region);
     const reading = valueAt(this.indicators, layer, iso, this.state.year);
     if (!reading) return `<div class="tt-s">${t.indicatorNoData}</div>`;
     const [position, total] = rank(this.indicators, layer, iso, this.state.year);
@@ -342,6 +346,26 @@ export class AmericasView {
     ].filter(Boolean);
     return (
       `<div class="row"><span class="key"><i class="map-key q${step(layer, reading.value)}"></i>${copy.name}</span><b>${copy.format(reading.value)}</b></div>` +
+      notes.map((n) => `<div class="tt-s tt-foot">${n}</div>`).join("")
+    );
+  }
+
+  /** A state with its own series (Brazil's IDHM): its value, and the country's next to it. */
+  private regionTooltip(layer: IndicatorKey, iso: string, region: string): string {
+    const copy = t.indicator[layer];
+    const reading = valueAt(this.indicators, layer, iso, this.state.year, region);
+    if (!reading) return `<div class="tt-s">${t.indicatorNoData}</div>`;
+    const national = valueAt(this.indicators, layer, iso, this.state.year);
+    const first = valueAt(this.indicators, layer, iso, this.indicators.firstYear, region);
+    const notes = [
+      layer === "hdi" ? t.hdiTier[hdiTier(reading.value)] : null,
+      reading.year < this.state.year ? t.indicatorLatest(reading.year) : null,
+      first && first.year < reading.year ? t.indicatorThen(copy.format(first.value), first.year) : null,
+      national ? t.indicatorCountry(copy.format(national.value), national.year) : null,
+      escapeHtml(this.indicators.indicators[layer].regionSource ?? ""),
+    ].filter(Boolean);
+    return (
+      `<div class="row"><span class="key"><i class="map-key q${step(layer, reading.value)}"></i>${t.indicatorRegionName[layer] ?? copy.name}</span><b>${copy.format(reading.value)}</b></div>` +
       notes.map((n) => `<div class="tt-s tt-foot">${n}</div>`).join("")
     );
   }

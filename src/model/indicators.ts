@@ -1,6 +1,6 @@
 /** Shape of data/generated/americas-indicators.json (pipeline/americas/indicators.py). */
 
-export type IndicatorKey = "hdi" | "income" | "democracy";
+export type IndicatorKey = "hdi" | "income" | "prices" | "democracy";
 
 export interface Indicator {
   source: string;
@@ -12,6 +12,9 @@ export interface Indicator {
   urbanOnly?: string[];
   /** ISO3 → one value per year from firstYear (null where the source has none). */
   values: Record<string, (number | null)[]>;
+  /** Region code → yearly values, where a source gives them by state (Brazil's IDHM). */
+  regions?: Record<string, (number | null)[]>;
+  regionSource?: string;
 }
 
 export interface IndicatorData {
@@ -26,6 +29,7 @@ export interface IndicatorData {
 export const STEPS: Record<IndicatorKey, number[]> = {
   hdi: [0, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95],
   income: [0, 150, 250, 350, 450, 600, 800, 1000, 1500, 2000],
+  prices: [0, 30, 40, 50, 60, 70, 80, 90, 100, 120],
   democracy: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9],
 };
 
@@ -40,9 +44,16 @@ export interface Reading {
   year: number;
 }
 
-export function valueAt(data: IndicatorData, key: IndicatorKey, iso: string, year: number): Reading | null {
+/** The value for a country, or for one of its regions when the indicator has them. */
+export function valueAt(
+  data: IndicatorData,
+  key: IndicatorKey,
+  iso: string,
+  year: number,
+  region?: string,
+): Reading | null {
   const indicator = data.indicators[key];
-  const series = indicator.values[iso];
+  const series = (region && indicator.regions?.[region]) || indicator.values[iso];
   if (!series) return null;
   for (let y = Math.min(year, indicator.lastYear); y >= data.firstYear; y--) {
     const v = series[y - data.firstYear];

@@ -17,6 +17,7 @@ import {
 } from "../model/map-data";
 import type { MunicipalMap, RoundId } from "../types";
 import { button, byId } from "./dom";
+import { STEPS, hdiTier, step } from "../model/indicators";
 import { ChoroplethMap } from "./map";
 
 export interface MapState {
@@ -51,7 +52,7 @@ export function normalizeMapState(data: MapData, s: MapState): MapState {
 export function mapFromSearch(data: MapData, params: URLSearchParams): MapState {
   const s = defaultMapState(data);
   const office = params.get("office");
-  if (office === "president" || office === "mayor") s.office = office;
+  if (office === "president" || office === "mayor" || office === "idhm") s.office = office;
   const year = Number(params.get("year"));
   if (year) s.year = year;
   if (params.get("round") === "r2") s.round = "r2";
@@ -100,7 +101,8 @@ export class MapView {
   /** State currently framed, to move the camera only when the selection changes. */
   private framed: string | null | undefined = undefined;
   /** Election on screen, so a party click only redraws the highlight. */
-  private shown: { key: string; race: MapRace; wins: GroupWins[] } | null = null;
+  /** What is on screen: its key, and the legend group of each municipality. */
+  private shown: { key: string; groups: Set<string>; groupOf: (i: number) => string | null } | null = null;
   private timelineOffice: MapOffice | null = null;
   private highlighted: string | null = null;
 
@@ -194,7 +196,10 @@ export class MapView {
       },
       () => this.showHint(),
     );
-    if (this.shown?.key !== key) this.renderElection(map, key);
+    if (this.shown?.key !== key) {
+      if (s.office === "idhm") this.renderIdhm(map, key);
+      else this.renderElection(map, key);
+    }
     this.renderCamera();
     this.renderFocus();
   }
@@ -223,7 +228,11 @@ export class MapView {
     const title = president ? t.mapTitlePresident(s.year, t.round[s.round]) : t.mapTitleMayor(s.year);
     byId("map-title").textContent = title;
     const wins = winsByGroup(race);
-    this.shown = { key, race, wins };
+    this.shown = {
+      key,
+      groups: new Set(wins.map((w) => w.group)),
+      groupOf: (i) => (race.winner[i] === NONE ? null : race.groups[race.winner[i]!]!),
+    };
     this.highlighted = null; // the base map changes under it
     byId("map-meta").textContent = t.mapMunicipalities(integer(wins.reduce((n, w) => n + w.wins, 0)));
     byId("map-note").textContent = president ? t.mapNotePresident : t.mapNoteMayor;
@@ -241,6 +250,74 @@ export class MapView {
     );
   }
 
+  private get areaCount(): number {
+    return this.data.map.municipalities.names.length;
+  }
+
+  /** The municipal HDI of a census year, on the same map. */
+  private renderIdhm(map: MunicipalMap, key: string): void {
+    const s = this.state;
+    const values = this.data.idhm(s.year);
+    const first = this.data.idhm(this.data.years("idhm")[0]!);
+    byId("map-offices")
+      .querySelectorAll<HTMLButtonElement>("button")
+      .forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.office === s.office)));
+    byId("map-round-group").hidden = true;
+    this.renderTimeline();
+    this.renderPlayButton();
+    const title = t.mapTitleIdhm(s.year);
+    byId("map-title").textContent = title;
+    const groupOf = (i: number) => (values[i] ? String(step("hdi", values[i]! / 1000)) : null);
+    const counts = STEPS.hdi.map(() => 0);
+    let n = 0;
+    values.forEach((v) => {
+      if (v) {
+        counts[step("hdi", v / 1000)]! += 1;
+        n++;
+      }
+    });
+    this.shown = { key, groups: new Set(STEPS.hdi.map((_, k) => String(k))), groupOf };
+    this.highlighted = null;
+    byId("map-meta").textContent = t.mapMunicipalities(integer(n));
+    byId("map-note").textContent = t.mapNoteIdhm;
+    const legend = byId("map-legend");
+    legend.replaceChildren(
+      ...STEPS.hdi.map((from, k) => {
+        const chip = button(
+          `<i class="map-key q${k}"></i><span>${t.indicator.hdi.step(from, STEPS.hdi[k + 1])}</span><span class="n">${integer(counts[k]!)}</span>`,
+          { className: "chip map-chip compact" },
+        );
+        chip.dataset.group = String(k);
+        chip.title = t.mapFocus;
+        chip.addEventListener("click", () =>
+          this.set({ focus: this.state.focus === String(k) ? null : String(k) }),
+        );
+        return chip;
+      }),
+    );
+    this.drawing!.paint(
+      t.mapAria(title),
+      (i) => {
+        const g = groupOf(i);
+        return g === null ? "no-data" : `q${g}`;
+      },
+      (i) => {
+        const place = `${escapeHtml(map.municipalities.names[i]!)} (${map.municipalities.uf[i]})`;
+        const v = values[i]! / 1000;
+        if (!v) return `<div class="tt-h">${place}</div><div class="tt-s">${t.mapIdhmNoData}</div>`;
+        const before = first[i]! / 1000;
+        return (
+          `<div class="tt-h">${place}</div>` +
+          `<div class="row"><span class="key"><i class="map-key q${step("hdi", v)}"></i>IDHM</span><b>${t.indicator.hdi.format(v)}</b></div>` +
+          `<div class="tt-s tt-foot">${t.hdiTier[hdiTier(v)]}</div>` +
+          (before && s.year !== this.data.years("idhm")[0]
+            ? `<div class="tt-s tt-foot">${t.indicatorThen(t.indicator.hdi.format(before), this.data.years("idhm")[0]!)}</div>`
+            : "")
+        );
+      },
+    );
+  }
+
   private renderCamera(): void {
     const uf = this.state.uf;
     byId<HTMLSelectElement>("map-uf").value = uf ?? "";
@@ -252,15 +329,15 @@ export class MapView {
 
   /** The highlighted party or candidate: legend state plus the map's highlight layer. */
   private renderFocus(): void {
-    const { race, wins } = this.shown!;
-    const focus = wins.some((w) => w.group === this.state.focus) ? this.state.focus : null;
+    const { groups, groupOf } = this.shown!;
+    const focus = this.state.focus && groups.has(this.state.focus) ? this.state.focus : null;
     byId("map-legend")
       .querySelectorAll<HTMLButtonElement>(".map-chip")
       .forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.group === focus)));
     if (focus === this.highlighted) return;
     this.highlighted = focus;
     const indices: number[] = [];
-    if (focus) race.winner.forEach((w, i) => w !== NONE && race.groups[w] === focus && indices.push(i));
+    if (focus) for (let i = 0; i < this.areaCount; i++) if (groupOf(i) === focus) indices.push(i);
     this.drawing!.highlight(focus ? indices : null);
   }
 

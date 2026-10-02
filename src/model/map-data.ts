@@ -1,6 +1,7 @@
 import type { ColorName, EncodedMapRace, MunicipalMap, RoundId } from "../types";
 
-export type MapOffice = "president" | "mayor";
+/** Elections, or the municipal HDI of the censuses (not an election, same map). */
+export type MapOffice = "president" | "mayor" | "idhm";
 
 /** Index value meaning "no result in this municipality". */
 export const NONE = 255;
@@ -83,7 +84,16 @@ export class MapData {
   }
 
   years(office: MapOffice): number[] {
+    if (office === "idhm")
+      return Object.keys(this.map.idhm ?? {})
+        .map(Number)
+        .sort();
     return [...new Set(this.keys(office).map((k) => parseKey(k).year))];
+  }
+
+  /** Municipal HDI in a census year, in thousandths (0 = no data). */
+  idhm(year: number): Uint16Array {
+    return new Uint16Array(bytes(this.map.idhm![String(year)]!).buffer);
   }
 
   rounds(year: number): RoundId[] {
@@ -106,7 +116,7 @@ export class MapData {
 }
 
 export function raceKey(office: MapOffice, year: number, round: RoundId): string {
-  return office === "mayor" ? `mayor-${year}` : `president-${year}-${round}`;
+  return office === "president" ? `president-${year}-${round}` : `${office}-${year}`;
 }
 
 /** Winner's lead over the runner-up, in percentage points. */

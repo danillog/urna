@@ -18,6 +18,7 @@ const data: IndicatorData = {
       maxAge: 4,
       values: { AAA: [100, 900, null, null, null, null, null, null, null, null] },
     },
+    prices: { source: "", url: "", lastYear: 2000, values: {} },
     democracy: { source: "", url: "", lastYear: 2000, values: {} },
   },
 };
@@ -37,6 +38,18 @@ describe("indicators", () => {
     expect(step("democracy", 0.69)).not.toBe(step("democracy", 0.79));
     expect(hdiTier(0.786)).toBe("high");
     expect(hdiTier(0.806)).toBe("veryHigh");
+  });
+
+  it("uses a region's own series when there is one", () => {
+    const withRegions: IndicatorData = {
+      ...data,
+      indicators: {
+        ...data.indicators,
+        hdi: { ...data.indicators.hdi, regions: { "AA-1": [0.9, null, null, null] } },
+      },
+    };
+    expect(valueAt(withRegions, "hdi", "AAA", 2003, "AA-1")).toEqual({ value: 0.9, year: 2000 });
+    expect(valueAt(withRegions, "hdi", "AAA", 2003, "AA-2")).toEqual({ value: 0.81, year: 2003 });
   });
 
   it("ranks countries with data that year", () => {
