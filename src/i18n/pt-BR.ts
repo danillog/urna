@@ -165,7 +165,7 @@ export const t = {
   mapTitleMayor: (year: number) => `Prefeitos eleitos em ${year}`,
   mapTitleIdhm: (year: number) => `IDH dos municípios no Censo de ${year}`,
   mapNoteIdhm:
-    "IDHM do Atlas do Desenvolvimento Humano no Brasil (PNUD, Ipea, FJP), via Ipeadata, calculado com os Censos de 1991, 2000 e 2010; os de 2022 ainda não foram publicados por município. Faixas finas de 0,05; a categoria oficial aparece ao passar o mouse.",
+    "IDHM do Atlas do Desenvolvimento Humano no Brasil (PNUD, Ipea, FJP), via Ipeadata, calculado com os Censos de 1991, 2000 e 2010, os anos que o Ipeadata publica por município. Faixas finas de 0,05; a categoria oficial aparece ao passar o mouse.",
   mapIdhmNoData: "Município criado depois deste Censo",
   mapAria: (title: string) => `Mapa do resultado por município: ${title}`,
   mapMunicipalities: (n: string) => `${n} municípios com resultado`,
