@@ -1,3 +1,5 @@
+import { geoMercator } from "d3-geo";
+
 import { escapeHtml, integer, percent } from "../format";
 import { t } from "../i18n/pt-BR";
 import {
@@ -15,7 +17,7 @@ import {
 } from "../model/map-data";
 import type { MunicipalMap, RoundId } from "../types";
 import { button, byId } from "./dom";
-import { MunicipalityMap } from "./map";
+import { ChoroplethMap } from "./map";
 
 export interface MapState {
   office: MapOffice;
@@ -92,7 +94,7 @@ function tooltip(map: MunicipalMap, race: MapRace, i: number): string {
 
 /** The map tab: office, round, a timeline of elections and the map itself. */
 export class MapView {
-  private drawing: MunicipalityMap | null = null;
+  private drawing: ChoroplethMap | null = null;
   private timer: number | undefined;
   private hintTimer: number | undefined;
   /** State currently framed, to move the camera only when the selection changes. */
@@ -179,7 +181,19 @@ export class MapView {
   render(map: MunicipalMap): void {
     const s = this.state;
     const key = raceKey(s.office, s.year, s.round);
-    this.drawing ??= new MunicipalityMap(byId("map"), map, () => this.showHint());
+    this.drawing ??= new ChoroplethMap(
+      byId("map"),
+      {
+        topology: map.topology,
+        object: map.topology.objects.municipalities,
+        groups: map.municipalities.uf,
+        projection: geoMercator(),
+        width: 800,
+        height: 780,
+        maxZoom: 40, // deep enough for the smallest municipalities around São Paulo and Recife
+      },
+      () => this.showHint(),
+    );
     if (this.shown?.key !== key) this.renderElection(map, key);
     this.renderCamera();
     this.renderFocus();

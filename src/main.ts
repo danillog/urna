@@ -3,8 +3,11 @@ import "./styles.css";
 import dataset from "../data/generated/elections.json";
 // Imported as text: type inference over megabytes of coordinates would stall the compiler.
 import mapJson from "../data/generated/map.json?raw";
+import americasJson from "../data/generated/americas.json?raw";
+import americasTopoJson from "../data/generated/americas.topo.json?raw";
 import { formatDate, formatIsoDate, dayToDate } from "./format";
 import { t } from "./i18n/pt-BR";
+import type { AmericasData } from "./model/americas";
 import { MapData } from "./model/map-data";
 import { buildView } from "./model/view";
 import { fromSearch, raceFor, toSearch, type AppState } from "./state";
@@ -13,15 +16,17 @@ import { renderChart } from "./ui/chart";
 import { renderContext } from "./ui/context";
 import { renderControls, setupControls } from "./ui/controls";
 import { byId } from "./ui/dom";
+import { AmericasView, americasFromSearch, americasToSearch } from "./ui/americas-view";
 import { renderLegend } from "./ui/legend";
 import { MapView, mapFromSearch, mapToSearch } from "./ui/map-view";
 import { renderAccuracy, renderComparison, renderHighlightBar, renderPollTable } from "./ui/tables";
 
-type View = "polls" | "map";
+const VIEWS = ["polls", "map", "americas"] as const;
+type View = (typeof VIEWS)[number];
 
 const data = dataset as unknown as Dataset;
 const params = new URLSearchParams(window.location.search);
-let view: View = params.get("view") === "map" ? "map" : "polls";
+let view: View = VIEWS.find((v) => v === params.get("view")) ?? "polls";
 let state: AppState = fromSearch(data, view === "polls" ? window.location.search : "");
 
 // The map data is parsed the first time the map tab opens.
@@ -47,11 +52,29 @@ function ensureMap(): MapView {
   return mapView;
 }
 
+let americasView: AmericasView | null = null;
+
+function ensureAmericas(): AmericasView {
+  if (!americasView) {
+    const americas = JSON.parse(americasJson) as AmericasData;
+    const initial = americasFromSearch(americas, view === "americas" ? params : new URLSearchParams());
+    americasView = new AmericasView(americas, JSON.parse(americasTopoJson), initial, () => {
+      syncUrl();
+      americasView!.render();
+    });
+  }
+  return americasView;
+}
+
 function syncUrl(): void {
   let search: string;
   if (view === "map" && mapView) {
     const p = new URLSearchParams({ view: "map" });
     mapToSearch(mapView.current, p);
+    search = `?${p.toString()}`;
+  } else if (view === "americas" && americasView) {
+    const p = new URLSearchParams({ view: "americas" });
+    americasToSearch(americasView.current, p);
     search = `?${p.toString()}`;
   } else {
     search = toSearch(data, state);
@@ -68,7 +91,8 @@ function update(next: AppState): void {
 function showView(next: View): void {
   view = next;
   if (view !== "map") mapView?.stop();
-  for (const v of ["polls", "map"] as const) {
+  if (view !== "americas") americasView?.stop();
+  for (const v of VIEWS) {
     byId(`${v}-view`).hidden = v !== view;
     byId(`tab-${v}`).setAttribute("aria-selected", String(v === view));
   }
@@ -77,6 +101,7 @@ function showView(next: View): void {
   byId("headline").textContent = copy.headline;
   byId("lede").textContent = copy.lede;
   if (view === "map") ensureMap().render(municipalMap!);
+  else if (view === "americas") ensureAmericas().render();
   else renderPolls();
   syncUrl();
 }
@@ -123,7 +148,7 @@ function renderPolls(): void {
 }
 
 setupControls(data, () => state, update);
-for (const v of ["polls", "map"] as const) byId(`tab-${v}`).addEventListener("click", () => showView(v));
+for (const v of VIEWS) byId(`tab-${v}`).addEventListener("click", () => showView(v));
 showView(view);
 
 // The chart reads colors from CSS variables, so redraw it on resize and theme changes.

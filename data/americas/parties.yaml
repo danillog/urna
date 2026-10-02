@@ -1,0 +1,150 @@
+# Ideological family of every party that won an election in data/americas/elections.yaml.
+#
+# Families follow the four bands of the Global Party Survey 2019 (Norris), economic
+# left–right scale V4 (0–10): left < 2.5 ≤ centre-left < 5 ≤ centre-right < 7.5 ≤ right.
+#
+# Each entry resolves the family one way:
+#   gps: ABBR            the party's score in the Global Party Survey (Partyabb), used
+#                        only when at least 5 experts rated that country's parties;
+#   wikipedia: Article   the "position" field of the party's Wikipedia article, for
+#                        parties the survey does not cover or covers with too few experts;
+#   family: …, note: …   a reasoned call, when neither source settles it.
+# `via` explains when the winner ran under a front or coalition led by another party.
+#
+# Keys are the party as the election infobox names it (article title when linked).
+
+ARG:
+  Front for Victory: { wikipedia: Front for Victory }
+  Juntos por el Cambio: { gps: PRO-UCR, via: same coalition as Cambiemos }
+  Frente de Todos (2019 coalition): { wikipedia: Frente de Todos }
+  Liberty Advances: { wikipedia: La Libertad Avanza }
+BOL:
+  Revolutionary Nationalist Movement: { wikipedia: Revolutionary Nationalist Movement }
+  Movement for Socialism (Bolivia): { gps: MAS }
+  Movimiento al Socialismo: { gps: MAS }
+  Christian Democratic Party (Bolivia): { gps: PDC }
+BRA:
+  Workers' Party (Brazil): { gps: PT }
+  Social Liberal Party (Brazil): { gps: PSL }
+CHL:
+  Socialist Party of Chile: { wikipedia: Socialist Party of Chile }
+  National Renewal (Chile): { gps: CV, via: member of the Chile Vamos coalition }
+  Independent politician: { gps: CV, via: Piñera ran as the Chile Vamos candidate }
+  Social Convergence: { gps: FA, via: member of the Broad Front (Frente Amplio) }
+  Republican Party of Chile: { wikipedia: Republican Party of Chile }
+COL:
+  Colombia First: { wikipedia: Colombia First }
+  Social Party of National Unity: { wikipedia: Social Party of National Unity }
+  Democratic Center (Colombia): { wikipedia: Democratic Center (Colombia) }
+  Humane Colombia: { wikipedia: Humane Colombia }
+  Independent politician: { family: right, note: "Abelardo de la Espriella ran without a party; his Wikipedia article describes him as right-wing" }
+CRI:
+  Social Christian Unity Party: { gps: PUSC }
+  National Liberation Party (Costa Rica): { gps: PLN }
+  Citizens' Action Party (Costa Rica): { gps: PAC }
+  Social Democratic Progress Party: { wikipedia: Social Democratic Progress Party }
+  Sovereign People's Party (Costa Rica): { wikipedia: Sovereign People's Party (Costa Rica) }
+DOM:
+  Dominican Revolutionary Party: { wikipedia: Dominican Revolutionary Party }
+  Dominican Liberation Party: { wikipedia: Dominican Liberation Party, via: no score in the survey }
+  Modern Revolutionary Party: { gps: PRM }
+ECU:
+  January 21 Patriotic Society Party: { gps: PSP }
+  PAIS Alliance: { gps: PAIS }
+  Creating Opportunities: { gps: CREO }
+  National Democratic Action (Ecuador): { wikipedia: National Democratic Action (Ecuador) }
+GTM:
+  Grand National Alliance (Guatemala): { wikipedia: Grand National Alliance (Guatemala) }
+  National Unity of Hope: { gps: UNE }
+  Patriotic Party (Guatemala): { gps: PP }
+  National Convergence Front: { gps: FCN }
+  Vamos (Guatemala): { wikipedia: Vamos (Guatemala) }
+  Semilla (Guatemala): { family: centre-left, note: "Wikipedia splits it by faction (Arévalo's centre, Raíces centre-left); Arévalo ran on a social democratic platform" }
+HND:
+  National Party of Honduras: { wikipedia: National Party of Honduras }
+  Liberal Party of Honduras: { wikipedia: Liberal Party of Honduras }
+  Liberty and Refoundation: { wikipedia: Liberty and Refoundation }
+HTI:
+  Fanmi Lavalas: { gps: FL }
+  Lespwa: { family: centre-left, note: "no position in its Wikipedia article; Préval's coalition after he left Fanmi Lavalas (left, 1.7 in the survey) for a more moderate platform" }
+  Repons Peyizan: { wikipedia: Repons Peyizan }
+  Haitian Tèt Kale Party: { gps: PHTK }
+MEX:
+  National Action Party (Mexico): { gps: PAN }
+  Institutional Revolutionary Party: { gps: PRI-PVEM, via: the PRI–PVEM coalition }
+  Morena (political party): { gps: MORENA }
+NIC:
+  Constitutionalist Liberal Party: { gps: PLC }
+  Sandinista National Liberation Front: { gps: FSLN }
+PAN:
+  Democratic Revolutionary Party: { wikipedia: Democratic Revolutionary Party }
+  Democratic Change (Panama): { wikipedia: Democratic Change (Panama) }
+  Panameñista Party: { wikipedia: Panameñista Party }
+  Realizing Goals: { wikipedia: Realizing Goals }
+PER:
+  Peru 2000: { wikipedia: Fujimorism, via: Fujimori's electoral alliance }
+  Possible Peru: { family: centre-right, note: "Wikipedia lists it as centre with centre-right factions; Toledo's government kept a market-oriented economic policy" }
+  American Popular Revolutionary Alliance: { wikipedia: American Popular Revolutionary Alliance }
+  Peru Wins: { wikipedia: Peruvian Nationalist Party, via: alliance led by Humala's Peruvian Nationalist Party }
+  Peruvians for Change: { gps: PKK }
+  Free Peru: { wikipedia: Free Peru }
+  Popular Force: { gps: FP }
+PRY:
+  Colorado Party (Paraguay): { gps: ANR }
+  Patriotic Alliance for Change: { wikipedia: Patriotic Alliance for Change }
+SLV:
+  Nationalist Republican Alliance: { gps: ARENA }
+  Farabundo Martí National Liberation Front: { gps: FMLN }
+  Grand Alliance for National Unity: { gps: GANA }
+  Nuevas Ideas: { gps: GANA, via: "Bukele's party; not in the survey, which rates GANA, the party he won with in 2019" }
+URY:
+  Broad Front (Uruguay): { gps: FA }
+  National Party (Uruguay): { gps: PN }
+USA:
+  Republican Party (United States): { gps: GOP }
+  Democratic Party (United States): { gps: Dem }
+VEN:
+  United Socialist Party of Venezuela: { gps: PSUV/GPP }
+  Fifth Republic Movement: { gps: PSUV/GPP, via: merged into the PSUV in 2007 }
+GUY:
+  People's Progressive Party/Civic: { gps: PPP-C }
+  People's National Congress Reform: { wikipedia: People's National Congress Reform, via: no score in the survey }
+SUR:
+  National Party of Suriname: { wikipedia: National Party of Suriname }
+  National Democratic Party (Suriname): { gps: NDP }
+  Progressive Reform Party (Suriname): { gps: VHP/V7 }
+ATG:
+  United Progressive Party: { wikipedia: United Progressive Party (Antigua and Barbuda) }
+  Antigua and Barbuda Labour Party: { wikipedia: Antigua and Barbuda Labour Party }
+BHS:
+  Progressive Liberal Party: { gps: PLP }
+  Free National Movement: { gps: FNM }
+BLZ:
+  People's United Party: { family: centre-left, note: "Wikipedia lists it only as centre; it is a social democratic party, member of the Socialist International" }
+  United Democratic Party (Belize): { wikipedia: United Democratic Party (Belize) }
+BRB:
+  Barbados Labour Party: { wikipedia: Barbados Labour Party }
+  Democratic Labour Party (Barbados): { wikipedia: Democratic Labour Party (Barbados) }
+CAN:
+  Liberal: { gps: LP }
+  Conservative: { gps: CPC }
+DMA:
+  Dominica Labour Party: { wikipedia: Dominica Labour Party }
+GRD:
+  New National Party (Grenada): { gps: NNP }
+  National Democratic Congress (Grenada): { wikipedia: National Democratic Congress (Grenada) }
+JAM:
+  People's National Party: { wikipedia: People's National Party }
+  Jamaica Labour Party: { wikipedia: Jamaica Labour Party }
+KNA:
+  Saint Kitts and Nevis Labour Party: { wikipedia: Saint Kitts and Nevis Labour Party }
+  People's Labour Party (Saint Kitts and Nevis): { wikipedia: People's Labour Party (Saint Kitts and Nevis) }
+LCA:
+  Saint Lucia Labour Party: { wikipedia: Saint Lucia Labour Party }
+  United Workers Party (Saint Lucia): { wikipedia: United Workers Party (Saint Lucia) }
+TTO:
+  United National Congress: { wikipedia: United National Congress }
+  People's National Movement: { wikipedia: People's National Movement }
+VCT:
+  Unity Labour Party: { wikipedia: Unity Labour Party }
+  New Democratic Party (Saint Vincent and the Grenadines): { wikipedia: New Democratic Party (Saint Vincent and the Grenadines) }

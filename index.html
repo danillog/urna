@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- The page has its own light and dark themes; this keeps browsers from force-darkening it. -->
+<meta name="color-scheme" content="light dark">
 <title>Pesquisas Eleitorais 2010–2026</title>
 <meta name="description" content="Todas as pesquisas eleitorais publicadas para presidente, governador e senador, com média suavizada, filtros por instituto e o histórico de acerto de cada instituto.">
 <meta name="author" content="Danillo Gomes">
@@ -30,6 +32,7 @@
   <nav class="tabs" role="tablist" aria-label="Seções">
     <button type="button" role="tab" id="tab-polls" data-view="polls" aria-selected="true" aria-controls="polls-view">Pesquisas</button>
     <button type="button" role="tab" id="tab-map" data-view="map" aria-selected="false" aria-controls="map-view">Mapa por município</button>
+    <button type="button" role="tab" id="tab-americas" data-view="americas" aria-selected="false" aria-controls="americas-view">Américas</button>
   </nav>
 
   <div class="view" id="polls-view" role="tabpanel" aria-labelledby="tab-polls">
@@ -154,6 +157,43 @@
         <div class="map-hint" id="map-hint" hidden></div>
       </div>
       <p class="map-note" id="map-note"></p>
+    </section>
+  </div>
+
+  <div class="view" id="americas-view" role="tabpanel" aria-labelledby="tab-americas" hidden>
+    <div class="controls">
+      <div class="group">
+        <label class="group-label" for="am-country">País</label>
+        <select id="am-country" class="select"></select>
+      </div>
+    </div>
+
+    <div class="timeline">
+      <button type="button" class="play" id="am-play" aria-label="Reproduzir" aria-pressed="false">▶</button>
+      <div class="timeline-track">
+        <input type="range" id="am-slider" min="0" max="0" step="1" value="0" aria-label="Ano">
+        <div class="timeline-years" id="am-years"></div>
+      </div>
+    </div>
+
+    <section class="panel" aria-labelledby="am-title">
+      <div class="panel-head">
+        <h2 class="panel-title" id="am-title"></h2>
+      </div>
+      <div class="legend map-legend" id="am-legend"></div>
+      <div class="map americas-map" id="am-map">
+        <div class="map-zoom" role="group" aria-label="Zoom">
+          <button type="button" id="am-zoom-in" aria-label="Aproximar" title="Aproximar">+</button>
+          <button type="button" id="am-zoom-out" aria-label="Afastar" title="Afastar">−</button>
+          <button type="button" id="am-zoom-reset" aria-label="Ver as Américas inteiras" title="Ver as Américas inteiras">⟲</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="notes" aria-label="Metodologia das Américas">
+      <p><b>O que o mapa mostra.</b> Para cada ano, cada país aparece com a cor de quem venceu sua eleição nacional mais recente até aquele ano: o presidente eleito ou, nos países parlamentaristas (Canadá e boa parte do Caribe), o partido que formou o governo. Por enquanto o país inteiro recebe uma cor; os resultados por estado e província entram aos poucos.</p>
+      <p><b>Família ideológica.</b> Usamos a escala econômica de esquerda a direita (0 a 10) do <a href="https://www.globalpartysurvey.org/" target="_blank" rel="noopener">Global Party Survey 2019</a> (Pippa Norris, Harvard), em quatro faixas: esquerda (abaixo de 2,5), centro-esquerda (2,5 a 4,9), centro-direita (5 a 7,4) e direita (7,5 ou mais). A pesquisa só é usada quando ao menos 5 especialistas avaliaram o país. Para partidos que ela não cobre, ou cobre com poucos especialistas, usamos a posição política informada no artigo do partido na Wikipédia, convertida para as mesmas faixas. Cinco casos ambíguos foram decididos à mão, com a justificativa registrada. A fonte de cada classificação aparece ao passar o mouse.</p>
+      <p><b>Fontes.</b> Vencedores e datas: artigos de cada eleição na Wikipédia em inglês, conferidos e corrigidos à mão onde necessário. Contornos: Natural Earth (domínio público). Cuba aparece sem cor por não ter eleições presidenciais competitivas; eleições anuladas (Bolívia 2019, Haiti 2015) e territórios dependentes também ficam em cinza. A eleição de 2024 na Venezuela é mostrada pelo resultado oficial e marcada como contestada.</p>
     </section>
   </div>
 

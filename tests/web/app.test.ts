@@ -73,7 +73,7 @@ describe("app", () => {
     expect($("map-view").hidden).toBe(false);
     expect($("polls-view").hidden).toBe(true);
     expect(window.location.search).toContain("view=map");
-    expect($("map").querySelectorAll(".municipalities path").length).toBeGreaterThan(5500);
+    expect($("map").querySelectorAll(".areas path").length).toBeGreaterThan(5500);
 
     click("map-office-mayor");
     expect($("map-title").textContent).toMatch(/Prefeitos eleitos em \d{4}/);
@@ -96,6 +96,25 @@ describe("app", () => {
 
     click("tab-polls");
     expect($("polls-view").hidden).toBe(false);
+  });
+
+  it("opens the Americas tab and moves through the years", () => {
+    click("tab-americas");
+    expect($("americas-view").hidden).toBe(false);
+    expect(window.location.search).toContain("view=americas");
+    expect($("am-map").querySelectorAll(".areas path").length).toBeGreaterThan(600);
+    expect($("am-legend").querySelectorAll(".map-chip").length).toBe(4);
+
+    const slider = $("am-slider") as HTMLInputElement;
+    slider.value = "6";
+    slider.dispatchEvent(new Event("input"));
+    expect($("am-title").textContent).toBe("Quem governava as Américas em 2006");
+    expect(window.location.search).toContain("year=2006");
+
+    ($("am-legend").querySelector(".map-chip") as HTMLButtonElement).click();
+    expect(window.location.search).toContain("focus=left");
+    expect($("am-map").querySelectorAll(".focus-layer path").length).toBeGreaterThan(0);
+    click("tab-polls");
   });
 
   it("zooms the map to a state and back", () => {

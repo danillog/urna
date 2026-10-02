@@ -658,15 +658,15 @@ table.clickable tbody tr:focus-visible {
   width: 100%;
   height: auto;
 }
-.municipalities path,
+.areas path,
 .focus-layer path {
   fill: color-mix(in srgb, var(--mc, var(--c-gray)) var(--mix, 100%), var(--surface));
 }
-:is(.municipalities, .focus-layer) path.active {
+:is(.areas, .focus-layer) path.active {
   stroke: var(--ink);
   stroke-width: 1.5;
 }
-.municipalities path.no-data {
+.areas path.no-data {
   fill: var(--grid);
 }
 /* One semi-transparent rect fades the whole map; highlighted copies sit above it. */
@@ -675,7 +675,7 @@ table.clickable tbody tr:focus-visible {
   opacity: 0.8;
   pointer-events: none;
 }
-.state-borders {
+.group-borders {
   fill: none;
   stroke: var(--surface);
   stroke-width: 0.9;
@@ -818,19 +818,62 @@ table.clickable tbody tr:focus-visible {
   cursor: grabbing;
 }
 /* Line widths stay the same at any zoom level. */
-.municipalities path,
+.areas path,
 .focus-layer path,
-.state-borders {
+.group-borders {
   vector-effect: non-scaling-stroke;
 }
-.map.zoomed :is(.municipalities, .focus-layer) path {
+.map.zoomed :is(.areas, .focus-layer) path {
   stroke: var(--surface);
   stroke-width: 0.4;
 }
-.map.zoomed :is(.municipalities, .focus-layer) path.active {
+.map.zoomed :is(.areas, .focus-layer) path.active {
   stroke: var(--ink);
   stroke-width: 1.5;
 }
-.map.zoomed .state-borders {
+.map.zoomed .group-borders {
   stroke-width: 1.6;
+}
+
+/* Americas: ideological families on a diverging red–blue scale (ColorBrewer RdBu). */
+:root {
+  --fam-left: #b2182b;
+  --fam-centre-left: #ef8a62;
+  --fam-centre-right: #67a9cf;
+  --fam-right: #2166ac;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --fam-left: #e0525c;
+    --fam-centre-left: #f4a582;
+    --fam-centre-right: #92c5de;
+    --fam-right: #4f93d1;
+  }
+}
+:root[data-theme="dark"] {
+  --fam-left: #e0525c;
+  --fam-centre-left: #f4a582;
+  --fam-centre-right: #92c5de;
+  --fam-right: #4f93d1;
+}
+.f-left {
+  --mc: var(--fam-left);
+}
+.f-centre-left {
+  --mc: var(--fam-centre-left);
+}
+.f-centre-right {
+  --mc: var(--fam-centre-right);
+}
+.f-right {
+  --mc: var(--fam-right);
+}
+.areas path.territory {
+  fill: var(--line);
+}
+.map-key.no-data {
+  background: var(--grid);
+}
+.americas-map {
+  max-width: 680px;
 }

@@ -14,6 +14,7 @@ Every published poll for Brazil's presidential, governor and Senate races, a smo
 - **Live re-averaging.** Turn pollsters or interview methods (in person, phone, online) on and off, and the trend lines are recomputed in the browser.
 - **Polls vs. ballot box.** For past elections, the final average is converted to valid votes and compared with the official TSE result.
 - **Map tab: 30 years of results by municipality.** All 5,570 municipalities for every presidential round since 1994 and every mayor election since 1996. Press play to watch the map change election by election, click a party to follow it through time (say, where the PT won city halls from 1996 to 2024), and zoom in down to single municipalities: pick a state, use the +/− buttons, pinch, or ctrl/⌘ + scroll.
+- **Americas tab.** Every country of the Americas since 2000, colored by the ideological family of whoever won its latest national election (president, or the governing party in parliamentary systems). Press play to watch left and right waves cross the continent.
 - **Pollster accuracy.** Each pollster's last poll before election day is scored. For the current election, the table shows each pollster's track record since 2010.
 - **Shareable views.** The selection lives in the URL, e.g. [`?office=governor&uf=SP`](https://danillogomes.com/urna/?office=governor&uf=SP) or [`?year=2022&exclude=Gerp,Palver`](https://danillogomes.com/urna/?year=2022&exclude=Gerp,Palver).
 - **Accessible and themable.** Keyboard navigation, a full data table, colorblind-safe palette, light and dark mode.
@@ -92,6 +93,7 @@ npm run check        # typecheck, tests, lint, dataset freshness
 | `npm run build` | Typecheck and build `dist/index.html` |
 | `npm run crawler` | Find new polls (see below) and regenerate the dataset |
 | `npm run data` | Validate sources and regenerate the dataset |
+| `npm run americas` | Rebuild the Americas tab: election list from Wikipedia, boundaries and families |
 | `npm run map` | Download TSE results not yet cached (≈2.5 GB in total) and rebuild the municipality map |
 | `npm test` / `npm run test:data` | Vitest (web) / pytest (pipeline) |
 | `npm run check` | Everything CI runs |
@@ -141,6 +143,20 @@ A new pollster's alias and interview method go in `data/pollsters.yaml`. A new e
 - **Party colors** come from `data/parties.yaml`. A party keeps its color through renames (PFL → DEM → União, PMDB → MDB, PPR → PPB → PP, PR → PL, PRB → Republicanos), so the timeline shows continuity. Mergers don't carry a color over. Parties without a lineage there are gray.
 - **Storage.** Per-municipality numbers are stored as base64 typed arrays to keep the single file small.
 
+### Americas
+
+The data comes from three steps, and each one can be checked on its own.
+
+- **Elections:** `pipeline/americas/discover.py` lists each country's national election articles on English Wikipedia (210 elections, 2000 onwards). It reads who took office (`after_election`) from the infobox. The first-listed candidate is not used: it can be a first-round leader who then withdrew, as Menem did in Argentina in 2003. Hand fixes live in `data/americas/corrections.yaml`, each with its reason.
+- **Families:** `data/americas/parties.yaml` places every winning party in one of four bands of the [Global Party Survey 2019](https://www.globalpartysurvey.org/) economic left–right scale (Norris, CC0): left < 2.5 ≤ centre-left < 5 ≤ centre-right < 7.5 ≤ right.
+  - The survey is used only for countries rated by at least 5 experts.
+  - Otherwise the party's Wikipedia `position` is mapped to the same bands.
+  - Five ambiguous parties are decided by hand, each with a note.
+  - The source of each party's family shows on hover.
+- **Boundaries:** Natural Earth admin-1, simplified with mapshaper.
+
+Cuba (no competitive elections), annulled elections and dependent territories are gray. Venezuela 2024 shows the official result, flagged as disputed.
+
 ## Project layout
 
 ```
@@ -150,6 +166,7 @@ data/
   states.yaml           poll window, exclusions, colors, state notes
   raw/presidential/     one CSV per year and round
   raw/states/           one JSON per state (format in SPEC.md)
+  americas/             Americas: elections (from Wikipedia), hand corrections, party families
   municipalities.yaml   TSE → IBGE codes for names that differ
   parties.yaml          party lineages and colors for the mayor map
   generated/            elections.json and map.json, built by the pipeline

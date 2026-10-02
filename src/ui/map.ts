@@ -1,22 +1,15 @@
-import { geoMercator, geoPath } from "d3-geo";
+import { geoPath, type GeoProjection } from "d3-geo";
 import { select } from "d3-selection";
 import "d3-transition";
 import { zoom, zoomIdentity, type D3ZoomEvent, type ZoomBehavior } from "d3-zoom";
 import { feature, mesh } from "topojson-client";
-import type { GeometryObject } from "topojson-specification";
+import type { GeometryCollection, GeometryObject, Topology } from "topojson-specification";
 
-import type { MunicipalMap } from "../types";
-
-/** Internal drawing size; the SVG scales to its container through viewBox. */
-const WIDTH = 800;
-const HEIGHT = 780;
 const SVG_NS = "http://www.w3.org/2000/svg";
-/** Deep enough to tell apart the smallest municipalities around São Paulo and Recife. */
-const MAX_ZOOM = 40;
 const ZOOM_STEP = 2;
 const ZOOM_MS = 600;
-/** Share of the map a state fills when it is selected. */
-const STATE_FILL = 0.9;
+/** Share of the map a group (state, country) fills when it is selected. */
+const GROUP_FILL = 0.9;
 
 type Bounds = [[number, number], [number, number]];
 
@@ -34,9 +27,23 @@ function wheelDelta(event: WheelEvent): number {
   return -event.deltaY * unit * pinch;
 }
 
+/** What to draw: areas (municipalities, provinces) and the group each belongs to. */
+export interface MapGeometry {
+  topology: Topology;
+  object: GeometryCollection;
+  /** Per area, in geometry order: its state or country. Borders are drawn between groups. */
+  groups: string[];
+  /** Unfitted projection; it is fitted to the drawing size. */
+  projection: GeoProjection;
+  /** Internal drawing size; the SVG scales to its container through viewBox. */
+  width: number;
+  height: number;
+  maxZoom: number;
+}
+
 /**
- * The 5,570 municipalities, projected once. Switching elections only changes
- * each path's class, so stepping through the timeline stays fast.
+ * A choropleth of many small areas, projected once. Switching elections only
+ * changes each path's class, so stepping through a timeline stays fast.
  *
  * Zoom: buttons, double click, pinch, and ctrl/⌘ + wheel (a bare wheel keeps
  * scrolling the page). Dragging pans once zoomed in.
@@ -46,7 +53,7 @@ function wheelDelta(event: WheelEvent): number {
  * highlighting a party never restyles the base map: a veil covers it and copies
  * of the highlighted municipalities are drawn on top.
  */
-export class MunicipalityMap {
+export class ChoroplethMap {
   private readonly svg: SVGSVGElement;
   private readonly paths: SVGPathElement[];
   /** Class currently set on each path, to skip writes that would change nothing. */
@@ -54,42 +61,48 @@ export class MunicipalityMap {
   private readonly focusLayer: SVGGElement;
   private readonly tip: HTMLDivElement;
   private readonly behavior: ZoomBehavior<SVGSVGElement, unknown>;
-  private readonly stateBounds = new Map<string, Bounds>();
+  private readonly groupBounds = new Map<string, Bounds>();
+  private readonly width: number;
+  private readonly height: number;
   private active: SVGPathElement | null = null;
   private tooltipFor: (i: number) => string = () => "";
   private scale = 1;
 
   constructor(
     private readonly host: HTMLElement,
-    map: MunicipalMap,
+    geometry: MapGeometry,
     private readonly onWheelWithoutModifier: () => void = () => {},
   ) {
-    const object = map.topology.objects.municipalities;
-    const collection = feature(map.topology, object);
-    const path = geoPath(geoMercator().fitSize([WIDTH, HEIGHT], collection));
+    const { topology, object, groups } = geometry;
+    const [WIDTH, HEIGHT] = [geometry.width, geometry.height];
+    this.width = WIDTH;
+    this.height = HEIGHT;
+    const collection = feature(topology, object);
+    const path = geoPath(geometry.projection.fitSize([WIDTH, HEIGHT], collection));
 
     this.svg = document.createElementNS(SVG_NS, "svg");
     this.svg.setAttribute("viewBox", `0 0 ${WIDTH} ${HEIGHT}`);
     this.svg.setAttribute("role", "img");
     const viewport = document.createElementNS(SVG_NS, "g");
     const group = document.createElementNS(SVG_NS, "g");
-    group.setAttribute("class", "municipalities");
+    group.setAttribute("class", "areas");
     this.paths = collection.features.map((f, i) => {
       const p = document.createElementNS(SVG_NS, "path");
       p.setAttribute("d", path(f) ?? "");
       p.dataset.i = String(i);
       group.appendChild(p);
-      this.extendStateBounds(map.municipalities.uf[i]!, path.bounds(f));
+      this.extendGroupBounds(groups[i]!, path.bounds(f));
       return p;
     });
 
-    // State borders: arcs shared by municipalities of different states.
-    const ufOf = new Map<GeometryObject, string>(
-      object.geometries.map((g, i) => [g, map.municipalities.uf[i]!]),
-    );
+    // Group borders: arcs shared by areas of different groups (states, countries).
+    const groupOf = new Map<GeometryObject, string>(object.geometries.map((g, i) => [g, groups[i]!]));
     const borders = document.createElementNS(SVG_NS, "path");
-    borders.setAttribute("class", "state-borders");
-    borders.setAttribute("d", path(mesh(map.topology, object, (a, b) => ufOf.get(a) !== ufOf.get(b))) ?? "");
+    borders.setAttribute("class", "group-borders");
+    borders.setAttribute(
+      "d",
+      path(mesh(topology, object, (a, b) => groupOf.get(a) !== groupOf.get(b))) ?? "",
+    );
     // Highlight layer: a veil over the map, then copies of the highlighted municipalities.
     this.focusLayer = document.createElementNS(SVG_NS, "g");
     this.focusLayer.setAttribute("class", "focus-layer");
@@ -97,7 +110,7 @@ export class MunicipalityMap {
     this.svg.appendChild(viewport);
 
     this.behavior = zoom<SVGSVGElement, unknown>()
-      .scaleExtent([1, MAX_ZOOM])
+      .scaleExtent([1, geometry.maxZoom])
       .wheelDelta(wheelDelta)
       .extent([
         [0, 0],
@@ -137,10 +150,10 @@ export class MunicipalityMap {
     host.addEventListener("pointermove", (e) => this.onPointer(e));
   }
 
-  private extendStateBounds(uf: string, [[x0, y0], [x1, y1]]: Bounds): void {
-    const b = this.stateBounds.get(uf);
-    this.stateBounds.set(
-      uf,
+  private extendGroupBounds(group: string, [[x0, y0], [x1, y1]]: Bounds): void {
+    const b = this.groupBounds.get(group);
+    this.groupBounds.set(
+      group,
       b
         ? [
             [Math.min(b[0][0], x0), Math.min(b[0][1], y0)],
@@ -175,8 +188,8 @@ export class MunicipalityMap {
     if (!indices) return;
     const veil = document.createElementNS(SVG_NS, "rect");
     veil.setAttribute("class", "veil");
-    veil.setAttribute("width", String(WIDTH));
-    veil.setAttribute("height", String(HEIGHT));
+    veil.setAttribute("width", String(this.width));
+    veil.setAttribute("height", String(this.height));
     this.focusLayer.append(veil, ...indices.map((i) => this.paths[i]!.cloneNode() as SVGPathElement));
   }
 
@@ -194,15 +207,16 @@ export class MunicipalityMap {
     this.zoomBy(1 / ZOOM_STEP);
   }
 
-  /** Frames a state, or the whole country when `uf` is null. */
-  fit(uf: string | null, animate = true): void {
-    const b = uf ? this.stateBounds.get(uf) : undefined;
+  /** Frames a group (state, country), or everything when `group` is null. */
+  fit(group: string | null, animate = true): void {
+    const b = group ? this.groupBounds.get(group) : undefined;
     let transform = zoomIdentity;
     if (b) {
       const [[x0, y0], [x1, y1]] = b;
-      const k = Math.min(MAX_ZOOM, STATE_FILL / Math.max((x1 - x0) / WIDTH, (y1 - y0) / HEIGHT));
+      const maxZoom = this.behavior.scaleExtent()[1];
+      const k = Math.min(maxZoom, GROUP_FILL / Math.max((x1 - x0) / this.width, (y1 - y0) / this.height));
       transform = zoomIdentity
-        .translate(WIDTH / 2, HEIGHT / 2)
+        .translate(this.width / 2, this.height / 2)
         .scale(k)
         .translate(-(x0 + x1) / 2, -(y0 + y1) / 2);
     }

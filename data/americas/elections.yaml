@@ -1,0 +1,1298 @@
+# Draft from pipeline.americas.discover; reviewed by hand. Do not regenerate over edits.
+ARG:
+- article: 2003 Argentine general election
+  system: presidential
+  date: '2003-04-27'
+  winner: Néstor Kirchner
+  party: FPV-PJ
+  party_article: Front for Victory
+- article: 2007 Argentine general election
+  system: presidential
+  date: '2007-10-28'
+  winner: Cristina Fernández de Kirchner
+  party: Front for Victory
+  party_article: Front for Victory
+- article: 2011 Argentine general election
+  system: presidential
+  date: '2011-10-23'
+  winner: Cristina Fernández de Kirchner
+  party: Front for Victory
+  party_article: Front for Victory
+- article: 2015 Argentine general election
+  system: presidential
+  date: '2015-10-25'
+  winner: Mauricio Macri
+  party: Cambiemos–PRO
+  party_article: Juntos por el Cambio
+- article: 2019 Argentine general election
+  system: presidential
+  date: '2019-10-27'
+  winner: Alberto Fernández
+  party: FDT–PJ
+  party_article: Frente de Todos (2019 coalition)
+- article: 2023 Argentine general election
+  system: presidential
+  date: '2023-10-22'
+  winner: Javier Milei
+  party: LLA–PL
+  party_article: Liberty Advances
+BOL:
+- article: 2002 Bolivian general election
+  system: presidential
+  date: '2002-06-30'
+  winner: Gonzalo Sánchez de Lozada
+  party: MNR–MBL
+  party_article: Revolutionary Nationalist Movement
+- article: 2005 Bolivian general election
+  system: presidential
+  date: '2005-12-18'
+  winner: Evo Morales
+  party: Movement for Socialism (Bolivia)
+  party_article: Movement for Socialism (Bolivia)
+- article: 2009 Bolivian general election
+  system: presidential
+  date: '2009-12-06'
+  winner: Evo Morales
+  party: Movement for Socialism (Bolivia)
+  party_article: Movement for Socialism (Bolivia)
+- article: 2014 Bolivian general election
+  system: presidential
+  date: '2014-10-12'
+  winner: Evo Morales
+  party: Movement for Socialism (Bolivia)
+  party_article: Movement for Socialism (Bolivia)
+- article: 2019 Bolivian general election
+  system: presidential
+  date: '2019-10-20'
+  status: annulled
+  winner: Election results annulled Jeanine Áñez (MDS) becomes president
+  party: null
+  party_article: null
+- article: 2020 Bolivian general election
+  system: presidential
+  date: '2020-10-18'
+  winner: Luis Arce
+  party: Movimiento al Socialismo
+  party_article: Movimiento al Socialismo
+- article: 2025 Bolivian general election
+  system: presidential
+  date: '2025-08-17'
+  winner: Rodrigo Paz
+  party: Christian Democratic Party (Bolivia)
+  party_article: Christian Democratic Party (Bolivia)
+BRA:
+- article: 2002 Brazilian general election
+  system: presidential
+  date: '2002-10-06'
+  winner: Luiz Inácio Lula da Silva
+  party: Workers' Party (Brazil)
+  party_article: Workers' Party (Brazil)
+- article: 2006 Brazilian general election
+  system: presidential
+  date: '2006-10-01'
+  winner: Lula da Silva
+  party: Workers' Party (Brazil)
+  party_article: Workers' Party (Brazil)
+- article: 2010 Brazilian general election
+  system: presidential
+  date: '2010-10-03'
+  winner: Dilma Rousseff
+  party: Workers' Party (Brazil)
+  party_article: Workers' Party (Brazil)
+- article: 2014 Brazilian general election
+  system: presidential
+  date: '2014-10-05'
+  winner: Dilma Rousseff
+  party: Workers' Party (Brazil)
+  party_article: Workers' Party (Brazil)
+- article: 2018 Brazilian general election
+  system: presidential
+  date: '2018-10-07'
+  winner: Jair Bolsonaro
+  party: Social Liberal Party (Brazil)
+  party_article: Social Liberal Party (Brazil)
+- article: 2022 Brazilian general election
+  system: presidential
+  date: '2022-10-02'
+  winner: Luiz Inácio Lula da Silva
+  party: Workers' Party (Brazil)
+  party_article: Workers' Party (Brazil)
+CHL:
+- article: 2005–06 Chilean general election
+  system: presidential
+  date: '2005-12-11'
+  winner: Michelle Bachelet
+  party: Socialist Party of Chile
+  party_article: Socialist Party of Chile
+- article: 2009–10 Chilean general election
+  system: presidential
+  date: '2009-12-13'
+  winner: Sebastián Piñera
+  party: National Renewal (Chile)
+  party_article: National Renewal (Chile)
+- article: 2013 Chilean general election
+  system: presidential
+  date: '2013-11-17'
+  winner: Michelle Bachelet
+  party: Socialist Party of Chile
+  party_article: Socialist Party of Chile
+- article: 2017 Chilean general election
+  system: presidential
+  date: '2017-11-19'
+  winner: Sebastián Piñera
+  party: Independent
+  party_article: Independent politician
+- article: 2021 Chilean general election
+  system: presidential
+  date: '2021-11-21'
+  winner: Gabriel Boric
+  party: Social Convergence
+  party_article: Social Convergence
+- article: 2025 Chilean general election
+  system: presidential
+  date: '2025-11-16'
+  winner: José Antonio Kast
+  party: PRCh–CpCh
+  party_article: Republican Party of Chile
+COL:
+- article: 2002 Colombian presidential election
+  system: presidential
+  date: '2002-05-26'
+  winner: Álvaro Uribe
+  party: Colombia First
+  party_article: Colombia First
+- article: 2006 Colombian presidential election
+  system: presidential
+  date: '2006-05-28'
+  winner: Álvaro Uribe
+  party: Colombia First
+  party_article: Colombia First
+- article: 2010 Colombian presidential election
+  system: presidential
+  date: '2010-05-30'
+  winner: Juan Manuel Santos
+  party: Social Party of National Unity
+  party_article: Social Party of National Unity
+- article: 2014 Colombian presidential election
+  system: presidential
+  date: '2014-05-25'
+  winner: Juan Manuel Santos
+  party: Social Party of National Unity
+  party_article: Social Party of National Unity
+- article: 2018 Colombian presidential election
+  system: presidential
+  date: '2018-05-27'
+  winner: Iván Duque
+  party: Democratic Center (Colombia)
+  party_article: Democratic Center (Colombia)
+- article: 2022 Colombian presidential election
+  system: presidential
+  date: '2022-05-29'
+  winner: Gustavo Petro
+  party: Humane Colombia
+  party_article: Humane Colombia
+- article: 2026 Colombian presidential election
+  system: presidential
+  date: '2026-05-31'
+  winner: Abelardo de la Espriella
+  party: Independent
+  party_article: Independent politician
+CRI:
+- article: 2002 Costa Rican general election
+  system: presidential
+  date: '2002-02-03'
+  winner: Abel Pacheco
+  party: Social Christian Unity Party
+  party_article: Social Christian Unity Party
+- article: 2006 Costa Rican general election
+  system: presidential
+  date: '2006-02-05'
+  winner: Óscar Arias
+  party: National Liberation Party (Costa Rica)
+  party_article: National Liberation Party (Costa Rica)
+- article: 2010 Costa Rican general election
+  system: presidential
+  date: '2010-02-07'
+  winner: Laura Chinchilla
+  party: National Liberation Party (Costa Rica)
+  party_article: National Liberation Party (Costa Rica)
+- article: 2014 Costa Rican general election
+  system: presidential
+  date: '2014-02-02'
+  winner: Luis Guillermo Solís
+  party: Citizens' Action Party (Costa Rica)
+  party_article: Citizens' Action Party (Costa Rica)
+- article: 2018 Costa Rican general election
+  system: presidential
+  date: '2018-04-01'
+  winner: Carlos Alvarado Quesada
+  party: Citizens' Action Party (Costa Rica)
+  party_article: Citizens' Action Party (Costa Rica)
+- article: 2022 Costa Rican general election
+  system: presidential
+  date: '2022-02-06'
+  winner: Rodrigo Chaves Robles
+  party: Social Democratic Progress Party
+  party_article: Social Democratic Progress Party
+- article: 2026 Costa Rican general election
+  system: presidential
+  date: '2026-02-01'
+  winner: Laura Fernández Delgado
+  party: PPSO
+  party_article: Sovereign People's Party (Costa Rica)
+DOM:
+- article: 2000 Dominican Republic presidential election
+  system: presidential
+  date: '2000-05-16'
+  winner: Hipólito Mejía
+  party: Dominican Revolutionary Party
+  party_article: Dominican Revolutionary Party
+- article: 2004 Dominican Republic presidential election
+  system: presidential
+  date: '2004-05-16'
+  winner: Leonel Fernández
+  party: Dominican Liberation Party
+  party_article: Dominican Liberation Party
+- article: 2008 Dominican Republic presidential election
+  system: presidential
+  date: '2008-05-16'
+  winner: Leonel Fernández
+  party: Dominican Liberation Party
+  party_article: Dominican Liberation Party
+- article: 2012 Dominican Republic presidential election
+  system: presidential
+  date: '2012-05-20'
+  winner: Danilo Medina
+  party: Dominican Liberation Party
+  party_article: Dominican Liberation Party
+- article: 2016 Dominican Republic general election
+  system: presidential
+  date: '2016-05-15'
+  winner: Danilo Medina
+  party: Dominican Liberation Party
+  party_article: Dominican Liberation Party
+- article: 2020 Dominican Republic general election
+  system: presidential
+  date: '2020-07-05'
+  winner: Luis Abinader
+  party: PRM
+  party_article: Modern Revolutionary Party
+- article: 2024 Dominican Republic general election
+  system: presidential
+  date: '2024-05-19'
+  winner: Luis Abinader
+  party: Modern Revolutionary Party
+  party_article: Modern Revolutionary Party
+ECU:
+- article: 2002 Ecuadorian general election
+  system: presidential
+  date: '2002-10-20'
+  winner: Lucio Gutiérrez
+  party: January 21 Patriotic Society Party
+  party_article: January 21 Patriotic Society Party
+- article: 2006 Ecuadorian general election
+  system: presidential
+  date: '2006-10-15'
+  winner: Rafael Correa
+  party: PAIS Alliance
+  party_article: PAIS Alliance
+- article: 2009 Ecuadorian general election
+  system: presidential
+  date: '2009-04-26'
+  winner: Rafael Correa
+  party: PAIS Alliance
+  party_article: PAIS Alliance
+- article: 2013 Ecuadorian general election
+  system: presidential
+  date: '2013-02-17'
+  winner: Rafael Correa
+  party: PAIS Alliance
+  party_article: PAIS Alliance
+- article: 2017 Ecuadorian general election
+  system: presidential
+  date: '2017-02-19'
+  winner: Lenin Moreno
+  party: PAIS Alliance
+  party_article: PAIS Alliance
+- article: 2021 Ecuadorian general election
+  system: presidential
+  date: '2021-02-07'
+  winner: Guillermo Lasso
+  party: Creating Opportunities
+  party_article: Creating Opportunities
+- article: 2023 Ecuadorian general election
+  system: presidential
+  date: '2023-08-20'
+  winner: Daniel Noboa
+  party: National Democratic Action (Ecuador)
+  party_article: National Democratic Action (Ecuador)
+- article: 2025 Ecuadorian general election
+  system: presidential
+  date: '2025-02-09'
+  winner: Daniel Noboa
+  party: National Democratic Action (Ecuador)
+  party_article: National Democratic Action (Ecuador)
+GTM:
+- article: 2003 Guatemalan general election
+  system: presidential
+  date: '2003-11-09'
+  winner: Óscar Berger
+  party: Grand National Alliance (Guatemala)
+  party_article: Grand National Alliance (Guatemala)
+- article: 2007 Guatemalan general election
+  system: presidential
+  date: '2007-09-09'
+  winner: Álvaro Colom
+  party: National Unity of Hope
+  party_article: National Unity of Hope
+- article: 2011 Guatemalan general election
+  system: presidential
+  date: '2011-09-11'
+  winner: Otto Pérez Molina
+  party: Patriotic Party (Guatemala)
+  party_article: Patriotic Party (Guatemala)
+- article: 2015 Guatemalan general election
+  system: presidential
+  date: '2015-09-06'
+  winner: Jimmy Morales
+  party: National Convergence Front
+  party_article: National Convergence Front
+- article: 2019 Guatemalan general election
+  system: presidential
+  date: '2019-06-16'
+  winner: Alejandro Giammattei
+  party: Vamos (Guatemala)
+  party_article: Vamos (Guatemala)
+- article: 2023 Guatemalan general election
+  system: presidential
+  date: '2023-06-25'
+  winner: Bernardo Arévalo
+  party: Semilla (Guatemala)
+  party_article: Semilla (Guatemala)
+HND:
+- article: 2001 Honduran general election
+  system: presidential
+  date: '2001-11-25'
+  winner: Ricardo Maduro
+  party: National Party of Honduras
+  party_article: National Party of Honduras
+- article: 2005 Honduran general election
+  system: presidential
+  date: '2005-11-27'
+  winner: Manuel Zelaya
+  party: Liberal Party of Honduras
+  party_article: Liberal Party of Honduras
+- article: 2009 Honduran general election
+  system: presidential
+  date: '2009-11-29'
+  winner: Porfirio Lobo Sosa
+  party: National Party of Honduras
+  party_article: National Party of Honduras
+- article: 2013 Honduran general election
+  system: presidential
+  date: '2013-11-24'
+  winner: Juan Orlando Hernández
+  party: National Party of Honduras
+  party_article: National Party of Honduras
+- article: 2017 Honduran general election
+  system: presidential
+  date: '2017-11-26'
+  winner: Juan Orlando Hernández
+  party: National Party of Honduras
+  party_article: National Party of Honduras
+- article: 2021 Honduran general election
+  system: presidential
+  date: '2021-11-28'
+  winner: Xiomara Castro
+  party: Libre
+  party_article: Liberty and Refoundation
+- article: 2025 Honduran general election
+  system: presidential
+  date: '2025-11-30'
+  winner: Nasry Asfura
+  party: National Party of Honduras
+  party_article: National Party of Honduras
+HTI:
+- article: 2000 Haitian presidential election
+  system: presidential
+  date: '2000-11-26'
+  winner: Jean-Bertrand Aristide
+  party: Fanmi Lavalas
+  party_article: Fanmi Lavalas
+- article: 2006 Haitian general election
+  system: presidential
+  date: '2006-02-07'
+  winner: René Préval
+  party: Lespwa
+  party_article: Lespwa
+- article: 2010–11 Haitian general election
+  system: presidential
+  date: '2010-11-10'
+  winner: Michel Martelly
+  party: Repons Peyizan
+  party_article: Repons Peyizan
+- article: 2015 Haitian presidential election
+  system: presidential
+  date: '2015-10-25'
+  status: annulled
+  winner: Election results annulled Jovenel Moïse elected in 2016
+  party: null
+  party_article: null
+- article: November 2016 Haitian presidential election
+  system: presidential
+  date: '2016-11-20'
+  winner: Jovenel Moïse
+  party: PHTK
+  party_article: Haitian Tèt Kale Party
+MEX:
+- article: 2000 Mexican general election
+  system: presidential
+  date: '2000-07-02'
+  winner: Vicente Fox
+  party: National Action Party (Mexico)
+  party_article: National Action Party (Mexico)
+- article: 2006 Mexican general election
+  system: presidential
+  date: '2006-07-02'
+  winner: Felipe Calderón
+  party: National Action Party (Mexico)
+  party_article: National Action Party (Mexico)
+- article: 2012 Mexican general election
+  system: presidential
+  date: '2012-07-01'
+  winner: Enrique Peña Nieto
+  party: Institutional Revolutionary Party
+  party_article: Institutional Revolutionary Party
+- article: 2018 Mexican general election
+  system: presidential
+  date: '2018-07-01'
+  winner: Andrés Manuel López Obrador
+  party: Morena (political party)
+  party_article: Morena (political party)
+- article: 2024 Mexican general election
+  system: presidential
+  date: '2024-06-02'
+  winner: Claudia Sheinbaum
+  party: Morena (political party)
+  party_article: Morena (political party)
+NIC:
+- article: 2001 Nicaraguan general election
+  system: presidential
+  date: '2001-11-04'
+  winner: Enrique Bolaños
+  party: Constitutionalist Liberal Party
+  party_article: Constitutionalist Liberal Party
+- article: 2006 Nicaraguan general election
+  system: presidential
+  date: '2006-11-05'
+  winner: Daniel Ortega
+  party: Sandinista National Liberation Front
+  party_article: Sandinista National Liberation Front
+- article: 2011 Nicaraguan general election
+  system: presidential
+  date: '2011-11-06'
+  winner: Daniel Ortega
+  party: Sandinista National Liberation Front
+  party_article: Sandinista National Liberation Front
+- article: 2016 Nicaraguan general election
+  system: presidential
+  date: '2016-11-06'
+  winner: Daniel Ortega
+  party: Sandinista National Liberation Front
+  party_article: Sandinista National Liberation Front
+- article: 2021 Nicaraguan general election
+  system: presidential
+  date: '2021-11-07'
+  winner: Daniel Ortega
+  party: Sandinista National Liberation Front
+  party_article: Sandinista National Liberation Front
+PAN:
+- article: 2004 Panamanian general election
+  system: presidential
+  date: '2004-05-02'
+  winner: Martin Torrijos
+  party: Democratic Revolutionary Party
+  party_article: Democratic Revolutionary Party
+- article: 2009 Panamanian general election
+  system: presidential
+  date: '2009-05-03'
+  winner: Ricardo Martinelli
+  party: CD
+  party_article: Democratic Change (Panama)
+- article: 2014 Panamanian general election
+  system: presidential
+  date: '2014-05-04'
+  winner: Juan Carlos Varela
+  party: Panameñista Party
+  party_article: Panameñista Party
+- article: 2019 Panamanian general election
+  system: presidential
+  date: '2019-05-05'
+  winner: Laurentino Cortizo
+  party: Democratic Revolutionary Party
+  party_article: Democratic Revolutionary Party
+- article: 2024 Panamanian general election
+  system: presidential
+  date: '2024-05-05'
+  winner: José Raúl Mulino
+  party: Realizing Goals
+  party_article: Realizing Goals
+PER:
+- article: 2000 Peruvian general election
+  system: presidential
+  date: '2000-04-09'
+  winner: Alberto Fujimori
+  party: Peru 2000
+  party_article: Peru 2000
+- article: 2001 Peruvian general election
+  system: presidential
+  date: '2001-04-08'
+  winner: Alejandro Toledo
+  party: Possible Peru
+  party_article: Possible Peru
+- article: 2006 Peruvian general election
+  system: presidential
+  date: '2006-04-09'
+  winner: Alan García
+  party: American Popular Revolutionary Alliance
+  party_article: American Popular Revolutionary Alliance
+- article: 2011 Peruvian general election
+  system: presidential
+  date: '2011-04-10'
+  winner: Ollanta Humala
+  party: Peru Wins
+  party_article: Peru Wins
+- article: 2016 Peruvian general election
+  system: presidential
+  date: '2016-04-10'
+  winner: Pedro Pablo Kuczynski
+  party: Peruvians for Change
+  party_article: Peruvians for Change
+- article: 2021 Peruvian general election
+  system: presidential
+  date: '2021-04-11'
+  winner: Pedro Castillo
+  party: Free Peru
+  party_article: Free Peru
+- article: 2026 Peruvian general election
+  system: presidential
+  date: '2026-04-13'
+  winner: Keiko Fujimori
+  party: Popular Force
+  party_article: Popular Force
+PRY:
+- article: 2003 Paraguayan general election
+  system: presidential
+  date: '2003-04-27'
+  winner: Nicanor Duarte
+  party: Colorado Party (Paraguay)
+  party_article: Colorado Party (Paraguay)
+- article: 2008 Paraguayan general election
+  system: presidential
+  date: '2008-04-20'
+  winner: Fernando Lugo
+  party: Patriotic Alliance for Change
+  party_article: Patriotic Alliance for Change
+- article: 2013 Paraguayan general election
+  system: presidential
+  date: '2013-04-21'
+  winner: Horacio Cartes
+  party: Colorado Party (Paraguay)
+  party_article: Colorado Party (Paraguay)
+- article: 2018 Paraguayan general election
+  system: presidential
+  date: '2018-04-22'
+  winner: Mario Abdo Benítez
+  party: Colorado Party (Paraguay)
+  party_article: Colorado Party (Paraguay)
+- article: 2023 Paraguayan general election
+  system: presidential
+  date: '2023-04-30'
+  winner: Santiago Peña
+  party: Colorado Party (Paraguay)
+  party_article: Colorado Party (Paraguay)
+SLV:
+- article: 2004 Salvadoran presidential election
+  system: presidential
+  date: '2004-03-21'
+  winner: Antonio Saca
+  party: Nationalist Republican Alliance
+  party_article: Nationalist Republican Alliance
+- article: 2009 Salvadoran presidential election
+  system: presidential
+  date: '2009-03-15'
+  winner: Mauricio Funes
+  party: Farabundo Martí National Liberation Front
+  party_article: Farabundo Martí National Liberation Front
+- article: 2014 Salvadoran presidential election
+  system: presidential
+  date: '2014-02-02'
+  winner: Salvador Sánchez Cerén
+  party: Farabundo Martí National Liberation Front
+  party_article: Farabundo Martí National Liberation Front
+- article: 2019 Salvadoran presidential election
+  system: presidential
+  date: '2019-02-03'
+  winner: Nayib Bukele
+  party: Grand Alliance for National Unity
+  party_article: Grand Alliance for National Unity
+- article: 2024 Salvadoran presidential election
+  system: presidential
+  date: '2024-02-04'
+  winner: Nayib Bukele
+  party: Nuevas Ideas
+  party_article: Nuevas Ideas
+URY:
+- article: 2004 Uruguayan general election
+  system: presidential
+  date: '2004-10-31'
+  winner: Tabaré Vázquez
+  party: Broad Front (Uruguay)
+  party_article: Broad Front (Uruguay)
+- article: 2009 Uruguayan general election
+  system: presidential
+  date: '2009-10-25'
+  winner: José Mujica
+  party: Broad Front (Uruguay)
+  party_article: Broad Front (Uruguay)
+- article: 2014 Uruguayan general election
+  system: presidential
+  date: '2014-10-26'
+  winner: Tabaré Vázquez
+  party: Broad Front (Uruguay)
+  party_article: Broad Front (Uruguay)
+- article: 2019 Uruguayan general election
+  system: presidential
+  date: '2019-10-27'
+  winner: Luis Lacalle Pou
+  party: National
+  party_article: National Party (Uruguay)
+- article: 2024 Uruguayan general election
+  system: presidential
+  date: '2024-10-27'
+  winner: Yamandú Orsi
+  party: Broad Front
+  party_article: Broad Front (Uruguay)
+USA:
+- article: 2000 United States presidential election
+  system: presidential
+  date: '2000-11-07'
+  winner: George W. Bush
+  party: Republican Party (United States)
+  party_article: Republican Party (United States)
+- article: 2004 United States presidential election
+  system: presidential
+  date: '2004-11-02'
+  winner: George W. Bush
+  party: Republican Party (United States)
+  party_article: Republican Party (United States)
+- article: 2008 United States presidential election
+  system: presidential
+  date: '2008-11-04'
+  winner: Barack Obama
+  party: Democratic Party (United States)
+  party_article: Democratic Party (United States)
+- article: 2012 United States presidential election
+  system: presidential
+  date: '2012-11-06'
+  winner: Barack Obama
+  party: Democratic Party (United States)
+  party_article: Democratic Party (United States)
+- article: 2016 United States presidential election
+  system: presidential
+  date: '2016-11-08'
+  winner: Donald Trump
+  party: Republican Party (United States)
+  party_article: Republican Party (United States)
+- article: 2020 United States presidential election
+  system: presidential
+  date: '2020-11-03'
+  winner: Joe Biden
+  party: Democratic Party (United States)
+  party_article: Democratic Party (United States)
+- article: 2024 United States presidential election
+  system: presidential
+  date: '2024-11-05'
+  winner: Donald Trump
+  party: Republican Party (United States)
+  party_article: Republican Party (United States)
+VEN:
+- article: 2000 Venezuelan general election
+  system: presidential
+  date: '2000-07-30'
+  winner: Hugo Chávez
+  party: United Socialist Party of Venezuela
+  party_article: United Socialist Party of Venezuela
+- article: 2006 Venezuelan presidential election
+  system: presidential
+  date: '2006-12-03'
+  winner: Hugo Chávez
+  party: Fifth Republic Movement
+  party_article: Fifth Republic Movement
+- article: 2012 Venezuelan presidential election
+  system: presidential
+  date: '2012-10-07'
+  winner: Hugo Chávez
+  party: United Socialist Party of Venezuela
+  party_article: United Socialist Party of Venezuela
+- article: 2013 Venezuelan presidential election
+  system: presidential
+  date: '2013-04-14'
+  winner: Nicolás Maduro
+  party: United Socialist Party of Venezuela
+  party_article: United Socialist Party of Venezuela
+- article: 2018 Venezuelan presidential election
+  system: presidential
+  date: '2018-05-20'
+  winner: Nicolás Maduro
+  party: United Socialist Party of Venezuela
+  party_article: United Socialist Party of Venezuela
+- article: 2024 Venezuelan presidential election
+  system: presidential
+  date: '2024-07-28'
+  status: disputed
+  winner: Nicolás Maduro
+  party: United Socialist Party of Venezuela
+  party_article: United Socialist Party of Venezuela
+GUY:
+- article: 2001 Guyanese general election
+  system: general
+  date: '2001-03-19'
+  winner: Bharrat Jagdeo
+  party: PPP/C
+  party_article: People's Progressive Party/Civic
+- article: 2006 Guyanese general election
+  system: general
+  date: '2006-08-28'
+  winner: Bharrat Jagdeo
+  party: PPP/C
+  party_article: People's Progressive Party/Civic
+- article: 2011 Guyanese general election
+  system: general
+  date: '2011-11-28'
+  winner: Donald Ramotar
+  party: PPP/C
+  party_article: People's Progressive Party/Civic
+- article: 2015 Guyanese general election
+  system: general
+  date: '2015-05-11'
+  winner: David A. Granger
+  party: PNCR
+  party_article: People's National Congress Reform
+- article: 2020 Guyanese general election
+  system: general
+  date: '2020-03-02'
+  winner: Irfaan Ali
+  party: PPP/C
+  party_article: People's Progressive Party/Civic
+- article: 2025 Guyanese general election
+  system: general
+  date: '2025-09-01'
+  winner: Mohamed Irfaan Ali
+  party: People's Progressive Party/Civic
+  party_article: People's Progressive Party/Civic
+SUR:
+- article: 2000 Surinamese general election
+  system: general
+  date: '2000-05-25'
+  winner: Ronald Venetiaan
+  party: National Party of Suriname
+  party_article: National Party of Suriname
+- article: 2005 Surinamese general election
+  system: general
+  date: '2005-05-25'
+  winner: Ronald Venetiaan
+  party: National Party of Suriname
+  party_article: National Party of Suriname
+- article: 2010 Surinamese general election
+  system: general
+  date: '2010-05-25'
+  winner: Dési Bouterse
+  party: National Democratic Party (Suriname)
+  party_article: National Democratic Party (Suriname)
+- article: 2015 Surinamese general election
+  system: general
+  date: '2015-05-25'
+  winner: Dési Bouterse
+  party: National Democratic Party (Suriname)
+  party_article: National Democratic Party (Suriname)
+- article: 2020 Surinamese general election
+  system: general
+  date: '2020-05-25'
+  winner: Chan Santokhi
+  party: Progressive Reform Party (Suriname)
+  party_article: Progressive Reform Party (Suriname)
+- article: 2025 Surinamese general election
+  system: general
+  date: '2025-05-25'
+  winner: Jennifer Geerlings-Simons
+  party: National Democratic Party (Suriname)
+  party_article: National Democratic Party (Suriname)
+ATG:
+- article: 2004 Antiguan general election
+  system: parliamentary
+  date: '2004-03-23'
+  winner: Baldwin Spencer
+  party: UPP
+  party_article: United Progressive Party
+- article: 2009 Antiguan general election
+  system: parliamentary
+  date: '2009-03-12'
+  winner: Baldwin Spencer
+  party: UPP
+  party_article: United Progressive Party
+- article: 2014 Antiguan general election
+  system: parliamentary
+  date: '2014-06-12'
+  winner: Gaston Browne
+  party: Antigua and Barbuda Labour Party
+  party_article: Antigua and Barbuda Labour Party
+- article: 2018 Antiguan general election
+  system: parliamentary
+  date: '2018-03-21'
+  winner: Gaston Browne
+  party: Antigua and Barbuda Labour Party
+  party_article: Antigua and Barbuda Labour Party
+- article: 2023 Antiguan general election
+  system: parliamentary
+  date: '2023-01-18'
+  winner: Gaston Browne
+  party: ABLP
+  party_article: Antigua and Barbuda Labour Party
+- article: 2026 Antiguan general election
+  system: parliamentary
+  date: '2026-04-30'
+  winner: Gaston Browne
+  party: Antigua and Barbuda Labour Party
+  party_article: Antigua and Barbuda Labour Party
+BHS:
+- article: 2002 Bahamian general election
+  system: parliamentary
+  date: '2002-05-02'
+  winner: Perry Christie
+  party: Progressive Liberal Party
+  party_article: Progressive Liberal Party
+- article: 2007 Bahamian general election
+  system: parliamentary
+  date: '2007-05-02'
+  winner: Hubert Ingraham
+  party: Free National Movement
+  party_article: Free National Movement
+- article: 2012 Bahamian general election
+  system: parliamentary
+  date: '2012-05-07'
+  winner: Perry Christie
+  party: Progressive Liberal Party
+  party_article: Progressive Liberal Party
+- article: 2017 Bahamian general election
+  system: parliamentary
+  date: '2017-05-10'
+  winner: Hubert Minnis
+  party: Free National Movement
+  party_article: Free National Movement
+- article: 2021 Bahamian general election
+  system: parliamentary
+  date: '2021-09-16'
+  winner: Philip Davis
+  party: Progressive Liberal Party
+  party_article: Progressive Liberal Party
+- article: 2026 Bahamian general election
+  system: parliamentary
+  date: '2026-05-12'
+  winner: Philip Davis
+  party: Progressive Liberal Party
+  party_article: Progressive Liberal Party
+BLZ:
+- article: 2003 Belizean general election
+  system: parliamentary
+  date: '2003-03-05'
+  winner: Said Musa
+  party: People's United Party
+  party_article: People's United Party
+- article: 2008 Belizean general election
+  system: parliamentary
+  date: '2008-02-07'
+  winner: Dean Barrow
+  party: United Democratic Party (Belize)
+  party_article: United Democratic Party (Belize)
+- article: 2012 Belizean general election
+  system: parliamentary
+  date: '2012-03-07'
+  winner: Dean Barrow
+  party: United Democratic Party (Belize)
+  party_article: United Democratic Party (Belize)
+- article: 2015 Belizean general election
+  system: parliamentary
+  date: '2015-11-04'
+  winner: Dean Barrow
+  party: United Democratic Party (Belize)
+  party_article: United Democratic Party (Belize)
+- article: 2020 Belizean general election
+  system: parliamentary
+  date: '2020-11-11'
+  winner: Johnny Briceño
+  party: People's United Party
+  party_article: People's United Party
+- article: 2025 Belizean general election
+  system: parliamentary
+  date: '2025-03-12'
+  winner: Johnny Briceño
+  party: People's United Party
+  party_article: People's United Party
+BRB:
+- article: 2003 Barbadian general election
+  system: parliamentary
+  date: '2003-05-21'
+  winner: Owen Arthur
+  party: Barbados Labour Party
+  party_article: Barbados Labour Party
+- article: 2008 Barbadian general election
+  system: parliamentary
+  date: '2008-01-15'
+  winner: David Thompson
+  party: Democratic Labour Party (Barbados)
+  party_article: Democratic Labour Party (Barbados)
+- article: 2013 Barbadian general election
+  system: parliamentary
+  date: '2013-02-21'
+  winner: Freundel Stuart
+  party: Democratic Labour Party (Barbados)
+  party_article: Democratic Labour Party (Barbados)
+- article: 2018 Barbadian general election
+  system: parliamentary
+  date: '2018-05-24'
+  winner: Mia Mottley
+  party: BLP
+  party_article: Barbados Labour Party
+- article: 2022 Barbadian general election
+  system: parliamentary
+  date: '2022-01-19'
+  winner: Mia Mottley
+  party: Barbados Labour Party
+  party_article: Barbados Labour Party
+- article: 2026 Barbadian general election
+  system: parliamentary
+  date: '2026-02-11'
+  winner: Mia Mottley
+  party: Barbados Labour Party
+  party_article: Barbados Labour Party
+CAN:
+- article: 2000 Canadian federal election
+  system: parliamentary
+  date: '2000-11-27'
+  winner: Jean Chrétien
+  party: Liberal
+  party_article: null
+- article: 2004 Canadian federal election
+  system: parliamentary
+  date: '2004-06-28'
+  winner: Paul Martin
+  party: Liberal
+  party_article: null
+- article: 2006 Canadian federal election
+  system: parliamentary
+  date: '2006-01-23'
+  winner: Stephen Harper
+  party: Conservative
+  party_article: null
+- article: 2008 Canadian federal election
+  system: parliamentary
+  date: '2008-10-14'
+  winner: Stephen Harper
+  party: Conservative
+  party_article: null
+- article: 2011 Canadian federal election
+  system: parliamentary
+  date: '2011-05-02'
+  winner: Stephen Harper
+  party: Conservative
+  party_article: null
+- article: 2015 Canadian federal election
+  system: parliamentary
+  date: '2015-10-19'
+  winner: Justin Trudeau
+  party: Liberal
+  party_article: null
+- article: 2019 Canadian federal election
+  system: parliamentary
+  date: '2019-10-21'
+  winner: Justin Trudeau
+  party: Liberal
+  party_article: null
+- article: 2021 Canadian federal election
+  system: parliamentary
+  date: '2021-09-20'
+  winner: Justin Trudeau
+  party: Liberal
+  party_article: null
+- article: 2025 Canadian federal election
+  system: parliamentary
+  date: '2025-04-28'
+  winner: Mark Carney
+  party: Liberal
+  party_article: null
+DMA:
+- article: 2000 Dominican general election
+  system: parliamentary
+  date: '2000-01-31'
+  winner: Rosie Douglas
+  party: Dominica Labour Party
+  party_article: Dominica Labour Party
+- article: 2005 Dominican general election
+  system: parliamentary
+  date: '2005-05-05'
+  winner: Roosevelt Skerrit
+  party: Dominica Labour Party
+  party_article: Dominica Labour Party
+- article: 2009 Dominican general election
+  system: parliamentary
+  date: '2009-12-18'
+  winner: Roosevelt Skerrit
+  party: Dominica Labour Party
+  party_article: Dominica Labour Party
+- article: 2014 Dominican general election
+  system: parliamentary
+  date: '2014-12-08'
+  winner: Roosevelt Skerrit
+  party: Dominica Labour Party
+  party_article: Dominica Labour Party
+- article: 2019 Dominican general election
+  system: parliamentary
+  date: '2019-12-06'
+  winner: Roosevelt Skerrit
+  party: Dominica Labour Party
+  party_article: Dominica Labour Party
+- article: 2022 Dominican general election
+  system: parliamentary
+  date: '2022-12-06'
+  winner: Roosevelt Skerrit
+  party: Dominica Labour Party
+  party_article: Dominica Labour Party
+GRD:
+- article: 2003 Grenadian general election
+  system: parliamentary
+  date: '2003-11-27'
+  winner: Keith Mitchell
+  party: New National Party (Grenada)
+  party_article: New National Party (Grenada)
+- article: 2008 Grenadian general election
+  system: parliamentary
+  date: '2008-07-08'
+  winner: Tillman Thomas
+  party: National Democratic Congress (Grenada)
+  party_article: National Democratic Congress (Grenada)
+- article: 2013 Grenadian general election
+  system: parliamentary
+  date: '2013-02-19'
+  winner: Keith Mitchell
+  party: New National Party (Grenada)
+  party_article: New National Party (Grenada)
+- article: 2018 Grenadian general election
+  system: parliamentary
+  date: '2018-03-13'
+  winner: Keith Mitchell
+  party: New National Party (Grenada)
+  party_article: New National Party (Grenada)
+- article: 2022 Grenadian general election
+  system: parliamentary
+  date: '2022-06-23'
+  winner: Dickon Mitchell
+  party: National Democratic Congress (Grenada)
+  party_article: National Democratic Congress (Grenada)
+JAM:
+- article: 2002 Jamaican general election
+  system: parliamentary
+  date: '2002-10-16'
+  winner: P.J. Patterson
+  party: People's National Party
+  party_article: People's National Party
+- article: 2007 Jamaican general election
+  system: parliamentary
+  date: '2007-09-03'
+  winner: Bruce Golding
+  party: Jamaica Labour Party
+  party_article: Jamaica Labour Party
+- article: 2011 Jamaican general election
+  system: parliamentary
+  date: '2011-12-29'
+  winner: Portia Simpson-Miller
+  party: People's National Party
+  party_article: People's National Party
+- article: 2016 Jamaican general election
+  system: parliamentary
+  date: '2016-02-25'
+  winner: Andrew Holness
+  party: Jamaica Labour Party
+  party_article: Jamaica Labour Party
+- article: 2020 Jamaican general election
+  system: parliamentary
+  date: '2020-09-03'
+  winner: Andrew Holness
+  party: Jamaica Labour Party
+  party_article: Jamaica Labour Party
+- article: 2025 Jamaican general election
+  system: parliamentary
+  date: '2025-09-03'
+  winner: Andrew Holness
+  party: Jamaica Labour Party
+  party_article: Jamaica Labour Party
+KNA:
+- article: 2000 Saint Kitts and Nevis general election
+  system: parliamentary
+  date: '2000-03-06'
+  winner: Denzil Douglas
+  party: Saint Kitts and Nevis Labour Party
+  party_article: Saint Kitts and Nevis Labour Party
+- article: 2004 Saint Kitts and Nevis general election
+  system: parliamentary
+  date: '2004-10-24'
+  winner: Denzil Douglas
+  party: Saint Kitts and Nevis Labour Party
+  party_article: Saint Kitts and Nevis Labour Party
+- article: 2010 Saint Kitts and Nevis general election
+  system: parliamentary
+  date: '2010-01-25'
+  winner: Denzil Douglas
+  party: Saint Kitts and Nevis Labour Party
+  party_article: Saint Kitts and Nevis Labour Party
+- article: 2015 Saint Kitts and Nevis general election
+  system: parliamentary
+  date: '2015-02-16'
+  winner: Timothy Harris
+  party: People's Labour Party (Saint Kitts and Nevis)
+  party_article: People's Labour Party (Saint Kitts and Nevis)
+- article: 2020 Saint Kitts and Nevis general election
+  system: parliamentary
+  date: '2020-06-05'
+  winner: Timothy Harris
+  party: PLP
+  party_article: People's Labour Party (Saint Kitts and Nevis)
+- article: 2022 Saint Kitts and Nevis general election
+  system: parliamentary
+  date: '2022-08-05'
+  winner: Terrance Drew
+  party: Saint Kitts and Nevis Labour Party
+  party_article: Saint Kitts and Nevis Labour Party
+LCA:
+- article: 2001 Saint Lucian general election
+  system: parliamentary
+  date: '2001-12-03'
+  winner: Kenny Anthony
+  party: Saint Lucia Labour Party
+  party_article: Saint Lucia Labour Party
+- article: 2006 Saint Lucian general election
+  system: parliamentary
+  date: '2006-12-11'
+  winner: John Compton
+  party: United Workers Party (Saint Lucia)
+  party_article: United Workers Party (Saint Lucia)
+- article: 2011 Saint Lucian general election
+  system: parliamentary
+  date: '2011-11-28'
+  winner: Kenny Anthony
+  party: Saint Lucia Labour Party
+  party_article: Saint Lucia Labour Party
+- article: 2016 Saint Lucian general election
+  system: parliamentary
+  date: '2016-06-06'
+  winner: Allen Chastanet
+  party: United Workers Party (Saint Lucia)
+  party_article: United Workers Party (Saint Lucia)
+- article: 2021 Saint Lucian general election
+  system: parliamentary
+  date: '2021-07-26'
+  winner: Philip J. Pierre
+  party: Saint Lucia Labour Party
+  party_article: Saint Lucia Labour Party
+- article: 2025 Saint Lucian general election
+  system: parliamentary
+  date: '2025-12-01'
+  winner: Philip J. Pierre
+  party: Saint Lucia Labour Party
+  party_article: Saint Lucia Labour Party
+TTO:
+- article: 2000 Trinidad and Tobago general election
+  system: parliamentary
+  date: '2000-12-11'
+  winner: Basdeo Panday
+  party: United National Congress
+  party_article: United National Congress
+- article: 2001 Trinidad and Tobago general election
+  system: parliamentary
+  date: '2001-12-10'
+  winner: Patrick Manning
+  party: People's National Movement
+  party_article: People's National Movement
+- article: 2002 Trinidad and Tobago general election
+  system: parliamentary
+  date: '2002-10-07'
+  winner: Patrick Manning
+  party: People's National Movement
+  party_article: People's National Movement
+- article: 2007 Trinidad and Tobago general election
+  system: parliamentary
+  date: '2007-11-05'
+  winner: Patrick Manning
+  party: People's National Movement
+  party_article: People's National Movement
+- article: 2010 Trinidad and Tobago general election
+  system: parliamentary
+  date: '2010-05-24'
+  winner: Kamla Persad-Bissessar
+  party: United National Congress
+  party_article: United National Congress
+- article: 2015 Trinidad and Tobago general election
+  system: parliamentary
+  date: '2015-09-07'
+  winner: Keith Rowley
+  party: People's National Movement
+  party_article: People's National Movement
+- article: 2020 Trinidad and Tobago general election
+  system: parliamentary
+  date: '2020-08-10'
+  winner: Keith Rowley
+  party: People's National Movement
+  party_article: People's National Movement
+- article: 2025 Trinidad and Tobago general election
+  system: parliamentary
+  date: '2025-04-28'
+  winner: Kamla Persad-Bissessar
+  party: UNC
+  party_article: United National Congress
+VCT:
+- article: 2001 Vincentian general election
+  system: parliamentary
+  date: '2001-03-28'
+  winner: Ralph Gonsalves
+  party: Unity Labour Party
+  party_article: Unity Labour Party
+- article: 2005 Vincentian general election
+  system: parliamentary
+  date: '2005-12-07'
+  winner: Ralph Gonsalves
+  party: Unity Labour Party
+  party_article: Unity Labour Party
+- article: 2010 Vincentian general election
+  system: parliamentary
+  date: '2010-12-13'
+  winner: Ralph Gonsalves
+  party: Unity Labour Party
+  party_article: Unity Labour Party
+- article: 2015 Vincentian general election
+  system: parliamentary
+  date: '2015-12-09'
+  winner: Ralph Gonsalves
+  party: Unity Labour Party
+  party_article: Unity Labour Party
+- article: 2020 Vincentian general election
+  system: parliamentary
+  date: '2020-11-05'
+  winner: Ralph Gonsalves
+  party: Unity Labour Party
+  party_article: Unity Labour Party
+- article: 2025 Vincentian general election
+  system: parliamentary
+  date: '2025-11-27'
+  winner: Godwin Friday
+  party: New Democratic Party (Saint Vincent and the Grenadines)
+  party_article: New Democratic Party (Saint Vincent and the Grenadines)

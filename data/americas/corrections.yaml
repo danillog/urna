@@ -1,0 +1,23 @@
+# Hand corrections applied on top of what pipeline.americas.discover reads from
+# Wikipedia. Each one says why.
+
+# Articles that match the title pattern but are not elections that pick a government.
+drop:
+  - 2017 Argentine legislative election   # midterm, reached through a redirect
+  - 2003 Mexican elections                # midterm, reached through a redirect
+  - 2026 Nicaraguan general election      # scheduled for November 2026
+
+# Articles the list pages and title probing miss.
+add:
+  HTI:
+    - November 2016 Haitian presidential election  # "2016 …" is a disambiguation page
+
+# Fields the infobox lacks or gets wrong.
+set:
+  2000 Canadian federal election: { date: 2000-11-27 }
+  # Suriname's president is elected by the National Assembly after the general
+  # election; these infoboxes only name the Speaker.
+  2000 Surinamese general election: { winner: Ronald Venetiaan, party: National Party of Suriname, party_article: National Party of Suriname }
+  2005 Surinamese general election: { winner: Ronald Venetiaan, party: National Party of Suriname, party_article: National Party of Suriname }
+  2010 Surinamese general election: { winner: Dési Bouterse, party: National Democratic Party (Suriname), party_article: National Democratic Party (Suriname) }
+  2015 Surinamese general election: { winner: Dési Bouterse, party: National Democratic Party (Suriname), party_article: National Democratic Party (Suriname) }
