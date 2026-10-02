@@ -5,6 +5,7 @@ import dataset from "../data/generated/elections.json";
 import mapJson from "../data/generated/map.json?raw";
 import americasJson from "../data/generated/americas.json?raw";
 import americasTopoJson from "../data/generated/americas.topo.json?raw";
+import indicatorsJson from "../data/generated/americas-indicators.json?raw";
 import { formatDate, formatIsoDate, dayToDate } from "./format";
 import { t } from "./i18n/pt-BR";
 import type { AmericasData } from "./model/americas";
@@ -58,10 +59,16 @@ function ensureAmericas(): AmericasView {
   if (!americasView) {
     const americas = JSON.parse(americasJson) as AmericasData;
     const initial = americasFromSearch(americas, view === "americas" ? params : new URLSearchParams());
-    americasView = new AmericasView(americas, JSON.parse(americasTopoJson), initial, () => {
-      syncUrl();
-      americasView!.render();
-    });
+    americasView = new AmericasView(
+      americas,
+      JSON.parse(americasTopoJson),
+      JSON.parse(indicatorsJson),
+      initial,
+      () => {
+        syncUrl();
+        americasView!.render();
+      },
+    );
   }
   return americasView;
 }

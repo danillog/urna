@@ -12,13 +12,19 @@ import {
   type AmericasData,
   type Family,
 } from "../model/americas";
+import { BANDS, band, rank, valueAt, type IndicatorData, type IndicatorKey } from "../model/indicators";
 import { button, byId } from "./dom";
 import { ChoroplethMap } from "./map";
 
+export type Layer = "politics" | IndicatorKey;
+const LAYERS: Layer[] = ["politics", "hdi", "gdp", "democracy"];
+
 export interface AmericasState {
   year: number;
-  /** Family standing out on the map. */
-  focus: Family | null;
+  /** What colors the map: election results, or a country indicator. */
+  layer: Layer;
+  /** Group standing out on the map: a family, or an indicator band ("0", "1"…). */
+  focus: string | null;
   /** Country the map is zoomed to. */
   country: string | null;
 }
@@ -33,16 +39,18 @@ const PLAY_STEP_MS = 1100;
 
 export function americasFromSearch(data: AmericasData, params: URLSearchParams): AmericasState {
   const year = Number(params.get("year"));
-  const focus = params.get("focus") as Family | null;
+  const layer = LAYERS.find((l) => l === params.get("layer")) ?? "politics";
   const country = params.get("country")?.toUpperCase() ?? null;
   return {
     year: year >= FIRST_YEAR && year <= lastYear(data) ? year : lastYear(data),
-    focus: focus && data.families.includes(focus) ? focus : null,
+    layer,
+    focus: params.get("focus"),
     country: country && data.countries[country] ? country : null,
   };
 }
 
 export function americasToSearch(s: AmericasState, params: URLSearchParams): void {
+  if (s.layer !== "politics") params.set("layer", s.layer);
   params.set("year", String(s.year));
   if (s.focus) params.set("focus", s.focus);
   if (s.country) params.set("country", s.country);
@@ -54,13 +62,14 @@ export class AmericasView {
   private readonly areas: AreaProps[];
   private timer: number | undefined;
   private framed: string | null | undefined = undefined;
-  private highlighted: Family | null = null;
-  private painted: number | null = null;
+  private highlighted: string | null = null;
+  private painted: string | null = null;
   private readonly years: number[];
 
   constructor(
     private readonly data: AmericasData,
     private readonly topology: Topology<{ americas: GeometryCollection<AreaProps> }>,
+    private readonly indicators: IndicatorData,
     private state: AmericasState,
     private readonly onChange: (s: AmericasState) => void,
   ) {
@@ -81,6 +90,12 @@ export class AmericasView {
           return b;
         }),
     );
+
+    byId("am-layers")
+      .querySelectorAll<HTMLButtonElement>("button")
+      .forEach((b) =>
+        b.addEventListener("click", () => this.set({ layer: b.dataset.layer as Layer, focus: null })),
+      );
 
     const select = byId<HTMLSelectElement>("am-country");
     select.add(new Option(t.americasWhole, ""));
@@ -148,10 +163,15 @@ export class AmericasView {
       .querySelectorAll<HTMLButtonElement>("button")
       .forEach((b) => b.setAttribute("aria-pressed", String(Number(b.dataset.year) === s.year)));
     this.renderPlayButton();
-    byId("am-title").textContent = t.americasTitle(s.year);
+    byId("am-layers")
+      .querySelectorAll<HTMLButtonElement>("button")
+      .forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.layer === s.layer)));
+    byId("am-title").textContent =
+      s.layer === "politics" ? t.americasTitle(s.year) : t.indicator[s.layer].title(s.year);
 
-    if (this.painted !== s.year) {
-      this.painted = s.year;
+    const key = `${s.layer}:${s.year}`;
+    if (this.painted !== key) {
+      this.painted = key;
       this.highlighted = null;
       this.renderLegend();
       this.drawing.paint(
@@ -174,13 +194,24 @@ export class AmericasView {
     return country ? regionFamily(country, this.state.year, area.code) : null;
   }
 
+  /** The legend group an area belongs to in the current layer. */
+  private groupOf(i: number): string | null {
+    const layer = this.state.layer;
+    if (layer === "politics") return this.familyOf(i);
+    const reading = valueAt(this.indicators, layer, this.areas[i]!.country, this.state.year);
+    return reading ? String(band(layer, reading.value)) : null;
+  }
+
   private classFor(i: number): string {
     if (!this.data.countries[this.areas[i]!.country]) return "territory";
-    const family = this.familyOf(i);
-    return family ? `f-${family}` : "no-data";
+    const group = this.groupOf(i);
+    if (group === null) return "no-data";
+    return this.state.layer === "politics" ? `f-${group}` : `seq-${seqStep(this.state.layer, Number(group))}`;
   }
 
   private renderLegend(): void {
+    const layer = this.state.layer;
+    if (layer !== "politics") return this.renderIndicatorLegend(layer);
     const counts = countByFamily(this.data, this.state.year);
     const el = byId("am-legend");
     el.replaceChildren(
@@ -201,6 +232,35 @@ export class AmericasView {
     el.append(none);
   }
 
+  private renderIndicatorLegend(layer: IndicatorKey): void {
+    const counts = BANDS[layer].map(() => 0);
+    for (const iso of Object.keys(this.data.countries)) {
+      const reading = valueAt(this.indicators, layer, iso, this.state.year);
+      if (reading) counts[band(layer, reading.value)]! += 1;
+    }
+    const el = byId("am-legend");
+    el.replaceChildren(
+      ...BANDS[layer].map((b, k) => {
+        const chip = button(
+          `<i class="map-key seq-${seqStep(layer, k)}"></i><span>${b.label}</span><span class="n">${integer(counts[k]!)}</span>`,
+          { className: "chip map-chip" },
+        );
+        chip.dataset.group = String(k);
+        chip.title = t.mapFocus;
+        chip.addEventListener("click", () =>
+          this.set({ focus: this.state.focus === String(k) ? null : String(k) }),
+        );
+        return chip;
+      }),
+    );
+    const source = document.createElement("span");
+    source.className = "map-steps";
+    source.innerHTML = `<i class="map-key no-data"></i> ${t.indicatorNoData} · ${t.indicatorSource(
+      escapeHtml(this.indicators.indicators[layer].source),
+    )}`;
+    el.append(source);
+  }
+
   private renderFocus(): void {
     const focus = this.state.focus;
     byId("am-legend")
@@ -208,7 +268,7 @@ export class AmericasView {
       .forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.group === focus)));
     if (focus === this.highlighted) return;
     this.highlighted = focus;
-    const indices = focus ? this.areas.flatMap((_, i) => (this.familyOf(i) === focus ? [i] : [])) : null;
+    const indices = focus ? this.areas.flatMap((_, i) => (this.groupOf(i) === focus ? [i] : [])) : null;
     this.drawing!.highlight(indices);
   }
 
@@ -221,6 +281,7 @@ export class AmericasView {
       return `<div class="tt-h">${escapeHtml(name)}</div><div class="tt-s">${t.americasTerritory}</div>`;
     }
     const head = `<div class="tt-h">${escapeHtml(country.name)}</div><div class="tt-s">${place}</div>`;
+    if (this.state.layer !== "politics") return head + this.indicatorTooltip(this.state.layer, area.country);
     if (country.system === "non-competitive")
       return head + `<div class="tt-s">${t.americasNonCompetitive}</div>`;
     const e = electionAt(country, this.state.year);
@@ -256,4 +317,27 @@ export class AmericasView {
       disputed
     );
   }
+
+  private indicatorTooltip(layer: IndicatorKey, iso: string): string {
+    const copy = t.indicator[layer];
+    const reading = valueAt(this.indicators, layer, iso, this.state.year);
+    if (!reading) return `<div class="tt-s">${t.indicatorNoData}</div>`;
+    const [position, total] = rank(this.indicators, layer, iso, this.state.year);
+    const first = valueAt(this.indicators, layer, iso, this.indicators.firstYear);
+    const change =
+      first && first.year < reading.year
+        ? `<div class="tt-s tt-foot">${copy.change(copy.format(first.value), first.year)}</div>`
+        : "";
+    const older = reading.year < this.state.year ? ` · ${t.indicatorLatest(reading.year)}` : "";
+    return (
+      `<div class="row"><span class="key"><i class="map-key seq-${seqStep(layer, band(layer, reading.value))}"></i>${copy.name}</span><b>${copy.format(reading.value)}</b></div>` +
+      `<div class="tt-s tt-foot">${t.indicatorRank(position, total)}${older}</div>` +
+      change
+    );
+  }
+}
+
+/** Step on the 5-color sequential scale; 4-band indicators skip the palest color. */
+function seqStep(layer: IndicatorKey, bandIndex: number): number {
+  return BANDS[layer].length === 4 ? bandIndex + 1 : bandIndex;
 }

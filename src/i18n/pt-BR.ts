@@ -98,6 +98,31 @@ export const t = {
   americasNonCompetitive: "Sem eleições presidenciais competitivas",
   americasNoElectionYet: (year: number) => `Nenhuma eleição desde ${year} até este ano`,
   americasAnnulled: "A última eleição foi anulada",
+  indicator: {
+    hdi: {
+      name: "IDH",
+      title: (year: number) => `Índice de Desenvolvimento Humano em ${year}`,
+      format: (v: number) => v.toFixed(3).replace(".", ","),
+      change: (v: string, year: number) => `Em ${year}: ${v}`,
+    },
+    gdp: {
+      name: "PIB per capita (PPC)",
+      title: (year: number) => `Poder de compra: PIB per capita em ${year}`,
+      format: (v: number) => `US$ ${Math.round(v).toLocaleString("pt-BR")}`,
+      change: (v: string, year: number) => `Em ${year}: ${v}`,
+    },
+    democracy: {
+      name: "Democracia eleitoral",
+      title: (year: number) => `Índice de democracia eleitoral em ${year}`,
+      format: (v: number) => v.toFixed(2).replace(".", ","),
+      change: (v: string, year: number) => `Em ${year}: ${v}`,
+    },
+  },
+  indicatorNoData: "Sem dados na fonte",
+  indicatorSource: (source: string) => `Fonte: ${source}`,
+  indicatorLatest: (year: number) => `último dado: ${year}`,
+  indicatorRank: (position: number, total: number) =>
+    `${position}º de ${total} países das Américas com dados`,
   americasHere: "resultado neste estado/província",
   americasNational: (winner: string, family: string) => `No país: ${winner} (${family})`,
   americasNationalOnly: "Sem dados por estado/província: o país inteiro mostra o resultado nacional",

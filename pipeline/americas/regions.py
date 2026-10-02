@@ -138,7 +138,22 @@ def parse_percent(text: str) -> float | None:
     return parse_number(text)
 
 
+def region_column(grid, index: dict[str, list[str]]) -> int:
+    """The column naming the regions: usually the first, sometimes the second or third
+    (a merged "voters" or flag column before it)."""
+
+    def hits(col: int) -> int:
+        return sum(1 for r in grid if len(r) > col and r[col] and norm(clean(r[col].text)) in index)
+
+    return max(range(3), key=lambda col: (hits(col), -col))
+
+
 def read_table(grid, index: dict[str, list[str]]) -> RegionTable | None:
+    if not grid:
+        return None
+    rc = region_column(grid, index)
+    if rc:  # move the region column first, keeping the others in order
+        grid = [[r[rc], *r[:rc], *r[rc + 1 :]] if len(r) > rc else r for r in grid]
     first = [clean(r[0].text) if r and r[0] else "" for r in grid]
     data_start = next((i for i, name in enumerate(first) if norm(name) and norm(name) in index), None)
     if data_start is None or data_start == 0:

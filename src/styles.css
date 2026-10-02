@@ -877,3 +877,43 @@ table.clickable tbody tr:focus-visible {
 .americas-map {
   max-width: 680px;
 }
+
+/* Country indicators: a 5-step sequential scale (ColorBrewer YlGnBu), light to dark. */
+:root {
+  --seq-0: #ffffcc;
+  --seq-1: #a1dab4;
+  --seq-2: #41b6c4;
+  --seq-3: #2c7fb8;
+  --seq-4: #253494;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --seq-0: #253494;
+    --seq-1: #2c7fb8;
+    --seq-2: #41b6c4;
+    --seq-3: #a1dab4;
+    --seq-4: #ffffcc;
+  }
+}
+:root[data-theme="dark"] {
+  --seq-0: #253494;
+  --seq-1: #2c7fb8;
+  --seq-2: #41b6c4;
+  --seq-3: #a1dab4;
+  --seq-4: #ffffcc;
+}
+.seq-0 {
+  --mc: var(--seq-0);
+}
+.seq-1 {
+  --mc: var(--seq-1);
+}
+.seq-2 {
+  --mc: var(--seq-2);
+}
+.seq-3 {
+  --mc: var(--seq-3);
+}
+.seq-4 {
+  --mc: var(--seq-4);
+}

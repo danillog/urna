@@ -14,3 +14,4 @@ data/raw/tse/
 data/raw/ibge/
 data/raw/americas/geo/*.geojson
 data/raw/americas/cache/
+data/raw/americas/indicators/

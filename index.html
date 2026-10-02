@@ -163,6 +163,15 @@
   <div class="view" id="americas-view" role="tabpanel" aria-labelledby="tab-americas" hidden>
     <div class="controls">
       <div class="group">
+        <span class="group-label" id="lbl-am-layer">Mostrar</span>
+        <div class="seg" role="group" aria-labelledby="lbl-am-layer" id="am-layers">
+          <button type="button" data-layer="politics" aria-pressed="true">Política</button>
+          <button type="button" data-layer="hdi" aria-pressed="false">IDH</button>
+          <button type="button" data-layer="gdp" aria-pressed="false">Poder de compra</button>
+          <button type="button" data-layer="democracy" aria-pressed="false">Democracia</button>
+        </div>
+      </div>
+      <div class="group">
         <label class="group-label" for="am-country">País</label>
         <select id="am-country" class="select"></select>
       </div>
@@ -193,6 +202,7 @@
     <section class="notes" aria-label="Metodologia das Américas">
       <p><b>O que o mapa mostra.</b> Para cada ano, cada país aparece com a cor de quem venceu sua eleição nacional mais recente até aquele ano: o presidente eleito ou, nos países parlamentaristas (Canadá e boa parte do Caribe), o partido que formou o governo. Quando há resultados por estado ou província, cada um aparece com a cor de quem venceu ali (no 2º turno, onde houve); o tooltip mostra também o vencedor nacional. Países sem esses dados aparecem inteiros com a cor do resultado nacional. A contagem da legenda é de países, pelo resultado nacional.</p>
       <p><b>Família ideológica.</b> Usamos a escala econômica de esquerda a direita (0 a 10) do <a href="https://www.globalpartysurvey.org/" target="_blank" rel="noopener">Global Party Survey 2019</a> (Pippa Norris, Harvard), em quatro faixas: esquerda (abaixo de 2,5), centro-esquerda (2,5 a 4,9), centro-direita (5 a 7,4) e direita (7,5 ou mais). A pesquisa só é usada quando ao menos 5 especialistas avaliaram o país. Para partidos que ela não cobre, ou cobre com poucos especialistas, usamos a posição política informada no artigo do partido na Wikipédia, convertida para as mesmas faixas. Cinco casos ambíguos foram decididos à mão, com a justificativa registrada. A fonte de cada classificação aparece ao passar o mouse.</p>
+      <p><b>IDH, poder de compra e democracia.</b> Dados por país e por ano, nas cores de uma escala sequencial. IDH: <a href="https://hdr.undp.org/data-center/documentation-and-downloads" target="_blank" rel="noopener">PNUD</a> (Relatório de Desenvolvimento Humano 2025), com as faixas oficiais de desenvolvimento baixo, médio, alto e muito alto. Poder de compra: PIB per capita em paridade de poder de compra, em dólares internacionais constantes de 2021, do <a href="https://data.worldbank.org/indicator/NY.GDP.PCAP.PP.KD" target="_blank" rel="noopener">Banco Mundial</a> (sem dados para Cuba e Venezuela). Democracia: índice de democracia eleitoral do <a href="https://v-dem.net/" target="_blank" rel="noopener">V-Dem</a> (0 a 1), via <a href="https://ourworldindata.org/grapher/electoral-democracy-index" target="_blank" rel="noopener">Our World in Data</a>; o V-Dem não cobre as ilhas menores do Caribe. Quando o ano escolhido passa do último dado publicado, o mapa mostra o mais recente e o tooltip avisa.</p>
       <p><b>Fontes.</b> Vencedores e datas: artigos de cada eleição na Wikipédia em inglês, conferidos e corrigidos à mão onde necessário. Resultados por estado e província: tabelas desses artigos (ou da versão em espanhol), aceitas só quando, somadas, apontam o mesmo vencedor nacional; os do Brasil vêm do TSE. Contornos: Natural Earth (domínio público). Cuba aparece sem cor por não ter eleições presidenciais competitivas; eleições anuladas (Bolívia 2019, Haiti 2015) e territórios dependentes também ficam em cinza. A eleição de 2024 na Venezuela é mostrada pelo resultado oficial e marcada como contestada.</p>
     </section>
   </div>

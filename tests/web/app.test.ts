@@ -113,6 +113,14 @@ describe("app", () => {
 
     ($("am-legend").querySelector(".map-chip") as HTMLButtonElement).click();
     expect(window.location.search).toContain("focus=left");
+
+    ($("am-layers").querySelector('[data-layer="hdi"]') as HTMLButtonElement).click();
+    expect($("am-title").textContent).toBe("Índice de Desenvolvimento Humano em 2006");
+    expect(window.location.search).toContain("layer=hdi");
+    expect($("am-legend").querySelectorAll(".map-chip").length).toBe(4);
+    expect($("am-map").querySelectorAll(".areas path[class^='seq-']").length).toBeGreaterThan(400);
+    ($("am-layers").querySelector('[data-layer="politics"]') as HTMLButtonElement).click();
+    ($("am-legend").querySelector(".map-chip") as HTMLButtonElement).click();
     expect($("am-map").querySelectorAll(".focus-layer path").length).toBeGreaterThan(0);
     click("tab-polls");
   });
