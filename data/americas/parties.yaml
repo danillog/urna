@@ -18,26 +18,48 @@ ARG:
   Juntos por el Cambio: { gps: PRO-UCR, via: same coalition as Cambiemos }
   Frente de Todos (2019 coalition): { wikipedia: Frente de Todos }
   Liberty Advances: { wikipedia: La Libertad Avanza }
+  Union for the Homeland: { wikipedia: Union for the Homeland }
+  Civic Coalition ARI: { family: centre-left, note: "Wikipedia lists it as centre with centre-right to centre-left factions; Carrió's ARI began as a social democratic split from the UCR" }
+  Federal Peronism: { wikipedia: Federal Peronism }
+  Radical Civic Union: { family: centre-left, note: "Wikipedia lists it only as centre; it is a full member of the Socialist International" }
 BOL:
   Revolutionary Nationalist Movement: { wikipedia: Revolutionary Nationalist Movement }
   Movement for Socialism (Bolivia): { gps: MAS }
   Movimiento al Socialismo: { gps: MAS }
   Christian Democratic Party (Bolivia): { gps: PDC }
+  # Runner-ups who won departments.
+  New Republican Force: { wikipedia: New Republican Force }
+  National Unity Front: { gps: UN }
+  Plan Progress for Bolivia – National Convergence: { wikipedia: Plan Progress for Bolivia – National Convergence }
+  Civic Community: { wikipedia: Civic Community }
+  Creemos: { wikipedia: Creemos }
+  Social Democratic Power: { wikipedia: Social Democratic Power }
 BRA:
   Workers' Party (Brazil): { gps: PT }
   Social Liberal Party (Brazil): { gps: PSL }
+  # Acronyms, as the TSE files name parties (results by state).
+  PT: { gps: PT }
+  PSL: { gps: PSL }
+  PSDB: { gps: PSDB }
+  PL: { wikipedia: "Liberal Party (Brazil, 2006)" }
 CHL:
   Socialist Party of Chile: { wikipedia: Socialist Party of Chile }
   National Renewal (Chile): { gps: CV, via: member of the Chile Vamos coalition }
   Independent politician: { gps: CV, via: Piñera ran as the Chile Vamos candidate }
   Social Convergence: { gps: FA, via: member of the Broad Front (Frente Amplio) }
   Republican Party of Chile: { wikipedia: Republican Party of Chile }
+  Concertación: { wikipedia: Concertación, via: Frei ran for the centre-left Concertación coalition }
 COL:
   Colombia First: { wikipedia: Colombia First }
   Social Party of National Unity: { wikipedia: Social Party of National Unity }
   Democratic Center (Colombia): { wikipedia: Democratic Center (Colombia) }
   Humane Colombia: { wikipedia: Humane Colombia }
   Independent politician: { family: right, note: "Abelardo de la Espriella ran without a party; his Wikipedia article describes him as right-wing" }
+  Alternative Democratic Pole: { wikipedia: Alternative Democratic Pole }
+  Historic Pact: { wikipedia: Historic Pact for Colombia }
+  Colombian Liberal Party: { wikipedia: Colombian Liberal Party }
+  Green Alliance (Colombia): { wikipedia: Green Alliance (Colombia) }
+  Team for Colombia: { wikipedia: Team for Colombia }
 CRI:
   Social Christian Unity Party: { gps: PUSC }
   National Liberation Party (Costa Rica): { gps: PLN }
@@ -53,6 +75,9 @@ ECU:
   PAIS Alliance: { gps: PAIS }
   Creating Opportunities: { gps: CREO }
   National Democratic Action (Ecuador): { wikipedia: National Democratic Action (Ecuador) }
+  Institutional Renewal Party of National Action: { wikipedia: Institutional Renewal Party of National Action }
+  Patriotic Society Party: { gps: PSP }
+  Citizen Revolution Movement: { wikipedia: Citizen Revolution Movement }
 GTM:
   Grand National Alliance (Guatemala): { wikipedia: Grand National Alliance (Guatemala) }
   National Unity of Hope: { gps: UNE }
@@ -73,9 +98,11 @@ MEX:
   National Action Party (Mexico): { gps: PAN }
   Institutional Revolutionary Party: { gps: PRI-PVEM, via: the PRI–PVEM coalition }
   Morena (political party): { gps: MORENA }
+  Party of the Democratic Revolution: { gps: PRD }
 NIC:
   Constitutionalist Liberal Party: { gps: PLC }
   Sandinista National Liberation Front: { gps: FSLN }
+  Nicaraguan Liberal Alliance: { gps: ALN }
 PAN:
   Democratic Revolutionary Party: { wikipedia: Democratic Revolutionary Party }
   Democratic Change (Panama): { wikipedia: Democratic Change (Panama) }
@@ -89,9 +116,13 @@ PER:
   Peruvians for Change: { gps: PKK }
   Free Peru: { wikipedia: Free Peru }
   Popular Force: { gps: FP }
+  Together for Peru: { wikipedia: Together for Peru }
+  Popular Renewal: { wikipedia: Popular Renewal }
 PRY:
   Colorado Party (Paraguay): { gps: ANR }
   Patriotic Alliance for Change: { wikipedia: Patriotic Alliance for Change }
+  National Union of Ethical Citizens: { wikipedia: National Union of Ethical Citizens }
+  National Crusade: { gps: MCN }
 SLV:
   Nationalist Republican Alliance: { gps: ARENA }
   Farabundo Martí National Liberation Front: { gps: FMLN }
@@ -106,6 +137,7 @@ USA:
 VEN:
   United Socialist Party of Venezuela: { gps: PSUV/GPP }
   Fifth Republic Movement: { gps: PSUV/GPP, via: merged into the PSUV in 2007 }
+  Democratic Unity Roundtable: { gps: MUD }
 GUY:
   People's Progressive Party/Civic: { gps: PPP-C }
   People's National Congress Reform: { wikipedia: People's National Congress Reform, via: no score in the survey }

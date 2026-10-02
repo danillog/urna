@@ -1,0 +1,53 @@
+# Subdivision names used in election tables that do not match Natural Earth's names.
+# A name can cover several map regions (Lima is one electoral district, two shapes).
+
+USA:
+  District of Columbia District of Columbia: US-DC
+MEX:
+  Mexico City: MX-DIF
+  Federal District: MX-DIF
+  Distrito Federal: MX-DIF
+ARG:
+  Buenos Aires City: AR-C
+  City of Buenos Aires: AR-C
+COL:
+  Bogotá D.C.: CO-DC
+  Bogotá, D.C.: CO-DC
+  Bogota D.C.: CO-DC
+  Capital District: CO-DC
+  Distrito Capital: CO-DC
+  San Andrés and Providencia: CO-SAP
+  San Andrés & Providencia: CO-SAP
+  San Andrés, Providencia and Santa Catalina: CO-SAP
+PER:
+  Lima: PE-LIM
+  Callao: PE-CAL
+  Constitutional Province of Callao: PE-CAL
+  Provincia Constitucional del Callao: PE-CAL
+CHL:
+  Magallanes: CL-MA
+  Magallanes y la Antártica Chilena: CL-MA
+  Magallanes y Antártica Chilena: CL-MA
+  # Ñuble split off from Biobío in 2018; earlier Biobío results cover both.
+  Biobío: [CL-BI, CL-NB]
+  Bío Bío: [CL-BI, CL-NB]
+  Biobio: [CL-BI, CL-NB]
+ECU:
+  # Santo Domingo and Santa Elena became provinces in 2007; earlier results come
+  # from the provinces they were part of.
+  Pichincha: [EC-P, EC-SD]
+  Guayas: [EC-G, EC-SE]
+  Santo Domingo: EC-SD
+  Santo Domingo de los Tsáchilas: EC-SD
+VEN:
+  Capital District: VE-A
+  Distrito Capital: VE-A
+  La Guaira: VE-X
+  Vargas: VE-X
+PRY:
+  P. Hayes: PY-15
+  Pdte. Hayes: PY-15
+  Capital: PY-ASU
+BRA:
+  Federal District: BR-DF
+  Distrito Federal: BR-DF

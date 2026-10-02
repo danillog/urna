@@ -1,14 +1,14 @@
 import { geoAzimuthalEqualArea } from "d3-geo";
 import type { GeometryCollection, Topology } from "topojson-specification";
 
-import { escapeHtml, formatIsoDate, integer } from "../format";
+import { escapeHtml, formatIsoDate, integer, percent } from "../format";
 import { t } from "../i18n/pt-BR";
 import {
   FIRST_YEAR,
   countByFamily,
   electionAt,
-  familyAt,
   lastYear,
+  regionFamily,
   type AmericasData,
   type Family,
 } from "../model/americas";
@@ -168,10 +168,15 @@ export class AmericasView {
     this.renderFocus();
   }
 
+  private familyOf(i: number): Family | null {
+    const area = this.areas[i]!;
+    const country = this.data.countries[area.country];
+    return country ? regionFamily(country, this.state.year, area.code) : null;
+  }
+
   private classFor(i: number): string {
-    const country = this.data.countries[this.areas[i]!.country];
-    if (!country) return "territory";
-    const family = familyAt(country, this.state.year);
+    if (!this.data.countries[this.areas[i]!.country]) return "territory";
+    const family = this.familyOf(i);
     return family ? `f-${family}` : "no-data";
   }
 
@@ -203,12 +208,7 @@ export class AmericasView {
       .forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.group === focus)));
     if (focus === this.highlighted) return;
     this.highlighted = focus;
-    const indices = focus
-      ? this.areas.flatMap((a, i) => {
-          const c = this.data.countries[a.country];
-          return c && familyAt(c, this.state.year) === focus ? [i] : [];
-        })
-      : null;
+    const indices = focus ? this.areas.flatMap((_, i) => (this.familyOf(i) === focus ? [i] : [])) : null;
     this.drawing!.highlight(indices);
   }
 
@@ -228,12 +228,32 @@ export class AmericasView {
     const when = t.americasElection(country.system, formatIsoDate(e.date));
     if (e.status === "annulled")
       return head + `<div class="tt-s">${when}</div><div>${t.americasAnnulled}</div>`;
+    const disputed = e.status === "disputed" ? `<div class="tt-s tt-foot">${t.americasDisputed}</div>` : "";
+    const row = e.regions?.[area.code];
+    if (row && e.regionCandidates) {
+      const [w, ws, r, rs] = row;
+      const line = (k: number, share: number) => {
+        const c = e.regionCandidates![k]!;
+        const swatch = c.family ? `f-${c.family}` : "no-data";
+        return `<div class="row"><span class="key"><i class="map-key ${swatch}"></i>${escapeHtml(c.name)}</span><b>${percent(share / 10)}</b></div>`;
+      };
+      return (
+        head +
+        `<div class="tt-s">${when} · ${t.americasHere}</div>` +
+        line(w, ws) +
+        line(r, rs) +
+        `<div class="tt-s tt-foot">${t.americasNational(escapeHtml(e.winner ?? ""), t.family[e.family!]!)}</div>` +
+        `<div class="tt-s tt-foot">${escapeHtml(t.americasRegionSource(e.regionSource ?? ""))}</div>` +
+        disputed
+      );
+    }
     return (
       head +
       `<div class="tt-s">${when}</div>` +
       `<div class="row"><span class="key"><i class="map-key f-${e.family}"></i>${escapeHtml(e.winner ?? "")}</span><b>${escapeHtml(e.party ?? "")}</b></div>` +
       `<div class="tt-s tt-foot">${t.family[e.family!]} · ${escapeHtml(e.familySource ?? "")}</div>` +
-      (e.status === "disputed" ? `<div class="tt-s tt-foot">${t.americasDisputed}</div>` : "")
+      `<div class="tt-s tt-foot">${t.americasNationalOnly}</div>` +
+      disputed
     );
   }
 }

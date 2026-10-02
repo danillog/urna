@@ -116,6 +116,8 @@ def fetch(title: str) -> tuple[str, str]:
                 "redirects": 1,
             },
         )
+        if "parse" not in d:
+            raise KeyError(f"{title}: {d.get('error', {}).get('info', 'no such page')}")
         path.write_text(d["parse"]["title"] + "\n" + d["parse"]["wikitext"], encoding="utf-8")
         time.sleep(0.2)
     resolved, _, text = path.read_text(encoding="utf-8").partition("\n")
@@ -191,6 +193,27 @@ def infoboxes(text: str) -> list[dict[str, str]]:
     return boxes
 
 
+def candidates(box: dict[str, str]) -> list[dict]:
+    """Everyone the infobox lists for the race: name, party (as shown and its article)."""
+    out = []
+    for n in range(1, 13):
+        name = box.get(f"nominee{n}") or box.get(f"candidate{n}") or box.get(f"leader{n}")
+        if not name:
+            continue
+        party, alliance = box.get(f"party{n}", ""), box.get(f"alliance{n}", "")
+        c = {
+            "name": plain(name),
+            "party": plain(party) or None,
+            "party_article": link_target(party)
+            or (plain(party) if party and "[[" not in party and "{{" not in party else None),
+        }
+        if plain(alliance):
+            c["alliance"] = plain(alliance)
+            c["alliance_article"] = link_target(alliance)
+        out.append(c)
+    return out
+
+
 def read_infobox(text: str, system: str) -> dict:
     """Date, who took office and their party, from the election infoboxes.
 
@@ -239,6 +262,7 @@ def read_infobox(text: str, system: str) -> dict:
     out["party_article"] = link_target(party_raw) or (
         plain(party_raw) if party_raw and "[[" not in party_raw and "{{" not in party_raw else None
     )
+    out["candidates"] = candidates(race)
     if out.get("status") != "annulled" and (not out["winner"] or not out["party"] or not out["date"]):
         out["review"] = "date, winner or party missing in the infobox"
     return out

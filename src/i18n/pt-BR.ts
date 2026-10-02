@@ -98,6 +98,13 @@ export const t = {
   americasNonCompetitive: "Sem eleições presidenciais competitivas",
   americasNoElectionYet: (year: number) => `Nenhuma eleição desde ${year} até este ano`,
   americasAnnulled: "A última eleição foi anulada",
+  americasHere: "resultado neste estado/província",
+  americasNational: (winner: string, family: string) => `No país: ${winner} (${family})`,
+  americasNationalOnly: "Sem dados por estado/província: o país inteiro mostra o resultado nacional",
+  americasRegionSource: (source: string) =>
+    source === "TSE"
+      ? "Fonte: TSE"
+      : `Fonte: Wikipédia (${source.startsWith("es:") ? "espanhol" : "inglês"}), ${source.slice(3)}`,
   americasDisputed: "Resultado oficial contestado pela oposição e por observadores internacionais",
   americasElection: (system: string, date: string) =>
     `${system === "parliamentary" ? "Eleição geral (primeiro-ministro)" : system === "general" ? "Eleição geral (presidente)" : "Eleição presidencial"} de ${date}`,

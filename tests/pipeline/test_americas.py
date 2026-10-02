@@ -37,12 +37,15 @@ def test_read_infobox_prefers_who_took_office_over_first_listed():
     | title = [[President of Argentina|President]]
     | after_election = [[Néstor Kirchner]] | after_party = [[Front for Victory|FPV-PJ]] }}"""
     info = read_infobox(text, "presidential")
-    assert info == {
-        "date": "2003-04-27",
-        "winner": "Néstor Kirchner",
-        "party": "FPV-PJ",
-        "party_article": "Front for Victory",
-    }
+    assert info["date"] == "2003-04-27"
+    assert (info["winner"], info["party"], info["party_article"]) == (
+        "Néstor Kirchner",
+        "FPV-PJ",
+        "Front for Victory",
+    )
+    assert info["candidates"] == [
+        {"name": "Carlos Menem", "party": "Justicialist Party", "party_article": "Justicialist Party"}
+    ]
 
 
 def test_read_infobox_ignores_a_speaker_in_after_election():

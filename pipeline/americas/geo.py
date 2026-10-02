@@ -36,6 +36,9 @@ TERRITORIES = [
     "ABW", "AIA", "BLM", "BMU", "CUW", "CYM", "FLK", "MAF", "MSR", "PRI", "SPM", "SXM", "TCA", "VGB", "VIR",
 ]  # fmt: skip
 FRENCH_GUIANA = "FR-GF"  # part of France in Natural Earth, drawn as a territory
+# Natural Earth gives Bogotá the code of the department around it (CO-CUN), so their
+# results would overwrite each other. Keyed by Natural Earth's adm1_code.
+CODE_FIXES = {"COL-1399": "CO-DC"}
 
 
 def unwrap(coords):
@@ -60,6 +63,7 @@ def main() -> int:
         if p["adm0_a3"] not in wanted and p["iso_3166_2"] != FRENCH_GUIANA:
             continue
         props = {k: p[k] for k in KEEP}
+        props["iso_3166_2"] = CODE_FIXES.get(p["adm1_code"], p["iso_3166_2"])
         if p["iso_3166_2"] == FRENCH_GUIANA:
             props["adm0_a3"] = "GUF"
         props["country"] = props.pop("adm0_a3")

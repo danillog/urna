@@ -21,3 +21,9 @@ set:
   2005 Surinamese general election: { winner: Ronald Venetiaan, party: National Party of Suriname, party_article: National Party of Suriname }
   2010 Surinamese general election: { winner: Dési Bouterse, party: National Democratic Party (Suriname), party_article: National Democratic Party (Suriname) }
   2015 Surinamese general election: { winner: Dési Bouterse, party: National Democratic Party (Suriname), party_article: National Democratic Party (Suriname) }
+
+# Elections whose by-region table must not be used.
+no_regions:
+  # The by-state table is the opposition's tally of tally sheets (González ahead),
+  # not the official result the map shows.
+  - 2024 Venezuelan presidential election

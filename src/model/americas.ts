@@ -12,6 +12,12 @@ export interface AmericasElection {
   /** Where the family comes from: survey score, Wikipedia position or a reasoned call. */
   familySource?: string;
   status?: "annulled" | "disputed";
+  /** Results by state/province, when a source has them: code → [winner, share, runner-up, share]
+   * (indexes into regionCandidates, shares in tenths of a percent). */
+  regions?: Record<string, [number, number, number, number]>;
+  regionCandidates?: { name: string; family: Family | null }[];
+  /** "TSE", or "en:Article" / "es:Artículo" for Wikipedia. */
+  regionSource?: string;
 }
 
 export interface Country {
@@ -55,4 +61,14 @@ export function countByFamily(data: AmericasData, year: number): Map<Family, num
     if (f) counts.set(f, counts.get(f)! + 1);
   }
   return counts;
+}
+
+/** Family shown for one region: its local winner when there are results by region,
+ * otherwise the country's national result. */
+export function regionFamily(country: Country, year: number, code: string): Family | null {
+  const e = electionAt(country, year);
+  if (!e || e.status === "annulled") return null;
+  const row = e.regions?.[code];
+  if (row) return e.regionCandidates?.[row[0]]?.family ?? null;
+  return e.family ?? null;
 }

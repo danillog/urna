@@ -1,0 +1,21 @@
+# Candidates who won a state/province but are not in the election infobox (which
+# usually lists only the top two). Surname as the results table writes it → the
+# key of their party in parties.yaml.
+
+ARG:
+  Carrió: Civic Coalition ARI
+  Saá: Federal Peronism         # Rodríguez Saá: FREJULI (2007), Compromiso Federal (2011)
+  Lavagna: Radical Civic Union  # ran in 2007 for UNA, backed by the UCR
+  Alfonsín: Radical Civic Union
+BOL:
+  Quiroga: Social Democratic Power
+CHL:
+  Kast: Republican Party of Chile
+COL:
+  Serpa: Colombian Liberal Party
+  Mockus: Green Alliance (Colombia)
+  Gutiérrez: Team for Colombia
+PER:
+  López Aliaga: Popular Renewal
+PRY:
+  Cubas: National Crusade
