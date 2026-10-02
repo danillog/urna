@@ -1,0 +1,24 @@
+# Party colors for the mayor map.
+#
+# A lineage keeps one color through renames, so the timeline shows continuity:
+# the PFL of 2000 and the União of 2024 share a color. Each member is an
+# acronym as the TSE wrote it in that election. `since` limits a member to
+# elections from that year on, for acronyms that were reused by a different
+# party (the PSD of the 1990s is not the PSD founded in 2011).
+#
+# Mergers are not renames: PSL joined DEM to form União Brasil in 2022, but
+# PSL mayors elected before that are not colored as União.
+#
+# Parties not listed here are drawn in gray as "others".
+
+PT: { color: red, members: [PT] }
+MDB: { color: green, members: [PMDB, MDB] }
+PSDB: { color: sky, members: [PSDB] }
+UNIÃO: { color: cyan, members: [PFL, DEM, UNIÃO] }
+PP: { color: violet, members: [PPR, PPB, PP] }
+PL: { color: blue, members: [PL, PR] }
+PSD: { color: orange, members: [{ party: PSD, since: 2011 }] }
+PSB: { color: gold, members: [PSB] }
+PDT: { color: pink, members: [PDT] }
+PTB: { color: brown, members: [PTB] }
+REPUBLICANOS: { color: teal, members: [PRB, REPUBLICANOS] }

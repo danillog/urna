@@ -1,11 +1,42 @@
 # Presidential elections: the single source of truth for dates, official
 # results, candidate metadata, timeline events and the context shown on the page.
 #
+# Elections without `rounds` (1994–2006) have no poll data: they only name and
+# color the candidates on the municipality map.
+#
 # Colors are names from the page palette: blue, gold, red, teal, violet, gray.
 # `wikipedia` (election) is the "Opinion polling for ..." page the crawler reads;
 # `wikipedia` (candidate) is how that page labels the candidate, when it differs.
 # Results are TSE shares of valid votes. Copy (context, notes, event labels)
 # is Portuguese because it is rendered as-is on the page.
+
+"1994":
+  candidates:
+    FHC: { party: PSDB, color: blue }
+    Lula: { party: PT, color: red }
+    Enéas: { party: PRONA, color: gold }
+    Quércia: { party: PMDB, color: green }
+    Brizola: { party: PDT, color: pink }
+
+"1998":
+  candidates:
+    FHC: { party: PSDB, color: blue }
+    Lula: { party: PT, color: red }
+    Ciro: { party: PPS, color: gold }
+
+"2002":
+  candidates:
+    Lula: { party: PT, color: red }
+    Serra: { party: PSDB, color: blue }
+    Garotinho: { party: PSB, color: teal }
+    Ciro: { party: PPS, color: gold }
+
+"2006":
+  candidates:
+    Lula: { party: PT, color: red }
+    Alckmin: { party: PSDB, color: blue }
+    Heloísa Helena: { party: PSOL, color: violet }
+    Cristovam: { party: PDT, color: pink }
 
 "2010":
   context: >-

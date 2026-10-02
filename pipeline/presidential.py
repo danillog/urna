@@ -69,6 +69,8 @@ def build_round(
 def build_presidential(elections: dict, raw_dir: Path, pollsters: PollsterRegistry) -> dict:
     out = {}
     for year_key, election in elections.items():
+        if not election.get("rounds"):  # map-only entry: candidates, no poll data
+            continue
         year = int(year_key)
         out[year_key] = {
             "year": year,

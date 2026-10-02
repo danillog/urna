@@ -72,11 +72,36 @@ export const t = {
 
   pollsHead: ["Instituto", "Data", "Amostra"],
 
+  views: {
+    polls: {
+      eyebrow: "Eleições no Brasil · pesquisas agregadas",
+      headline: "Evolução das intenções de voto",
+      lede: "Cada ponto é uma pesquisa publicada. A linha é a média suavizada de todas elas e a faixa mostra a dispersão típica entre institutos. O losango na data da eleição marca o resultado oficial.",
+    },
+    map: {
+      eyebrow: "Eleições no Brasil · resultados oficiais do TSE",
+      headline: "O voto em cada município",
+      lede: "Quem venceu em cada um dos 5.570 municípios, de 1994 até hoje, para presidente e para prefeito. Dê play para ver o mapa mudar de cor eleição a eleição, ou clique num partido para acompanhá-lo no tempo.",
+    },
+  },
+  mapTitlePresident: (year: number, round: string) => `Presidente · ${year} · ${round}`,
+  mapTitleMayor: (year: number) => `Prefeitos eleitos em ${year}`,
   mapAria: (title: string) => `Mapa do resultado por município: ${title}`,
-  mapWins: (candidate: string, n: string) => `${candidate} venceu em ${n}`,
+  mapMunicipalities: (n: string) => `${n} municípios com resultado`,
   mapMargin: (steps: string) => `Vantagem sobre o 2º colocado, em p.p.: ${steps}`,
   mapVotes: (n: string) => `${n} votos válidos`,
-  mapNoData: "Município criado depois desta eleição",
+  mapMayorElected: (year: number) => `Prefeito eleito em ${year}`,
+  mapUnopposed: "Candidato único",
+  mapNoData: "Sem resultado nesta eleição: o município ainda não existia ou não elege prefeito",
+  mapNoRunoff: "Eleição decidida no 1º turno",
+  mapOthers: "Outros partidos",
+  mapFocus: "Clique para destacar no mapa; clique de novo para voltar",
+  mapPlay: "Reproduzir as eleições em sequência",
+  mapPause: "Pausar",
+  mapNotePresident:
+    "Cor de quem venceu em cada município; quanto mais forte, maior a vantagem. Votos válidos apurados pelo TSE; votos do exterior não entram no mapa.",
+  mapNoteMayor:
+    "Cor do partido do prefeito eleito (resultado do 2º turno onde houve). Partidos que mudaram de nome mantêm a cor: PFL → DEM → União, PMDB → MDB, PPR → PPB → PP, PR → PL, PRB → Republicanos. Brasília e Fernando de Noronha não elegem prefeito.",
 
   stateSummary: (polls: number, office: string, state: string, pollsters: number) =>
     `${plural(polls, "pesquisa", "pesquisas")} de ${office} em ${state}, de ${plural(pollsters, "instituto", "institutos")}.`,

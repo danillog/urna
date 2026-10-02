@@ -1,10 +1,11 @@
 import "./styles.css";
 
 import dataset from "../data/generated/elections.json";
-// Imported as text: type inference over 2 MB of coordinates would stall the compiler.
+// Imported as text: type inference over megabytes of coordinates would stall the compiler.
 import mapJson from "../data/generated/map.json?raw";
 import { formatDate, formatIsoDate, dayToDate } from "./format";
 import { t } from "./i18n/pt-BR";
+import { MapData } from "./model/map-data";
 import { buildView } from "./model/view";
 import { fromSearch, raceFor, toSearch, type AppState } from "./state";
 import type { Dataset, MunicipalMap } from "./types";
@@ -13,18 +14,65 @@ import { renderContext } from "./ui/context";
 import { renderControls, setupControls } from "./ui/controls";
 import { byId } from "./ui/dom";
 import { renderLegend } from "./ui/legend";
-import { renderMap } from "./ui/map";
+import { MapView, mapFromSearch, mapToSearch } from "./ui/map-view";
 import { renderAccuracy, renderComparison, renderHighlightBar, renderPollTable } from "./ui/tables";
 
+type View = "polls" | "map";
+
 const data = dataset as unknown as Dataset;
-const municipalMap = JSON.parse(mapJson) as MunicipalMap;
-let state: AppState = fromSearch(data, window.location.search);
+const params = new URLSearchParams(window.location.search);
+let view: View = params.get("view") === "map" ? "map" : "polls";
+let state: AppState = fromSearch(data, view === "polls" ? window.location.search : "");
+
+// The map data is parsed the first time the map tab opens.
+let municipalMap: MunicipalMap | null = null;
+let mapView: MapView | null = null;
+
+function ensureMap(): MapView {
+  if (!mapView) {
+    municipalMap = JSON.parse(mapJson) as MunicipalMap;
+    const mapData = new MapData(municipalMap);
+    const initial = mapFromSearch(mapData, view === "map" ? params : new URLSearchParams());
+    mapView = new MapView(mapData, initial, () => {
+      syncUrl();
+      mapView!.render(municipalMap!);
+    });
+  }
+  return mapView;
+}
+
+function syncUrl(): void {
+  let search: string;
+  if (view === "map" && mapView) {
+    const p = new URLSearchParams({ view: "map" });
+    mapToSearch(mapView.current, p);
+    search = `?${p.toString()}`;
+  } else {
+    search = toSearch(data, state);
+  }
+  window.history.replaceState(null, "", search || window.location.pathname);
+}
 
 function update(next: AppState): void {
   state = next;
-  const url = toSearch(data, state) || window.location.pathname;
-  window.history.replaceState(null, "", url);
-  render();
+  syncUrl();
+  renderPolls();
+}
+
+function showView(next: View): void {
+  view = next;
+  if (view !== "map") mapView?.stop();
+  for (const v of ["polls", "map"] as const) {
+    byId(`${v}-view`).hidden = v !== view;
+    byId(`tab-${v}`).setAttribute("aria-selected", String(v === view));
+  }
+  const copy = t.views[view];
+  byId("eyebrow").textContent = copy.eyebrow;
+  byId("headline").textContent = copy.headline;
+  byId("lede").textContent = copy.lede;
+  if (view === "map") ensureMap().render(municipalMap!);
+  else renderPolls();
+  syncUrl();
 }
 
 function chartTitle(s: AppState, date: string): string {
@@ -33,56 +81,54 @@ function chartTitle(s: AppState, date: string): string {
   return t.chartTitleState(t.office[s.office], data.states[s.uf]!.name, round, date);
 }
 
-function render(): void {
+function renderPolls(): void {
+  if (view !== "polls") return;
   const race = raceFor(data, state)!;
-  const view = buildView(data, race, state);
-  if (state.highlight && !view.polls.some((p) => p.p === state.highlight))
+  const pollsView = buildView(data, race, state);
+  if (state.highlight && !pollsView.polls.some((p) => p.p === state.highlight))
     state = { ...state, highlight: null };
   const year = Number(race.date.slice(0, 4));
   const title = chartTitle(state, formatIsoDate(race.date));
 
   renderControls(data, state, update);
-  renderHighlightBar(data, view, state, update);
+  renderHighlightBar(data, pollsView, state, update);
   byId("chart-title").textContent = title;
-  const days = view.polls.map((p) => p.d);
+  const days = pollsView.polls.map((p) => p.d);
   const span = days.length
     ? [Math.min(...days), Math.max(...days)].map((d) => formatDate(dayToDate(year, d)))
     : ["—", "—"];
   byId("chart-meta").textContent = t.chartMeta(
-    view.polls.length,
-    new Set(view.polls.map((p) => p.p)).size,
+    pollsView.polls.length,
+    new Set(pollsView.polls.map((p) => p.p)).size,
     span[0]!,
     span[1]!,
   );
-  renderLegend(view);
-  renderChart(byId("chart"), view, {
+  renderLegend(pollsView);
+  renderChart(byId("chart"), pollsView, {
     year,
     title,
     events: state.office === "president" ? data.presidential[state.year]!.events : [],
     highlight: state.highlight,
   });
-  renderMap(
-    municipalMap,
-    state.office === "president" ? municipalMap.races[`${state.year}-${state.round}`] : undefined,
-    title,
-  );
-  renderComparison(view, year);
-  renderAccuracy(data, view, state, year, update);
-  renderPollTable(view, year);
+  renderComparison(pollsView, year);
+  renderAccuracy(data, pollsView, state, year, update);
+  renderPollTable(pollsView, year);
   renderContext(data, race, state);
 }
 
 setupControls(data, () => state, update);
-render();
+for (const v of ["polls", "map"] as const) byId(`tab-${v}`).addEventListener("click", () => showView(v));
+showView(view);
 
-// Colors are read from CSS variables, so redraw on resize and on theme changes.
+// The chart reads colors from CSS variables, so redraw it on resize and theme changes.
+// (The map is colored by CSS classes and follows the theme on its own.)
 let resizeTimer: number | undefined;
 window.addEventListener("resize", () => {
   window.clearTimeout(resizeTimer);
-  resizeTimer = window.setTimeout(render, 150);
+  resizeTimer = window.setTimeout(renderPolls, 150);
 });
-window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", render);
-new MutationObserver(render).observe(document.documentElement, {
+window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", renderPolls);
+new MutationObserver(renderPolls).observe(document.documentElement, {
   attributes: true,
   attributeFilter: ["data-theme"],
 });

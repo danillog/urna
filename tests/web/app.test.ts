@@ -52,20 +52,6 @@ describe("app", () => {
     expect(($("round-r2") as HTMLButtonElement).disabled).toBe(true); // no Senate runoff
   });
 
-  it("shows the municipality map only for presidential races with results", () => {
-    click("office-president");
-    click("year-2022");
-    click("round-r2");
-    expect($("map-panel").hidden).toBe(false);
-    expect($("map").querySelectorAll(".municipalities path").length).toBeGreaterThan(5500);
-    expect($("map-meta").textContent).toMatch(/Lula venceu em [\d.]+ · Bolsonaro venceu em [\d.]+/);
-    click("year-2026");
-    expect($("map-panel").hidden).toBe(true);
-    click("year-2022");
-    click("office-governor");
-    expect($("map-panel").hidden).toBe(true);
-  });
-
   it("excludes a pollster and highlights another", () => {
     click("office-president");
     click("year-2022");
@@ -77,5 +63,31 @@ describe("app", () => {
     expect($("hl-bar").hidden).toBe(false);
     click("hl-clear");
     expect($("hl-bar").hidden).toBe(true);
+  });
+  it("opens the map tab and steps through elections", () => {
+    click("tab-map");
+    expect($("map-view").hidden).toBe(false);
+    expect($("polls-view").hidden).toBe(true);
+    expect(window.location.search).toContain("view=map");
+    expect($("map").querySelectorAll(".municipalities path").length).toBeGreaterThan(5500);
+
+    click("map-office-mayor");
+    expect($("map-title").textContent).toMatch(/Prefeitos eleitos em \d{4}/);
+    expect($("map-round-group").hidden).toBe(true);
+    const years = [...$("map-years").querySelectorAll("button")].map((b) => b.textContent);
+    expect(years[0]).toBe("1996");
+
+    ($("map-years").querySelector("button") as HTMLButtonElement).click();
+    expect($("map-title").textContent).toBe("Prefeitos eleitos em 1996");
+    ($("map-legend").querySelector("button") as HTMLButtonElement).click();
+    expect($("map").classList.contains("focusing")).toBe(true);
+    expect(window.location.search).toContain("focus=");
+
+    click("map-office-president"); // 1994 and 1998 are equally near 1996: the later one wins
+    expect($("map-title").textContent).toBe("Presidente · 1998 · 1º turno");
+    expect(($("map-round-r2") as HTMLButtonElement).disabled).toBe(true);
+
+    click("tab-polls");
+    expect($("polls-view").hidden).toBe(false);
   });
 });

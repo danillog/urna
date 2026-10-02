@@ -13,12 +13,14 @@ Every published poll for Brazil's presidential, governor and Senate races, a smo
 - **Nearly 1,400 polls**: president 2010–2026 (both rounds), plus 2026 governor and Senate races in all 27 states.
 - **Live re-averaging.** Turn pollsters or interview methods (in person, phone, online) on and off, and the trend lines are recomputed in the browser.
 - **Polls vs. ballot box.** For past elections, the final average is converted to valid votes and compared with the official TSE result.
-- **Results by municipality.** A map of all 5,570 municipalities for every past presidential round, shaded by the winner's margin, with the numbers on hover.
+- **Map tab: 30 years of results by municipality.** All 5,570 municipalities for every presidential round since 1994 and every mayor election since 1996. Press play to watch the map change election by election, or click a party to follow it through time (say, where the PT won city halls from 1996 to 2024).
 - **Pollster accuracy.** Each pollster's last poll before election day is scored. For the current election, the table shows each pollster's track record since 2010.
 - **Shareable views.** The selection lives in the URL, e.g. [`?office=governor&uf=SP`](https://danillogomes.com/urna/?office=governor&uf=SP) or [`?year=2022&exclude=Gerp,Palver`](https://danillogomes.com/urna/?year=2022&exclude=Gerp,Palver).
 - **Accessible and themable.** Keyboard navigation, a full data table, colorblind-safe palette, light and dark mode.
 
 ![2014 runoff by municipality: Dilma in red, Aécio in blue, darker where the margin was wider](docs/map.png)
+
+**Live links:** [mayors elected in 2024](https://danillogomes.com/urna/?view=map&office=mayor&year=2024) · [the PT's city halls since 1996](https://danillogomes.com/urna/?view=map&office=mayor&year=1996&focus=PT) · [2002 runoff](https://danillogomes.com/urna/?view=map&office=president&year=2002&round=r2)
 
 ## How it works
 
@@ -42,7 +44,7 @@ flowchart LR
 | `data/` | YAML, CSV, JSON | The only source of truth: polls, dates, results, parties, colors, events, context. |
 | `pipeline/` | Python 3.11, PyYAML | Validates every poll (dates, duplicates, rounding-aware sums), normalizes pollster names, scores accuracy, writes `elections.json`. |
 | `src/` | TypeScript, d3 modules | Smoothing, state and URL sync, chart and tables. Copy lives in `src/i18n/pt-BR.ts`. |
-| build | Vite + `vite-plugin-singlefile` | Inlines scripts, styles, data and map into one file: 2.4 MB, 760 KB gzipped. |
+| build | Vite + `vite-plugin-singlefile` | Inlines scripts, styles, data and map into one file: 4 MB, 1.6 MB gzipped. The map data is parsed only when its tab opens. |
 
 The generated dataset is committed. The web app builds without Python, and CI fails if the dataset is stale.
 
@@ -90,7 +92,7 @@ npm run check        # typecheck, tests, lint, dataset freshness
 | `npm run build` | Typecheck and build `dist/index.html` |
 | `npm run crawler` | Find new polls (see below) and regenerate the dataset |
 | `npm run data` | Validate sources and regenerate the dataset |
-| `npm run map` | Download TSE results (≈1.6 GB, streamed) and rebuild the municipality map |
+| `npm run map` | Download TSE results not yet cached (≈2.5 GB in total) and rebuild the municipality map |
 | `npm test` / `npm run test:data` | Vitest (web) / pytest (pipeline) |
 | `npm run check` | Everything CI runs |
 
@@ -130,7 +132,14 @@ A new pollster's alias and interview method go in `data/pollsters.yaml`. A new e
 
 ### Municipality map
 
-`npm run map` downloads the TSE results per municipality and the IBGE boundaries (TopoJSON, minimum quality), then writes `data/generated/map.json`. TSE and IBGE number municipalities differently. Codes are matched by state and name, ignoring accents and punctuation. The 12 names that differ, such as renamed towns or spellings like *Santa Isabel / Santa Izabel do Pará*, are pinned in `data/municipalities.yaml`. All 5,570 municipalities match, and national totals reproduce the official results. Shares are of valid votes cast in Brazil; votes cast abroad are left out of the map.
+`npm run map` downloads the TSE results per municipality and the IBGE boundaries (TopoJSON, minimum quality), then writes `data/generated/map.json`. It covers president from 1994 and mayor from 1996; 1989 has no per-municipality file in TSE open data.
+
+- **Matching municipalities.** TSE and IBGE number municipalities differently, so codes are matched by state and name, ignoring accents and punctuation. The 12 names that differ, such as renamed towns or spellings like *Santa Isabel / Santa Izabel do Pará*, are pinned in `data/municipalities.yaml`. All 5,570 municipalities match. Those created after an election show as "no result".
+- **Checked against official totals.** National totals reproduce the official presidential results in every round from 1994 to 2022.
+- **Votes counted.** Shares are of valid votes cast in Brazil; votes cast abroad are left out.
+- **Mayors.** Each municipality shows the candidate the TSE marks as elected, which is not always the most voted (ties go to the older candidate, and annulled candidacies don't count). Where there was a runoff, its result is used. The current TSE files already include court decisions and supplementary elections, so counts can differ slightly from what was reported on election night.
+- **Party colors** come from `data/parties.yaml`. A party keeps its color through renames (PFL → DEM → União, PMDB → MDB, PPR → PPB → PP, PR → PL, PRB → Republicanos), so the timeline shows continuity. Mergers don't carry a color over. Parties without a lineage there are gray.
+- **Storage.** Per-municipality numbers are stored as base64 typed arrays to keep the single file small.
 
 ## Project layout
 
@@ -142,6 +151,7 @@ data/
   raw/presidential/     one CSV per year and round
   raw/states/           one JSON per state (format in SPEC.md)
   municipalities.yaml   TSE → IBGE codes for names that differ
+  parties.yaml          party lineages and colors for the mayor map
   generated/            elections.json and map.json, built by the pipeline
 pipeline/               Python data pipeline + TSE results downloader
 src/
@@ -171,8 +181,8 @@ tests/
 
 ## Roadmap
 
-- [x] Municipality map of presidential results, 2010–2022.
-- [ ] 2026 results on the map, once the TSE publishes them per municipality.
+- [x] Municipality map: president 1994–2022 and mayor 1996–2024, with a timeline.
+- [ ] 2026 results on the map, once the TSE publishes them per municipality (`uv run python -m pipeline.fetch_tse_results 2026`, then `npm run map`).
 - [ ] Swing map: how each municipality moved between two elections.
 - [ ] Win probability via Monte Carlo simulation, using each pollster's historical error.
 - [ ] English version of the interface.

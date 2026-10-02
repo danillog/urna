@@ -16,6 +16,12 @@
   --c-teal: #13936a;
   --c-violet: #6a4fc4;
   --c-gray: #8a9099;
+  --c-green: #3d8b2f;
+  --c-sky: #4a9fdc;
+  --c-cyan: #0f9aa8;
+  --c-orange: #e0701b;
+  --c-pink: #cf4f93;
+  --c-brown: #8c5a32;
   --display: "Barlow Condensed", "Arial Narrow", "Roboto Condensed", system-ui, sans-serif;
   --body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
 }
@@ -39,6 +45,12 @@
     --c-teal: #199e70;
     --c-violet: #9085e9;
     --c-gray: #8b919b;
+    --c-green: #57a845;
+    --c-sky: #6cb4ea;
+    --c-cyan: #2db4c2;
+    --c-orange: #ef8a3a;
+    --c-pink: #e06aaa;
+    --c-brown: #b07a4e;
   }
 }
 :root[data-theme="dark"] {
@@ -60,6 +72,12 @@
   --c-teal: #199e70;
   --c-violet: #9085e9;
   --c-gray: #8b919b;
+  --c-green: #57a845;
+  --c-sky: #6cb4ea;
+  --c-cyan: #2db4c2;
+  --c-orange: #ef8a3a;
+  --c-pink: #e06aaa;
+  --c-brown: #b07a4e;
 }
 * {
   box-sizing: border-box;
@@ -541,7 +559,94 @@ table.clickable tbody tr:focus-visible {
   flex: 1 1 100%;
 }
 
-/* Municipality map. Fill = winner's color mixed with the surface by margin. */
+/* Tabs */
+.tabs {
+  display: flex;
+  gap: 4px;
+  border-bottom: 1px solid var(--line);
+}
+.tabs button {
+  font: 600 17px/1 var(--display);
+  letter-spacing: 0.02em;
+  padding: 10px 14px 12px;
+  border: 0;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -1px;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+}
+.tabs button[aria-selected="true"] {
+  color: var(--ink);
+  border-bottom-color: var(--ink);
+}
+.tabs button:focus-visible {
+  outline: 2px solid var(--c-blue);
+  outline-offset: 2px;
+}
+.view {
+  display: grid;
+  gap: 20px;
+}
+
+/* Timeline */
+.timeline {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+.play {
+  flex: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 0;
+  background: var(--chip-on);
+  color: var(--chip-on-ink);
+  font-size: 15px;
+  cursor: pointer;
+}
+.play:focus-visible {
+  outline: 2px solid var(--c-blue);
+  outline-offset: 2px;
+}
+.timeline-track {
+  flex: 1;
+  display: grid;
+  gap: 4px;
+  padding-top: 6px;
+  min-width: 0;
+}
+.timeline-track input[type="range"] {
+  width: 100%;
+  accent-color: var(--ink);
+  margin: 0;
+}
+.timeline-years {
+  display: flex;
+  justify-content: space-between;
+}
+.timeline-year {
+  font: 600 13px/1 var(--display);
+  letter-spacing: 0.02em;
+  padding: 4px 2px;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+}
+.timeline-year[aria-pressed="true"] {
+  color: var(--ink);
+  font-size: 16px;
+}
+@media (max-width: 520px) {
+  .timeline-year:not([aria-pressed="true"]) {
+    font-size: 0;
+    width: 4px;
+  }
+}
+
+/* Municipality map. Fill = the group's color, mixed with the surface by margin on the presidential map. */
 .map {
   position: relative;
   width: 100%;
@@ -555,6 +660,7 @@ table.clickable tbody tr:focus-visible {
 }
 .municipalities path {
   fill: color-mix(in srgb, var(--mc, var(--c-gray)) var(--mix, 100%), var(--surface));
+  transition: opacity 0.2s;
 }
 .municipalities path.active {
   stroke: var(--ink);
@@ -562,6 +668,9 @@ table.clickable tbody tr:focus-visible {
 }
 .municipalities path.no-data {
   fill: var(--grid);
+}
+.map.focusing .municipalities path:not(.focus):not(.active) {
+  opacity: 0.18;
 }
 .state-borders {
   fill: none;
@@ -588,6 +697,24 @@ table.clickable tbody tr:focus-visible {
 .c-gray {
   --mc: var(--c-gray);
 }
+.c-green {
+  --mc: var(--c-green);
+}
+.c-sky {
+  --mc: var(--c-sky);
+}
+.c-cyan {
+  --mc: var(--c-cyan);
+}
+.c-orange {
+  --mc: var(--c-orange);
+}
+.c-pink {
+  --mc: var(--c-pink);
+}
+.c-brown {
+  --mc: var(--c-brown);
+}
 .s0 {
   --mix: 28%;
 }
@@ -606,21 +733,36 @@ table.clickable tbody tr:focus-visible {
   width: 11px;
   height: 11px;
   border-radius: 2px;
+  flex: none;
   background: color-mix(in srgb, var(--mc, var(--c-gray)) var(--mix, 100%), var(--surface));
 }
-.map-scale {
-  display: inline-flex;
+.map-legend {
   align-items: center;
-  gap: 2px;
 }
-.map-scale .map-key:last-of-type {
-  margin-right: 6px;
+.map-chip {
+  gap: 3px;
+}
+.map-chip span:first-of-type {
+  margin-left: 4px;
+}
+.map-chip[aria-pressed="true"] {
+  border-color: var(--ink);
+  box-shadow: inset 0 0 0 1px var(--ink);
 }
 .map-steps {
   color: var(--muted);
+  font-size: 12px;
 }
 .map-note {
   margin: 0;
   color: var(--muted);
   font-size: 13px;
+}
+.tooltip .tt-foot {
+  margin: 6px 0 0;
+}
+.chip.map-chip[aria-pressed="false"] {
+  text-decoration: none;
+  color: var(--ink);
+  background: var(--surface);
 }

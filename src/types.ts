@@ -5,7 +5,20 @@ import type { GeometryCollection, Topology } from "topojson-specification";
 export type RoundId = "r1" | "r2";
 export type Office = "president" | "governor" | "senate";
 export type Method = "in_person" | "phone" | "online";
-export type ColorName = "blue" | "gold" | "red" | "teal" | "violet" | "gray";
+export type ColorName =
+  | "blue"
+  | "gold"
+  | "red"
+  | "teal"
+  | "violet"
+  | "gray"
+  // Extra colors for the party map, where many parties need telling apart.
+  | "green"
+  | "sky"
+  | "cyan"
+  | "orange"
+  | "pink"
+  | "brown";
 
 /** Series keys that are not candidates. */
 export const OTHERS = "others";
@@ -79,22 +92,27 @@ export interface Dataset {
 }
 
 /** Shape of data/generated/map.json, produced by pipeline/municipal_map.py. */
-export interface MunicipalRace {
-  /** Candidates referenced by the index arrays below. */
-  candidates: string[];
-  colors: Record<string, ColorName>;
-  /** Per municipality, in topology order. -1 when there is no data. */
-  winner: number[];
-  /** Shares in tenths of a percent of valid votes. */
-  winnerShare: number[];
-  second: number[];
-  secondShare: number[];
-  votes: number[];
+export interface EncodedMapRace {
+  /** Candidates (president) or party acronyms as written that year (mayor). */
+  labels: string[];
+  /** Base64 little-endian typed arrays, one entry per municipality in topology order. */
+  winner: string; // Uint8 index into labels, 255 = no result
+  winnerShare: string; // Uint16, tenths of a percent of valid votes
+  second: string;
+  secondShare: string;
+  votes: string; // Uint32 valid votes
+  /** President: color per candidate. */
+  colors?: Record<string, ColorName>;
+  /** Mayor: lineage key per label ("others" when not in data/parties.yaml). */
+  lineages?: string[];
+  /** Mayor: elected mayor per municipality, newline-separated. */
+  mayors?: string;
 }
 
 export interface MunicipalMap {
   municipalities: { names: string[]; uf: string[] };
+  lineages: Record<string, { color: ColorName }>;
   topology: Topology<{ municipalities: GeometryCollection }>;
-  /** Keyed "2022-r2". */
-  races: Record<string, MunicipalRace>;
+  /** Keyed "president-2022-r2" or "mayor-2020". */
+  races: Record<string, EncodedMapRace>;
 }
