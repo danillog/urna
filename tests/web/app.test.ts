@@ -98,11 +98,6 @@ describe("app", () => {
     expect($("map-title").textContent).toMatch(/IDH dos municípios no Censo de (1991|2000|2010)/);
     expect($("map").querySelectorAll(".areas path[class^='q']").length).toBeGreaterThan(5000);
     expect($("map-legend").querySelectorAll(".map-chip").length).toBe(10);
-    // After the last census only state values exist; each municipality takes its state's.
-    const idhmYears = [...$("map-years").querySelectorAll("button")];
-    (idhmYears.at(-1) as HTMLButtonElement).click();
-    expect($("map-title").textContent).toMatch(/IDH dos estados em 20\d\d/);
-    expect(idhmYears.map((b) => b.textContent)).toEqual(expect.arrayContaining(["1991", "2010", "2021"]));
 
     click("tab-polls");
     expect($("polls-view").hidden).toBe(false);

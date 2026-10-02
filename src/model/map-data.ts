@@ -85,23 +85,15 @@ export class MapData {
 
   years(office: MapOffice): number[] {
     if (office === "idhm")
-      return [...Object.keys(this.map.idhm ?? {}), ...Object.keys(this.map.idhmStates ?? {})]
+      return Object.keys(this.map.idhm ?? {})
         .map(Number)
         .sort();
     return [...new Set(this.keys(office).map((k) => parseKey(k).year))];
   }
 
-  /** Whether a year has municipal values (a census) or only state values. */
-  idhmLevel(year: number): "municipality" | "state" {
-    return this.map.idhm?.[String(year)] ? "municipality" : "state";
-  }
-
-  /** HDI per municipality in thousandths (0 = no data); in state years, each takes its state's. */
+  /** Municipal HDI in a census year, in thousandths (0 = no data). */
   idhm(year: number): Uint16Array {
-    const census = this.map.idhm?.[String(year)];
-    if (census) return new Uint16Array(bytes(census).buffer);
-    const byState = this.map.idhmStates![String(year)]!;
-    return Uint16Array.from(this.map.municipalities.uf, (uf) => Math.round((byState[uf] ?? 0) * 1000));
+    return new Uint16Array(bytes(this.map.idhm![String(year)]!).buffer);
   }
 
   rounds(year: number): RoundId[] {

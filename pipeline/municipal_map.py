@@ -34,7 +34,7 @@ import yaml
 
 from .build import DATA
 from .sources.http import get
-from .sources.ipea import UF_BY_CODE, by_territory
+from .sources.ipea import by_territory
 
 IBGE_DIR = DATA / "raw" / "ibge"
 TSE_DIR = DATA / "raw" / "tse"
@@ -347,13 +347,6 @@ def main() -> int:
         str(y): pack("H", [round(idhm.get(code, {}).get(y, 0) * 1000) for code in order]) for y in years
     }
     print(f"  IDHM: {len(idhm)} municipalities, censuses {years}")
-    # After 2010 the IDHM exists only by state (yearly, PNAD Contínua): state → value.
-    states = by_territory("IDHM", "Estados")
-    later = sorted({y for series in states.values() for y in series if y > max(years)})
-    out["idhmStates"] = {
-        str(y): {UF_BY_CODE[code]: series[y] for code, series in states.items() if y in series} for y in later
-    }
-    print(f"  IDHM by state: {later[0]}–{later[-1]}")
     text = json.dumps(out, ensure_ascii=False, separators=(",", ":")) + "\n"
     OUTPUT.write_text(text, encoding="utf-8")
     print(

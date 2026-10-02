@@ -117,6 +117,4 @@ export interface MunicipalMap {
   races: Record<string, EncodedMapRace>;
   /** Municipal HDI by census year: base64 Uint16 in thousandths, 0 = no data. */
   idhm?: Record<string, string>;
-  /** State IDHM for the years after the last census: year → state → value. */
-  idhmStates?: Record<string, Record<string, number>>;
 }
