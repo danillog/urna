@@ -160,6 +160,16 @@ BRB:
 CAN:
   Liberal: { gps: LP }
   Conservative: { gps: CPC }
+  # Party names as the results-by-province tables write them.
+  New Democratic: { gps: NDP }
+  NDP: { gps: NDP }
+  New Democrat: { gps: NDP }
+  Bloc Québécois: { gps: BQ }
+  Green: { gps: GPC }
+  Canadian Alliance: { wikipedia: Canadian Alliance }
+  Alliance: { wikipedia: Canadian Alliance }
+  Progressive Conservative: { wikipedia: Progressive Conservative Party of Canada }
+  PC: { wikipedia: Progressive Conservative Party of Canada }
 DMA:
   Dominica Labour Party: { wikipedia: Dominica Labour Party }
 GRD:

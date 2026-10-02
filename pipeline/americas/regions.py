@@ -217,6 +217,42 @@ def tables(title: str, index: dict[str, list[str]], lang: str = "en") -> list[Re
     return out
 
 
+CANADA = {"BC", "AB", "SK", "MB", "ON", "QC", "NB", "NS", "PE", "NL", "YT", "NT", "NU"}
+
+
+def canada_table(title: str) -> RegionTable | None:
+    """Canada's "results by province" table is transposed: provinces are columns and each
+    party has a "Seats:" and a "Vote:" (percent) row. The winner of a province is the
+    party with the most votes there."""
+    parser = _TableParser()
+    parser.feed(article_html(title))
+    for t in parser.tables:
+        grid = to_grid(t)
+        if not grid:
+            continue
+        header = [clean(c.text) if c else "" for c in grid[0]]
+        columns = {j: h for j, h in enumerate(header) if h in CANADA}
+        if len(columns) < 10:
+            continue
+        parties, rows = [], {}
+        for r in grid[1:]:
+            cells = [clean(c.text) if c else "" for c in r]
+            if len(cells) < 3 or not re.match(r"(popular )?vote", cells[2], re.I):
+                continue
+            party = cells[1]
+            if party in parties or re.search(r"total|other|independent", party, re.I):
+                continue
+            parties.append(party)
+            for j, abbr in columns.items():
+                v = parse_percent(cells[j]) if j < len(cells) else None
+                rows.setdefault(f"CA-{abbr}", []).append(v or 0)
+        if len(parties) >= 2:
+            table = RegionTable(parties, rows, source=f"en:{title}")
+            table.percents = {code: list(v) for code, v in rows.items()}
+            return table
+    return None
+
+
 def related_articles(title: str, lang: str = "en") -> list[str]:
     """The article itself plus linked sub-articles that may hold the results by region
     ("2012 Mexican presidential election", "Results of the … election", "Anexo:Resultados …")."""

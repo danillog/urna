@@ -18,7 +18,7 @@ import yaml
 from ..build import DATA
 from .discover import CORRECTIONS, COUNTRIES
 from .ideology import FAMILIES, resolve_all
-from .regions import ALIASES, find_table, region_index, surname_tokens
+from .regions import ALIASES, canada_table, find_table, region_index, surname_tokens
 
 ELECTIONS = DATA / "americas" / "elections.yaml"
 OUTPUT = DATA / "generated" / "americas.json"
@@ -148,6 +148,22 @@ def brazil_regions(year: str, national_family: str, families: dict) -> dict | No
     return {"regionCandidates": labels, "regions": regions, "regionSource": "TSE"}
 
 
+def canada_regions(e: dict, families: dict) -> dict | None:
+    table = canada_table(e["article"])
+    if not table:
+        return None
+    regions = {}
+    for code, shares in table.rows.items():
+        order = sorted(range(len(shares)), key=lambda k: -shares[k])
+        w, r = order[0], order[1]
+        regions[code] = [w, round(shares[w] * SCALE), r, round(shares[r] * SCALE)]
+    labels = [
+        {"name": p, "family": families["CAN"][p].family if p in families["CAN"] else None}
+        for p in table.candidates
+    ]
+    return {"regionCandidates": labels, "regions": regions, "regionSource": table.source}
+
+
 def wikipedia_regions(
     iso: str, e: dict, national_family: str, families: dict, aliases: dict, extra: dict[str, str]
 ) -> dict | None:
@@ -207,6 +223,8 @@ def main() -> int:
                 if e["article"] not in no_regions:
                     if iso == "BRA":
                         regional = brazil_regions(e["date"][:4], fam.family, families)
+                    elif iso == "CAN":
+                        regional = canada_regions(e, families)
                     else:
                         regional = wikipedia_regions(
                             iso, e, fam.family, families, aliases, extra.get(iso, {})
