@@ -12,3 +12,4 @@ pesquisas-eleitorais.html
 polls/data_min.json
 polls/data_states.json
 resultados_presidente_municipio.csv
+data/raw/tse/

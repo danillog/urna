@@ -1,0 +1,79 @@
+{
+  "uf": "GO",
+  "state": "Goiás",
+  "governor_r1": {
+    "candidates": {"Daniel Vilela": "MDB", "Marconi Perillo": "PSDB", "Wilder Morais": "PL", "Luis Cesar Bueno": "PT", "Luciana Amorim": "UP", "Danilo Pinheiro": "PCO"},
+    "polls": [
+      {"p": "Real Time Big Data", "date": "2026-03-17", "n": 1500, "method": "", "v": {"Daniel Vilela": 36, "Marconi Perillo": 26, "Wilder Morais": 13, "Luis Cesar Bueno": 4, "others": 1, "undecided": 20}},
+      {"p": "Paraná Pesquisas", "date": "2026-04-03", "n": 1310, "method": "", "v": {"Daniel Vilela": 46.6, "Marconi Perillo": 26.9, "Wilder Morais": 11.6, "Luis Cesar Bueno": 1.9, "undecided": 12.9}},
+      {"p": "Gerp", "date": "2026-04-10", "n": 1206, "method": "", "v": {"Daniel Vilela": 43, "Marconi Perillo": 21, "Wilder Morais": 16, "Luis Cesar Bueno": 5, "others": 1, "undecided": 13}},
+      {"p": "Real Time Big Data", "date": "2026-05-12", "n": 1600, "method": "", "v": {"Daniel Vilela": 40, "Marconi Perillo": 25, "Wilder Morais": 14, "Luis Cesar Bueno": 2, "others": 1, "undecided": 18}},
+      {"p": "Paraná Pesquisas", "date": "2026-07-05", "n": 1300, "method": "in_person", "v": {"Daniel Vilela": 44.4, "Marconi Perillo": 25.4, "Wilder Morais": 11.5, "Luis Cesar Bueno": 3.3, "others": 1.1, "undecided": 14.3}},
+      {"p": "Real Time Big Data", "date": "2026-07-08", "n": 1600, "method": "", "v": {"Daniel Vilela": 43, "Marconi Perillo": 26, "Wilder Morais": 16, "Luis Cesar Bueno": 5, "others": 2, "undecided": 8}},
+      {"p": "Quaest", "date": "2026-07-28", "n": 1104, "method": "", "v": {"Daniel Vilela": 37, "Marconi Perillo": 21, "Wilder Morais": 11, "Luis Cesar Bueno": 3, "Luciana Amorim": 0, "others": 1, "undecided": 27}},
+      {"p": "Paraná Pesquisas", "date": "2026-08-17", "n": 1240, "method": "", "v": {"Daniel Vilela": 45.8, "Marconi Perillo": 24.9, "Wilder Morais": 13.2, "Luis Cesar Bueno": 2.3, "Luciana Amorim": 1.1, "Danilo Pinheiro": 1.0, "undecided": 11.7}},
+      {"p": "Quaest", "date": "2026-08-26", "n": 804, "method": "", "v": {"Daniel Vilela": 37, "Marconi Perillo": 20, "Wilder Morais": 12, "Luis Cesar Bueno": 4, "Luciana Amorim": 0, "Danilo Pinheiro": 0, "undecided": 27}},
+      {"p": "Real Time Big Data", "date": "2026-08-27", "n": 1600, "method": "", "v": {"Daniel Vilela": 45, "Marconi Perillo": 22, "Wilder Morais": 17, "Luis Cesar Bueno": 6, "undecided": 10}},
+      {"p": "AtlasIntel", "date": "2026-09-01", "n": 1214, "method": "online", "v": {"Daniel Vilela": 43.5, "Marconi Perillo": 16.1, "Wilder Morais": 20.1, "Luis Cesar Bueno": 10.7, "Luciana Amorim": 0.1, "undecided": 9.6}},
+      {"p": "Paraná Pesquisas", "date": "2026-09-10", "n": 1248, "method": "", "v": {"Daniel Vilela": 45.1, "Marconi Perillo": 23.2, "Wilder Morais": 15, "Luis Cesar Bueno": 3.4, "Luciana Amorim": 1.6, "Danilo Pinheiro": 1.5, "undecided": 10.2}},
+      {"p": "Real Time Big Data", "date": "2026-09-21", "n": 1600, "method": "", "v": {"Daniel Vilela": 46, "Marconi Perillo": 18, "Wilder Morais": 19, "Luis Cesar Bueno": 8, "Luciana Amorim": 0, "Danilo Pinheiro": 0, "undecided": 9}},
+      {"p": "Quaest", "date": "2026-09-23", "n": 804, "method": "", "v": {"Daniel Vilela": 42, "Marconi Perillo": 19, "Wilder Morais": 15, "Luis Cesar Bueno": 5, "Luciana Amorim": 2, "Danilo Pinheiro": 1, "undecided": 16}},
+      {"p": "Goiás Pesquisas", "date": "2026-09-25", "n": 1250, "method": "", "v": {"Daniel Vilela": 44.6, "Marconi Perillo": 13.8, "Wilder Morais": 18.2, "Luis Cesar Bueno": 5.7, "Luciana Amorim": 1.5, "Danilo Pinheiro": 1.5, "undecided": 14.8}},
+      {"p": "Paraná Pesquisas", "date": "2026-09-27", "n": 1352, "method": "in_person", "v": {"Daniel Vilela": 45.6, "Marconi Perillo": 18.4, "Wilder Morais": 18.5, "Luis Cesar Bueno": 6.1, "Luciana Amorim": 0.9, "Danilo Pinheiro": 0.8, "undecided": 9.6}}
+    ]
+  },
+  "governor_r2": {
+    "matchup": ["Daniel Vilela", "Marconi Perillo"],
+    "candidates": {"Daniel Vilela": "MDB", "Marconi Perillo": "PSDB"},
+    "polls": [
+      {"p": "Real Time Big Data", "date": "2026-03-17", "n": 1500, "method": "", "v": {"Daniel Vilela": 47, "Marconi Perillo": 29, "undecided": 24}},
+      {"p": "Gerp", "date": "2026-04-10", "n": 1206, "method": "", "v": {"Daniel Vilela": 61, "Marconi Perillo": 26, "undecided": 13}},
+      {"p": "Real Time Big Data", "date": "2026-05-12", "n": 1600, "method": "", "v": {"Daniel Vilela": 52, "Marconi Perillo": 28, "undecided": 20}},
+      {"p": "Real Time Big Data", "date": "2026-07-08", "n": 1600, "method": "", "v": {"Daniel Vilela": 55, "Marconi Perillo": 29, "undecided": 16}},
+      {"p": "Quaest", "date": "2026-07-28", "n": 1104, "method": "", "v": {"Daniel Vilela": 52, "Marconi Perillo": 28, "undecided": 20}},
+      {"p": "Quaest", "date": "2026-08-26", "n": 804, "method": "", "v": {"Daniel Vilela": 53, "Marconi Perillo": 28, "undecided": 19}},
+      {"p": "Real Time Big Data", "date": "2026-08-27", "n": 1600, "method": "", "v": {"Daniel Vilela": 57, "Marconi Perillo": 28, "undecided": 15}},
+      {"p": "AtlasIntel", "date": "2026-09-01", "n": 1214, "method": "online", "v": {"Daniel Vilela": 57.2, "Marconi Perillo": 25.6, "undecided": 17.2}},
+      {"p": "Real Time Big Data", "date": "2026-09-21", "n": 1600, "method": "", "v": {"Daniel Vilela": 58, "Marconi Perillo": 28, "undecided": 14}},
+      {"p": "Quaest", "date": "2026-09-23", "n": 804, "method": "", "v": {"Daniel Vilela": 53, "Marconi Perillo": 27, "undecided": 20}}
+    ]
+  },
+  "senate_r1": {
+    "candidates": {"Gracinha Caiado": "UNIÃO", "Gustavo Gayer": "PL", "Zacharias Calil": "MDB", "Vanderlan Cardoso": "PSD", "Gustavo Mendanha": "PRD", "Isaura Lemos": "PSB"},
+    "note": "Consolidated 1st+2nd votes reduced to 100% (as published by Quaest and Real Time Big Data); BNI includes blank/null/undecided of the consolidated base.",
+    "polls": [
+      {"p": "Real Time Big Data", "date": "2026-07-08", "n": 1600, "method": "", "v": {"Gracinha Caiado": 26, "Gustavo Gayer": 15, "Zacharias Calil": 12, "Vanderlan Cardoso": 9, "Gustavo Mendanha": 13, "Isaura Lemos": 5, "others": 13, "undecided": 7}},
+      {"p": "Quaest", "date": "2026-07-28", "n": 1104, "method": "", "v": {"Gracinha Caiado": 20, "Gustavo Gayer": 9, "Zacharias Calil": 9, "Vanderlan Cardoso": 10, "Gustavo Mendanha": 6, "others": 3, "undecided": 43}},
+      {"p": "Quaest", "date": "2026-08-26", "n": 804, "method": "", "v": {"Gracinha Caiado": 21, "Gustavo Gayer": 12, "Zacharias Calil": 9, "Vanderlan Cardoso": 9, "Gustavo Mendanha": 6, "Isaura Lemos": 3, "others": 6, "undecided": 34}},
+      {"p": "Real Time Big Data", "date": "2026-08-27", "n": 1600, "method": "", "v": {"Gracinha Caiado": 27, "Gustavo Gayer": 17, "Zacharias Calil": 12, "Vanderlan Cardoso": 10, "Gustavo Mendanha": 12, "Isaura Lemos": 5, "others": 10, "undecided": 7}},
+      {"p": "Real Time Big Data", "date": "2026-09-21", "n": 1600, "method": "", "v": {"Gracinha Caiado": 23, "Gustavo Gayer": 20, "Zacharias Calil": 13, "Vanderlan Cardoso": 8, "Gustavo Mendanha": 12, "Isaura Lemos": 5, "others": 12, "undecided": 7}},
+      {"p": "Quaest", "date": "2026-09-23", "n": 804, "method": "", "v": {"Gracinha Caiado": 21, "Gustavo Gayer": 13, "Zacharias Calil": 12, "Vanderlan Cardoso": 8, "Gustavo Mendanha": 8, "Isaura Lemos": 3, "others": 5, "undecided": 30}}
+    ]
+  },
+  "notes": "PT candidate changed from Adriana Accorsi to Luis Cesar Bueno (June 2026). Governor rows use the scenario with Bueno; polls whose only scenarios had Accorsi were skipped (Quaest 24-28 Apr: Vilela 33, Perillo 21, Accorsi 10, Morais 9, BNI 27). RTBD 2026-03-17, Paraná 2026-04-03, Gerp 2026-04-10 and RTBD 2026-05-12 rows are from their Bueno scenarios (Bueno polled 2-5% there vs ~10% for Accorsi). Paraná Pesquisas 15-17 May 2026 dropped: its Bueno scenario as published sums to 106.5% (Bueno 10.5% looks like a typo) and its other scenario has Accorsi. RTBD 2026-07-08 uses scenario 1 (with Telêmaco Brandão/Novo, who later did not run); Quaest 2026-07-28 included Cíntia Dias (PSOL) for governor (counted in Outros; she later ran for Senate). Paraná 25-27 Sep: Gazeta only showed valid votes; total-vote numbers taken from CNN Brasil/Jornal Opção (sum 99.9). Goiás Pesquisas (local institute, 24-25 Sep) from transmissaopolitica.com.br. Quaest samples: 1,104 (Jul) and 804 (Aug, Sep) as reported. PCO candidate is listed by TSE as 'Danilo da Silva' but polls call him 'Danilo Pinheiro' (Evangelista da Silva). gov_t2: Vilela x Perillo and Vilela x Morais were polled equally often; Perillo chosen as he was 2nd in most 2026 polls, but in late-September polls Morais and Perillo are tied for 2nd. Quaest Apr 2t (46/37 + 27 BNI = 110) dropped as inconsistent. Senate: Paraná Pesquisas (May, Jul, Aug, Sep) publishes sum of both votes (>100%) and Gerp Apr publishes 1st/2nd vote separately, so they were excluded for convention consistency (Paraná 8-10 Sep sum-of-two: Gracinha 42.7, Gayer 27.6, Calil 22.0, Vanderlan 21.6, Mendanha 18.3). Senate polls from Mar-May (RTBD Mar/May, Quaest Apr) skipped: they featured Alexandre Baldy and Delegado Humberto Teófilo (not in final field) and lacked Mendanha. Quaest Jul had minor PSOL/PCdoB/PDT/PV names later not running (in Outros). No Jan-Feb 2026 polls found.",
+  "sources": [
+    "https://en.wikipedia.org/wiki/2026_Goi%C3%A1s_general_election",
+    "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-governador-senador-goias-marco-2026/",
+    "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/parana-pesquisas-governador-senador-goias-abril-2026/",
+    "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/gerp-governador-senador-goias-abril-2026/",
+    "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/genial-quaest-governador-senador-goias-abril-2026/",
+    "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-governador-senador-goias-abril-2026/",
+    "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/parana-pesquisas-governador-senador-goias-maio-2026/",
+    "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/parana-pesquisas-governador-senador-goias-julho-2026/",
+    "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-governador-senador-goias-julho-2026/",
+    "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/genial-quaest-governador-senador-goias-julho-2026/",
+    "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/parana-pesquisas-governador-senador-goias-agosto-2026/",
+    "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-governador-senador-goias-agosto-2026/",
+    "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-governador-senador-goias-agosto-2026/",
+    "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/atlasintel-governador-senador-goias-setembro-2026/",
+    "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/parana-pesquisas-governador-senado-goias-setembro-2026/",
+    "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-governador-senador-goias-setembro-2026/",
+    "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-governador-senador-goias-setembro-2026/",
+    "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/parana-pesquisas-governador-goias-setembro-2026/",
+    "https://www.cnnbrasil.com.br/eleicoes/parana-pesquisas-em-go-vilela-tem-456-morais-185-e-perillo-184/",
+    "https://www.jornalopcao.com.br/ultimas-noticias/parana-pesquisas-daniel-vilela-tem-456-para-o-governo-de-goias-wilder-e-marconi-aparecem-com-18-872888/",
+    "https://transmissaopolitica.com.br/politica-goiana/2026/09/27/daniel-vilela-lidera-pesquisa-goias-44-6/",
+    "https://www.maisgoias.com.br/politica/atlasintel-daniel-vilela-lidera-com-435-wilder-tem-201-e-marconi-161/",
+    "https://www.poder360.com.br/poder-eleicoes-2026/vilela-vence-marconi-e-wilder-no-2o-turno-em-goias-diz-pesquisa/"
+  ]
+}

@@ -1,0 +1,142 @@
+# Presidential elections: the single source of truth for dates, official
+# results, candidate metadata, timeline events and the context shown on the page.
+#
+# Colors are names from the page palette: blue, gold, red, teal, violet, gray.
+# Results are TSE shares of valid votes. Copy (context, notes, event labels)
+# is Portuguese because it is rendered as-is on the page.
+
+"2010":
+  context: >-
+    Primeira eleição sem Lula na urna desde 1989. Dilma Rousseff, desconhecida
+    no início do ano, começa atrás de José Serra e passa à frente entre julho e
+    agosto, com o horário eleitoral e a popularidade de Lula. Marina Silva
+    cresce na reta final e leva a disputa ao 2º turno.
+  candidates:
+    Dilma: { party: PT, color: red }
+    Serra: { party: PSDB, color: blue }
+    Marina: { party: PV, color: teal }
+  events:
+    - { date: 2010-08-17, label: Horário eleitoral }
+  rounds:
+    r1:
+      date: 2010-10-03
+      result: { Dilma: 46.91, Serra: 32.61, Marina: 19.33 }
+      winner: Dilma
+    r2:
+      date: 2010-10-31
+      result: { Dilma: 56.05, Serra: 43.95 }
+      winner: Dilma
+
+"2014":
+  context: >-
+    Eduardo Campos morre num acidente aéreo em 13 de agosto. Marina Silva, sua
+    vice, assume a candidatura do PSB e dispara, chegando a empatar com Dilma.
+    Nas últimas semanas, Marina cai e Aécio Neves se recupera, indo ao 2º turno.
+    A virada tardia de Aécio no 1º turno foi maior do que as pesquisas captaram.
+  candidates:
+    Dilma: { party: PT, color: red }
+    Aécio: { party: PSDB, color: blue }
+    Campos: { party: PSB, color: gold }
+    Marina: { party: PSB, color: teal }
+  events:
+    - { date: 2014-08-13, label: Morte de Campos }
+    - { date: 2014-08-20, label: Marina assume, row: 1 }
+  rounds:
+    r1:
+      date: 2014-10-05
+      result: { Dilma: 41.59, Aécio: 33.55, Marina: 21.32 }
+      winner: Dilma
+    r2:
+      date: 2014-10-26
+      result: { Dilma: 51.64, Aécio: 48.36 }
+      winner: Dilma
+      # The only available source for this runoff publishes valid votes.
+      valid_votes_only: true
+
+"2018":
+  context: >-
+    Lula, preso desde abril, lidera os cenários em que aparece até o TSE barrar
+    sua candidatura em 31 de agosto. Bolsonaro é esfaqueado em 6 de setembro, e
+    em 11 de setembro Fernando Haddad assume a chapa do PT. Bolsonaro terminou o
+    1º turno bem acima da média das pesquisas, mesmo em votos válidos.
+  candidates:
+    Bolsonaro: { party: PSL, color: blue }
+    Lula: { party: PT, color: red, dashed: true }
+    Haddad: { party: PT, color: red }
+    Ciro: { party: PDT, color: gold }
+    Alckmin: { party: PSDB, color: violet }
+    Marina: { party: Rede, color: teal }
+  events:
+    - { date: 2018-08-31, label: TSE barra Lula }
+    - { date: 2018-09-06, label: Facada, row: 1 }
+    - { date: 2018-09-11, label: Haddad assume, row: 2 }
+  rounds:
+    r1:
+      date: 2018-10-07
+      result: { Bolsonaro: 46.03, Haddad: 29.28, Ciro: 12.47, Alckmin: 4.76, Marina: 1.00 }
+      winner: Bolsonaro
+      notes:
+        - A linha tracejada de Lula usa os cenários em que ele aparece como candidato.
+    r2:
+      date: 2018-10-28
+      result: { Bolsonaro: 55.13, Haddad: 44.87 }
+      winner: Bolsonaro
+
+"2022":
+  context: >-
+    Lula lidera o ano inteiro, mas a vantagem encolhe na reta final. No 1º
+    turno, as pesquisas acertaram Lula e subestimaram Bolsonaro por vários
+    pontos. No 2º turno, a disputa se estreita e termina na menor margem da
+    história: 50,9% a 49,1%.
+  candidates:
+    Lula: { party: PT, color: red }
+    Bolsonaro: { party: PL, color: blue }
+    Ciro: { party: PDT, color: gold }
+    Tebet: { party: MDB, color: violet }
+  events:
+    - { date: 2022-08-16, label: Início da campanha }
+  rounds:
+    r1:
+      date: 2022-10-02
+      result: { Lula: 48.43, Bolsonaro: 43.20, Tebet: 4.16, Ciro: 3.04 }
+      winner: Lula
+    r2:
+      date: 2022-10-30
+      result: { Lula: 50.90, Bolsonaro: 49.10 }
+      winner: Lula
+      notes:
+        - Antes do 1º turno, os pontos são cenários hipotéticos de 2º turno testados ao longo do ano.
+
+"2026":
+  context: >-
+    Flávio Bolsonaro entra na disputa em dezembro de 2025 com o apoio do pai.
+    Lula lidera o 1º turno o ano todo, e Flávio encosta em setembro. Augusto
+    Cury (Avante) salta para perto de 10% entre o fim de agosto e o início de
+    setembro e depois recua para a faixa de 5% a 6%. Nas simulações de 2º turno,
+    os dois aparecem empatados dentro da margem de erro na maioria dos
+    institutos. Em 25 de setembro, o governo editou a medida provisória que
+    proíbe as apostas online (bets); no gráfico, esse é o marco tracejado da
+    última semana. Até agora, só a Quaest (24 a 27/09) e a Nexus/BTG (25 a
+    27/09) fizeram campo depois do anúncio, e a Nexus só divulgou o 1º turno em
+    votos válidos. O 1º turno é em 4 de outubro.
+  candidates:
+    Lula: { party: PT, color: red }
+    Flávio: { party: PL, color: blue }
+    Cury: { party: Avante, color: gold }
+  events:
+    - { date: 2026-08-16, label: Início da campanha }
+    # `pinned` keeps the label even when it sits close to the right edge.
+    - { date: 2026-09-25, label: MP do fim das bets, row: 2, pinned: true }
+  rounds:
+    r1:
+      date: 2026-10-04
+      # When a poll lists undecided but not "others", others = 100 − the rest.
+      derive_others: true
+      notes:
+        - >-
+          "Outros" soma Renan Santos (Missão), Ronaldo Caiado (PSD), Romeu Zema
+          (Novo) e os demais candidatos. Até o fim de agosto, também inclui Cury.
+    r2:
+      date: 2026-10-25
+      notes:
+        - Antes do 1º turno, os pontos são cenários hipotéticos de 2º turno testados ao longo do ano.

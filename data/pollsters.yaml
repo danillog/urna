@@ -1,0 +1,35 @@
+# Pollster registry.
+#
+# `match` is a case-insensitive regular expression tested against the name found
+# in the source ("Genial/Quaest", "IPEC", "Atlas/Intel"...). Rules are tried in
+# order and the first match wins, so more specific patterns go first
+# ("vox brasil" before "vox"). Names that match nothing are kept as written.
+#
+# `method` is the pollster's usual interview mode: in_person, phone or online.
+# Leave it out when it is not confirmed; the page shows those as "not classified".
+
+- { name: Datafolha, match: datafolha, method: in_person }
+- { name: Ipec, match: ipec, method: in_person }
+- { name: Ibope, match: ibope, method: in_person }
+- { name: Quaest, match: quaest, method: in_person }
+- { name: FSB, match: fsb, method: phone }
+- { name: Ipespe, match: ipespe, method: phone }
+- { name: Ideia, match: "ide(i)?a", method: phone }
+- { name: Futura, match: futura, method: phone }
+- { name: AtlasIntel, match: atlas, method: online }
+- { name: MDA, match: mda, method: in_person }
+- { name: Paraná Pesquisas, match: paran, method: in_person }
+- { name: PoderData, match: poder, method: phone }
+- { name: Real Time Big Data, match: "real ?time", method: phone }
+- { name: Sensus, match: sensus, method: in_person }
+- { name: Gerp, match: gerp }
+- { name: Veritá, match: verit }
+- { name: Brasilis, match: brasilis }
+- { name: Pesquisa365, match: pesquisa365 }
+- { name: Ranking Brasil, match: ranking }
+- { name: Vox Brasil, match: vox brasil, method: in_person }
+- { name: Vox Populi, match: vox, method: in_person }
+- { name: Nexus, match: nexus, method: phone }
+- { name: Palver, match: palver }
+- { name: Indexa, match: indexa }
+- { name: Neokemp, match: neokemp }

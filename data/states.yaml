@@ -1,0 +1,69 @@
+# Governor and Senate races (2026). Poll files live in raw/states/<UF>.json;
+# their format is described in raw/states/SPEC.md.
+
+year: 2026
+
+# Only polls whose fieldwork ended inside this window are used.
+poll_window: { start: 2026-01-01, end: 2026-09-29 }
+
+# Named lines per chart; everyone else is folded into "others".
+max_named_candidates: 4
+
+# Party colors keep the usual left/right reading; the rest get the remaining
+# palette colors in order of their current polling average.
+party_colors: { PT: red, PL: blue }
+fallback_colors: [gold, teal, red, blue]
+
+# Polls left out on purpose: [UF, race, pollster, fieldwork end date].
+excluded_polls:
+  - [AM, governor_r1, Quaest, 2026-09-23]
+  - [AM, governor_r2, Quaest, 2026-09-23]
+  - [AM, senate_r1, Quaest, 2026-09-23]
+
+names:
+  AC: Acre
+  AL: Alagoas
+  AM: Amazonas
+  AP: Amapá
+  BA: Bahia
+  CE: Ceará
+  DF: Distrito Federal
+  ES: Espírito Santo
+  GO: Goiás
+  MA: Maranhão
+  MG: Minas Gerais
+  MS: Mato Grosso do Sul
+  MT: Mato Grosso
+  PA: Pará
+  PB: Paraíba
+  PE: Pernambuco
+  PI: Piauí
+  PR: Paraná
+  RJ: Rio de Janeiro
+  RN: Rio Grande do Norte
+  RO: Rondônia
+  RR: Roraima
+  RS: Rio Grande do Sul
+  SC: Santa Catarina
+  SE: Sergipe
+  SP: São Paulo
+  TO: Tocantins
+
+# Shown in the page's context card for that state.
+notes:
+  RJ: >-
+    Garotinho foi declarado inelegível em 11/09, mas os institutos seguiram
+    testando cenários com ele até o fim de setembro; o gráfico usa esses cenários.
+  DF: >-
+    A candidatura de José Roberto Arruda foi barrada pelo TSE em 24/09; o 1º
+    turno usa só cenários sem ele.
+  AM: A pesquisa Quaest de 23/09 foi suspensa pelo TRE-AM e ficou de fora.
+  RR: >-
+    Só há duas pesquisas no ano, ambas da Quaest; as linhas ligam os pontos em
+    vez de uma média.
+  SP: >-
+    Algumas pesquisas do 1º semestre ainda testavam nomes que desistiram; os
+    votos deles estão em Outros.
+  MG: >-
+    Rodrigo Pacheco aparecia nas pesquisas até junho e saiu da disputa; por
+    isso o 1º turno começa em julho.

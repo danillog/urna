@@ -1,0 +1,44 @@
+{
+  "uf": "PI",
+  "state": "Piauí",
+  "governor_r1": {
+    "candidates": {"Rafael Fonteles": "PT", "Joel Rodrigues": "PP", "Lúcia Santos": "PSDB"},
+    "polls": [
+      {"p": "AtlasIntel", "date": "2026-03-15", "n": 1200, "method": "", "v": {"Rafael Fonteles": 56, "Joel Rodrigues": 29.8, "others": 7.6, "undecided": 6.7}},
+      {"p": "Instituto Veritá", "date": "2026-04-30", "n": 1220, "method": "", "v": {"Joel Rodrigues": 38.2, "Rafael Fonteles": 37.8, "others": 10.7, "undecided": 13.3}},
+      {"p": "Real Time Big Data", "date": "2026-07-13", "n": 1600, "method": "", "v": {"Rafael Fonteles": 64, "Joel Rodrigues": 23, "others": 5, "undecided": 8}},
+      {"p": "Amostragem", "date": "2026-08-12", "n": 1137, "method": "", "v": {"Rafael Fonteles": 58.84, "Joel Rodrigues": 15.3}},
+      {"p": "AtlasIntel", "date": "2026-09-02", "n": 1622, "method": "online", "v": {"Rafael Fonteles": 62.4, "Joel Rodrigues": 20.9, "Lúcia Santos": 1.5, "undecided": 12.0}},
+      {"p": "Datamax", "date": "2026-09-04", "n": 2000, "method": "in_person", "v": {"Rafael Fonteles": 61.3, "Joel Rodrigues": 17.2, "Lúcia Santos": 0.8, "undecided": 18.2}},
+      {"p": "Datafolha", "date": "2026-09-16", "n": 826, "method": "", "v": {"Rafael Fonteles": 55, "Joel Rodrigues": 25, "Lúcia Santos": 1, "others": 5, "undecided": 15}},
+      {"p": "Datamax", "date": "2026-09-19", "n": 1200, "method": "", "v": {"Rafael Fonteles": 63.42, "Joel Rodrigues": 18.75, "undecided": 13.92}},
+      {"p": "Vetor3", "date": "2026-09-24", "n": 1602, "method": "in_person", "v": {"Rafael Fonteles": 57.43, "Joel Rodrigues": 25.53, "undecided": 14.99}},
+      {"p": "Amostragem", "date": "2026-09-25", "n": 1137, "method": "", "v": {"Rafael Fonteles": 59.1, "Joel Rodrigues": 19.88, "Lúcia Santos": 1.23, "others": 3.87, "undecided": 15.92}}
+    ]
+  },
+  "senate_r1": {
+    "candidates": {"Marcelo Castro": "MDB", "Ciro Nogueira": "PP", "Júlio César": "PSD", "Tiago Junqueira": "PL", "Francinaldo Leão": "PSOL"},
+    "note": "Consolidated two-vote result reduced to 100% (AtlasIntel, Real Time Big Data, Datafolha). Amostragem 25 Sep reports a single consolidated share per candidate (convention not explicit but consistent with normalization to 100%).",
+    "polls": [
+      {"p": "AtlasIntel", "date": "2026-03-15", "n": 1200, "method": "", "v": {"Marcelo Castro": 24.5, "Júlio César": 17.9, "Ciro Nogueira": 17.7, "Tiago Junqueira": 6.4, "Francinaldo Leão": 3, "others": 2.4, "undecided": 28}},
+      {"p": "Real Time Big Data", "date": "2026-07-13", "n": 1600, "method": "", "v": {"Marcelo Castro": 28, "Ciro Nogueira": 21, "Júlio César": 21, "Tiago Junqueira": 7, "Francinaldo Leão": 3, "others": 8, "undecided": 13}},
+      {"p": "AtlasIntel", "date": "2026-09-02", "n": 1622, "method": "online", "v": {"Marcelo Castro": 22.4, "Júlio César": 17.2, "Ciro Nogueira": 13.3, "Tiago Junqueira": 8.2, "Francinaldo Leão": 2.3, "undecided": 30.2}},
+      {"p": "Datafolha", "date": "2026-09-16", "n": 826, "method": "", "v": {"Ciro Nogueira": 17, "Marcelo Castro": 17, "Júlio César": 15, "Tiago Junqueira": 4, "undecided": 35}},
+      {"p": "Amostragem", "date": "2026-09-25", "n": 1137, "method": "", "v": {"Marcelo Castro": 25.26, "Ciro Nogueira": 22.68, "Júlio César": 19.34, "Tiago Junqueira": 4.57, "undecided": 19.58}}
+    ]
+  },
+  "notes": "Governor Rafael Fonteles (PT) is a heavy favourite for a 1st-round win vs Joel Rodrigues (PP). gov_t2 omitted: only 2 runoff polls found (AtlasIntel Mar: Rafael 57 x Joel 36, BNI 6; RTBD Jul: 65 x 25, BNI 10). AtlasIntel March: scenario 2 (with Joel Rodrigues) used; 'Outros' there includes Toni Rodrigues (PL) and Tonny Kerley (Novo), who are not in the final field. Instituto Veritá (26-30 Apr, Joel 38.2 x Rafael 37.8) is a large outlier vs every other poll and its scenario included Toni Rodrigues; keep only if the maintainer trusts it. Amostragem 8-12 Aug: BNI omitted because the published total-vote breakdown was inconsistent with its valid-vote figures. Amostragem Apr 2026 (Teresina only) excluded. Datamax 14-19 Sep: other candidates ~3.9% combined not itemized.",
+  "sources": [
+    "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/atlasintel-governador-senador-piaui-marco-2026/",
+    "https://www.cidadesemevidencia.com.br/2026/05/pesquisa-aponta-disputa-acirrada-entre.html",
+    "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-governador-senador-piaui-julho-2026/",
+    "https://www.meionews.com/politica/eleicoes-2026/pesquisa-amostragem-rafael-tem-73-84-dos-votos-validos-para-governador-572926",
+    "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/atlasintel-governador-senador-piaui-setembro-2026/",
+    "https://www.parlamentopiaui.com.br/noticia/pesquisa-aponta-rafael-fonteles-com-74-94-dos-votos-validos-para-o-governo-do-piaui",
+    "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/datafolha-governador-senador-piaui-setembro-2026/",
+    "https://www.portalr10.com/blogs-e-colunas/179661/pesquisa-aponta-rafael-fonteles-com-7367-dos-votos-validos-no-piaui/",
+    "https://conectapiaui.com.br/noticia/pesquisas/rafael-lidera-para-governador-com-675-dos-votos-validos-e-joel-tem-3016-22492.html",
+    "https://www.meionews.com/politica/eleicoes-2026/pesquisa-amostragem-rafael-fonteles-tem-70-29-dos-validos-e-joel-23-64-576490",
+    "https://www.meionews.com/politica/eleicoes-2026/senado-no-piaui-marcelo-lidera-e-julio-supera-ciro-na-pesquisa-espontanea-do-amostragem-576491"
+  ]
+}

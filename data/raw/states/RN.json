@@ -1,0 +1,70 @@
+{
+  "uf": "RN",
+  "state": "Rio Grande do Norte",
+  "governor_r1": {
+    "candidates": {"Allyson": "UNIÃO", "Cadu Xavier": "PT", "Álvaro Dias": "PL", "Rodrigo Bolsonaro": "AGIR", "Robério Paulino": "PSOL"},
+    "polls": [
+      {"p": "Seta", "date": "2026-03-09", "n": 1500, "method": "", "v": {"Allyson": 37.3, "Álvaro Dias": 21.5, "Cadu Xavier": 8.1, "undecided": 33.1}},
+      {"p": "Consult", "date": "2026-03-18", "n": 1700, "method": "", "v": {"Allyson": 29.24, "Álvaro Dias": 31.18, "Cadu Xavier": 6.35, "Robério Paulino": 1.65, "undecided": 31.59}},
+      {"p": "Media Inteligência", "date": "2026-03-26", "n": 2000, "method": "", "v": {"Allyson": 27.2, "Álvaro Dias": 30.8, "Cadu Xavier": 10.8, "Robério Paulino": 2.1, "undecided": 29.1}},
+      {"p": "Data Ranking", "date": "2026-03-26", "n": 1500, "method": "", "v": {"Allyson": 39.2, "Álvaro Dias": 20.6, "Cadu Xavier": 9.1, "undecided": 31.1}},
+      {"p": "Metadata", "date": "2026-03-28", "n": 1000, "method": "", "v": {"Allyson": 28.8, "Álvaro Dias": 37.2, "Cadu Xavier": 10.7, "undecided": 23.3}},
+      {"p": "Seta", "date": "2026-04-02", "n": 1500, "method": "", "v": {"Allyson": 39.4, "Álvaro Dias": 23.7, "Cadu Xavier": 10.3, "undecided": 26.6}},
+      {"p": "Exatus", "date": "2026-04-17", "n": 1518, "method": "", "v": {"Allyson": 37.3, "Álvaro Dias": 24.9, "Cadu Xavier": 10.7, "Robério Paulino": 4.5, "others": 3.4, "undecided": 19.2}},
+      {"p": "Data Census", "date": "2026-04-20", "n": 2000, "method": "", "v": {"Allyson": 40.4, "Álvaro Dias": 18.6, "Cadu Xavier": 13.8, "Robério Paulino": 1.8, "undecided": 25.6}},
+      {"p": "Seta", "date": "2026-05-05", "n": 1500, "method": "", "v": {"Allyson": 38.4, "Álvaro Dias": 20.7, "Cadu Xavier": 13.3, "Robério Paulino": 0.9, "Rodrigo Bolsonaro": 0.4, "others": 0.7, "undecided": 25.6}},
+      {"p": "Exatus", "date": "2026-05-29", "n": 1500, "method": "", "v": {"Allyson": 41.01, "Álvaro Dias": 22.75, "Cadu Xavier": 12.61, "Robério Paulino": 0.85, "others": 0.9, "undecided": 21.88}},
+      {"p": "Exatus", "date": "2026-07-10", "n": null, "method": "", "v": {"Allyson": 41.78, "Álvaro Dias": 26.05, "Cadu Xavier": 13.74}},
+      {"p": "AtlasIntel", "date": "2026-07-21", "n": 1245, "method": "", "v": {"Cadu Xavier": 36.3, "Álvaro Dias": 27.7, "Allyson": 25.1, "Robério Paulino": 0.5, "Rodrigo Bolsonaro": 0.1, "undecided": 10.3}},
+      {"p": "Seta", "date": "2026-08-09", "n": 1500, "method": "", "v": {"Allyson": 39.5, "Álvaro Dias": 23.7, "Cadu Xavier": 19.6}},
+      {"p": "Quaest", "date": "2026-08-23", "n": 804, "method": "", "v": {"Allyson": 25, "Cadu Xavier": 21, "Álvaro Dias": 19, "Rodrigo Bolsonaro": 2, "Robério Paulino": 2, "others": 1, "undecided": 30}},
+      {"p": "Qualittá", "date": "2026-08-31", "n": 1200, "method": "", "v": {"Allyson": 40.1, "Cadu Xavier": 19.4, "Álvaro Dias": 18.3, "Robério Paulino": 0.5, "others": 0.5, "undecided": 21.2}},
+      {"p": "Real Time Big Data", "date": "2026-09-09", "n": 1600, "method": "", "v": {"Allyson": 30, "Cadu Xavier": 25, "Álvaro Dias": 23, "Rodrigo Bolsonaro": 3, "Robério Paulino": 1, "others": 2, "undecided": 16}},
+      {"p": "Exatus", "date": "2026-09-09", "n": 1500, "method": "", "v": {"Allyson": 41.9, "Álvaro Dias": 22.2, "Cadu Xavier": 17.59, "Rodrigo Bolsonaro": 1.12, "Robério Paulino": 0.43, "others": 0.09, "undecided": 16.67}},
+      {"p": "Metadata", "date": "2026-09-12", "n": 1536, "method": "", "v": {"Allyson": 43, "Cadu Xavier": 20.1, "Álvaro Dias": 17.5, "Rodrigo Bolsonaro": 1.1, "Robério Paulino": 0.6, "others": 1.2}},
+      {"p": "Exatus", "date": "2026-09-16", "n": 1500, "method": "", "v": {"Allyson": 43.33, "Cadu Xavier": 21.07, "Álvaro Dias": 20.27, "Robério Paulino": 0.13, "Rodrigo Bolsonaro": 0.07, "others": 0.07, "undecided": 15.06}},
+      {"p": "IP Sensus", "date": "2026-09-22", "n": 1200, "method": "", "v": {"Allyson": 29, "Álvaro Dias": 26.1, "Cadu Xavier": 22.9, "undecided": 17.4}},
+      {"p": "Exatus", "date": "2026-09-23", "n": 1500, "method": "", "v": {"Allyson": 44.11, "Cadu Xavier": 22.52, "Álvaro Dias": 20.6, "Robério Paulino": 0.29, "Rodrigo Bolsonaro": 0.2, "others": 0.15, "undecided": 12.13}},
+      {"p": "Quaest", "date": "2026-09-24", "n": 804, "method": "", "v": {"Allyson": 39, "Cadu Xavier": 21, "Álvaro Dias": 18, "Rodrigo Bolsonaro": 1, "Robério Paulino": 0, "others": 0, "undecided": 21}},
+      {"p": "Qualittá", "date": "2026-09-25", "n": 1200, "method": "", "v": {"Allyson": 43.9, "Cadu Xavier": 20.8, "Álvaro Dias": 16.9, "Rodrigo Bolsonaro": 0.2, "undecided": 18.2}}
+    ]
+  },
+  "governor_r2": {
+    "matchup": ["Allyson", "Cadu Xavier"],
+    "candidates": {"Allyson": "UNIÃO", "Cadu Xavier": "PT"},
+    "polls": [
+      {"p": "AtlasIntel", "date": "2026-07-21", "n": 1245, "method": "", "v": {"Allyson": 34.2, "Cadu Xavier": 39.4, "undecided": 26.4}},
+      {"p": "Quaest", "date": "2026-08-23", "n": 804, "method": "", "v": {"Allyson": 35, "Cadu Xavier": 34, "undecided": 31}},
+      {"p": "Real Time Big Data", "date": "2026-09-09", "n": 1600, "method": "", "v": {"Allyson": 50, "Cadu Xavier": 32, "undecided": 18}},
+      {"p": "Quaest", "date": "2026-09-24", "n": 804, "method": "", "v": {"Allyson": 50, "Cadu Xavier": 30, "undecided": 20}}
+    ]
+  },
+  "senate_r1": {
+    "candidates": {"Styvenson Valentim": "PODE", "Zenaide Maia": "PSD", "Samanda Alves": "PT", "Coronel Hélio": "PL", "Rafael Motta": "PDT", "Tércio Tinoco": "UNIÃO"},
+    "note": "Consolidated two-vote result (1st + 2nd vote) reduced to 100%, as published by AtlasIntel, Quaest and Real Time Big Data. Exatus (raw sum of two votes, >100%) excluded for consistency.",
+    "polls": [
+      {"p": "AtlasIntel", "date": "2026-07-21", "n": 1245, "method": "", "v": {"Styvenson Valentim": 21.4, "Samanda Alves": 18.2, "Coronel Hélio": 15.3, "Rafael Motta": 14.4, "Zenaide Maia": 11.2, "Tércio Tinoco": 1.3, "others": 3.2, "undecided": 14.9}},
+      {"p": "Quaest", "date": "2026-08-23", "n": 804, "method": "", "v": {"Styvenson Valentim": 16, "Zenaide Maia": 10, "Samanda Alves": 8, "Rafael Motta": 8, "Coronel Hélio": 5, "undecided": 47}},
+      {"p": "Real Time Big Data", "date": "2026-09-09", "n": 1600, "method": "", "v": {"Styvenson Valentim": 18, "Samanda Alves": 16, "Zenaide Maia": 15, "Rafael Motta": 14, "Coronel Hélio": 8, "Tércio Tinoco": 6, "others": 1, "undecided": 22}},
+      {"p": "Quaest", "date": "2026-09-24", "n": 804, "method": "", "v": {"Styvenson Valentim": 19, "Zenaide Maia": 12, "Samanda Alves": 9, "Coronel Hélio": 9, "Rafael Motta": 7, "undecided": 40}}
+    ]
+  },
+  "notes": "Cadu Xavier appears on the ballot as 'Cadu de Lula'; Rodrigo Bolsonaro as 'Rodrigo de Bolsonaro' (a.k.a. Rodrigo Vieira). Mar-Apr rows come from en.wikipedia (only candidate columns Bezerra/Dias/Xavier/Paulino; sums check to 100). Dropped: Veritá 29 Mar-4 Apr (wiki row sums to 121.8, inconsistent); Jan/Feb 2026 wiki rows (Consult, Paraná Pesquisas) that are other scenarios. Exatus 7-10 Jul values come from a trend recap in a later Exatus article (no BNI/sample stated). Seta Aug and Metadata Sep articles gave no BNI. IP Sensus (22 Sep) is an outlier (Allyson 29%) versus the other September polls (Allyson 39-44%); kept but flag. Exatus senate values (sum of two votes) and Quaest/Atlas Tércio Tinoco values where not reported were omitted. AtlasIntel July is the only poll with Cadu leading; trend since then is a strong Allyson surge.",
+  "sources": [
+    "https://en.wikipedia.org/wiki/2026_Rio_Grande_do_Norte_general_election",
+    "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-governador-senador-rio-grande-do-norte-setembro-2026/",
+    "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-governador-senador-rio-grande-do-norte-agosto-2026/",
+    "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-governador-senado-rio-grande-do-norte-setembro-2026/",
+    "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/atlasintel-governador-senador-rio-grande-do-norte-julho-2026/",
+    "https://agorarn.com.br/politica/pesquisa-exatus-allyson-4411-governo-rn/",
+    "https://agorarn.com.br/politica/allyson-4333-cadu-2107-alvaro-2027-pesquisa-exatus/",
+    "https://agorarn.com.br/politica/pesquisa-exatus-allyson-alvaro-governo-rn/",
+    "https://www.tribunadenoticias.com.br/2026/06/governo-do-rn-estimulada-allyson-cresce.html",
+    "https://costabrancanews.com/pesquisa-qualitta-rn-hoje-governo-do-rn-allyson-lidera-com-439-cadu-tem-208-e-alvaro-169/",
+    "https://www.diariopotiguar.com.br/2026/09/pesquisa-qualitta-aponta-allyson.html",
+    "https://www.opotiguar.com.br/pesquisa-seta-allyson-cresce-e-cadu-se-aproxima-de-alvaro",
+    "https://www.opotiguar.com.br/instituto-setaopotiguar-allyson-lidera-corrida-ao-governo-do-rn-com-384-alvaro-dias-tem-207-e-cadu-xavier-soma-133",
+    "https://www.portalclaudiooliveira.com/2026/09/metadatagrupo-dial-mostra-allyson-com.html",
+    "https://www.portalclaudiooliveira.com/2026/09/ip-sensus-allyson-tem-29-alvaro-dias.html"
+  ]
+}

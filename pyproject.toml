@@ -1,0 +1,23 @@
+[project]
+name = "urna-pipeline"
+version = "1.0.0"
+description = "Data pipeline for the Brazilian election polls tracker"
+requires-python = ">=3.11"
+dependencies = ["pyyaml>=6.0"]
+
+[dependency-groups]
+dev = ["pytest>=8.0", "ruff>=0.6"]
+
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests/pipeline"]
+pythonpath = ["."]
+
+[tool.ruff]
+line-length = 110
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]

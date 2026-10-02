@@ -1,0 +1,50 @@
+{
+  "uf": "SE",
+  "state": "Sergipe",
+  "governor_r1": {
+    "candidates": {"Fábio Mitidieri": "PSD", "Valmir de Francisquinho": "Republicanos", "Ricardo Marques": "PL", "Dr. Helton": "PSOL", "Emanuel Cacho": "PSDB", "Taty Cristina": "DC"},
+    "polls": [
+      {"p": "Real Time Big Data", "date": "2026-05-25", "n": 1600, "method": "", "v": {"Fábio Mitidieri": 41, "Valmir de Francisquinho": 38, "Ricardo Marques": 5, "Emanuel Cacho": 2, "Dr. Helton": 1, "undecided": 13}},
+      {"p": "INOR", "date": "2026-07-29", "n": 1070, "method": "in_person", "v": {"Valmir de Francisquinho": 46.07, "Fábio Mitidieri": 37.94, "Ricardo Marques": 7.01, "undecided": 8.51}},
+      {"p": "Real Time Big Data", "date": "2026-08-01", "n": 1600, "method": "", "v": {"Fábio Mitidieri": 43, "Valmir de Francisquinho": 40, "Ricardo Marques": 6, "Emanuel Cacho": 2, "Dr. Helton": 1, "undecided": 8}},
+      {"p": "Real Time Big Data", "date": "2026-09-03", "n": 1600, "method": "", "v": {"Fábio Mitidieri": 45, "Valmir de Francisquinho": 37, "Ricardo Marques": 9, "Emanuel Cacho": 2, "undecided": 7}},
+      {"p": "AtlasIntel", "date": "2026-09-09", "n": 1260, "method": "", "v": {"Fábio Mitidieri": 41.3, "Valmir de Francisquinho": 34.2, "Ricardo Marques": 14.4, "Dr. Helton": 5.2, "Taty Cristina": 1.3, "Emanuel Cacho": 0.5, "undecided": 3.2}},
+      {"p": "Real Time Big Data", "date": "2026-09-21", "n": 1600, "method": "in_person", "v": {"Fábio Mitidieri": 43, "Valmir de Francisquinho": 38, "Ricardo Marques": 10, "Dr. Helton": 3, "Emanuel Cacho": 1, "Taty Cristina": 0, "undecided": 5}},
+      {"p": "Quaest", "date": "2026-09-23", "n": 804, "method": "in_person", "v": {"Fábio Mitidieri": 43, "Valmir de Francisquinho": 34, "Ricardo Marques": 5, "Dr. Helton": 1, "Taty Cristina": 0, "Emanuel Cacho": 0, "undecided": 17}}
+    ]
+  },
+  "governor_r2": {
+    "matchup": ["Fábio Mitidieri", "Valmir de Francisquinho"],
+    "candidates": {"Fábio Mitidieri": "PSD", "Valmir de Francisquinho": "Republicanos"},
+    "polls": [
+      {"p": "Real Time Big Data", "date": "2026-05-25", "n": 1600, "method": "", "v": {"Fábio Mitidieri": 44, "Valmir de Francisquinho": 41, "undecided": 15}},
+      {"p": "Real Time Big Data", "date": "2026-08-01", "n": 1600, "method": "", "v": {"Fábio Mitidieri": 46, "Valmir de Francisquinho": 44, "undecided": 10}},
+      {"p": "Real Time Big Data", "date": "2026-09-03", "n": 1600, "method": "", "v": {"Fábio Mitidieri": 47, "Valmir de Francisquinho": 43, "undecided": 10}},
+      {"p": "AtlasIntel", "date": "2026-09-09", "n": 1260, "method": "", "v": {"Fábio Mitidieri": 47.6, "Valmir de Francisquinho": 40.5, "undecided": 11.9}},
+      {"p": "Real Time Big Data", "date": "2026-09-21", "n": 1600, "method": "in_person", "v": {"Fábio Mitidieri": 46, "Valmir de Francisquinho": 43, "undecided": 11}},
+      {"p": "Quaest", "date": "2026-09-23", "n": 804, "method": "in_person", "v": {"Fábio Mitidieri": 48, "Valmir de Francisquinho": 41, "undecided": 11}}
+    ]
+  },
+  "senate_r1": {
+    "candidates": {"André David": "Republicanos", "André Moura": "UNIÃO", "Delegado Alessandro": "MDB", "Rogério Carvalho": "PT", "Eduardo Amorim": "Republicanos", "Rodrigo Valadares": "PL"},
+    "note": "Consolidated two-vote result reduced to 100% (Real Time Big Data, Quaest).",
+    "polls": [
+      {"p": "Real Time Big Data", "date": "2026-05-25", "n": 1600, "method": "", "v": {"André David": 15, "Eduardo Amorim": 13, "André Moura": 13, "Rodrigo Valadares": 12, "Rogério Carvalho": 10, "Delegado Alessandro": 8, "others": 19, "undecided": 11}},
+      {"p": "Real Time Big Data", "date": "2026-08-01", "n": 1600, "method": "", "v": {"André David": 17, "André Moura": 14, "Eduardo Amorim": 13, "Rodrigo Valadares": 12, "Delegado Alessandro": 9, "Rogério Carvalho": 9, "others": 20, "undecided": 6}},
+      {"p": "Real Time Big Data", "date": "2026-09-03", "n": 1600, "method": "", "v": {"André David": 18, "André Moura": 12, "Eduardo Amorim": 10, "Delegado Alessandro": 10, "Rodrigo Valadares": 9, "Rogério Carvalho": 9, "others": 20, "undecided": 12}},
+      {"p": "Real Time Big Data", "date": "2026-09-21", "n": 1600, "method": "in_person", "v": {"André David": 18, "Delegado Alessandro": 14, "Rogério Carvalho": 12, "André Moura": 10, "Eduardo Amorim": 9, "Rodrigo Valadares": 9, "others": 19, "undecided": 9}},
+      {"p": "Quaest", "date": "2026-09-23", "n": 804, "method": "in_person", "v": {"André Moura": 12, "André David": 11, "Rogério Carvalho": 10, "Delegado Alessandro": 10, "Eduardo Amorim": 8, "Rodrigo Valadares": 5, "others": 9, "undecided": 35}}
+    ]
+  },
+  "notes": "Governor Fábio Mitidieri (PSD, ballot name 'Fábio') seeks re-election vs Valmir de Francisquinho (Republicanos). AtlasIntel also ran a scenario WITHOUT Valmir (Fábio 44.6, Ricardo Marques 25.1), suggesting a legal question over Valmir's candidacy; the with-Valmir scenario is used, as Quaest and RTBD late-September polls still list him. INOR (local institute, 27-29 Jul) is the only poll with Valmir ahead. Senate: Edvaldo Nogueira (PDT, 5-11%) and Coronel Rocha (PL, 2-8%) are counted in 'Outros' because of the 6-name cap; Edvaldo is roughly tied with Rodrigo Valadares, so the maintainer may swap them. No Jan-Apr 2026 polls found (RTBD's previous poll was Nov 2025). Poder360's write-up of RTBD 17-21 Sep shows a garbled 2nd round (66x35); Gazeta/Hora News figures (46x43) used.",
+  "sources": [
+    "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-governador-senador-sergipe-maio-2026/",
+    "https://portaljornalse.com.br/pesquisa-inor-aponta-valmir-de-francisquinho-na-lideranca-da-disputa-pelo-governo-de-sergipe/",
+    "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-governador-senado-sergipe-agosto-2026/",
+    "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-governador-senador-sergipe-setembro-2026/",
+    "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/atlasintel-governador-sergipe-setembro-2026/",
+    "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-governador-senador-sergipe-setembro-2026-2/",
+    "https://horanews.net/pesquisa-nacional-aponta-segundo-turno-e-disputa-acirrada-entre-valmir-e-fabio/",
+    "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-governador-senador-sergipe-setembro-2026/"
+  ]
+}
