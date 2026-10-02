@@ -78,7 +78,7 @@ Requirements: Node 20+ and [uv](https://docs.astral.sh/uv/) (Python is only need
 ```bash
 npm install
 npm run dev          # http://localhost:5173
-npm run build        # → dist/index.html, ready to upload anywhere
+npm run build        # → dist/index.html (+ og.png, the social preview image), ready to upload
 ```
 
 ```bash

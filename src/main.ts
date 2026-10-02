@@ -104,6 +104,8 @@ function showView(next: View): void {
     byId(`tab-${v}`).setAttribute("aria-selected", String(v === view));
   }
   const copy = t.views[view];
+  // The polls view keeps the page's own title; the others say what is on screen.
+  document.title = view === "polls" ? t.pageTitle : `${copy.headline} | Urna`;
   byId("eyebrow").textContent = copy.eyebrow;
   byId("headline").textContent = copy.headline;
   byId("lede").textContent = copy.lede;

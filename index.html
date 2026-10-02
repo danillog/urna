@@ -5,16 +5,101 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- The page has its own light and dark themes; this keeps browsers from force-darkening it. -->
 <meta name="color-scheme" content="light dark">
-<title>Pesquisas Eleitorais 2010–2026</title>
-<meta name="description" content="Todas as pesquisas eleitorais publicadas para presidente, governador e senador, com média suavizada, filtros por instituto e o histórico de acerto de cada instituto.">
+<title>Pesquisas eleitorais 2026 e o mapa do voto | Urna</title>
+<meta name="description" content="Média das pesquisas eleitorais de 2026 para presidente, governador e senador, o voto em cada município desde 1994 e a política das Américas.">
 <meta name="author" content="Danillo Gomes">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#14171c">
 <link rel="canonical" href="https://danillogomes.com/urna/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Urna">
 <meta property="og:url" content="https://danillogomes.com/urna/">
-<meta property="og:title" content="Pesquisas Eleitorais 2010–2026">
-<meta property="og:description" content="Cada pesquisa publicada, a média suavizada e quem chegou mais perto da urna.">
-<meta name="twitter:card" content="summary">
+<meta property="og:title" content="Pesquisas, votos e o mapa da política no Brasil e nas Américas">
+<meta property="og:description" content="Média das pesquisas de 2026, quem venceu em cada município desde 1994 e a política das Américas, ano a ano.">
+<!-- The one file next to index.html: social networks need the preview image at its own URL. -->
+<meta property="og:image" content="https://danillogomes.com/urna/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Mapa das Américas colorido pela família ideológica do vencedor da última eleição em cada estado e província">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Pesquisas, votos e o mapa da política no Brasil e nas Américas">
+<meta name="twitter:description" content="Média das pesquisas de 2026, quem venceu em cada município desde 1994 e a política das Américas, ano a ano.">
+<meta name="twitter:image" content="https://danillogomes.com/urna/og.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Urna",
+      "url": "https://danillogomes.com/urna/",
+      "inLanguage": "pt-BR",
+      "applicationCategory": "ReferenceApplication",
+      "operatingSystem": "Any",
+      "isAccessibleForFree": true,
+      "description": "Agregador de pesquisas eleitorais para presidente, governador e senador, com média e acerto de cada instituto; resultado em cada município desde 1994; e as Américas com governos, IDH, renda e democracia.",
+      "author": {
+        "@type": "Person",
+        "name": "Danillo Gomes",
+        "url": "https://danillogomes.com"
+      }
+    },
+    {
+      "@type": "Dataset",
+      "name": "Pesquisas eleitorais e resultados por município e por estado no Brasil e nas Américas",
+      "description": "Pesquisas de intenção de voto para presidente (2010–2026), governador e senador (2026) no Brasil, com média suavizada e erro histórico por instituto; resultados de presidente (1994–2022) e prefeito (1996–2024) em cada município, do TSE; IDHM por estado e município; e, para os países das Américas desde 2000, o vencedor de cada eleição nacional por família ideológica, IDH, renda mediana e democracia eleitoral.",
+      "url": "https://danillogomes.com/urna/",
+      "inLanguage": "pt-BR",
+      "creator": {
+        "@type": "Person",
+        "name": "Danillo Gomes",
+        "url": "https://danillogomes.com"
+      },
+      "temporalCoverage": "1994/2026",
+      "spatialCoverage": [
+        {
+          "@type": "Place",
+          "name": "Brasil"
+        },
+        {
+          "@type": "Place",
+          "name": "Américas"
+        }
+      ],
+      "keywords": [
+        "pesquisas eleitorais",
+        "eleições 2026",
+        "média das pesquisas",
+        "agregador de pesquisas",
+        "resultado por município",
+        "TSE",
+        "IDHM",
+        "IDH",
+        "América Latina",
+        "democracia"
+      ],
+      "variableMeasured": [
+        "intenção de voto",
+        "votos válidos por município",
+        "IDH",
+        "IDHM",
+        "renda mediana por pessoa (PPC)",
+        "índice de democracia eleitoral"
+      ],
+      "isBasedOn": [
+        "https://dadosabertos.tse.jus.br/",
+        "https://www.ipeadata.gov.br/",
+        "https://hdr.undp.org/",
+        "https://pip.worldbank.org/",
+        "https://v-dem.net/",
+        "https://www.globalpartysurvey.org/"
+      ],
+      "isAccessibleForFree": true
+    }
+  ]
+}
+</script>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%2314171c'/><path d='M6 22 L13 15 L18 19 L26 9' stroke='%23e0453f' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

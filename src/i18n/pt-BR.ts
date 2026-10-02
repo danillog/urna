@@ -73,6 +73,7 @@ export const t = {
 
   pollsHead: ["Instituto", "Data", "Amostra"],
 
+  pageTitle: "Pesquisas eleitorais 2026 e o mapa do voto | Urna",
   views: {
     polls: {
       eyebrow: "Eleições no Brasil · pesquisas agregadas",
