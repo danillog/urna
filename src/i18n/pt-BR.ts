@@ -120,14 +120,6 @@ export const t = {
             : `${from}–${to}`,
       unit: "Por pessoa, por mês, em dólares PPC de 2021",
     },
-    prices: {
-      name: "Nível de preços",
-      title: (year: number) => `Custo de vida: nível de preços do consumo das famílias em ${year}`,
-      format: (v: number) => `${Math.round(v)} (EUA = 100)`,
-      step: (from: number, to?: number) =>
-        from === 0 ? "< 30" : to === undefined ? `≥ ${from}` : `${from}–${to}`,
-      unit: "Quanto custam as mesmas compras, em dólares, com os EUA = 100",
-    },
     democracy: {
       name: "Democracia eleitoral",
       title: (year: number) => `Índice de democracia eleitoral em ${year}`,

@@ -1,6 +1,6 @@
 /** Shape of data/generated/americas-indicators.json (pipeline/americas/indicators.py). */
 
-export type IndicatorKey = "hdi" | "income" | "prices" | "democracy";
+export type IndicatorKey = "hdi" | "income" | "democracy";
 
 export interface Indicator {
   source: string;
@@ -29,7 +29,6 @@ export interface IndicatorData {
 export const STEPS: Record<IndicatorKey, number[]> = {
   hdi: [0, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95],
   income: [0, 150, 250, 350, 450, 600, 800, 1000, 1500, 2000],
-  prices: [0, 30, 40, 50, 60, 70, 80, 90, 100, 120],
   democracy: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9],
 };
 

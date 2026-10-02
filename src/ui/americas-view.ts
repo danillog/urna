@@ -25,7 +25,7 @@ import { button, byId } from "./dom";
 import { ChoroplethMap } from "./map";
 
 export type Layer = "politics" | IndicatorKey;
-const LAYERS: Layer[] = ["politics", "hdi", "income", "prices", "democracy"];
+const LAYERS: Layer[] = ["politics", "hdi", "income", "democracy"];
 
 export interface AmericasState {
   year: number;

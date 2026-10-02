@@ -8,8 +8,6 @@
   Poverty and Inequality Platform. Income surveys only (consumption surveys measure
   something else); national coverage, except Argentina's urban-only survey.
 - Electoral democracy index: V-Dem (v2x_polyarchy), via Our World in Data.
-- Price level of household consumption (United States = 100): World Bank ICP, the PPP
-  conversion factor for household consumption over the official exchange rate.
 
 Brazil's HDI is also given by state: the IDHM of the Atlas of Human Development in
 Brazil (PNUD, Ipea, FJP), via Ipeadata.
@@ -36,7 +34,6 @@ FIRST_YEAR = 2000
 HDI_URL = "https://hdr.undp.org/sites/default/files/2025_HDR/HDR25_Composite_indices_complete_time_series.csv"
 PIP_URL = "https://api.worldbank.org/pip/v1/pip?country=all&year=all&povline=3&fill_gaps=false&format=json"
 DAYS_PER_MONTH = 365.25 / 12
-WB = "https://api.worldbank.org/v2/country/{countries}/indicator/{code}?format=json&date=2000:2026&per_page=5000"
 # Argentina's EPH covers only urban areas; there is no national series.
 URBAN_ONLY = {"ARG"}
 DEMOCRACY_URL = (
@@ -56,12 +53,6 @@ SOURCES = {
         # Surveys are not yearly everywhere; older than this, a value says little about now.
         "maxAge": 4,
         "urbanOnly": sorted(URBAN_ONLY),
-    },
-    "prices": {
-        "source": "Banco Mundial, Programa de Comparação Internacional: nível de preços do consumo "
-        "das famílias (fator de PPC sobre o câmbio oficial), EUA = 100",
-        "url": "https://www.worldbank.org/en/programs/icp",
-        "maxAge": 3,
     },
     "democracy": {
         "source": "V-Dem, índice de democracia eleitoral (v2x_polyarchy), via Our World in Data",
@@ -100,28 +91,6 @@ def income() -> dict[str, dict[int, float]]:
     return out
 
 
-def world_bank(code: str) -> dict[str, dict[int, float]]:
-    _, records = json.loads(cached(f"{code}.json", WB.format(countries=";".join(COUNTRIES), code=code)))
-    out: dict[str, dict[int, float]] = {}
-    for r in records:
-        if r["value"] is not None:
-            out.setdefault(r["countryiso3code"], {})[int(r["date"])] = float(r["value"])
-    return out
-
-
-def prices() -> dict[str, dict[int, float]]:
-    """How much the same household purchases cost, in dollars, relative to the US."""
-    ppp, fx = world_bank("PA.NUS.PRVT.PP"), world_bank("PA.NUS.FCRF")
-    out: dict[str, dict[int, float]] = {}
-    for iso, series in ppp.items():
-        us = ppp.get("USA", {})
-        for year, factor in series.items():
-            rate = fx.get(iso, {}).get(year)
-            if rate and us.get(year):
-                out.setdefault(iso, {})[year] = factor / rate / (us[year] / fx["USA"][year]) * 100
-    return out
-
-
 def brazil_hdi_by_state() -> dict[str, dict[int, float]]:
     """IDHM by state: census years, then yearly from 2012."""
     return {f"BR-{UF_BY_CODE[code]}": series for code, series in by_territory("IDHM", "Estados").items()}
@@ -137,7 +106,7 @@ def democracy() -> dict[str, dict[int, float]]:
 
 
 def main() -> int:
-    loaders = {"hdi": hdi, "income": income, "prices": prices, "democracy": democracy}
+    loaders = {"hdi": hdi, "income": income, "democracy": democracy}
     out: dict = {"firstYear": FIRST_YEAR, "indicators": {}}
     for key, load in loaders.items():
         data = load()
@@ -149,8 +118,7 @@ def main() -> int:
             if series:
                 # One value per year from FIRST_YEAR; null where the source has none.
                 values[iso] = [
-                    round(series[y], {"income": 0, "prices": 1}.get(key, 3)) if y in series else None
-                    for y in years
+                    round(series[y], 0 if key == "income" else 3) if y in series else None for y in years
                 ]
         out["indicators"][key] = {**SOURCES[key], "lastYear": last, "values": values}
         if key == "hdi":

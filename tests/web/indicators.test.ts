@@ -18,7 +18,6 @@ const data: IndicatorData = {
       maxAge: 4,
       values: { AAA: [100, 900, null, null, null, null, null, null, null, null] },
     },
-    prices: { source: "", url: "", lastYear: 2000, values: {} },
     democracy: { source: "", url: "", lastYear: 2000, values: {} },
   },
 };
