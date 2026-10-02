@@ -1,173 +1,148 @@
-# Pesquisas Eleitorais 2010–2026
+# Urna: Brazilian election poll tracker
 
-Agregador de pesquisas eleitorais brasileiras num único arquivo HTML que funciona offline. Junta as pesquisas publicadas, desenha cada uma como um ponto e traça uma média suavizada por candidato, no estilo do gráfico de intenção de voto do Nexo.
+[![CI](https://github.com/danillog/urna/actions/workflows/ci.yml/badge.svg)](https://github.com/danillog/urna/actions/workflows/ci.yml)
 
-Compilado em 02/10/2026.
+Every published poll for Brazil's presidential, governor and Senate races, a smoothed average per candidate, and a ranking of which pollsters got closest to the official result. It runs as **a single offline HTML file**.
 
-## O que tem
+**Live:** [danillogomes.com/urna](https://danillogomes.com/urna/) · The page is in Portuguese; code and docs are in English.
 
-| Cargo | Anos | Turnos | Abrangência |
-|---|---|---|---|
-| Presidente | 2010, 2014, 2018, 2022, 2026 | 1º e 2º | Nacional |
-| Governador | 2026 | 1º e 2º (simulação dos dois mais testados) | 27 UFs |
-| Senador | 2026 | turno único | 27 UFs |
+![2022 presidential runoff: poll dots, smoothed averages with uncertainty bands, and official results as diamonds](docs/screenshot.png)
 
-Volume de 2026 (presidente): 104 pesquisas de 1º turno e 111 de 2º turno, de 14 institutos, de janeiro a 01/10.
+## Features
 
-## Como usar a página
+- **Nearly 1,400 polls**: president 2010–2026 (both rounds), plus 2026 governor and Senate races in all 27 states.
+- **Live re-averaging.** Turn pollsters or interview methods (in person, phone, online) on and off, and the trend lines are recomputed in the browser.
+- **Polls vs. ballot box.** For past elections, the final average is converted to valid votes and compared with the official TSE result.
+- **Pollster accuracy.** Each pollster's last poll before election day is scored. For the current election, the table shows each pollster's track record since 2010.
+- **Shareable views.** The selection lives in the URL, e.g. [`?office=governor&uf=SP`](https://danillogomes.com/urna/?office=governor&uf=SP) or [`?year=2022&exclude=Gerp,Palver`](https://danillogomes.com/urna/?year=2022&exclude=Gerp,Palver).
+- **Accessible and themable.** Keyboard navigation, a full data table, colorblind-safe palette, light and dark mode.
 
-Abra `pesquisas-eleitorais.html` em qualquer navegador. Não precisa de internet nem de servidor. Com internet, as fontes do Google carregam; sem internet, a página usa as fontes do sistema.
+## How it works
 
-- **Cargo, estado, eleição e turno:** escolhem o que aparece no gráfico. Governador e senador mostram o seletor de estado; presidente mostra o seletor de ano.
-- **Como a pesquisa foi feita:** liga e desliga pesquisas presenciais, por telefone, online ou não classificadas. A média é recalculada na hora.
-- **Institutos:** clique num instituto para tirá-lo da conta.
-- **Passar o mouse:** perto de um ponto mostra aquela pesquisa (instituto, data, amostra, todos os números); longe dos pontos mostra a média do dia.
-- **Média final × urna:** para eleições passadas, compara a média do último dia com o resultado oficial, convertendo para votos válidos quando há BNI.
-- **Quem chegou mais perto:** para eleições passadas, classifica cada instituto pelo erro da última pesquisa antes da eleição. Em 2026, vira histórico: o erro médio que cada instituto que pesquisa agora teve de 2010 a 2022. Clicar numa linha destaca os pontos daquele instituto no gráfico.
-- **Contexto:** resumo da eleição e observações sobre os dados daquela seleção.
-- **Ver todas as pesquisas:** tabela com todos os números da seleção atual.
-
-## Estrutura do projeto
-
-```
-polls/
-├── pesquisas-eleitorais.html     página final (gerada)
-├── template.html                 HTML, CSS e JS da página, com marcadores __DATA__ e __STATES__
-├── build.py                      monta os dados de presidente → data_min.json
-├── build_states.py               monta os dados de governador e senador → data_states.json
-├── make_html.py                  injeta os dados e o D3 no template → pesquisas-eleitorais.html
-├── baixar_tse_presidente.py      baixa resultados por município do TSE (para o mapa, próxima etapa)
-└── raw/
-    ├── 2010_1t.csv … 2022_2t.csv pesquisas de presidente por eleição e turno
-    ├── 2018_1t_lula.csv          cenários de 2018 com Lula (até agosto)
-    ├── 2018_1t_haddad.csv        cenários de 2018 com Haddad
-    ├── 2014_2t_validos.csv       2º turno de 2014, só disponível em votos válidos
-    ├── 2026_1t_named.txt         1º turno de 2026, uma pesquisa por linha com valores nomeados
-    ├── 2026_2t.csv               2º turno de 2026 (Lula × Flávio)
-    └── states/
-        ├── SPEC.md               formato dos arquivos estaduais
-        └── AC.json … TO.json     governador e senador de cada UF
+```mermaid
+flowchart LR
+    subgraph data/
+        Y[elections.yaml<br/>pollsters.yaml<br/>states.yaml]
+        R[raw/presidential/*.csv<br/>raw/states/*.json]
+    end
+    Y & R --> P[pipeline/<br/>Python: validate,<br/>normalize, score]
+    P --> J[data/generated/<br/>elections.json]
+    J --> W[src/<br/>TypeScript + d3:<br/>smoothing, chart, UI]
+    W --> V[Vite + singlefile]
+    V --> H[dist/index.html<br/>one self-contained file]
 ```
 
-## Como gerar a página
+| Layer | Stack | Responsibility |
+|---|---|---|
+| `data/` | YAML, CSV, JSON | The only source of truth: polls, dates, results, parties, colors, events, context. |
+| `pipeline/` | Python 3.11, PyYAML | Validates every poll (dates, duplicates, rounding-aware sums), normalizes pollster names, scores accuracy, writes `elections.json`. |
+| `src/` | TypeScript, d3 modules | Smoothing, state and URL sync, chart and tables. Copy lives in `src/i18n/pt-BR.ts`. |
+| build | Vite + `vite-plugin-singlefile` | Inlines scripts, styles and data into one 286 KB file (63 KB gzipped). |
 
-Requisitos: Python 3.10+ com `pandas` e `numpy`, e Node.js para obter o D3.
+The generated dataset is committed. The web app builds without Python, and CI fails if the dataset is stale.
+
+## Methodology
+
+**Trend line.** Each day gets a local linear regression over nearby polls, weighted with a Gaussian kernel. The bandwidth is 14 days over an election year, 4 days for the short presidential runoff campaign and 10 days for state runoffs. A local linear fit, unlike a moving average, does not lag behind a trend.
+
+**Weights.**
+- A poll's weight grows with the square root of its sample size, clamped to 500–5,000 interviews.
+- A pollster that publishes several rounds within 7 days (daily trackers) has its weight divided by the square root of that count, so it cannot dominate the average.
+
+**Band.** ±1 weighted standard deviation of the polls around the line.
+
+**Few polls.** With fewer than 3 polls, the line only connects the daily means.
+
+**Accuracy.** Each pollster is scored on its last poll with fieldwork ending within 10 days before the election. Poll and result are both rescaled to shares of the candidates in the result. That puts total-vote polls and the valid-vote result on the same footing. Two measures:
+- *Mean error*: the average absolute gap, in points.
+- *Margin error*: the error on the gap between the top two.
+
+**Data rules.**
+- Dates are the last day of fieldwork.
+- Values are total votes in the prompted scenario.
+- *BNI* (blank, null, undecided) is shown as its own dashed line.
+- First-round polls published only as valid votes are left out, because they are on a different scale.
+
+## Getting started
+
+Requirements: Node 20+ and [uv](https://docs.astral.sh/uv/) (Python is only needed to change data).
 
 ```bash
-npm install d3@7.9.0
-pip install pandas numpy
-python3 build.py
-python3 build_states.py
-python3 make_html.py
+npm install
+npm run dev          # http://localhost:5173
+npm run build        # → dist/index.html, ready to upload anywhere
 ```
 
-`make_html.py` embute o D3 dentro do HTML, por isso o arquivo final roda offline.
-
-## Como adicionar uma pesquisa
-
-**Presidente 2026, 1º turno:** acrescente uma linha em `raw/2026_1t_named.txt`:
-
-```
-Datafolha|2026-10-01|2506|Lula=42;Flavio=38;Cury=4;BNI=7
+```bash
+uv sync
+npm run data         # rebuild data/generated/elections.json
+npm run check        # typecheck, tests, lint, dataset freshness
 ```
 
-`Outros` é calculado sozinho (100 − Lula − Flávio − Cury − BNI).
-
-**Presidente 2026, 2º turno:** acrescente uma linha em `raw/2026_2t.csv`:
-
-```
-Datafolha,2026-10-01,2506,48,45,7
-```
-
-**Governador ou senador:** edite `raw/states/<UF>.json` seguindo `raw/states/SPEC.md`.
-
-Depois rode os três scripts de novo.
-
-Regras usadas em todos os dados:
-
-- A data é o último dia de campo, não a data de divulgação.
-- Os números são votos totais do cenário estimulado.
-- Pesquisas de 1º turno divulgadas só em votos válidos ficam de fora, porque não dá para pôr na mesma escala.
-- BNI = brancos + nulos + indecisos.
-
-## Metodologia
-
-**Linha (média suavizada).** Para cada dia, uma regressão linear local pondera as pesquisas próximas com um núcleo gaussiano. O desvio do núcleo é de 14 dias no ano eleitoral, 4 dias nos 2º turnos curtos de presidente e 10 dias nos 2º turnos estaduais. O cálculo roda no navegador, para refazer a média quando você filtra institutos ou métodos.
-
-**Pesos.**
-- Amostras maiores pesam mais: raiz do tamanho da amostra, limitada entre 500 e 5.000 entrevistas.
-- Institutos que publicam várias rodadas em 7 dias, como os trackings, têm o peso dividido pela raiz do número de rodadas para não dominarem a média.
-
-**Faixa sombreada.** ±1 desvio-padrão ponderado das pesquisas em torno da linha.
-
-**Poucas pesquisas.** Com menos de 3 pesquisas de um candidato, a linha só liga os pontos.
-
-**Quem chegou mais perto.** Para cada instituto, vale a última pesquisa com campo encerrado até 10 dias antes da eleição. Pesquisa e resultado são recalculados como fatia só entre os candidatos do resultado, o que põe votos totais e válidos na mesma base. Duas medidas:
-- Erro médio: diferença média em pontos percentuais.
-- Erro na margem: compara a distância entre os dois primeiros.
-
-**Método de entrevista.** Classificação pelo método habitual de cada instituto:
-
-| Método | Institutos |
+| Script | What it does |
 |---|---|
-| Presencial | Datafolha, Ibope, Ipec, Quaest, Vox Populi, MDA, Sensus, Paraná Pesquisas, Vox Brasil |
-| Telefone | Ipespe, PoderData, FSB, Futura, Real Time Big Data, Ideia, Nexus |
-| Online | AtlasIntel |
-| Não classificado | Gerp, Palver, Indexa e outros sem método confirmado |
+| `npm run dev` | Dev server with hot reload |
+| `npm run build` | Typecheck and build `dist/index.html` |
+| `npm run data` | Validate sources and regenerate the dataset |
+| `npm test` / `npm run test:data` | Vitest (web) / pytest (pipeline) |
+| `npm run check` | Everything CI runs |
 
-Um instituto pode ter mudado de método numa rodada específica.
+### Adding a poll
 
-**Senado.** Em 2026 cada eleitor vota em dois senadores. Os números somam o 1º e o 2º voto, reescalados para 100%, como Quaest, Datafolha, AtlasIntel e Real Time Big Data divulgam. Institutos que publicam a soma bruta, acima de 100%, ficaram de fora.
+1. **President:** add a row to `data/raw/presidential/<year>-<round>.csv`:
+   ```csv
+   pollster,date,sample_size,Lula,Flávio,Cury,others,undecided
+   Datafolha,2026-10-03,2506,42,38,4,,7
+   ```
+   In 2026 round 1, a blank `others` is derived as 100 minus everything else.
+2. **Governor or Senate:** add a line to `data/raw/states/<UF>.json`, following [the spec](data/raw/states/SPEC.md).
+3. Run `npm run data`. Validation errors name the file and the poll at fault.
 
-**Cores.** Validadas para daltonismo, em modo claro e escuro. Nas eleições estaduais, PT fica vermelho e PL azul; os demais recebem cores fixas por ordem.
+A new pollster's alias and interview method go in `data/pollsters.yaml`. A new election goes in `data/elections.yaml`.
 
-## Fontes
+## Project layout
 
-- **Pesquisas de presidente 2010–2022 e de 2026 até agosto:** tabelas da Wikipédia em inglês (*Opinion polling for the 20XX Brazilian presidential election*; para 2014, *2014 Brazilian general election*), que reúnem pesquisas registradas no TSE.
-- **Pesquisas de setembro e outubro de 2026:** páginas de cada divulgação na Gazeta do Povo, mais Poder360, Jornal Opção e outros veículos.
-- **Pesquisas estaduais:** Gazeta do Povo, CNN Brasil, Exame, Poder360, Wikipédia e veículos regionais.
-- **Resultados oficiais:** TSE.
-- **Marcos no gráfico:** fatos da campanha, como a morte de Campos (2014), a facada (2018) e a MP do fim das bets (25/09/2026).
-
-## Limitações conhecidas
-
-- Os dados foram lidos de páginas web por uma ferramenta automática e passaram por checagem de soma, datas, duplicatas e nomes. Pode haver erro de transcrição pontual.
-- 2010 e 2014 têm só 4 institutos listados, sem tamanho de amostra.
-- No 1º turno de 2022 não há BNI, porque a fonte não trazia.
-- Em 2018, Lula aparece tracejado: cenários com ele até 31/08, com Haddad depois.
-- No 2º turno de 2026, os pontos antes de outubro são simulações hipotéticas.
-- Algumas pesquisas de 1º turno de 2026 ficaram de fora por terem saído só em votos válidos:
-  - AtlasIntel de 22/09
-  - Nexus de 27/09
-  - Gerp de 28/09
-  - Real Time Big Data de 30/09, só no 2º turno; o 1º turno entrou em votos totais.
-- Estados com poucas pesquisas: RR (2), AC, TO e MS (4). Vários estados só têm pesquisas a partir de julho ou agosto, porque antes os institutos testavam nomes que saíram da disputa.
-- Governador e senador: dados até 29/09/2026.
-- Deputados não entram: quase não há pesquisa para esse cargo.
-- Gerp e Palver ficam cerca de 3 pontos mais favoráveis a Flávio que a média ao longo do ano. Sem os dois, o 2º turno de 2026 é empate.
-
-## Próxima etapa: mapa por município
-
-O objetivo é um mapa dos 5.570 municípios com o resultado de presidente em cada eleição, nos dois turnos.
-
-- **Contornos:** malha de municípios do GitHub (`tbrugz/geodata-br`).
-- **Resultados:** arquivos do TSE, que só podem ser baixados fora deste ambiente. `baixar_tse_presidente.py` faz isso e gera `resultados_presidente_municipio.csv`:
-
-```bash
-python3 baixar_tse_presidente.py              # 2010, 2014, 2018 e 2022
-python3 baixar_tse_presidente.py 2022         # um ano só
+```
+data/
+  elections.yaml        presidential dates, results, candidates, events, context
+  pollsters.yaml        name aliases and interview methods
+  states.yaml           poll window, exclusions, colors, state notes
+  raw/presidential/     one CSV per year and round
+  raw/states/           one JSON per state (format in SPEC.md)
+  generated/            elections.json, built by the pipeline
+pipeline/               Python data pipeline + TSE results downloader
+src/
+  model/                smoothing, view model, track record (pure, tested)
+  ui/                   chart, controls, legend, tables, context
+  i18n/pt-BR.ts         interface copy
+  state.ts              app state and URL sync
+tests/
+  pipeline/             pytest
+  web/                  Vitest, including an end-to-end render of every race
 ```
 
-O script usa só a biblioteca padrão do Python, baixa o arquivo `votacao_candidato_munzona` de cada ano, fica com presidente e soma as zonas de cada município. O código de município do TSE será convertido para o código do IBGE na hora de montar o mapa.
+## Sources
 
-Falta decidir como pintar cada cidade:
-- só quem venceu;
-- cor pela margem de vitória;
-- mudança entre eleições.
+- **Presidential polls, 2010–2022 and 2026 through August:** Wikipedia's *Opinion polling for the Brazilian presidential election* tables, which compile polls registered with the TSE.
+- **September–October 2026:** individual releases reported by Gazeta do Povo, Poder360 and others.
+- **State polls:** Gazeta do Povo, CNN Brasil, Exame, Poder360, Wikipedia and regional outlets. Each state file lists its sources.
+- **Official results:** [TSE open data](https://dadosabertos.tse.jus.br/).
 
-## Referências
+## Known limitations
 
-- Dados abertos do TSE: https://dadosabertos.tse.jus.br/dataset/?groups=resultados
-- Regressão local (LOESS): https://en.wikipedia.org/wiki/Local_regression
-- Gráfico de referência do Nexo: https://www.nexojornal.com.br/especial/2026/08/28/pesquisa-presidente-eleicoes-2026-lula-bolsonaro
-- D3.js: https://d3js.org/
+- **Transcription.** Polls were transcribed from web pages and checked for sums, dates, duplicates and names. Isolated transcription errors are possible.
+- **Thin early data.** 2010 and 2014 list only 4 pollsters, without sample sizes.
+- **Missing undecided.** The 2022 first round has no BNI, because the source did not include it.
+- **Thin state data.** Some states have very few polls: Roraima has 2; Acre, Tocantins and Mato Grosso do Sul have 4.
+- **Senate convention.** Senate numbers sum both votes rescaled to 100%. Pollsters that publish the raw sum (over 100%) are left out.
+
+## Roadmap
+
+- [ ] Municipality map of presidential results. `python -m pipeline.fetch_tse_results` already downloads TSE results per municipality.
+- [ ] Win probability via Monte Carlo simulation, using each pollster's historical error.
+- [ ] English version of the interface.
+- [ ] Open Graph preview image.
+
+## Author
+
+[Danillo Gomes](https://danillogomes.com).
