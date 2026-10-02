@@ -1,0 +1,44 @@
+{
+  "name": "urna",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Brazilian election poll tracker: every published poll, a smoothed average and pollster accuracy, in a single offline HTML file.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "data": "uv run python -m pipeline.build",
+    "test": "vitest run",
+    "test:data": "uv run pytest",
+    "typecheck": "tsc --noEmit",
+    "format": "prettier --write src tests/web",
+    "check": "npm run typecheck && npm test && uv run ruff check pipeline tests && npm run test:data && uv run python -m pipeline.build --check"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "d3-array": "^3.2.4",
+    "d3-scale": "^4.0.2",
+    "d3-selection": "^3.0.0",
+    "d3-shape": "^3.2.0",
+    "d3-time": "^3.1.0",
+    "d3-time-format": "^4.1.0"
+  },
+  "devDependencies": {
+    "@types/d3-array": "^3.2.2",
+    "@types/d3-scale": "^4.0.9",
+    "@types/d3-selection": "^3.0.12",
+    "@types/d3-shape": "^3.2.0",
+    "@types/d3-time": "^3.0.4",
+    "@types/d3-time-format": "^4.0.3",
+    "@types/node": "^26.6.4",
+    "jsdom": "^27.0.1",
+    "prettier": "^3.9.9",
+    "typescript": "^7.0.2",
+    "vite": "^7.3.6",
+    "vite-plugin-singlefile": "^2.3.3",
+    "vitest": "^3.2.7"
+  }
+}
