@@ -118,6 +118,10 @@
           <button type="button" id="map-office-mayor" data-office="mayor" aria-pressed="false">Prefeito</button>
         </div>
       </div>
+      <div class="group">
+        <label class="group-label" for="map-uf">Estado</label>
+        <select id="map-uf" class="select"></select>
+      </div>
       <div class="group" id="map-round-group">
         <span class="group-label" id="lbl-map-round">Turno</span>
         <div class="seg" role="group" aria-labelledby="lbl-map-round" id="map-rounds">
@@ -141,7 +145,14 @@
         <span class="meta" id="map-meta"></span>
       </div>
       <div class="legend map-legend" id="map-legend"></div>
-      <div class="map" id="map"></div>
+      <div class="map" id="map">
+        <div class="map-zoom" role="group" aria-label="Zoom">
+          <button type="button" id="map-zoom-in" aria-label="Aproximar" title="Aproximar">+</button>
+          <button type="button" id="map-zoom-out" aria-label="Afastar" title="Afastar">−</button>
+          <button type="button" id="map-zoom-reset" aria-label="Ver o Brasil inteiro" title="Ver o Brasil inteiro">⟲</button>
+        </div>
+        <div class="map-hint" id="map-hint" hidden></div>
+      </div>
       <p class="map-note" id="map-note"></p>
     </section>
   </div>

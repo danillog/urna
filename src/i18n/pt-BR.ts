@@ -98,6 +98,9 @@ export const t = {
   mapFocus: "Clique para destacar no mapa; clique de novo para voltar",
   mapPlay: "Reproduzir as eleições em sequência",
   mapPause: "Pausar",
+  mapWholeCountry: "Brasil inteiro",
+  mapZoomHint: "Ctrl + rolagem para aproximar",
+  mapZoomHintMac: "⌘ + rolagem para aproximar",
   mapNotePresident:
     "Cor de quem venceu em cada município; quanto mais forte, maior a vantagem. Votos válidos apurados pelo TSE; votos do exterior não entram no mapa.",
   mapNoteMayor:

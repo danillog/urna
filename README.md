@@ -13,14 +13,14 @@ Every published poll for Brazil's presidential, governor and Senate races, a smo
 - **Nearly 1,400 polls**: president 2010–2026 (both rounds), plus 2026 governor and Senate races in all 27 states.
 - **Live re-averaging.** Turn pollsters or interview methods (in person, phone, online) on and off, and the trend lines are recomputed in the browser.
 - **Polls vs. ballot box.** For past elections, the final average is converted to valid votes and compared with the official TSE result.
-- **Map tab: 30 years of results by municipality.** All 5,570 municipalities for every presidential round since 1994 and every mayor election since 1996. Press play to watch the map change election by election, or click a party to follow it through time (say, where the PT won city halls from 1996 to 2024).
+- **Map tab: 30 years of results by municipality.** All 5,570 municipalities for every presidential round since 1994 and every mayor election since 1996. Press play to watch the map change election by election, click a party to follow it through time (say, where the PT won city halls from 1996 to 2024), and zoom in down to single municipalities: pick a state, use the +/− buttons, pinch, or ctrl/⌘ + scroll.
 - **Pollster accuracy.** Each pollster's last poll before election day is scored. For the current election, the table shows each pollster's track record since 2010.
 - **Shareable views.** The selection lives in the URL, e.g. [`?office=governor&uf=SP`](https://danillogomes.com/urna/?office=governor&uf=SP) or [`?year=2022&exclude=Gerp,Palver`](https://danillogomes.com/urna/?year=2022&exclude=Gerp,Palver).
 - **Accessible and themable.** Keyboard navigation, a full data table, colorblind-safe palette, light and dark mode.
 
 ![2014 runoff by municipality: Dilma in red, Aécio in blue, darker where the margin was wider](docs/map.png)
 
-**Live links:** [mayors elected in 2024](https://danillogomes.com/urna/?view=map&office=mayor&year=2024) · [the PT's city halls since 1996](https://danillogomes.com/urna/?view=map&office=mayor&year=1996&focus=PT) · [2002 runoff](https://danillogomes.com/urna/?view=map&office=president&year=2002&round=r2)
+**Live links:** [mayors elected in 2024](https://danillogomes.com/urna/?view=map&office=mayor&year=2024) · [the PT's city halls since 1996](https://danillogomes.com/urna/?view=map&office=mayor&year=1996&focus=PT) · [2002 runoff](https://danillogomes.com/urna/?view=map&office=president&year=2002&round=r2) · [Rio de Janeiro's mayors in 2024](https://danillogomes.com/urna/?view=map&office=mayor&year=2024&uf=RJ)
 
 ## How it works
 

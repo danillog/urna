@@ -33,10 +33,16 @@ function ensureMap(): MapView {
     municipalMap = JSON.parse(mapJson) as MunicipalMap;
     const mapData = new MapData(municipalMap);
     const initial = mapFromSearch(mapData, view === "map" ? params : new URLSearchParams());
-    mapView = new MapView(mapData, initial, () => {
-      syncUrl();
-      mapView!.render(municipalMap!);
-    });
+    const stateNames = Object.fromEntries(Object.values(data.states).map((st) => [st.uf, st.name]));
+    mapView = new MapView(
+      mapData,
+      initial,
+      () => {
+        syncUrl();
+        mapView!.render(municipalMap!);
+      },
+      stateNames,
+    );
   }
   return mapView;
 }

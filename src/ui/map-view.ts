@@ -22,13 +22,17 @@ export interface MapState {
   round: RoundId;
   /** Color group (candidate or party lineage) standing out on the map. */
   focus: string | null;
+  /** State the map is zoomed to; null shows the whole country. */
+  uf: string | null;
 }
 
 /** Time between elections while the timeline plays. */
 const PLAY_STEP_MS = 1400;
+/** How long the "ctrl + scroll to zoom" hint stays up. */
+const HINT_MS = 1500;
 
 export function defaultMapState(data: MapData): MapState {
-  return { office: "president", year: data.years("president").at(-1)!, round: "r1", focus: null };
+  return { office: "president", year: data.years("president").at(-1)!, round: "r1", focus: null, uf: null };
 }
 
 /** Pulls the state back to an election that exists (nearest year, first round if needed). */
@@ -49,6 +53,7 @@ export function mapFromSearch(data: MapData, params: URLSearchParams): MapState 
   if (year) s.year = year;
   if (params.get("round") === "r2") s.round = "r2";
   s.focus = params.get("focus");
+  s.uf = params.get("uf")?.toUpperCase() ?? null;
   return normalizeMapState(data, s);
 }
 
@@ -57,6 +62,7 @@ export function mapToSearch(s: MapState, params: URLSearchParams): void {
   params.set("year", String(s.year));
   if (s.office === "president" && s.round === "r2") params.set("round", "r2");
   if (s.focus) params.set("focus", s.focus);
+  if (s.uf) params.set("uf", s.uf);
 }
 
 function tooltip(map: MunicipalMap, race: MapRace, i: number): string {
@@ -87,12 +93,30 @@ function tooltip(map: MunicipalMap, race: MapRace, i: number): string {
 export class MapView {
   private drawing: MunicipalityMap | null = null;
   private timer: number | undefined;
+  private hintTimer: number | undefined;
+  /** State currently framed, to move the camera only when the selection changes. */
+  private framed: string | null | undefined = undefined;
 
   constructor(
     private readonly data: MapData,
     private state: MapState,
     private readonly onChange: (s: MapState) => void,
+    stateNames: Record<string, string>,
   ) {
+    const select = byId<HTMLSelectElement>("map-uf");
+    select.add(new Option(t.mapWholeCountry, ""));
+    Object.entries(stateNames)
+      .sort((a, b) => a[1].localeCompare(b[1], t.locale))
+      .forEach(([uf, name]) => select.add(new Option(t.state(name, uf), uf)));
+    if (this.state.uf && !(this.state.uf in stateNames)) this.state = { ...this.state, uf: null };
+    select.addEventListener("change", () => this.set({ uf: select.value || null }));
+    byId("map-zoom-in").addEventListener("click", () => this.drawing?.zoomIn());
+    byId("map-zoom-out").addEventListener("click", () => this.drawing?.zoomOut());
+    byId("map-zoom-reset").addEventListener("click", () => {
+      if (this.state.uf) this.set({ uf: null });
+      else this.drawing?.fit(null);
+    });
+
     byId("map-offices")
       .querySelectorAll<HTMLButtonElement>("button")
       .forEach((b) =>
@@ -174,7 +198,12 @@ export class MapView {
     byId("map-note").textContent = president ? t.mapNotePresident : t.mapNoteMayor;
     this.renderLegend(race, wins);
 
-    this.drawing ??= new MunicipalityMap(byId("map"), map);
+    byId<HTMLSelectElement>("map-uf").value = s.uf ?? "";
+    this.drawing ??= new MunicipalityMap(byId("map"), map, () => this.showHint());
+    if (this.framed !== s.uf) {
+      this.drawing.fit(s.uf, this.framed !== undefined); // no animation on first load
+      this.framed = s.uf;
+    }
     const focus = s.focus && wins.some((w) => w.group === s.focus) ? s.focus : null;
     byId("map").classList.toggle("focusing", focus !== null);
     this.drawing.paint(
@@ -189,6 +218,14 @@ export class MapView {
       },
       (i) => tooltip(map, race, i),
     );
+  }
+
+  private showHint(): void {
+    const hint = byId("map-hint");
+    hint.textContent = /Mac|iPhone|iPad/.test(navigator.userAgent) ? t.mapZoomHintMac : t.mapZoomHint;
+    hint.hidden = false;
+    window.clearTimeout(this.hintTimer);
+    this.hintTimer = window.setTimeout(() => (hint.hidden = true), HINT_MS);
   }
 
   private renderTimeline(): void {

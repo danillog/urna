@@ -69,7 +69,13 @@ describe("map data", () => {
   });
 
   it("moves to the nearest election when switching office", () => {
-    const s = normalizeMapState(data, { office: "president", year: 2000, round: "r2", focus: null });
+    const s = normalizeMapState(data, {
+      office: "president",
+      year: 2000,
+      round: "r2",
+      focus: null,
+      uf: null,
+    });
     expect(s.year).toBe(2002);
     expect(s.round).toBe("r2");
     expect(normalizeMapState(data, { ...s, year: 1994 }).round).toBe("r1"); // no runoff in 1994

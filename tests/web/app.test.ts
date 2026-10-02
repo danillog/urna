@@ -14,7 +14,11 @@ const click = (id: string) => ($(id) as HTMLButtonElement).click();
 beforeAll(async () => {
   const html = readFileSync(resolve(__dirname, "../../index.html"), "utf8");
   document.body.innerHTML = html.slice(html.indexOf("<body>") + 6, html.indexOf("</body>"));
-  window.matchMedia = () => ({ matches: false, addEventListener() {} }) as unknown as MediaQueryList;
+  // Reduced motion: camera moves apply at once instead of animating.
+  window.matchMedia = ((query: string) => ({
+    matches: query.includes("reduced-motion"),
+    addEventListener() {},
+  })) as unknown as typeof window.matchMedia;
   await import("../../src/main");
 });
 
@@ -89,5 +93,33 @@ describe("app", () => {
 
     click("tab-polls");
     expect($("polls-view").hidden).toBe(false);
+  });
+
+  it("zooms the map to a state and back", () => {
+    click("tab-map");
+    const viewport = () => $("map").querySelector("svg > g")!.getAttribute("transform") ?? "";
+    const scale = () => Number(viewport().match(/scale\(([\d.]+)\)/)?.[1] ?? 1);
+
+    const select = $("map-uf") as HTMLSelectElement;
+    select.value = "SP";
+    select.dispatchEvent(new Event("change"));
+    expect(scale()).toBeGreaterThan(2);
+    expect(window.location.search).toContain("uf=SP");
+    expect($("map").classList.contains("zoomed")).toBe(true);
+
+    const framed = scale();
+    click("map-zoom-in");
+    expect(scale()).toBeCloseTo(framed * 2);
+    click("map-zoom-out");
+    expect(scale()).toBeCloseTo(framed);
+
+    // The camera stays put while the timeline moves.
+    ($("map-years").querySelector("button") as HTMLButtonElement).click();
+    expect(scale()).toBeCloseTo(framed);
+
+    click("map-zoom-reset");
+    expect(scale()).toBe(1);
+    expect(select.value).toBe("");
+    expect(window.location.search).not.toContain("uf=");
   });
 });
