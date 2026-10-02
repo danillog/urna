@@ -72,6 +72,12 @@ export const t = {
 
   pollsHead: ["Instituto", "Data", "Amostra"],
 
+  mapAria: (title: string) => `Mapa do resultado por município: ${title}`,
+  mapWins: (candidate: string, n: string) => `${candidate} venceu em ${n}`,
+  mapMargin: (steps: string) => `Vantagem sobre o 2º colocado, em p.p.: ${steps}`,
+  mapVotes: (n: string) => `${n} votos válidos`,
+  mapNoData: "Município criado depois desta eleição",
+
   stateSummary: (polls: number, office: string, state: string, pollsters: number) =>
     `${plural(polls, "pesquisa", "pesquisas")} de ${office} em ${state}, de ${plural(pollsters, "instituto", "institutos")}.`,
   fewPolls: " Com poucas pesquisas, a linha é pouco confiável: vale olhar os pontos um a um.",

@@ -1,0 +1,16 @@
+# TSE municipality code → IBGE code, for the municipalities whose names do not
+# match between the two sources (renamed towns, spelling differences).
+# Everything else is matched automatically by state and name.
+tse_to_ibge:
+  41092: 3105509 # MG Barão de Monte Alto (TSE) / Barão do Monte Alto (IBGE)
+  44571: 3122900 # MG Dona Eusébia / Dona Euzébia
+  53031: 3165206 # MG São Thomé das Letras / São Tomé das Letras
+  91553: 5107800 # MT Santo Antônio do Leverger / Santo Antônio de Leverger
+  4120: 1502954 # PA Eldorado dos Carajás / Eldorado do Carajás
+  5290: 1506500 # PA Santa Isabel do Pará / Santa Izabel do Pará
+  17035: 2405306 # RN Boa Saúde, renamed Januário Cicco
+  256: 1100098 # RO Espigão do Oeste / Espigão D'Oeste
+  337: 1100346 # RO Alvorada do Oeste / Alvorada D'Oeste
+  3158: 1400605 # RR São Luiz / São Luiz do Anauá
+  31011: 2800100 # SE Amparo de São Francisco / Amparo do São Francisco
+  71013: 3550001 # SP São Luís do Paraitinga / São Luiz do Paraitinga

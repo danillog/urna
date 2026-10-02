@@ -1,19 +1,23 @@
 import "./styles.css";
 
 import dataset from "../data/generated/elections.json";
+// Imported as text: type inference over 2 MB of coordinates would stall the compiler.
+import mapJson from "../data/generated/map.json?raw";
 import { formatDate, formatIsoDate, dayToDate } from "./format";
 import { t } from "./i18n/pt-BR";
 import { buildView } from "./model/view";
 import { fromSearch, raceFor, toSearch, type AppState } from "./state";
-import type { Dataset } from "./types";
+import type { Dataset, MunicipalMap } from "./types";
 import { renderChart } from "./ui/chart";
 import { renderContext } from "./ui/context";
 import { renderControls, setupControls } from "./ui/controls";
 import { byId } from "./ui/dom";
 import { renderLegend } from "./ui/legend";
+import { renderMap } from "./ui/map";
 import { renderAccuracy, renderComparison, renderHighlightBar, renderPollTable } from "./ui/tables";
 
 const data = dataset as unknown as Dataset;
+const municipalMap = JSON.parse(mapJson) as MunicipalMap;
 let state: AppState = fromSearch(data, window.location.search);
 
 function update(next: AppState): void {
@@ -57,6 +61,11 @@ function render(): void {
     events: state.office === "president" ? data.presidential[state.year]!.events : [],
     highlight: state.highlight,
   });
+  renderMap(
+    municipalMap,
+    state.office === "president" ? municipalMap.races[`${state.year}-${state.round}`] : undefined,
+    title,
+  );
   renderComparison(view, year);
   renderAccuracy(data, view, state, year, update);
   renderPollTable(view, year);

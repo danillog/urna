@@ -52,6 +52,20 @@ describe("app", () => {
     expect(($("round-r2") as HTMLButtonElement).disabled).toBe(true); // no Senate runoff
   });
 
+  it("shows the municipality map only for presidential races with results", () => {
+    click("office-president");
+    click("year-2022");
+    click("round-r2");
+    expect($("map-panel").hidden).toBe(false);
+    expect($("map").querySelectorAll(".municipalities path").length).toBeGreaterThan(5500);
+    expect($("map-meta").textContent).toMatch(/Lula venceu em [\d.]+ · Bolsonaro venceu em [\d.]+/);
+    click("year-2026");
+    expect($("map-panel").hidden).toBe(true);
+    click("year-2022");
+    click("office-governor");
+    expect($("map-panel").hidden).toBe(true);
+  });
+
   it("excludes a pollster and highlights another", () => {
     click("office-president");
     click("year-2022");

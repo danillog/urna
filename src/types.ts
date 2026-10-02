@@ -1,5 +1,7 @@
 /** Shape of data/generated/elections.json, produced by pipeline/build.py. */
 
+import type { GeometryCollection, Topology } from "topojson-specification";
+
 export type RoundId = "r1" | "r2";
 export type Office = "president" | "governor" | "senate";
 export type Method = "in_person" | "phone" | "online";
@@ -74,4 +76,25 @@ export interface Dataset {
   methods: Record<string, Method>;
   presidential: Record<string, PresidentialElection>;
   states: Record<string, StateEntry>;
+}
+
+/** Shape of data/generated/map.json, produced by pipeline/municipal_map.py. */
+export interface MunicipalRace {
+  /** Candidates referenced by the index arrays below. */
+  candidates: string[];
+  colors: Record<string, ColorName>;
+  /** Per municipality, in topology order. -1 when there is no data. */
+  winner: number[];
+  /** Shares in tenths of a percent of valid votes. */
+  winnerShare: number[];
+  second: number[];
+  secondShare: number[];
+  votes: number[];
+}
+
+export interface MunicipalMap {
+  municipalities: { names: string[]; uf: string[] };
+  topology: Topology<{ municipalities: GeometryCollection }>;
+  /** Keyed "2022-r2". */
+  races: Record<string, MunicipalRace>;
 }

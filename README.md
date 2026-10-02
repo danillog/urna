@@ -13,9 +13,12 @@ Every published poll for Brazil's presidential, governor and Senate races, a smo
 - **Nearly 1,400 polls**: president 2010–2026 (both rounds), plus 2026 governor and Senate races in all 27 states.
 - **Live re-averaging.** Turn pollsters or interview methods (in person, phone, online) on and off, and the trend lines are recomputed in the browser.
 - **Polls vs. ballot box.** For past elections, the final average is converted to valid votes and compared with the official TSE result.
+- **Results by municipality.** A map of all 5,570 municipalities for every past presidential round, shaded by the winner's margin, with the numbers on hover.
 - **Pollster accuracy.** Each pollster's last poll before election day is scored. For the current election, the table shows each pollster's track record since 2010.
 - **Shareable views.** The selection lives in the URL, e.g. [`?office=governor&uf=SP`](https://danillogomes.com/urna/?office=governor&uf=SP) or [`?year=2022&exclude=Gerp,Palver`](https://danillogomes.com/urna/?year=2022&exclude=Gerp,Palver).
 - **Accessible and themable.** Keyboard navigation, a full data table, colorblind-safe palette, light and dark mode.
+
+![2014 runoff by municipality: Dilma in red, Aécio in blue, darker where the margin was wider](docs/map.png)
 
 ## How it works
 
@@ -25,9 +28,11 @@ flowchart LR
         Y[elections.yaml<br/>pollsters.yaml<br/>states.yaml]
         R[raw/presidential/*.csv<br/>raw/states/*.json]
     end
+    WK[Wikipedia tables] & TR[TSE poll registry] -. npm run crawler .-> R
+    T[TSE results +<br/>IBGE boundaries] -. npm run map .-> M[data/generated/<br/>map.json]
     Y & R --> P[pipeline/<br/>Python: validate,<br/>normalize, score]
     P --> J[data/generated/<br/>elections.json]
-    J --> W[src/<br/>TypeScript + d3:<br/>smoothing, chart, UI]
+    J & M --> W[src/<br/>TypeScript + d3:<br/>smoothing, chart, map, UI]
     W --> V[Vite + singlefile]
     V --> H[dist/index.html<br/>one self-contained file]
 ```
@@ -37,7 +42,7 @@ flowchart LR
 | `data/` | YAML, CSV, JSON | The only source of truth: polls, dates, results, parties, colors, events, context. |
 | `pipeline/` | Python 3.11, PyYAML | Validates every poll (dates, duplicates, rounding-aware sums), normalizes pollster names, scores accuracy, writes `elections.json`. |
 | `src/` | TypeScript, d3 modules | Smoothing, state and URL sync, chart and tables. Copy lives in `src/i18n/pt-BR.ts`. |
-| build | Vite + `vite-plugin-singlefile` | Inlines scripts, styles and data into one 286 KB file (63 KB gzipped). |
+| build | Vite + `vite-plugin-singlefile` | Inlines scripts, styles, data and map into one file: 2.4 MB, 760 KB gzipped. |
 
 The generated dataset is committed. The web app builds without Python, and CI fails if the dataset is stale.
 
@@ -85,6 +90,7 @@ npm run check        # typecheck, tests, lint, dataset freshness
 | `npm run build` | Typecheck and build `dist/index.html` |
 | `npm run crawler` | Find new polls (see below) and regenerate the dataset |
 | `npm run data` | Validate sources and regenerate the dataset |
+| `npm run map` | Download TSE results (≈1.6 GB, streamed) and rebuild the municipality map |
 | `npm test` / `npm run test:data` | Vitest (web) / pytest (pipeline) |
 | `npm run check` | Everything CI runs |
 
@@ -122,6 +128,10 @@ Everything else is listed for a human to check. Polls rejected on purpose go in 
 
 A new pollster's alias and interview method go in `data/pollsters.yaml`. A new election goes in `data/elections.yaml`.
 
+### Municipality map
+
+`npm run map` downloads the TSE results per municipality and the IBGE boundaries (TopoJSON, minimum quality), then writes `data/generated/map.json`. TSE and IBGE number municipalities differently. Codes are matched by state and name, ignoring accents and punctuation. The 12 names that differ, such as renamed towns or spellings like *Santa Isabel / Santa Izabel do Pará*, are pinned in `data/municipalities.yaml`. All 5,570 municipalities match, and national totals reproduce the official results. Shares are of valid votes cast in Brazil; votes cast abroad are left out of the map.
+
 ## Project layout
 
 ```
@@ -131,11 +141,12 @@ data/
   states.yaml           poll window, exclusions, colors, state notes
   raw/presidential/     one CSV per year and round
   raw/states/           one JSON per state (format in SPEC.md)
-  generated/            elections.json, built by the pipeline
+  municipalities.yaml   TSE → IBGE codes for names that differ
+  generated/            elections.json and map.json, built by the pipeline
 pipeline/               Python data pipeline + TSE results downloader
 src/
   model/                smoothing, view model, track record (pure, tested)
-  ui/                   chart, controls, legend, tables, context
+  ui/                   chart, map, controls, legend, tables, context
   i18n/pt-BR.ts         interface copy
   state.ts              app state and URL sync
 tests/
@@ -160,7 +171,9 @@ tests/
 
 ## Roadmap
 
-- [ ] Municipality map of presidential results. `python -m pipeline.fetch_tse_results` already downloads TSE results per municipality.
+- [x] Municipality map of presidential results, 2010–2022.
+- [ ] 2026 results on the map, once the TSE publishes them per municipality.
+- [ ] Swing map: how each municipality moved between two elections.
 - [ ] Win probability via Monte Carlo simulation, using each pollster's historical error.
 - [ ] English version of the interface.
 - [ ] Open Graph preview image.

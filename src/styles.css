@@ -540,3 +540,87 @@ table.clickable tbody tr:focus-visible {
 .group-wide {
   flex: 1 1 100%;
 }
+
+/* Municipality map. Fill = winner's color mixed with the surface by margin. */
+.map {
+  position: relative;
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+}
+.map svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.municipalities path {
+  fill: color-mix(in srgb, var(--mc, var(--c-gray)) var(--mix, 100%), var(--surface));
+}
+.municipalities path.active {
+  stroke: var(--ink);
+  stroke-width: 1.5;
+}
+.municipalities path.no-data {
+  fill: var(--grid);
+}
+.state-borders {
+  fill: none;
+  stroke: var(--surface);
+  stroke-width: 0.9;
+  stroke-linejoin: round;
+  pointer-events: none;
+}
+.c-red {
+  --mc: var(--c-red);
+}
+.c-blue {
+  --mc: var(--c-blue);
+}
+.c-gold {
+  --mc: var(--c-gold);
+}
+.c-teal {
+  --mc: var(--c-teal);
+}
+.c-violet {
+  --mc: var(--c-violet);
+}
+.c-gray {
+  --mc: var(--c-gray);
+}
+.s0 {
+  --mix: 28%;
+}
+.s1 {
+  --mix: 52%;
+}
+.s2 {
+  --mix: 76%;
+}
+.s3 {
+  --mix: 100%;
+}
+.map-key,
+.tooltip .key i.map-key {
+  display: inline-block;
+  width: 11px;
+  height: 11px;
+  border-radius: 2px;
+  background: color-mix(in srgb, var(--mc, var(--c-gray)) var(--mix, 100%), var(--surface));
+}
+.map-scale {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+.map-scale .map-key:last-of-type {
+  margin-right: 6px;
+}
+.map-steps {
+  color: var(--muted);
+}
+.map-note {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+}
