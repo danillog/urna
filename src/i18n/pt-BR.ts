@@ -163,9 +163,19 @@ export const t = {
   } as Record<string, string>,
   mapTitlePresident: (year: number, round: string) => `Presidente · ${year} · ${round}`,
   mapTitleMayor: (year: number) => `Prefeitos eleitos em ${year}`,
-  mapTitleIdhm: (year: number) => `IDH dos municípios no Censo de ${year}`,
+  mapTitleIdhm: (year: number, estimate: boolean) =>
+    estimate
+      ? `IDH dos municípios em ${year}: estimativa com o Censo`
+      : `IDH dos municípios no Censo de ${year}`,
   mapNoteIdhm:
     "IDHM do Atlas do Desenvolvimento Humano no Brasil (PNUD, Ipea, FJP), via Ipeadata, calculado com os Censos de 1991, 2000 e 2010, os anos que o Ipeadata publica por município. Faixas finas de 0,05; a categoria oficial aparece ao passar o mouse.",
+  mapNoteIdhmEstimate: (error: string) =>
+    "Atenção: não é o IDHM oficial. O Atlas do Desenvolvimento Humano no Brasil (PNUD, Ipea, FJP) ainda não publicou o IDHM municipal do Censo de 2022; " +
+    "este mapa é uma compilação nossa com as tabelas do Censo 2022 publicadas pelo IBGE, seguindo a metodologia do Atlas com aproximações: " +
+    "renda domiciliar per capita corrigida pelo INPC; escolaridade dos adultos e frequência escolar por idade; longevidade estimada pela mortalidade dos filhos (método indireto) e pela renda. " +
+    `Calibrado no Censo de 2010, o mesmo cálculo erra em média ${error} para mais ou para menos em relação ao IDHM oficial; o nível de cada estado segue o IDHM estadual oficial de 2022. ` +
+    "Os valores podem mudar quando o dado oficial sair.",
+  mapIdhmEstimate: "Estimativa nossa com o Censo 2022, não é o dado oficial",
   mapIdhmNoData: "Município criado depois deste Censo",
   mapAria: (title: string) => `Mapa do resultado por município: ${title}`,
   mapMunicipalities: (n: string) => `${n} municípios com resultado`,

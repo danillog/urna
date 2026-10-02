@@ -265,7 +265,8 @@ export class MapView {
     byId("map-round-group").hidden = true;
     this.renderTimeline();
     this.renderPlayButton();
-    const title = t.mapTitleIdhm(s.year);
+    const estimate = this.data.idhmIsEstimate(s.year);
+    const title = t.mapTitleIdhm(s.year, estimate);
     byId("map-title").textContent = title;
     const groupOf = (i: number) => (values[i] ? String(step("hdi", values[i]! / 1000)) : null);
     const counts = STEPS.hdi.map(() => 0);
@@ -279,7 +280,9 @@ export class MapView {
     this.shown = { key, groups: new Set(STEPS.hdi.map((_, k) => String(k))), groupOf };
     this.highlighted = null;
     byId("map-meta").textContent = t.mapMunicipalities(integer(n));
-    byId("map-note").textContent = t.mapNoteIdhm;
+    byId("map-note").textContent = estimate
+      ? t.mapNoteIdhmEstimate(t.indicator.hdi.format(this.data.map.idhmEstimate!.error2010))
+      : t.mapNoteIdhm;
     const legend = byId("map-legend");
     legend.replaceChildren(
       ...STEPS.hdi.map((from, k) => {
@@ -310,6 +313,7 @@ export class MapView {
           `<div class="tt-h">${place}</div>` +
           `<div class="row"><span class="key"><i class="map-key q${step("hdi", v)}"></i>IDHM</span><b>${t.indicator.hdi.format(v)}</b></div>` +
           `<div class="tt-s tt-foot">${t.hdiTier[hdiTier(v)]}</div>` +
+          (estimate ? `<div class="tt-s tt-foot">${t.mapIdhmEstimate}</div>` : "") +
           (before && s.year !== this.data.years("idhm")[0]
             ? `<div class="tt-s tt-foot">${t.indicatorThen(t.indicator.hdi.format(before), this.data.years("idhm")[0]!)}</div>`
             : "")
@@ -360,8 +364,10 @@ export class MapView {
       this.timelineOffice = this.state.office;
       list.replaceChildren(
         ...years.map((year) => {
-          const b = button(String(year), { className: "timeline-year" });
+          const estimate = this.state.office === "idhm" && this.data.idhmIsEstimate(year);
+          const b = button(estimate ? `${year}*` : String(year), { className: "timeline-year" });
           b.dataset.year = String(year);
+          if (estimate) b.title = t.mapIdhmEstimate;
           b.addEventListener("click", () => this.set({ year }, { stop: true }));
           return b;
         }),

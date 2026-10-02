@@ -159,6 +159,7 @@ The data comes from three steps, and each one can be checked on its own.
   - median income per person from household surveys, from the World Bank Poverty and Inequality Platform (2021 PPP $ per month; income surveys only, nothing older than 4 years);
   - V-Dem's electoral democracy index via Our World in Data;
   - Brazil's IDHM by state (yearly since 2012) and by municipality (1991, 2000, 2010 censuses), Atlas of Human Development in Brazil (PNUD, Ipea, FJP) via the Ipeadata API.
+  - Municipal IDHM 2022: **our own estimate**, not an official figure (`pipeline/idhm_census.py`). The Atlas has not published the 2022 Census IDHM by municipality yet, so it is computed from IBGE's Census 2022 tables (SIDRA API) with the Atlas method: income per person deflated by the INPC; adult schooling and school attendance by age; longevity from the share of children who died (pulled toward the state's share where births are few) and income. The approximations are fitted on the 2010 Census, where the same calculation lands within 0.006 of the official IDHM on average; each state's level is then set to its official 2022 IDHM.
   - Each is shown in ten fine steps of the viridis palette: with wide bands, real changes stayed one color (Brazil's democracy index going from 0.69 in 2022 to 0.79 in 2023).
 - **Boundaries:** Natural Earth admin-1, simplified with mapshaper.
 

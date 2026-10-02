@@ -32,6 +32,7 @@ from pathlib import Path
 
 import yaml
 
+from . import idhm_census
 from .build import DATA
 from .sources.http import get
 from .sources.ipea import by_territory
@@ -347,6 +348,14 @@ def main() -> int:
         str(y): pack("H", [round(idhm.get(code, {}).get(y, 0) * 1000) for code in order]) for y in years
     }
     print(f"  IDHM: {len(idhm)} municipalities, censuses {years}")
+    # Our estimate from the 2022 Census, until the Atlas publishes it (pipeline/idhm_census.py).
+    estimate, errors = idhm_census.estimate()
+    out["idhm"][str(idhm_census.YEAR)] = pack(
+        "H", [round(estimate[code]["idhm"] * 1000) if code in estimate else 0 for code in order]
+    )
+    out["idhmEstimate"] = {"years": [idhm_census.YEAR], "error2010": round(errors["idhm"], 3)}
+    print(f"  IDHM {idhm_census.YEAR} (estimate): {len(estimate)} municipalities", end="")
+    print(f", mean error on 2010 {errors['idhm']:.3f}")
     text = json.dumps(out, ensure_ascii=False, separators=(",", ":")) + "\n"
     OUTPUT.write_text(text, encoding="utf-8")
     print(

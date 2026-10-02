@@ -117,4 +117,7 @@ export interface MunicipalMap {
   races: Record<string, EncodedMapRace>;
   /** Municipal HDI by census year: base64 Uint16 in thousandths, 0 = no data. */
   idhm?: Record<string, string>;
+  /** Years in `idhm` that are our own estimate from census tables, not the Atlas's figure;
+   * error2010 is the method's mean absolute error when run on 2010. */
+  idhmEstimate?: { years: number[]; error2010: number };
 }

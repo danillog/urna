@@ -91,6 +91,11 @@ export class MapData {
     return [...new Set(this.keys(office).map((k) => parseKey(k).year))];
   }
 
+  /** Whether a year's IDHM is our own estimate rather than the Atlas's figure. */
+  idhmIsEstimate(year: number): boolean {
+    return this.map.idhmEstimate?.years.includes(year) ?? false;
+  }
+
   /** Municipal HDI in a census year, in thousandths (0 = no data). */
   idhm(year: number): Uint16Array {
     return new Uint16Array(bytes(this.map.idhm![String(year)]!).buffer);
