@@ -878,42 +878,52 @@ table.clickable tbody tr:focus-visible {
   max-width: 680px;
 }
 
-/* Country indicators: a 5-step sequential scale (ColorBrewer YlGnBu), light to dark. */
+/* Country indicators: ten steps between a light and a dark end, mixed in oklab. */
 :root {
-  --seq-0: #ffffcc;
-  --seq-1: #a1dab4;
-  --seq-2: #41b6c4;
-  --seq-3: #2c7fb8;
-  --seq-4: #253494;
+  --seq-lo: #ffffcc;
+  --seq-hi: #253494;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --seq-0: #253494;
-    --seq-1: #2c7fb8;
-    --seq-2: #41b6c4;
-    --seq-3: #a1dab4;
-    --seq-4: #ffffcc;
+    --seq-lo: #253494;
+    --seq-hi: #ffffcc;
   }
 }
 :root[data-theme="dark"] {
-  --seq-0: #253494;
-  --seq-1: #2c7fb8;
-  --seq-2: #41b6c4;
-  --seq-3: #a1dab4;
-  --seq-4: #ffffcc;
+  --seq-lo: #253494;
+  --seq-hi: #ffffcc;
 }
-.seq-0 {
-  --mc: var(--seq-0);
+.q0 {
+  --mc: var(--seq-lo);
 }
-.seq-1 {
-  --mc: var(--seq-1);
+.q1 {
+  --mc: color-mix(in oklab, var(--seq-hi) 11%, var(--seq-lo));
 }
-.seq-2 {
-  --mc: var(--seq-2);
+.q2 {
+  --mc: color-mix(in oklab, var(--seq-hi) 22%, var(--seq-lo));
 }
-.seq-3 {
-  --mc: var(--seq-3);
+.q3 {
+  --mc: color-mix(in oklab, var(--seq-hi) 33%, var(--seq-lo));
 }
-.seq-4 {
-  --mc: var(--seq-4);
+.q4 {
+  --mc: color-mix(in oklab, var(--seq-hi) 44%, var(--seq-lo));
+}
+.q5 {
+  --mc: color-mix(in oklab, var(--seq-hi) 56%, var(--seq-lo));
+}
+.q6 {
+  --mc: color-mix(in oklab, var(--seq-hi) 67%, var(--seq-lo));
+}
+.q7 {
+  --mc: color-mix(in oklab, var(--seq-hi) 78%, var(--seq-lo));
+}
+.q8 {
+  --mc: color-mix(in oklab, var(--seq-hi) 89%, var(--seq-lo));
+}
+.q9 {
+  --mc: var(--seq-hi);
+}
+.chip.compact {
+  padding: 5px 7px;
+  font-size: 12px;
 }

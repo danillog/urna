@@ -12,12 +12,20 @@ import {
   type AmericasData,
   type Family,
 } from "../model/americas";
-import { BANDS, band, rank, valueAt, type IndicatorData, type IndicatorKey } from "../model/indicators";
+import {
+  STEPS,
+  hdiTier,
+  rank,
+  step,
+  valueAt,
+  type IndicatorData,
+  type IndicatorKey,
+} from "../model/indicators";
 import { button, byId } from "./dom";
 import { ChoroplethMap } from "./map";
 
 export type Layer = "politics" | IndicatorKey;
-const LAYERS: Layer[] = ["politics", "hdi", "gdp", "democracy"];
+const LAYERS: Layer[] = ["politics", "hdi", "income", "democracy"];
 
 export interface AmericasState {
   year: number;
@@ -199,14 +207,14 @@ export class AmericasView {
     const layer = this.state.layer;
     if (layer === "politics") return this.familyOf(i);
     const reading = valueAt(this.indicators, layer, this.areas[i]!.country, this.state.year);
-    return reading ? String(band(layer, reading.value)) : null;
+    return reading ? String(step(layer, reading.value)) : null;
   }
 
   private classFor(i: number): string {
     if (!this.data.countries[this.areas[i]!.country]) return "territory";
     const group = this.groupOf(i);
     if (group === null) return "no-data";
-    return this.state.layer === "politics" ? `f-${group}` : `seq-${seqStep(this.state.layer, Number(group))}`;
+    return this.state.layer === "politics" ? `f-${group}` : `q${group}`;
   }
 
   private renderLegend(): void {
@@ -233,17 +241,18 @@ export class AmericasView {
   }
 
   private renderIndicatorLegend(layer: IndicatorKey): void {
-    const counts = BANDS[layer].map(() => 0);
+    const counts = STEPS[layer].map(() => 0);
     for (const iso of Object.keys(this.data.countries)) {
       const reading = valueAt(this.indicators, layer, iso, this.state.year);
-      if (reading) counts[band(layer, reading.value)]! += 1;
+      if (reading) counts[step(layer, reading.value)]! += 1;
     }
+    const copy = t.indicator[layer];
     const el = byId("am-legend");
     el.replaceChildren(
-      ...BANDS[layer].map((b, k) => {
+      ...STEPS[layer].map((from, k) => {
         const chip = button(
-          `<i class="map-key seq-${seqStep(layer, k)}"></i><span>${b.label}</span><span class="n">${integer(counts[k]!)}</span>`,
-          { className: "chip map-chip" },
+          `<i class="map-key q${k}"></i><span>${copy.step(from, STEPS[layer][k + 1])}</span><span class="n">${integer(counts[k]!)}</span>`,
+          { className: "chip map-chip compact" },
         );
         chip.dataset.group = String(k);
         chip.title = t.mapFocus;
@@ -255,7 +264,7 @@ export class AmericasView {
     );
     const source = document.createElement("span");
     source.className = "map-steps";
-    source.innerHTML = `<i class="map-key no-data"></i> ${t.indicatorNoData} · ${t.indicatorSource(
+    source.innerHTML = `${copy.unit} · <i class="map-key no-data"></i> ${t.indicatorNoData} · ${t.indicatorSource(
       escapeHtml(this.indicators.indicators[layer].source),
     )}`;
     el.append(source);
@@ -324,20 +333,16 @@ export class AmericasView {
     if (!reading) return `<div class="tt-s">${t.indicatorNoData}</div>`;
     const [position, total] = rank(this.indicators, layer, iso, this.state.year);
     const first = valueAt(this.indicators, layer, iso, this.indicators.firstYear);
-    const change =
-      first && first.year < reading.year
-        ? `<div class="tt-s tt-foot">${copy.change(copy.format(first.value), first.year)}</div>`
-        : "";
-    const older = reading.year < this.state.year ? ` · ${t.indicatorLatest(reading.year)}` : "";
+    const notes = [
+      layer === "hdi" ? t.hdiTier[hdiTier(reading.value)] : null,
+      t.indicatorRank(position, total),
+      reading.year < this.state.year ? t.indicatorLatest(reading.year) : null,
+      first && first.year < reading.year ? t.indicatorThen(copy.format(first.value), first.year) : null,
+      this.indicators.indicators[layer].urbanOnly?.includes(iso) ? t.indicatorUrbanOnly : null,
+    ].filter(Boolean);
     return (
-      `<div class="row"><span class="key"><i class="map-key seq-${seqStep(layer, band(layer, reading.value))}"></i>${copy.name}</span><b>${copy.format(reading.value)}</b></div>` +
-      `<div class="tt-s tt-foot">${t.indicatorRank(position, total)}${older}</div>` +
-      change
+      `<div class="row"><span class="key"><i class="map-key q${step(layer, reading.value)}"></i>${copy.name}</span><b>${copy.format(reading.value)}</b></div>` +
+      notes.map((n) => `<div class="tt-s tt-foot">${n}</div>`).join("")
     );
   }
-}
-
-/** Step on the 5-color sequential scale; 4-band indicators skip the palest color. */
-function seqStep(layer: IndicatorKey, bandIndex: number): number {
-  return BANDS[layer].length === 4 ? bandIndex + 1 : bandIndex;
 }

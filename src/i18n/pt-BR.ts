@@ -4,6 +4,7 @@ import type { MethodFilter } from "../state";
 import type { Office, RoundId } from "../types";
 
 const plural = (n: number, one: string, many: string) => `${n} ${n === 1 ? one : many}`;
+const dec = (v: number, digits: number) => v.toFixed(digits).replace(".", ",");
 
 export const t = {
   locale: "pt-BR",
@@ -103,24 +104,42 @@ export const t = {
       name: "IDH",
       title: (year: number) => `Índice de Desenvolvimento Humano em ${year}`,
       format: (v: number) => v.toFixed(3).replace(".", ","),
-      change: (v: string, year: number) => `Em ${year}: ${v}`,
+      step: (from: number, to?: number) =>
+        from === 0 ? "< 0,55" : to === undefined ? `≥ ${dec(from, 2)}` : `${dec(from, 2)}–${dec(to, 2)}`,
+      unit: "Índice de 0 a 1",
     },
-    gdp: {
-      name: "PIB per capita (PPC)",
-      title: (year: number) => `Poder de compra: PIB per capita em ${year}`,
-      format: (v: number) => `US$ ${Math.round(v).toLocaleString("pt-BR")}`,
-      change: (v: string, year: number) => `Em ${year}: ${v}`,
+    income: {
+      name: "Renda mediana",
+      title: (year: number) => `Poder de compra: renda mediana por pessoa em ${year}`,
+      format: (v: number) => `US$ ${Math.round(v).toLocaleString("pt-BR")}/mês`,
+      step: (from: number, to?: number) =>
+        from === 0
+          ? "< US$ 150"
+          : to === undefined
+            ? `≥ US$ ${from.toLocaleString("pt-BR")}`
+            : `${from}–${to}`,
+      unit: "Por pessoa, por mês, em dólares PPC de 2021",
     },
     democracy: {
       name: "Democracia eleitoral",
       title: (year: number) => `Índice de democracia eleitoral em ${year}`,
       format: (v: number) => v.toFixed(2).replace(".", ","),
-      change: (v: string, year: number) => `Em ${year}: ${v}`,
+      step: (from: number, to?: number) =>
+        from === 0 ? "< 0,1" : to === undefined ? `≥ ${dec(from, 1)}` : `${dec(from, 1)}–${dec(to, 1)}`,
+      unit: "Índice de 0 a 1",
     },
+  },
+  hdiTier: {
+    low: "Desenvolvimento humano baixo (PNUD)",
+    medium: "Desenvolvimento humano médio (PNUD)",
+    high: "Desenvolvimento humano alto (PNUD)",
+    veryHigh: "Desenvolvimento humano muito alto (PNUD)",
   },
   indicatorNoData: "Sem dados na fonte",
   indicatorSource: (source: string) => `Fonte: ${source}`,
-  indicatorLatest: (year: number) => `último dado: ${year}`,
+  indicatorLatest: (year: number) => `Último dado disponível: ${year}`,
+  indicatorThen: (v: string, year: number) => `Em ${year}: ${v}`,
+  indicatorUrbanOnly: "A pesquisa deste país cobre só as áreas urbanas",
   indicatorRank: (position: number, total: number) =>
     `${position}º de ${total} países das Américas com dados`,
   americasHere: "resultado neste estado/província",

@@ -4,7 +4,9 @@
 
 - Human Development Index: UNDP, Human Development Report 2025, composite indices
   time series (1990–2023).
-- GDP per capita, PPP (constant 2021 international $): World Bank, NY.GDP.PCAP.PP.KD.
+- Median income per person, from household surveys (2021 PPP $, per month): World Bank
+  Poverty and Inequality Platform. Income surveys only (consumption surveys measure
+  something else); national coverage, except Argentina's urban-only survey.
 - Electoral democracy index: V-Dem (v2x_polyarchy), via Our World in Data.
 
 Downloads are cached in data/raw/americas/indicators/.
@@ -26,10 +28,10 @@ OUTPUT = DATA / "generated" / "americas-indicators.json"
 FIRST_YEAR = 2000
 
 HDI_URL = "https://hdr.undp.org/sites/default/files/2025_HDR/HDR25_Composite_indices_complete_time_series.csv"
-GDP_URL = (
-    "https://api.worldbank.org/v2/country/all/indicator/NY.GDP.PCAP.PP.KD"
-    "?format=json&date=2000:2026&per_page=20000"
-)
+PIP_URL = "https://api.worldbank.org/pip/v1/pip?country=all&year=all&povline=3&fill_gaps=false&format=json"
+DAYS_PER_MONTH = 365.25 / 12
+# Argentina's EPH covers only urban areas; there is no national series.
+URBAN_ONLY = {"ARG"}
 DEMOCRACY_URL = (
     "https://ourworldindata.org/grapher/electoral-democracy-index.csv"
     "?v=1&csvType=full&useColumnShortNames=true"
@@ -40,9 +42,13 @@ SOURCES = {
         "source": "PNUD, Relatório de Desenvolvimento Humano 2025",
         "url": "https://hdr.undp.org/data-center/documentation-and-downloads",
     },
-    "gdp": {
-        "source": "Banco Mundial (NY.GDP.PCAP.PP.KD), dólares internacionais constantes de 2021",
-        "url": "https://data.worldbank.org/indicator/NY.GDP.PCAP.PP.KD",
+    "income": {
+        "source": "Banco Mundial, Poverty and Inequality Platform: renda mediana por pessoa nas "
+        "pesquisas domiciliares, em dólares de paridade de poder de compra de 2021, por mês",
+        "url": "https://pip.worldbank.org/",
+        # Surveys are not yearly everywhere; older than this, a value says little about now.
+        "maxAge": 4,
+        "urbanOnly": sorted(URBAN_ONLY),
     },
     "democracy": {
         "source": "V-Dem, índice de democracia eleitoral (v2x_polyarchy), via Our World in Data",
@@ -70,12 +76,14 @@ def hdi() -> dict[str, dict[int, float]]:
     return out
 
 
-def gdp() -> dict[str, dict[int, float]]:
-    _, records = json.loads(cached("gdp.json", GDP_URL))
+def income() -> dict[str, dict[int, float]]:
+    """Monthly median income per person; PIP gives it per day."""
     out: dict[str, dict[int, float]] = {}
-    for r in records:
-        if r["value"] is not None:
-            out.setdefault(r["countryiso3code"], {})[int(r["date"])] = float(r["value"])
+    for r in json.loads(cached("pip.json", PIP_URL)):
+        level = "urban" if r["country_code"] in URBAN_ONLY else "national"
+        if r["welfare_type"] != "income" or r["reporting_level"] != level or r["median"] is None:
+            continue
+        out.setdefault(r["country_code"], {})[int(r["reporting_year"])] = r["median"] * DAYS_PER_MONTH
     return out
 
 
@@ -89,7 +97,7 @@ def democracy() -> dict[str, dict[int, float]]:
 
 
 def main() -> int:
-    loaders = {"hdi": hdi, "gdp": gdp, "democracy": democracy}
+    loaders = {"hdi": hdi, "income": income, "democracy": democracy}
     out: dict = {"firstYear": FIRST_YEAR, "indicators": {}}
     for key, load in loaders.items():
         data = load()
@@ -101,7 +109,7 @@ def main() -> int:
             if series:
                 # One value per year from FIRST_YEAR; null where the source has none.
                 values[iso] = [
-                    round(series[y], 3 if key != "gdp" else 0) if y in series else None for y in years
+                    round(series[y], 3 if key != "income" else 0) if y in series else None for y in years
                 ]
         out["indicators"][key] = {**SOURCES[key], "lastYear": last, "values": values}
         missing = [iso for iso in COUNTRIES if iso not in values]

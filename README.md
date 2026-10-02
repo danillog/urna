@@ -14,7 +14,7 @@ Every published poll for Brazil's presidential, governor and Senate races, a smo
 - **Live re-averaging.** Turn pollsters or interview methods (in person, phone, online) on and off, and the trend lines are recomputed in the browser.
 - **Polls vs. ballot box.** For past elections, the final average is converted to valid votes and compared with the official TSE result.
 - **Map tab: 30 years of results by municipality.** All 5,570 municipalities for every presidential round since 1994 and every mayor election since 1996. Press play to watch the map change election by election, click a party to follow it through time (say, where the PT won city halls from 1996 to 2024), and zoom in down to single municipalities: pick a state, use the +/− buttons, pinch, or ctrl/⌘ + scroll.
-- **Americas tab.** Every country of the Americas since 2000, colored by the ideological family of whoever won its latest national election (president, or the governing party in parliamentary systems). Press play to watch left and right waves cross the continent. Where sources have them, states and provinces show their local winner (72 of 210 elections, including the US, Canada, Mexico, Brazil, Argentina, Colombia and Chile). The same map can switch to the Human Development Index (UNDP), purchasing power (GDP per capita, PPP, World Bank) and electoral democracy (V-Dem).
+- **Americas tab.** Every country of the Americas since 2000, colored by the ideological family of whoever won its latest national election (president, or the governing party in parliamentary systems). Press play to watch left and right waves cross the continent. Where sources have them, states and provinces show their local winner (72 of 210 elections, including the US, Canada, Mexico, Brazil, Argentina, Colombia and Chile). The same map can switch to the Human Development Index (UNDP), purchasing power (median income per person from household surveys, PPP, World Bank PIP) and electoral democracy (V-Dem).
 - **Pollster accuracy.** Each pollster's last poll before election day is scored. For the current election, the table shows each pollster's track record since 2010.
 - **Shareable views.** The selection lives in the URL, e.g. [`?office=governor&uf=SP`](https://danillogomes.com/urna/?office=governor&uf=SP) or [`?year=2022&exclude=Gerp,Palver`](https://danillogomes.com/urna/?year=2022&exclude=Gerp,Palver).
 - **Accessible and themable.** Keyboard navigation, a full data table, colorblind-safe palette, light and dark mode.
@@ -155,9 +155,10 @@ The data comes from three steps, and each one can be checked on its own.
   - The source of each party's family shows on hover.
 - **Results by state/province:** `pipeline/americas/regions.py` reads the "results by state" tables of each article, or of its Spanish version, matching rows to regions (aliases in `data/americas/regions.yaml`). A table is accepted only when, summed over regions, the national winner comes first (or within 2%, for races decided abroad). Canada's transposed tables have their own reader. Brazil comes from the TSE.
 - **Indicators:** `pipeline/americas/indicators.py` takes:
-  - HDI from the UNDP 2025 time series, shown in UNDP's own tiers;
-  - GDP per capita, PPP, from the World Bank (constant 2021 international $);
+  - HDI from the UNDP 2025 time series (UNDP's tiers in the tooltip);
+  - median income per person from household surveys, from the World Bank Poverty and Inequality Platform (2021 PPP $ per month; income surveys only, nothing older than 4 years);
   - V-Dem's electoral democracy index via Our World in Data.
+  - Each is shown in ten fine steps: with wide bands, real changes stayed one color (Brazil's democracy index going from 0.69 in 2022 to 0.79 in 2023).
 - **Boundaries:** Natural Earth admin-1, simplified with mapshaper.
 
 Cuba (no competitive elections), annulled elections and dependent territories are gray. Venezuela 2024 shows the official result, flagged as disputed.

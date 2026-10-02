@@ -1,11 +1,15 @@
 /** Shape of data/generated/americas-indicators.json (pipeline/americas/indicators.py). */
 
-export type IndicatorKey = "hdi" | "gdp" | "democracy";
+export type IndicatorKey = "hdi" | "income" | "democracy";
 
 export interface Indicator {
   source: string;
   url: string;
   lastYear: number;
+  /** Beyond this many years, an old value is not shown for a later year. */
+  maxAge?: number;
+  /** Countries whose series covers urban areas only. */
+  urbanOnly?: string[];
   /** ISO3 → one value per year from firstYear (null where the source has none). */
   values: Record<string, (number | null)[]>;
 }
@@ -15,38 +19,20 @@ export interface IndicatorData {
   indicators: Record<IndicatorKey, Indicator>;
 }
 
-export interface Band {
-  /** Inclusive lower bound. */
-  from: number;
-  label: string;
-}
-
 /**
- * Color bands, lowest first. HDI uses UNDP's own development tiers; GDP fixed
- * PPP thresholds; democracy five equal steps of V-Dem's 0–1 index.
+ * Lower bounds of ten color steps, lowest first. Fine steps on purpose: with wide
+ * bands, real changes (Brazil's democracy index from 0.69 to 0.80) stayed one color.
  */
-export const BANDS: Record<IndicatorKey, Band[]> = {
-  hdi: [
-    { from: 0, label: "Baixo (< 0,550)" },
-    { from: 0.55, label: "Médio (0,550–0,699)" },
-    { from: 0.7, label: "Alto (0,700–0,799)" },
-    { from: 0.8, label: "Muito alto (≥ 0,800)" },
-  ],
-  gdp: [
-    { from: 0, label: "< US$ 5 mil" },
-    { from: 5000, label: "US$ 5–10 mil" },
-    { from: 10000, label: "US$ 10–20 mil" },
-    { from: 20000, label: "US$ 20–40 mil" },
-    { from: 40000, label: "≥ US$ 40 mil" },
-  ],
-  democracy: [
-    { from: 0, label: "0–0,2" },
-    { from: 0.2, label: "0,2–0,4" },
-    { from: 0.4, label: "0,4–0,6" },
-    { from: 0.6, label: "0,6–0,8" },
-    { from: 0.8, label: "0,8–1" },
-  ],
+export const STEPS: Record<IndicatorKey, number[]> = {
+  hdi: [0, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95],
+  income: [0, 150, 250, 350, 450, 600, 800, 1000, 1500, 2000],
+  democracy: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9],
 };
+
+/** UNDP's development tiers, for the tooltip. */
+export function hdiTier(value: number): "low" | "medium" | "high" | "veryHigh" {
+  return value >= 0.8 ? "veryHigh" : value >= 0.7 ? "high" : value >= 0.55 ? "medium" : "low";
+}
 
 export interface Reading {
   value: number;
@@ -55,19 +41,21 @@ export interface Reading {
 }
 
 export function valueAt(data: IndicatorData, key: IndicatorKey, iso: string, year: number): Reading | null {
-  const series = data.indicators[key].values[iso];
+  const indicator = data.indicators[key];
+  const series = indicator.values[iso];
   if (!series) return null;
-  for (let y = Math.min(year, data.indicators[key].lastYear); y >= data.firstYear; y--) {
+  for (let y = Math.min(year, indicator.lastYear); y >= data.firstYear; y--) {
     const v = series[y - data.firstYear];
-    if (v != null) return { value: v, year: y };
+    if (v == null) continue;
+    return indicator.maxAge !== undefined && year - y > indicator.maxAge ? null : { value: v, year: y };
   }
   return null;
 }
 
-export function band(key: IndicatorKey, value: number): number {
+export function step(key: IndicatorKey, value: number): number {
   let index = 0;
-  BANDS[key].forEach((b, i) => {
-    if (value >= b.from) index = i;
+  STEPS[key].forEach((from, i) => {
+    if (value >= from) index = i;
   });
   return index;
 }
