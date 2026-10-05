@@ -6,6 +6,9 @@ import { t } from "../i18n/pt-BR";
 import {
   CENSUS_VARS,
   REGION_OF,
+  RELIGION,
+  SCHOOLING,
+  composition,
   byDecile,
   gap,
   groupOf,
@@ -50,7 +53,12 @@ const SLUGS: Record<CensusVar, string> = {
   evangelical: "evangelicos",
   catholic: "catolicos",
   noReligion: "sem-religiao",
+  otherReligion: "outras-religioes",
+  eduBasic: "ate-fundamental-incompleto",
+  eduFund: "fundamental",
+  eduMid: "medio",
   degree: "superior",
+  illiterate: "analfabetismo",
   population: "populacao",
   urban: "urbanizacao",
 };
@@ -62,12 +70,28 @@ const VAR_COLORS: Record<CensusVar, ColorName> = {
   evangelical: "violet",
   catholic: "sky",
   noReligion: "teal",
+  otherReligion: "pink",
+  eduBasic: "red",
+  eduFund: "cyan",
+  eduMid: "blue",
   degree: "orange",
+  illiterate: "gray",
   population: "green",
   urban: "brown",
 };
 
+/** Schooling is ordered: a sequential ramp (viridis steps), lowest level darkest. Religion is not: categorical colors. */
+const SWATCH: Partial<Record<CensusVar, string>> = {
+  eduBasic: "q1",
+  eduFund: "q4",
+  eduMid: "q6",
+  degree: "q9",
+};
+const swatch = (v: CensusVar) => SWATCH[v] ?? `c-${VAR_COLORS[v]}`;
+
 const STEP_MS = 1600;
+/** Lines always drawn, faint, in the gap chart: income, the two big religions, the schooling ends. */
+const GAP_LANDMARKS: CensusVar[] = ["income", "catholic", "evangelical", "eduBasic", "degree"];
 
 /** Whether the census paired with an election has a variable (2022 has no urban share yet). */
 const hasVar = (_data: CensusVote, census: number, v: CensusVar) => v !== "urban" || census !== 2022;
@@ -132,17 +156,28 @@ export class CensusView {
     private state: CensusState,
     private readonly onChange: () => void,
   ) {
-    const vars = byId("cv-vars");
-    vars.replaceChildren(
-      ...CENSUS_VARS.map((v) => {
-        const b = button(t.census.vars[v]!, { pressed: false });
-        b.dataset.v = v;
-        b.addEventListener("click", () => this.set({ v }));
-        return b;
-      }),
-    );
+    // Religion and schooling as the categories they are: grouped, each level on its own.
+    const fill = (select: HTMLSelectElement) =>
+      (
+        [
+          [t.census.varGroups.religion, RELIGION],
+          [t.census.varGroups.schooling, SCHOOLING],
+          [
+            t.census.varGroups.other,
+            CENSUS_VARS.filter((v) => !RELIGION.includes(v) && !SCHOOLING.includes(v)),
+          ],
+        ] as const
+      ).forEach(([label, vars]) => {
+        const group = document.createElement("optgroup");
+        group.label = label;
+        vars.forEach((v) => group.append(new Option(t.census.vars[v]!, v)));
+        select.append(group);
+      });
+    const variable = byId<HTMLSelectElement>("cv-var");
+    fill(variable);
+    variable.addEventListener("change", () => this.set({ v: variable.value as CensusVar }));
     const other = byId<HTMLSelectElement>("cv-other");
-    CENSUS_VARS.forEach((v) => other.add(new Option(t.census.vars[v]!, v)));
+    fill(other);
     other.addEventListener("change", () => this.set({ other: other.value as CensusVar }));
     const region = byId<HTMLSelectElement>("cv-region");
     REGIONS.forEach((r) => region.add(new Option(t.census.regions[r]!, r)));
@@ -221,14 +256,12 @@ export class CensusView {
   render(): void {
     const s = this.state;
     const e = this.election;
-    byId("cv-vars")
-      .querySelectorAll<HTMLButtonElement>("button")
-      .forEach((b) => {
-        const v = b.dataset.v as CensusVar;
-        b.setAttribute("aria-pressed", String(v === s.v));
-        b.disabled = !hasVar(this.data, e.census, v);
-        b.title = b.disabled ? t.census.noUrban2022 : "";
-      });
+    const variable = byId<HTMLSelectElement>("cv-var");
+    variable.value = s.v;
+    [...variable.options].forEach((o) => {
+      o.disabled = !hasVar(this.data, e.census, o.value as CensusVar);
+      o.title = o.disabled ? t.census.noUrban2022 : "";
+    });
     const other = byId<HTMLSelectElement>("cv-other");
     other.value = s.other;
     [...other.options].forEach((o) => {
@@ -260,6 +293,7 @@ export class CensusView {
       rival: latest.rival,
     });
     this.renderQuadrants(e);
+    this.renderComposition(e);
     this.renderGap();
     byId("cv-note").textContent = t.census.note;
     byId("cv-sources").innerHTML = sourcesHtml([
@@ -405,10 +439,13 @@ export class CensusView {
       `<div class="cv-bar"><span class="cv-bar-name">${escapeHtml(this.who(side))}</span>` +
       `<span class="cv-bar-track"><span class="c-${side === "pt" ? "red" : "blue"}" style="width:${(share ?? 0).toFixed(1)}%"></span></span>` +
       `<b>${share === null ? "—" : percent(share)}</b></div>`;
-    // Low/low top left … high/high bottom right, as the axes read.
-    const cards = quadrants(this.data, e, s.v, s.other, this.inRegion).map(
+    // Low/low top left … high/high bottom right, as the axes read. The cut is written as a
+    // number ("até R$ 1.020"), the point where half the people live on each side.
+    const { cuts, groups } = quadrants(this.data, e, s.v, s.other, this.inRegion);
+    const [ca, cb] = cuts.map((c, k) => t.census.format(k ? s.other : s.v, c));
+    const cards = groups.map(
       (q) =>
-        `<div class="cv-quad"><div class="cv-quad-h">${escapeHtml(t.census.quadLabel(a, q.high[0], b.toLowerCase(), q.high[1]))}</div>` +
+        `<div class="cv-quad"><div class="cv-quad-h">${escapeHtml(t.census.quadLabel(a, ca!, q.high[0], b.toLowerCase(), cb!, q.high[1]))}</div>` +
         bar("pt", q.pt) +
         bar("rival", q.rival) +
         `<div class="meta">${t.census.quadMeta(q.places, q.population)}</div></div>`,
@@ -416,11 +453,49 @@ export class CensusView {
     byId("cv-quads").innerHTML = cards.join("");
   }
 
+  /** Religion and schooling, whole, in towns grouped by how they voted. */
+  private renderComposition(e: Election): void {
+    const who = this.who();
+    byId("cv-comp-title").textContent = t.census.compTitle(who);
+    byId("cv-comp-note").textContent = t.census.compNote;
+    const stack = (shares: Record<string, number> | null, vars: CensusVar[], label: string) =>
+      shares
+        ? `<div class="cv-stack" role="img" aria-label="${escapeHtml(label)}: ${vars.map((v) => `${t.census.vars[v]} ${percent(shares[v]!)}`).join(", ")}">` +
+          vars
+            .map(
+              (v) =>
+                `<span class="${swatch(v)}" style="width:${shares[v]!.toFixed(2)}%" title="${escapeHtml(`${t.census.vars[v]}: ${percent(shares[v]!)}`)}">${shares[v]! >= 9 ? Math.round(shares[v]!) + "%" : ""}</span>`,
+            )
+            .join("") +
+          `</div>`
+        : `<div class="cv-stack cv-stack-empty"></div>`;
+    const rows = composition(this.data, e, this.state.side, this.inRegion).map((g) => {
+      const group = t.census.compGroup(g.from, g.to);
+      return (
+        `<div class="cv-comp-row"><div class="cv-comp-h"><b>${escapeHtml(group)}</b><span class="meta">${t.census.compMeta(g.places, g.population)}</span></div>` +
+        stack(g.religion, RELIGION, t.census.compAria(group, t.census.compReligion)) +
+        stack(g.schooling, SCHOOLING, t.census.compAria(group, t.census.compSchooling)) +
+        `</div>`
+      );
+    });
+    const key = (vars: CensusVar[], title: string) =>
+      `<div class="legend map-legend"><span class="map-steps">${title}:</span>${vars
+        .map((v) => `<span class="map-steps"><i class="map-key ${swatch(v)}"></i> ${t.census.vars[v]}</span>`)
+        .join("")}</div>`;
+    byId("cv-comp").innerHTML =
+      `<div class="cv-comp-cols"><span></span><b>${t.census.compReligion}</b><b>${t.census.compSchooling}</b></div>` +
+      rows.join("") +
+      key(RELIGION, t.census.compReligion) +
+      key(SCHOOLING, t.census.compSchooling);
+  }
+
   /** The PT gap per variable over every election; the chosen two stand out and carry labels. */
   private renderGap(): void {
     const s = this.state;
     const elections = this.data.elections;
-    const series = CENSUS_VARS.map((v) => ({
+    // Twelve lines would be unreadable: the chosen two, and a few landmarks in grey.
+    const shown = [...new Set<CensusVar>([s.v, s.other, ...GAP_LANDMARKS])];
+    const series = shown.map((v) => ({
       v,
       points: elections.map((e) => ({
         year: e.year,

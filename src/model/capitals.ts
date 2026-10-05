@@ -5,7 +5,7 @@
 
 import type { GeometryCollection, Topology } from "topojson-specification";
 
-import { groupOf, weightedBreaks, type CensusVar } from "./census-vote";
+import { RELIGION, SCHOOLING, groupOf, weightedBreaks, type CensusVar } from "./census-vote";
 
 export interface Area {
   /** IBGE weighting area code; its first 7 digits are the municipality. */
@@ -15,11 +15,16 @@ export interface Area {
   population: number;
   /** Household income per person, reais of July 2022. */
   income: number | null;
-  /** Percent: adults 25+ with a degree; people 10+ by religion. */
+  /** Percent of adults 25+ at each level of schooling (adding up to 100). */
+  eduBasic: number | null;
+  eduFund: number | null;
+  eduMid: number | null;
   degree: number | null;
-  evangelical: number | null;
+  /** Percent of people 10+ in each religion (adding up to 100). */
   catholic: number | null;
+  evangelical: number | null;
   noReligion: number | null;
+  otherReligion: number | null;
   /** Valid votes cast in the area's polling places, and the shares of the PT and the rival. */
   valid: number;
   pt: number | null;
@@ -48,19 +53,12 @@ export interface CapitalsData {
   topology: Topology<{ areas: GeometryCollection }>;
 }
 
-/** Variables the weighting areas have (no urban share: the capitals are all city). */
-export const AREA_VARS: CensusVar[] = [
-  "income",
-  "evangelical",
-  "catholic",
-  "noReligion",
-  "degree",
-  "population",
-];
+/** Variables the weighting areas have: no urban share (the capitals are all city), no illiteracy. */
+export const AREA_VARS: CensusVar[] = ["income", ...RELIGION, ...SCHOOLING, "population"];
 
 export function areaValue(a: Area, v: CensusVar): number | null {
-  if (v === "urban") return null;
-  const x = a[v];
+  if (!AREA_VARS.includes(v)) return null;
+  const x = a[v as keyof Area] as number | null | undefined;
   return x === null || x === undefined || (v !== "population" && a.population === 0) ? null : x;
 }
 

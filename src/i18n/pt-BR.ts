@@ -505,20 +505,35 @@ export const t = {
   census: {
     vars: {
       income: "Renda",
-      evangelical: "Evangélicos",
       catholic: "Católicos",
+      evangelical: "Evangélicos",
       noReligion: "Sem religião",
-      degree: "Ensino superior",
+      otherReligion: "Outras religiões",
+      eduBasic: "Até fundamental incompleto",
+      eduFund: "Fundamental completo",
+      eduMid: "Médio completo",
+      degree: "Superior completo",
+      illiterate: "Analfabetismo",
       population: "População",
       urban: "Urbanização",
     } as Record<string, string>,
+    varGroups: {
+      religion: "Religião (100% das pessoas)",
+      schooling: "Escolaridade dos adultos (100%)",
+      other: "Outras",
+    },
     /** How each variable reads in a sentence. */
     varLong: {
       income: "renda domiciliar por pessoa",
       evangelical: "% de evangélicos",
       catholic: "% de católicos",
       noReligion: "% sem religião",
-      degree: "% de adultos (25+) com ensino superior",
+      degree: "% dos adultos (25+) com superior completo",
+      eduBasic: "% dos adultos (25+) sem instrução ou com fundamental incompleto",
+      eduFund: "% dos adultos (25+) com fundamental completo (sem médio)",
+      eduMid: "% dos adultos (25+) com médio completo (sem superior)",
+      illiterate: "% das pessoas de 15 anos ou mais que não sabem ler e escrever",
+      otherReligion: "% de outras religiões ou sem declaração",
       population: "população",
       urban: "% da população em área urbana",
     } as Record<string, string>,
@@ -533,7 +548,7 @@ export const t = {
         ? `Renda média por pessoa, em reais de julho de 2022 (Censo ${census})`
         : v === "population"
           ? `Habitantes (Censo ${census}), escala logarítmica`
-          : `${v === "degree" ? "Adultos de 25 anos ou mais" : v === "urban" ? "População" : census === 2022 ? "Pessoas de 10 anos ou mais" : "População"} (Censo ${census})`,
+          : `${["degree", "eduBasic", "eduFund", "eduMid"].includes(v) ? "Adultos de 25 anos ou mais" : v === "illiterate" ? "Pessoas de 15 anos ou mais" : v === "urban" ? "População" : census === 2022 ? "Pessoas de 10 anos ou mais" : "População"} (Censo ${census})`,
     noUrban2022: "O Censo 2022 ainda não tem a divisão urbano/rural por município",
     regions: {
       all: "Brasil",
@@ -563,9 +578,19 @@ export const t = {
     noData: "Sem dado do Censo",
     quadTitle: (a: string, b: string) => `${a} × ${b}: como votaram os quatro grupos`,
     quadNote:
-      "Cada eixo dividido na mediana: metade da população em cada lado. Percentual de votos válidos somando todos os votos do grupo, como se fosse uma cidade só.",
-    quadLabel: (a: string, ha: boolean, b: string, hb: boolean) =>
-      `${a} ${ha ? "acima" : "abaixo"} da mediana · ${b} ${hb ? "acima" : "abaixo"}`,
+      "As cidades divididas em dois grupos por cada variável, no ponto em que metade da população fica de cada lado. Percentual de votos válidos somando todos os votos do grupo, como se fosse uma cidade só.",
+    quadLabel: (a: string, ca: string, ha: boolean, b: string, cb: string, hb: boolean) =>
+      `${a} ${ha ? "acima de" : "até"} ${ca} · ${b} ${hb ? "acima de" : "até"} ${cb}`,
+    compTitle: (who: string) => `Quem mora nas cidades, pelo voto em ${who}`,
+    compNote:
+      "As cidades agrupadas pelo percentual de votos válidos que o candidato teve nelas; para cada grupo, como as pessoas se dividem por religião e por escolaridade (cada pessoa conta uma vez: cidades grandes pesam mais). Religião e escolaridade são categorias: o que importa é a distribuição inteira, não uma média.",
+    compGroup: (from: number | null, to: number | null) =>
+      from === null ? `Até ${to}%` : to === null ? `Mais de ${from}%` : `${from}% a ${to}%`,
+    compMeta: (places: number, pop: number) =>
+      `${places.toLocaleString("pt-BR")} cidades · ${(pop / 1e6).toLocaleString("pt-BR", { maximumFractionDigits: 1 })} mi hab.`,
+    compReligion: "Religião",
+    compSchooling: "Escolaridade (25+)",
+    compAria: (group: string, kind: string) => `${kind} nas cidades onde o candidato teve ${group}`,
     quadMeta: (places: number, pop: number) =>
       `${places.toLocaleString("pt-BR")} municípios · ${(pop / 1e6).toLocaleString("pt-BR", { maximumFractionDigits: 1 })} milhões de habitantes`,
     gapTitle: "Quanto cada variável separa o voto no PT, eleição a eleição",

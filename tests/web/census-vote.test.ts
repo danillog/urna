@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 
 import raw from "../../data/generated/census-vote.json";
 import {
+  composition,
   decodeCensusVote,
   gap,
   groupOf,
@@ -26,6 +27,11 @@ function toy(population = [10, 10, 10, 70]): CensusVote {
     catholic: u16([0, 0, 0, 0]),
     noReligion: u16([0, 0, 0, 0]),
     degree: u16([0, 0, 0, 0]),
+    eduBasic: u16([0, 0, 0, 0]),
+    eduFund: u16([0, 0, 0, 0]),
+    eduMid: u16([0, 0, 0, 0]),
+    illiterate: u16([0, 0, 0, 0]),
+    otherReligion: u16([0, 0, 0, 0]),
     urban: u16([0, 0, 0, 0]),
     population: Uint32Array.from(population),
   };
@@ -65,7 +71,8 @@ describe("census × vote model", () => {
   it("splits into four groups at the population medians", () => {
     // Equal towns: the medians fall between them, one town per group.
     const d = toy([25, 25, 25, 25]);
-    const q = quadrants(d, d.elections[0]!, "income", "evangelical", all);
+    const { cuts, groups: q } = quadrants(d, d.elections[0]!, "income", "evangelical", all);
+    expect(cuts).toEqual([200, 10]);
     expect(q.map((x) => [x.high, x.places, x.pt])).toEqual([
       [[false, false], 1, 80],
       [[false, true], 1, 60],
@@ -91,6 +98,26 @@ describe("census × vote model", () => {
     expect(weighted(2022, "evangelical")).toBeCloseTo(26.9, 0);
     expect(weighted(2022, "catholic")).toBeCloseTo(56.7, 0);
     expect(weighted(2010, "evangelical")).toBeCloseTo(22.2, 0);
+  });
+
+  it("splits each group of towns into whole distributions that add up to 100%", () => {
+    const groups = composition(data, election(2026), "pt", all);
+    expect(groups.map((g) => [g.from, g.to])).toEqual([
+      [null, 30],
+      [30, 45],
+      [45, 55],
+      [55, 70],
+      [70, null],
+    ]);
+    for (const g of groups.filter((x) => x.places)) {
+      const sum = (o: Record<string, number>) => Object.values(o).reduce((a, b) => a + b, 0);
+      expect(sum(g.religion!)).toBeCloseTo(100, 0);
+      expect(sum(g.schooling!)).toBeCloseTo(100, 0);
+    }
+    // Every town with a vote falls in exactly one group.
+    expect(groups.reduce((n, g) => n + g.places, 0)).toBe(
+      [...election(2026).valid].filter((v, i) => v > 0 && election(2026).ptShare[i] !== 0xffff).length,
+    );
   });
 
   it("shows the 2006 realignment: richer places stop voting more PT", () => {

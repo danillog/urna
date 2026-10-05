@@ -10,14 +10,33 @@
 /** Uint16 cell meaning "no data". */
 export const NO_DATA = 0xffff;
 
+/**
+ * Each a share of a municipality's people (or its income, population): religion and
+ * schooling are categories, read here as how much of the town falls in each one.
+ */
 export type CensusVar =
-  "income" | "evangelical" | "catholic" | "noReligion" | "degree" | "population" | "urban";
+  | "income"
+  | "catholic"
+  | "evangelical"
+  | "noReligion"
+  | "otherReligion"
+  | "eduBasic"
+  | "eduFund"
+  | "eduMid"
+  | "degree"
+  | "illiterate"
+  | "population"
+  | "urban";
+
+/** Religion: four categories adding up to 100% of the people. */
+export const RELIGION: CensusVar[] = ["catholic", "evangelical", "noReligion", "otherReligion"];
+/** Schooling of adults 25+: four levels, lowest first, adding up to 100%. */
+export const SCHOOLING: CensusVar[] = ["eduBasic", "eduFund", "eduMid", "degree"];
 export const CENSUS_VARS: CensusVar[] = [
   "income",
-  "evangelical",
-  "catholic",
-  "noReligion",
-  "degree",
+  ...RELIGION,
+  ...SCHOOLING,
+  "illiterate",
   "population",
   "urban",
 ];
@@ -196,11 +215,12 @@ export function quadrants(
   a: CensusVar,
   b: CensusVar,
   inRegion: (i: number) => boolean,
-): Quadrant[] {
+): { cuts: [number, number]; groups: Quadrant[] } {
   const places = placesWith(data, e, a, inRegion).filter((i) => valueAt(data, e.census, b, i) !== null);
   const [ma] = populationBreaks(data, e.census, a, places, 2);
   const [mb] = populationBreaks(data, e.census, b, places, 2);
   const out: Quadrant[] = [];
+  if (ma === undefined || mb === undefined) return { cuts: [NaN, NaN], groups: [] };
   for (const ha of [false, true])
     for (const hb of [false, true]) {
       const here = places.filter(
@@ -214,7 +234,60 @@ export function quadrants(
         rival: pooledShare(e, "rival", here),
       });
     }
-  return out;
+  return { cuts: [ma, mb], groups: out };
+}
+
+export interface CompositionGroup {
+  /** The side's vote share in these towns: from (exclusive) to (inclusive); null is open-ended. */
+  from: number | null;
+  to: number | null;
+  places: number;
+  population: number;
+  /** Shares adding up to 100, every person counting once; null without census data. */
+  religion: Record<string, number> | null;
+  schooling: Record<string, number> | null;
+}
+
+/**
+ * The towns grouped by the vote one side got, and for each group how its people split
+ * by religion and by schooling, every person counting once (a big city weighs more).
+ * Categories shown as categories: the whole distribution, not one share of it.
+ */
+export function composition(
+  data: CensusVote,
+  e: Election,
+  side: "pt" | "rival",
+  inRegion: (i: number) => boolean,
+  cuts: number[] = [30, 45, 55, 70],
+): CompositionGroup[] {
+  const groups: number[][] = Array.from({ length: cuts.length + 1 }, () => []);
+  for (let i = 0; i < e.valid.length; i++) {
+    const v = voteAt(e, side, i);
+    if (!inRegion(i) || v === null || !e.valid[i]) continue;
+    groups[groupOf(v, cuts)]!.push(i);
+  }
+  const mix = (places: number[], vars: CensusVar[]) => {
+    const sums: Record<string, number> = Object.fromEntries(vars.map((v) => [v, 0]));
+    let weight = 0;
+    for (const i of places) {
+      const values = vars.map((v) => valueAt(data, e.census, v, i));
+      const w = valueAt(data, e.census, "population", i) ?? 0;
+      if (!w || values.some((x) => x === null)) continue;
+      vars.forEach((v, k) => (sums[v]! += values[k]! * w));
+      weight += w;
+    }
+    if (!weight) return null;
+    for (const v of vars) sums[v]! /= weight;
+    return sums;
+  };
+  return groups.map((places, k) => ({
+    from: k ? cuts[k - 1]! : null,
+    to: k < cuts.length ? cuts[k]! : null,
+    places: places.length,
+    population: places.reduce((s, i) => s + (valueAt(data, e.census, "population", i) ?? 0), 0),
+    religion: mix(places, RELIGION),
+    schooling: mix(places, SCHOOLING),
+  }));
 }
 
 /**

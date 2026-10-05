@@ -400,8 +400,8 @@
   <div class="view" id="census-view" role="tabpanel" aria-labelledby="tab-census" hidden>
     <div class="controls">
       <div class="group">
-        <span class="group-label" id="lbl-cv-var">Variável do Censo</span>
-        <div class="seg seg-wrap" role="group" aria-labelledby="lbl-cv-var" id="cv-vars"></div>
+        <label class="group-label" for="cv-var">Variável do Censo</label>
+        <select id="cv-var" class="select"></select>
       </div>
       <div class="group">
         <label class="group-label" for="cv-other">Cruzar com</label>
@@ -503,6 +503,14 @@
       </div>
       <p class="meta" id="cv-quad-note"></p>
       <div class="cv-quads" id="cv-quads"></div>
+    </section>
+
+    <section class="panel" aria-labelledby="cv-comp-title">
+      <div class="panel-head">
+        <h2 class="panel-title" id="cv-comp-title"></h2>
+      </div>
+      <p class="meta" id="cv-comp-note"></p>
+      <div class="cv-comp" id="cv-comp"></div>
     </section>
 
     <section class="panel" aria-labelledby="cv-gap-title">

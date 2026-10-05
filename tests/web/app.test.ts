@@ -267,10 +267,22 @@ describe("app", () => {
     expect($("cv-title").textContent).toBe("Lula × Flávio, 2026 · 1º turno · Brasil");
     expect($("cv-scatter").querySelectorAll("circle").length).toBe(5570);
     expect($("cv-quads").querySelectorAll(".cv-quad").length).toBe(4);
-    expect($("cv-gap").querySelectorAll(".cv-series").length).toBe(7);
+    // The chosen variables and the landmarks: income, Catholics, Evangelicals, the schooling ends.
+    expect($("cv-gap").querySelectorAll(".cv-series").length).toBe(5);
+    // Religion and schooling as whole distributions, five groups of towns by vote.
+    const rows = $("cv-comp").querySelectorAll(".cv-comp-row");
+    expect(rows.length).toBe(5);
+    const widths = [...rows[0]!.querySelectorAll(".cv-stack")[1]!.querySelectorAll("span")].map((x) =>
+      parseFloat((x as HTMLElement).style.width),
+    );
+    expect(widths.reduce((a, b) => a + b, 0)).toBeCloseTo(100, 0);
+    // Quadrants name their cut in numbers, not "the median".
+    expect($("cv-quads").textContent).toMatch(/Renda até R\$ [\d.]+/);
 
     // Another variable, a region, an older election.
-    ($("cv-vars").querySelector('[data-v="noReligion"]') as HTMLButtonElement).click();
+    const variable = $("cv-var") as HTMLSelectElement;
+    variable.value = "noReligion";
+    variable.dispatchEvent(new Event("change"));
     const region = $("cv-region") as HTMLSelectElement;
     region.value = "NE";
     region.dispatchEvent(new Event("change"));
@@ -295,8 +307,8 @@ describe("app", () => {
     ($("cp-paint").querySelector('[data-paint="census"]') as HTMLButtonElement).click();
     expect(window.location.search).toContain("pintar=censo");
     expect($("cp-sources").querySelectorAll("a").length).toBe(4);
-    // No urban share in the 2022 census: the button turns off from 2018 on.
-    const urban = $("cv-vars").querySelector('[data-v="urban"]') as HTMLButtonElement;
+    // No urban share in the 2022 census: the option turns off from 2018 on.
+    const urban = variable.querySelector('option[value="urban"]') as HTMLOptionElement;
     expect(urban.disabled).toBe(false);
     ($("cv-years").querySelector('[data-year="2022"]') as HTMLButtonElement).click();
     expect(urban.disabled).toBe(true);

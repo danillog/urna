@@ -123,10 +123,22 @@ def census(year: int) -> dict[str, dict[str, float]]:
             ("income", "ADH_RDPC"),
             ("degree", "ADH_T_SUPER25M"),
             ("population", "ADH_PESOTOT"),
+            ("illiterate", "ADH_T_ANALF15M"),
+            ("_fund", "ADH_T_FUND25M"),
+            ("_mid", "ADH_T_MED25M"),
         ):
             for m, by_year in by_territory(code, "Municípios").items():
                 if year in by_year:
                     out[m][key] = by_year[year]
+        # The Atlas counts levels cumulatively ("with primary school complete" includes those
+        # with secondary and a degree); the census of 2022 by exclusive levels. Same four here.
+        for row in out.values():
+            if {"_fund", "_mid", "degree"} <= row.keys():
+                row["eduBasic"] = 100 - row["_fund"]
+                row["eduFund"] = row["_fund"] - row["_mid"]
+                row["eduMid"] = row["_mid"] - row["degree"]
+            row.pop("_fund", None)
+            row.pop("_mid", None)
         for m, by_year in by_territory("ADH_PESOURB", "Municípios").items():
             pop = out.get(m, {}).get("population")
             if year in by_year and pop:
@@ -136,16 +148,29 @@ def census(year: int) -> dict[str, dict[str, float]]:
         for m, row in values(10295, 2022, 13431, {}).items():
             if () in row:
                 out[m]["income"] = row[()] * deflate
-        degree = values(10061, 2022, 2667, {1568: [120704, 99713], 58: [108866]})
-        for m, row in degree.items():
+        # Adults 25+ by schooling: none or primary incomplete, primary, secondary, a degree.
+        levels = {"eduBasic": 9493, "eduFund": 9494, "eduMid": 9495, "degree": 99713}
+        school = values(10061, 2022, 2667, {1568: [120704, *levels.values()], 58: [108866]})
+        for m, row in school.items():
             total = row.get((120704, 108866))
             if total:
-                out[m]["degree"] = row.get((99713, 108866), 0) / total * 100
+                for key, cat in levels.items():
+                    out[m][key] = row.get((cat, 108866), 0) / total * 100
+        # Literacy rate of people 15+; the Atlas gives the illiteracy rate for the same group.
+        literacy = values(9543, 2022, 2513, {2: [6794], 86: [95251], 287: [100362]})
+        for m, row in literacy.items():
+            rate = row.get((6794, 95251, 100362))
+            if rate is not None:
+                out[m]["illiterate"] = 100 - rate
         for m, row in values(9514, 2022, 93, {}).items():
             if () in row:
                 out[m]["population"] = row[()]
     for m, shares in religion(year).items():
         out[m].update(shares)
+        # Everyone else: other religions, undeclared, "don't know". The four add up to 100.
+        out[m]["otherReligion"] = max(
+            0.0, 100 - shares["catholic"] - shares["evangelical"] - shares["noReligion"]
+        )
     return out
 
 
@@ -236,6 +261,11 @@ def main() -> int:
         out["census"][str(year)] = {
             "income": pack("H", [whole(get(m, "income")) for m in order]),
             "degree": pack("H", [tenths(get(m, "degree")) for m in order]),
+            "eduBasic": pack("H", [tenths(get(m, "eduBasic")) for m in order]),
+            "eduFund": pack("H", [tenths(get(m, "eduFund")) for m in order]),
+            "eduMid": pack("H", [tenths(get(m, "eduMid")) for m in order]),
+            "illiterate": pack("H", [tenths(get(m, "illiterate")) for m in order]),
+            "otherReligion": pack("H", [tenths(get(m, "otherReligion")) for m in order]),
             "catholic": pack("H", [tenths(get(m, "catholic")) for m in order]),
             "evangelical": pack("H", [tenths(get(m, "evangelical")) for m in order]),
             "noReligion": pack("H", [tenths(get(m, "noReligion")) for m in order]),

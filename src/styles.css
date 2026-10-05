@@ -1745,3 +1745,63 @@ table.clickable tbody tr:focus-visible {
 .pp-news-list a {
   color: var(--ink);
 }
+
+/* Voto e Censo, composition: one stacked bar per group of towns, for religion and schooling. */
+.cv-comp-cols,
+.cv-comp-row {
+  display: grid;
+  grid-template-columns: minmax(9em, 0.7fr) minmax(0, 1fr) minmax(0, 1fr);
+  gap: 6px 14px;
+  align-items: center;
+}
+.cv-comp-cols {
+  font-size: 12px;
+  color: var(--ink-2);
+  margin-bottom: 6px;
+}
+.cv-comp-row {
+  padding: 6px 0;
+  border-bottom: 1px solid var(--grid);
+}
+.cv-comp-h {
+  display: grid;
+  font-size: 13px;
+}
+.cv-stack {
+  display: flex;
+  height: 24px;
+  border-radius: 4px;
+  overflow: hidden;
+  gap: 2px;
+}
+.cv-stack span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--mc, var(--c-gray));
+  color: #fff;
+  font: 600 11px/1 var(--body);
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.7);
+  font-variant-numeric: tabular-nums;
+  min-width: 0;
+}
+.cv-stack-empty {
+  background: var(--grid);
+}
+#cv-comp .legend {
+  margin-top: 10px;
+}
+@media (max-width: 640px) {
+  .cv-comp-cols {
+    display: none;
+  }
+  .cv-comp-row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+/* Light steps of the schooling ramp carry dark text. */
+.cv-stack span.q8,
+.cv-stack span.q9 {
+  color: #14171c;
+  text-shadow: none;
+}

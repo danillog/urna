@@ -148,16 +148,20 @@ def area_tables(codes: set[str]) -> dict[str, dict]:
     for r in each("Tab4_1.xlsx"):
         total = number(r.get("E"))
         if total:
+            catholic, evangelical, none = (number(r.get(c)) / total * 100 for c in "FGL")
             out[r["C"]].update(
                 name=r.get("D"),
-                catholic=number(r.get("F")) / total * 100,
-                evangelical=number(r.get("G")) / total * 100,
-                noReligion=number(r.get("L")) / total * 100,
+                catholic=catholic,
+                evangelical=evangelical,
+                noReligion=none,
+                otherReligion=max(0.0, 100 - catholic - evangelical - none),
             )
     for r in each("Tab2_2.xlsx"):
         total = number(r.get("E"))
         if total:
-            out[r["C"]]["degree"] = number(r.get("I")) / total * 100
+            # Adults 25+: none or primary incomplete, primary, secondary, a degree.
+            for key, col in (("eduBasic", "F"), ("eduFund", "G"), ("eduMid", "H"), ("degree", "I")):
+                out[r["C"]][key] = number(r.get(col)) / total * 100
     for r in each("Tab8_3.xlsx"):
         out[r["C"]]["income"] = number(r.get("H"))
     return out
@@ -449,10 +453,19 @@ def build_capital(code: str, uf: str, tse: str, tract_area: dict, census: dict, 
                 "bairros": names,
                 "population": round(population[area]),
                 "income": round(c["income"]) if "income" in c else None,
-                "degree": round(c["degree"], 1) if "degree" in c else None,
-                "evangelical": round(c["evangelical"], 1) if "evangelical" in c else None,
-                "catholic": round(c["catholic"], 1) if "catholic" in c else None,
-                "noReligion": round(c["noReligion"], 1) if "noReligion" in c else None,
+                **{
+                    k: round(c[k], 1) if k in c else None
+                    for k in (
+                        "eduBasic",
+                        "eduFund",
+                        "eduMid",
+                        "degree",
+                        "catholic",
+                        "evangelical",
+                        "noReligion",
+                        "otherReligion",
+                    )
+                },
                 "valid": valid,
                 "pt": round(v.get(PT, 0) / valid * 100, 1) if valid else None,
                 "rival": round(v.get(RIVAL, 0) / valid * 100, 1) if valid else None,
