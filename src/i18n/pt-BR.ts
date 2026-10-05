@@ -295,6 +295,18 @@ export const t = {
     } as Record<string, string>,
   },
 
+  share: {
+    button: "Compartilhar",
+    aria: (what: string) => `Compartilhar como imagem: ${what}`,
+    working: "Gerando…",
+    downloaded: "Imagem baixada",
+    failed: "Não deu certo",
+    pollsSource:
+      "Fontes: pesquisas dos institutos, compiladas da Wikipédia e das divulgações; resultados oficiais do TSE",
+    americasSource:
+      "Fontes: resultados das eleições na Wikipédia (Brasil: TSE); família ideológica: Global Party Survey 2019 e Wikipédia; contornos: Natural Earth",
+    footer: (url: string) => `Veja e explore em ${url}`,
+  },
   sourcesHeading: "Fontes:",
   sources: {
     tseResults: { label: "TSE: resultados da apuração", url: "https://resultados.tse.jus.br/" },

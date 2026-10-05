@@ -1514,3 +1514,27 @@ table.clickable tbody tr:focus-visible {
 .map-key.cp-partial-key {
   opacity: 0.35;
 }
+
+/* "Compartilhar": the panel as an image, at the end of its head. */
+.panel-head .share-btn {
+  margin-left: auto;
+}
+.share-btn {
+  flex: none;
+  font: 600 12px/1 var(--body);
+  padding: 7px 10px 7px 26px;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  background: var(--surface)
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%237d838d' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M8 10V2M5 5l3-3 3 3M3 9v4h10V9'/%3E%3C/svg%3E")
+    no-repeat 8px center / 13px;
+  color: var(--ink);
+  cursor: pointer;
+}
+.share-btn:hover {
+  border-color: var(--ink-2);
+}
+.share-btn:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}

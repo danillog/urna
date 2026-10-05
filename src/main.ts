@@ -29,6 +29,7 @@ import { ApuracaoView, apuracaoFromSearch, apuracaoToSearch } from "./ui/apuraca
 import { CongressView, congressFromSearch, congressToSearch } from "./ui/congress-view";
 import { CensusView, censusFromSearch, censusToSearch } from "./ui/census-view";
 import { renderLegend } from "./ui/legend";
+import { setupShare } from "./ui/share";
 import { MapView, mapFromSearch, mapToSearch } from "./ui/map-view";
 import { renderAccuracy, renderComparison, renderHighlightBar, renderPollTable } from "./ui/tables";
 
@@ -250,6 +251,7 @@ function renderPolls(): void {
 }
 
 setupControls(data, () => state, update);
+setupShare();
 for (const v of VIEWS) byId(`tab-${v}`).addEventListener("click", () => showView(v));
 showView(view);
 
