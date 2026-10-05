@@ -8,6 +8,7 @@ import americasTopoJson from "../data/generated/americas.topo.json?raw";
 import indicatorsJson from "../data/generated/americas-indicators.json?raw";
 import apuracaoCidadesJson from "../data/generated/apuracao-cidades.json?raw";
 import congressJson from "../data/generated/congress.json?raw";
+import governismoJson from "../data/generated/governismo.json?raw";
 import censusVoteJson from "../data/generated/census-vote.json?raw";
 import capitalsJson from "../data/generated/capitals.json?raw";
 import profilesJson from "../data/generated/profiles.json?raw";
@@ -101,7 +102,7 @@ function ensureCongress(): CongressView {
   if (!congressView) {
     congressData = JSON.parse(congressJson) as CongressData;
     const initial = congressFromSearch(congressData, view === "congress" ? params : new URLSearchParams());
-    congressView = new CongressView(congressData, initial, () => {
+    congressView = new CongressView(congressData, JSON.parse(governismoJson), initial, () => {
       syncUrl();
       congressView!.render();
     });

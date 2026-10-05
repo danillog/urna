@@ -391,6 +391,10 @@ export const t = {
       label: "TSE, dados abertos: candidatos 2010–2026",
       url: "https://dadosabertos.tse.jus.br/",
     },
+    camaraOrientations: {
+      label: "Câmara dos Deputados: orientações de bancada nas votações, 2003–2026",
+      url: "https://dadosabertos.camara.leg.br/swagger/api.html#staticfile",
+    },
     camaraOpenData: {
       label: "Câmara dos Deputados: dados abertos (deputados)",
       url: "https://dadosabertos.camara.leg.br/",
@@ -500,6 +504,30 @@ export const t = {
     newsNote: "Abre a busca do Google Notícias com o nome, o cargo e o estado.",
     page: (house: string) => (house === "camara" ? "Página na Câmara" : "Página no Senado"),
     note: "Perfis: candidaturas do TSE de 2010 a 2026, ligadas entre eleições pelo título de eleitor (que não é publicado aqui, assim como o CPF). Cargos públicos (inclusive por nomeação), redes e Wikipédia: Wikidata, casado pelo nome e pela data de nascimento. Notícias: busca automática no Google Notícias. Idade na data da posse, naturalidade, escolaridade e profissão são as declaradas ao TSE. Resultado de cada candidatura como está nos arquivos do TSE; decisões judiciais posteriores podem não aparecer. Contato, site e redes: Câmara dos Deputados e Senado Federal, para quem já é parlamentar. Governadores no 2º turno aparecem os dois candidatos, até 25 de outubro.",
+  },
+
+  party: {
+    open: (name: string) => `Abrir a história do ${name}`,
+    names: "Nomes ao longo do tempo",
+    govTitle: "Com o governo ou na oposição",
+    govNote: (base: number, opp: number) =>
+      `Quanto o partido orientou sua bancada igual ao governo nas votações disputadas do plenário da Câmara (em que alguma bancada orientou contra o governo). A partir de ${base}%: base do governo; até ${opp}%: oposição; entre os dois, independente. Os cortes são nossos.`,
+    stance: { base: "Base", independent: "Independente", opposition: "Oposição" } as Record<string, string>,
+    pattern: {
+      "always-base": "Votou com todos os governos, de esquerda e de direita: o perfil do Centrão.",
+      "always-opposition": "Foi oposição a todos os governos do período.",
+      switches: "Mudou de lado conforme o governo: base de uns, oposição de outros.",
+      mixed: "Alternou entre base, independência e oposição.",
+    } as Record<string, string>,
+    noGov:
+      "Sem votações suficientes na Câmara para medir (o partido não tinha bancada ou orientava só dentro de blocos).",
+    seatsTitle: "Cadeiras por eleição",
+    seatsAria: (house: string) => `Cadeiras do partido em cada eleição: ${house}`,
+    ideologyTitle: "Posição de esquerda a direita",
+    ideologyAria: "Posição do partido em cada eleição, de −1 (esquerda) a +1 (direita)",
+    axis: { "1": "direita", "0": "centro", "-1": "esquerda" } as Record<string, string>,
+    noIdeology: "Partido fora das pesquisas usadas: sem classificação.",
+    note: "Governo e oposição: orientações de bancada registradas pela Câmara dos Deputados, 2003 a 2026, por mandato presidencial (Dilma 2 até o afastamento, em 12/05/2016; Temer a partir daí). Orientações de blocos e federações valem para os partidos que os compõem. Obstrução conta como voto contra. Cadeiras e posição: as mesmas fontes do hemiciclo.",
   },
 
   census: {
@@ -634,6 +662,7 @@ export const t = {
   },
 
   congress: {
+    houseName: { chamber: "Câmara dos Deputados", senate: "Senado Federal" } as Record<string, string>,
     // The Chamber is elected whole; the Senate renews a third or two thirds.
     title: (house: House, year: number) =>
       house === "chamber"

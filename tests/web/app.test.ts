@@ -222,6 +222,16 @@ describe("app", () => {
     chip("centrao").click();
     ($("cg-years").querySelector('[data-year="1990"]') as HTMLButtonElement).click();
 
+    // A party's history opens from its name in the table, and the address keeps it.
+    ($("cg-table").querySelector("[data-open]") as HTMLButtonElement).click();
+    const modal = $("cg-modal") as HTMLDialogElement;
+    expect(modal.hasAttribute("open")).toBe(true);
+    expect(window.location.search).toContain("partido=");
+    expect(modal.querySelector("#cg-modal-title")!.textContent).not.toBe("");
+    (modal.querySelector("[data-close-modal]") as HTMLButtonElement).click();
+    expect(modal.hasAttribute("open")).toBe(false);
+    expect(window.location.search).not.toContain("partido=");
+
     // The Senate starts in 2002: the closest year is kept.
     ($("cg-houses").querySelector('[data-house="senate"]') as HTMLButtonElement).click();
     expect(dots()).toBe(81);

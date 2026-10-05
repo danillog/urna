@@ -1805,3 +1805,139 @@ table.clickable tbody tr:focus-visible {
   color: #14171c;
   text-shadow: none;
 }
+
+/* Congress: a party's history in a modal. */
+.cg-open {
+  font: inherit;
+  font-weight: 600;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--line);
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+.cg-open:hover {
+  text-decoration-color: var(--ink);
+}
+.cg-chart circle[data-p] {
+  cursor: pointer;
+}
+.pm-modal {
+  width: min(680px, calc(100vw - 32px));
+  max-height: calc(100vh - 48px);
+  overflow: auto;
+  padding: 20px 22px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.25);
+}
+.pm-modal::backdrop {
+  background: rgba(10, 12, 16, 0.45);
+}
+.pm-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: flex-start;
+}
+.pm-head .panel-title {
+  margin: 0;
+}
+.pm-sub {
+  margin: 4px 0 6px;
+  color: var(--ink-2);
+}
+.pm-summary {
+  font-weight: 600;
+  margin: 6px 0 10px;
+}
+.pm-govs {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+}
+.pm-gov {
+  display: grid;
+  grid-template-columns: 9.5em minmax(0, 1fr) 3em 7.5em;
+  gap: 10px;
+  align-items: center;
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+}
+.pm-gov b {
+  text-align: right;
+}
+.pm-track {
+  height: 10px;
+  border-radius: 3px;
+  background: var(--grid);
+}
+.pm-track span {
+  display: block;
+  height: 100%;
+  border-radius: 3px;
+  background: var(--ink-2);
+}
+.pm-stance {
+  font: 600 11px/1 var(--body);
+  padding: 3px 6px;
+  border-radius: 4px;
+  border: 1px solid var(--line);
+  justify-self: start;
+}
+.pm-gov.s-base .pm-stance {
+  border-color: var(--ink);
+}
+.pm-gov.s-opposition .pm-stance {
+  border-style: dashed;
+}
+@media (max-width: 520px) {
+  .pm-gov {
+    grid-template-columns: minmax(0, 1fr) 3em 6.5em;
+  }
+  .pm-gov .pm-track {
+    display: none;
+  }
+}
+.pm-charts {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 14px;
+}
+@media (max-width: 560px) {
+  .pm-charts {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+.pm-charts figure {
+  margin: 0;
+}
+.pm-modal svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.pm-modal rect,
+.pm-modal circle {
+  fill: var(--gc, var(--muted));
+}
+.pm-modal circle {
+  stroke: var(--surface);
+  stroke-width: 1.5;
+}
+.pm-value {
+  font: 600 11px var(--body);
+  fill: var(--ink);
+}
+.pm-line {
+  fill: none;
+  stroke: var(--muted);
+  stroke-width: 1.5;
+}

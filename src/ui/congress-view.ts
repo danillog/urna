@@ -14,7 +14,9 @@ import {
   type FocusKey,
   type House,
 } from "../model/congress";
+import type { GovernismoData } from "../model/governismo";
 import { button, byId } from "./dom";
+import { partyModalHtml } from "./party-modal";
 import { sourcesHtml, type SourceLink } from "./sources";
 
 export interface CongressState {
@@ -22,6 +24,8 @@ export interface CongressState {
   year: number;
   /** Legend selection: these seats stand out and the table lists only these parties. */
   focus: FocusKey[];
+  /** The party line whose history is open in the modal. */
+  party: string | null;
 }
 
 /** Focus keys in the address: ?destaque=esquerda,centrao. */
@@ -49,13 +53,30 @@ export function congressFromSearch(data: CongressData, params: URLSearchParams):
   // ?centrao=1 came before the legend could select.
   if (params.has("centrao")) slugs.push("centrao");
   const focus = FOCUS_KEYS.filter((k) => slugs.includes(FOCUS_SLUGS[k]));
-  return { house, year: years.includes(asked) ? asked : years.at(-1)!, focus };
+  // ?partido=PT opens that party's history; matched by line, or by any acronym it used.
+  const askedParty = params.get("partido");
+  const lines = [...data.houses.chamber, ...data.houses.senate].flatMap((e) => e.parties);
+  const party =
+    lines.find((p) => p.lineage === askedParty)?.lineage ??
+    lines.find((p) => p.party.toUpperCase() === askedParty?.toUpperCase())?.lineage ??
+    null;
+  return { house, year: years.includes(asked) ? asked : years.at(-1)!, focus, party };
 }
 
 export function congressToSearch(s: CongressState, data: CongressData, params: URLSearchParams): void {
   if (s.house === "senate") params.set("casa", "senado");
   if (s.year !== data.houses[s.house].at(-1)!.year) params.set("ano", String(s.year));
   if (s.focus.length) params.set("destaque", s.focus.map((k) => FOCUS_SLUGS[k]).join(","));
+  if (s.party) params.set("partido", s.party);
+}
+
+/** Closes a dialog; where close() is missing (jsdom, old browsers) does what it would. */
+function closeDialog(d: HTMLDialogElement): void {
+  if (typeof d.close === "function") d.close();
+  else {
+    d.removeAttribute("open");
+    d.dispatchEvent(new Event("close"));
+  }
 }
 
 /** The Congress tab: a hemicycle per election, parties left to right, and a table with each party's path. */
@@ -68,6 +89,7 @@ export class CongressView {
 
   constructor(
     private readonly data: CongressData,
+    private readonly governismo: GovernismoData,
     private state: CongressState,
     private readonly onChange: () => void,
   ) {
@@ -111,6 +133,26 @@ export class CongressView {
       this.highlight(row ? Number(row.dataset.p) : null);
     });
     table.addEventListener("pointerleave", () => this.highlight(null));
+    // A party's history: from a seat or its name in the table.
+    const open = (index: string | undefined) => {
+      const p = index === undefined ? undefined : this.election.parties[Number(index)];
+      if (p) this.set({ party: p.lineage });
+    };
+    host.addEventListener("click", (e) => {
+      const dot = (e.target as Element).closest<SVGCircleElement>("circle[data-p]");
+      if (dot) open(dot.dataset.p);
+    });
+    table.addEventListener("click", (e) =>
+      open((e.target as HTMLElement).closest<HTMLElement>("[data-open]")?.dataset.open),
+    );
+    const modal = byId<HTMLDialogElement>("cg-modal");
+    modal.addEventListener("click", (e) => {
+      // The close button, or a click on the backdrop (the dialog itself, outside its content).
+      if ((e.target as HTMLElement).closest("[data-close-modal]") || e.target === modal) closeDialog(modal);
+    });
+    modal.addEventListener("close", () => {
+      if (this.state.party) this.set({ party: null });
+    });
   }
 
   get current(): CongressState {
@@ -162,6 +204,21 @@ export class CongressView {
     b.setAttribute("aria-label", this.timer ? t.congress.pause : t.congress.play);
   }
 
+  /** Opens or closes the party modal to match the state. */
+  private renderModal(): void {
+    const modal = byId<HTMLDialogElement>("cg-modal");
+    if (!this.state.party) {
+      if (modal.open) closeDialog(modal);
+      return;
+    }
+    modal.innerHTML = partyModalHtml(this.data, this.governismo, this.state.party);
+    if (!modal.open) {
+      // jsdom and old browsers lack showModal: the open attribute still shows it.
+      if (typeof modal.showModal === "function") modal.showModal();
+      else modal.setAttribute("open", "");
+    }
+  }
+
   render(): void {
     const s = this.state;
     const e = this.election;
@@ -184,6 +241,7 @@ export class CongressView {
       .filter(Boolean)
       .join(" ");
     byId("cg-sources").innerHTML = sourcesHtml(this.sources(e));
+    this.renderModal();
   }
 
   /** The studies and pages behind what is on screen, as links. */
@@ -318,7 +376,7 @@ export class CongressView {
       const score = p.score === null ? "—" : t.congress.score(p.score);
       return (
         `<tr data-p="${index}">` +
-        `<td><i class="cg-key ${groupClass(p)}"></i><b title="${escapeHtml(p.name)}">${escapeHtml(p.party)}</b>${p.centrao ? ` <span class="cg-tag">${t.congress.centrao}</span>` : ""}</td>` +
+        `<td><i class="cg-key ${groupClass(p)}"></i><button type="button" class="cg-open" data-open="${index}" title="${escapeHtml(t.party.open(p.party))}">${escapeHtml(p.party)}</button>${p.centrao ? ` <span class="cg-tag">${t.congress.centrao}</span>` : ""}</td>` +
         `<td>${p.seats} ${change}</td>` +
         `<td>${score} <span class="cg-group">${t.congress.group[p.group ?? "none"]}</span></td>` +
         `<td class="cg-traj">${this.trajectory(elections, p)}</td>` +

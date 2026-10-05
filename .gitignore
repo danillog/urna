@@ -20,6 +20,8 @@ data/raw/ipea/
 data/raw/capitals/
 # TSE candidate files, Câmara and Senate profiles (pipeline.profiles): personal data, never published as is
 data/raw/profiles/
+# Câmara roll-call orientations and votes, 2003 on (pipeline.governismo): large, re-downloadable
+data/raw/camara/
 .wrangler/
 
 # Working notes, kept out of the repository
