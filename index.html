@@ -119,6 +119,7 @@
     <button type="button" role="tab" id="tab-apuracao" data-view="apuracao" aria-selected="false" aria-controls="apuracao-view">Apuração</button>
     <button type="button" role="tab" id="tab-congress" data-view="congress" aria-selected="false" aria-controls="congress-view">Congresso</button>
     <button type="button" role="tab" id="tab-map" data-view="map" aria-selected="false" aria-controls="map-view">Mapa por município</button>
+    <button type="button" role="tab" id="tab-census" data-view="census" aria-selected="false" aria-controls="census-view">Voto e Censo</button>
     <button type="button" role="tab" id="tab-americas" data-view="americas" aria-selected="false" aria-controls="americas-view">Américas</button>
   </nav>
 
@@ -340,6 +341,124 @@
       </div>
       <p class="map-note" id="map-note"></p>
       <p class="map-note sources" id="map-sources"></p>
+    </section>
+  </div>
+
+  <div class="view" id="census-view" role="tabpanel" aria-labelledby="tab-census" hidden>
+    <div class="controls">
+      <div class="group">
+        <span class="group-label" id="lbl-cv-var">Variável do Censo</span>
+        <div class="seg seg-wrap" role="group" aria-labelledby="lbl-cv-var" id="cv-vars"></div>
+      </div>
+      <div class="group">
+        <label class="group-label" for="cv-other">Cruzar com</label>
+        <select id="cv-other" class="select"></select>
+      </div>
+      <div class="group">
+        <span class="group-label" id="lbl-cv-side">Voto em</span>
+        <div class="seg" role="group" aria-labelledby="lbl-cv-side" id="cv-sides">
+          <button type="button" data-side="pt" aria-pressed="true"></button>
+          <button type="button" data-side="rival" aria-pressed="false"></button>
+        </div>
+      </div>
+      <div class="group">
+        <label class="group-label" for="cv-region">Região</label>
+        <select id="cv-region" class="select"></select>
+      </div>
+    </div>
+
+    <div class="timeline">
+      <button type="button" class="play" id="cv-play" aria-label="Reproduzir" aria-pressed="false">▶</button>
+      <div class="timeline-track">
+        <input type="range" id="cv-slider" min="0" max="0" step="1" value="0" aria-label="Ano da eleição">
+        <div class="timeline-years" id="cv-years"></div>
+      </div>
+    </div>
+
+    <section class="panel" aria-labelledby="cv-title">
+      <div class="panel-head">
+        <h2 class="panel-title" id="cv-title"></h2>
+        <span class="meta" id="cv-meta"></span>
+      </div>
+      <p class="cv-warning" id="cv-warning"></p>
+      <div class="cv-grid">
+        <figure class="cv-fig">
+          <figcaption class="cv-cap" id="cv-scatter-cap"></figcaption>
+          <div class="cv-scatter" id="cv-scatter"></div>
+          <div class="legend map-legend" id="cv-scatter-legend"></div>
+        </figure>
+        <figure class="cv-fig">
+          <figcaption class="cv-cap" id="cv-map-cap"></figcaption>
+          <div class="map cv-map" id="cv-map">
+            <div class="map-zoom" role="group" aria-label="Zoom">
+              <button type="button" id="cv-zoom-in" aria-label="Aproximar" title="Aproximar">+</button>
+              <button type="button" id="cv-zoom-out" aria-label="Afastar" title="Afastar">−</button>
+              <button type="button" id="cv-zoom-reset" aria-label="Ver o Brasil inteiro" title="Ver o Brasil inteiro">⟲</button>
+            </div>
+          </div>
+          <div class="legend map-legend" id="cv-map-legend"></div>
+        </figure>
+      </div>
+    </section>
+
+    <section class="panel" aria-labelledby="cp-title">
+      <div class="panel-head">
+        <h2 class="panel-title" id="cp-title"></h2>
+        <span class="meta" id="cp-meta"></span>
+      </div>
+      <div class="controls cp-controls">
+        <div class="group">
+          <label class="group-label" for="cp-capital">Capital</label>
+          <select id="cp-capital" class="select"></select>
+        </div>
+        <div class="group">
+          <span class="group-label" id="lbl-cp-paint">Pintar o mapa por</span>
+          <div class="seg" role="group" aria-labelledby="lbl-cp-paint" id="cp-paint">
+            <button type="button" data-paint="vote" aria-pressed="true">Voto</button>
+            <button type="button" data-paint="census" aria-pressed="false"></button>
+          </div>
+        </div>
+      </div>
+      <p class="cv-warning" id="cp-warning"></p>
+      <div class="cv-grid">
+        <figure class="cv-fig">
+          <figcaption class="cv-cap" id="cp-scatter-cap"></figcaption>
+          <div class="cv-scatter" id="cp-scatter"></div>
+          <div class="legend map-legend" id="cp-scatter-legend"></div>
+        </figure>
+        <figure class="cv-fig">
+          <figcaption class="cv-cap" id="cp-map-cap"></figcaption>
+          <div class="map cv-map" id="cp-map">
+            <div class="map-zoom" role="group" aria-label="Zoom">
+              <button type="button" id="cp-zoom-in" aria-label="Aproximar" title="Aproximar">+</button>
+              <button type="button" id="cp-zoom-out" aria-label="Afastar" title="Afastar">−</button>
+              <button type="button" id="cp-zoom-reset" aria-label="Ver a cidade inteira" title="Ver a cidade inteira">⟲</button>
+            </div>
+          </div>
+          <div class="legend map-legend" id="cp-map-legend"></div>
+        </figure>
+      </div>
+      <p class="map-note" id="cp-note"></p>
+      <p class="map-note sources" id="cp-sources"></p>
+    </section>
+
+    <section class="panel" aria-labelledby="cv-quad-title">
+      <div class="panel-head">
+        <h2 class="panel-title" id="cv-quad-title"></h2>
+      </div>
+      <p class="meta" id="cv-quad-note"></p>
+      <div class="cv-quads" id="cv-quads"></div>
+    </section>
+
+    <section class="panel" aria-labelledby="cv-gap-title">
+      <div class="panel-head">
+        <h2 class="panel-title" id="cv-gap-title"></h2>
+      </div>
+      <p class="meta" id="cv-gap-note"></p>
+      <div class="cv-gap" id="cv-gap"></div>
+      <div class="legend map-legend" id="cv-gap-legend"></div>
+      <p class="map-note" id="cv-note"></p>
+      <p class="map-note sources" id="cv-sources"></p>
     </section>
   </div>
 

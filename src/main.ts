@@ -8,10 +8,14 @@ import americasTopoJson from "../data/generated/americas.topo.json?raw";
 import indicatorsJson from "../data/generated/americas-indicators.json?raw";
 import apuracaoCidadesJson from "../data/generated/apuracao-cidades.json?raw";
 import congressJson from "../data/generated/congress.json?raw";
+import censusVoteJson from "../data/generated/census-vote.json?raw";
+import capitalsJson from "../data/generated/capitals.json?raw";
 import { formatDate, formatIsoDate, dayToDate } from "./format";
 import { t } from "./i18n/pt-BR";
 import type { AmericasData } from "./model/americas";
 import type { CongressData } from "./model/congress";
+import { decodeCensusVote, type CensusVote, type EncodedCensusVote } from "./model/census-vote";
+import type { CapitalsData } from "./model/capitals";
 import { MapData } from "./model/map-data";
 import { buildView } from "./model/view";
 import { fromSearch, latestYear, raceFor, toSearch, type AppState } from "./state";
@@ -23,11 +27,12 @@ import { byId } from "./ui/dom";
 import { AmericasView, americasFromSearch, americasToSearch } from "./ui/americas-view";
 import { ApuracaoView, apuracaoFromSearch, apuracaoToSearch } from "./ui/apuracao-view";
 import { CongressView, congressFromSearch, congressToSearch } from "./ui/congress-view";
+import { CensusView, censusFromSearch, censusToSearch } from "./ui/census-view";
 import { renderLegend } from "./ui/legend";
 import { MapView, mapFromSearch, mapToSearch } from "./ui/map-view";
 import { renderAccuracy, renderComparison, renderHighlightBar, renderPollTable } from "./ui/tables";
 
-const VIEWS = ["polls", "apuracao", "congress", "map", "americas"] as const;
+const VIEWS = ["polls", "apuracao", "congress", "map", "census", "americas"] as const;
 type View = (typeof VIEWS)[number];
 
 const data = dataset as unknown as Dataset;
@@ -100,6 +105,27 @@ function ensureCongress(): CongressView {
   return congressView;
 }
 
+let censusView: CensusView | null = null;
+let censusData: CensusVote | null = null;
+let capitalsData: CapitalsData | null = null;
+
+function ensureCensus(): CensusView {
+  if (!censusView) {
+    censusData = decodeCensusVote(JSON.parse(censusVoteJson) as EncodedCensusVote);
+    capitalsData = JSON.parse(capitalsJson) as CapitalsData;
+    const initial = censusFromSearch(
+      censusData,
+      capitalsData,
+      view === "census" ? params : new URLSearchParams(),
+    );
+    censusView = new CensusView(censusData, loadMunicipalMap(), capitalsData, initial, () => {
+      syncUrl();
+      censusView!.render();
+    });
+  }
+  return censusView;
+}
+
 let americasView: AmericasView | null = null;
 
 function ensureAmericas(): AmericasView {
@@ -134,6 +160,10 @@ function syncUrl(): void {
     const p = new URLSearchParams({ view: "congress" });
     congressToSearch(congressView.current, congressData!, p);
     search = `?${p.toString()}`;
+  } else if (view === "census" && censusView) {
+    const p = new URLSearchParams({ view: "census" });
+    censusToSearch(censusView.current, censusData!, capitalsData!, p);
+    search = `?${p.toString()}`;
   } else if (view === "americas" && americasView) {
     const p = new URLSearchParams({ view: "americas" });
     americasToSearch(americasView.current, p);
@@ -156,6 +186,7 @@ function showView(next: View): void {
   if (view !== "americas") americasView?.stop();
   if (view !== "apuracao") apuracaoView?.stop();
   if (view !== "congress") congressView?.stop();
+  if (view !== "census") censusView?.stop();
   for (const v of VIEWS) {
     byId(`${v}-view`).hidden = v !== view;
     byId(`tab-${v}`).setAttribute("aria-selected", String(v === view));
@@ -169,6 +200,7 @@ function showView(next: View): void {
   if (view === "map") ensureMap().render(municipalMap!);
   else if (view === "americas") ensureAmericas().render();
   else if (view === "congress") ensureCongress().render();
+  else if (view === "census") ensureCensus().render();
   else if (view === "apuracao") {
     ensureApuracao().render();
     apuracaoView!.start();

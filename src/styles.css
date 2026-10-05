@@ -1321,3 +1321,196 @@ table.clickable tbody tr:focus-visible {
 .sources a:hover {
   color: var(--ink);
 }
+
+/* Voto e Censo: scatter and map side by side, quadrants, the gap over time. */
+.cv-warning {
+  margin: 0 0 12px;
+  padding: 10px 12px;
+  border-left: 3px solid var(--ink-2);
+  background: var(--grid);
+  font-size: 13px;
+  color: var(--ink-2);
+}
+.cv-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+@media (max-width: 860px) {
+  .cv-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+.cv-fig {
+  margin: 0;
+  min-width: 0;
+}
+.cv-cap {
+  font-size: 13px;
+  color: var(--ink-2);
+  margin-bottom: 6px;
+}
+.cv-scatter,
+.cv-gap {
+  position: relative;
+}
+.cv-scatter svg,
+.cv-gap svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.cv-rule {
+  stroke: var(--grid);
+  stroke-width: 1;
+}
+.cv-zero,
+.cv-half {
+  stroke: var(--axis);
+  stroke-width: 1;
+}
+.cv-half {
+  stroke-dasharray: 3 3;
+}
+.cv-tick {
+  font: 11px var(--body);
+  fill: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.cv-tick.cv-now {
+  fill: var(--ink);
+  font-weight: 700;
+}
+.cv-axis-label {
+  font: 11px var(--body);
+  fill: var(--ink-2);
+}
+.cv-dots circle {
+  fill: var(--mc, var(--c-gray));
+  fill-opacity: 0.75;
+  stroke: var(--surface);
+  stroke-width: 0.5;
+}
+.cv-dots circle.cv-nodata {
+  fill: var(--muted);
+}
+.cv-line {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 2.5;
+  stroke-linejoin: round;
+}
+.cv-line-key {
+  display: inline-block;
+  width: 18px;
+  height: 0;
+  border-top: 2.5px solid var(--ink);
+  margin: 0 6px 3px 10px;
+}
+.cv-map {
+  max-width: none;
+}
+.areas path.cv-out {
+  fill: var(--grid);
+  opacity: 0.45;
+}
+.cv-quads {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+@media (max-width: 640px) {
+  .cv-quads {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+.cv-quad {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px;
+  display: grid;
+  gap: 8px;
+}
+.cv-quad-h {
+  font-weight: 600;
+  font-size: 14px;
+}
+.cv-bar {
+  display: grid;
+  grid-template-columns: 7.5em minmax(0, 1fr) 4em;
+  gap: 8px;
+  align-items: center;
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+}
+.cv-bar b {
+  text-align: right;
+}
+.cv-bar-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.cv-bar-track {
+  height: 10px;
+  border-radius: 3px;
+  background: var(--grid);
+}
+.cv-bar-track span {
+  display: block;
+  height: 100%;
+  border-radius: 3px;
+  background: var(--mc, var(--c-gray));
+}
+.cv-now-line {
+  stroke: var(--ink-2);
+  stroke-width: 1;
+  stroke-dasharray: 2 3;
+}
+.cv-series polyline {
+  fill: none;
+  stroke: var(--sc);
+  stroke-width: 1.5;
+  opacity: 0.35;
+}
+.cv-series circle {
+  fill: var(--sc);
+  opacity: 0.35;
+}
+.cv-series.on polyline {
+  stroke-width: 2.5;
+  opacity: 1;
+}
+.cv-series.on circle {
+  opacity: 1;
+  stroke: var(--surface);
+  stroke-width: 1.5;
+}
+.cv-series-label {
+  font: 600 12px var(--body);
+  fill: var(--ink);
+}
+.cv-swatch {
+  display: inline-block;
+  width: 14px;
+  height: 3px;
+  border-radius: 2px;
+  margin-right: 6px;
+  vertical-align: 3px;
+}
+
+/* Dentro das capitais: one map box per capital drawn, only the chosen one shown. */
+.cp-controls {
+  margin: 4px 0 12px;
+}
+.cp-map-host[hidden] {
+  display: none;
+}
+/* An area whose vote is partial: the TSE has not published most of its ballot-box reports. */
+.areas path.cp-partial {
+  fill-opacity: 0.35;
+}
+.map-key.cp-partial-key {
+  opacity: 0.35;
+}

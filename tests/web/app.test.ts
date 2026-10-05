@@ -232,6 +232,49 @@ describe("app", () => {
     click("tab-polls");
   });
 
+  it("opens the Voto e Censo tab and crosses census and vote", () => {
+    click("tab-census");
+    expect($("census-view").hidden).toBe(false);
+    expect(window.location.search).toBe("?view=census");
+    expect($("cv-title").textContent).toBe("Lula × Flávio, 2026 · 1º turno · Brasil");
+    expect($("cv-scatter").querySelectorAll("circle").length).toBe(5570);
+    expect($("cv-quads").querySelectorAll(".cv-quad").length).toBe(4);
+    expect($("cv-gap").querySelectorAll(".cv-series").length).toBe(7);
+
+    // Another variable, a region, an older election.
+    ($("cv-vars").querySelector('[data-v="noReligion"]') as HTMLButtonElement).click();
+    const region = $("cv-region") as HTMLSelectElement;
+    region.value = "NE";
+    region.dispatchEvent(new Event("change"));
+    ($("cv-years").querySelector('[data-year="2002"]') as HTMLButtonElement).click();
+    expect(window.location.search).toBe("?view=census&ano=2002&var=sem-religiao&regiao=ne");
+    expect($("cv-title").textContent).toBe("Lula × Serra, 2002 · 1º turno · Nordeste");
+    expect($("cv-meta").textContent).toContain("Censo 2000");
+    // Only the Northeast is drawn in the scatter (1,794 municipalities).
+    expect($("cv-scatter").querySelectorAll("circle").length).toBeLessThan(1800);
+    // Inside the capitals: one dot per area with votes, one shape per area on the map.
+    const capitals = JSON.parse(
+      readFileSync(resolve(__dirname, "../../data/generated/capitals.json"), "utf8"),
+    );
+    const shown = capitals.capitals.find((c: { name: string }) =>
+      $("cp-title").textContent!.startsWith(c.name),
+    );
+    expect(shown).toBeDefined();
+    expect($("cp-scatter").querySelectorAll("circle").length).toBe(
+      shown.areas.filter((a: { valid: number; income: number | null }) => a.valid && a.income !== null)
+        .length,
+    );
+    ($("cp-paint").querySelector('[data-paint="census"]') as HTMLButtonElement).click();
+    expect(window.location.search).toContain("pintar=censo");
+    expect($("cp-sources").querySelectorAll("a").length).toBe(4);
+    // No urban share in the 2022 census: the button turns off from 2018 on.
+    const urban = $("cv-vars").querySelector('[data-v="urban"]') as HTMLButtonElement;
+    expect(urban.disabled).toBe(false);
+    ($("cv-years").querySelector('[data-year="2022"]') as HTMLButtonElement).click();
+    expect(urban.disabled).toBe(true);
+    click("tab-polls");
+  });
+
   it("opens the apuração tab and draws the count by state", async () => {
     // The Worker's answer, built from real TSE files: São Paulo's 2024 mayor race
     // standing in for the state of São Paulo.

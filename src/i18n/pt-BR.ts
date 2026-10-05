@@ -97,6 +97,11 @@ export const t = {
       headline: "Quem ocupa as cadeiras do Congresso",
       lede: "Cada bolinha é uma cadeira, da esquerda para a direita conforme a posição do partido naquela época, medida por pesquisas acadêmicas. Dê play para ver a Câmara e o Senado mudarem eleição a eleição; passe o mouse num partido para ver as cadeiras e de onde vem a classificação dele.",
     },
+    census: {
+      eyebrow: "Voto e Censo · municípios, 1994 a 2026",
+      headline: "Quem vota em quem, pelo perfil das cidades",
+      lede: "O voto para presidente em cada um dos 5.570 municípios ao lado do que o Censo diz deles: renda, religião, escolaridade e tamanho. Escolha uma variável e veja como ela separa o voto, eleição a eleição, desde 1994.",
+    },
     map: {
       eyebrow: "Eleições no Brasil · resultados oficiais do TSE",
       headline: "O voto em cada município",
@@ -331,9 +336,144 @@ export const t = {
           ? "https://en.wikipedia.org/wiki/1990_Brazilian_legislative_election"
           : `https://en.wikipedia.org/wiki/${year}_Brazilian_general_election`,
     }),
+    atlasData: {
+      label:
+        "Atlas do Desenvolvimento Humano no Brasil, via Ipeadata (renda, ensino superior e população, 1991–2010)",
+      url: "http://www.ipeadata.gov.br/",
+    },
+    sidraReligion: {
+      label: "IBGE/SIDRA: religião por município (tabelas 137 e 9537)",
+      url: "https://sidra.ibge.gov.br/tabela/9537",
+    },
+    sidra2022: {
+      label: "IBGE/SIDRA: Censo 2022, renda (10295), escolaridade (10061) e população (9514)",
+      url: "https://sidra.ibge.gov.br/tabela/10295",
+    },
+    ibgeAreas: {
+      label: "IBGE: Censo 2022, resultados da amostra por área de ponderação",
+      url: "https://ftp.ibge.gov.br/Censos/Censo_Demografico_2022/Microdados_e_Areas_de_Ponderacao/",
+    },
+    ibgeTracts: {
+      label: "IBGE: setores censitários 2022 com atributos",
+      url: "https://ftp.ibge.gov.br/Censos/Censo_Demografico_2022/Agregados_por_Setores_Censitarios/malha_com_atributos/",
+    },
+    tsePlaces: {
+      label: "TSE, dados abertos: locais de votação 2026, com coordenadas (eleitorado_local_votacao)",
+      url: "https://dadosabertos.tse.jus.br/",
+    },
+    tseBallots: {
+      label: "TSE: boletins de urna por seção, 1º turno de 2026",
+      url: "https://resultados.tse.jus.br/oficial/app/index.html",
+    },
     senateOpenData: {
       label: "Senado Federal: dados abertos (senadores em exercício)",
       url: "https://legis.senado.leg.br/dadosabertos/docs/",
+    },
+  },
+
+  census: {
+    vars: {
+      income: "Renda",
+      evangelical: "Evangélicos",
+      catholic: "Católicos",
+      noReligion: "Sem religião",
+      degree: "Ensino superior",
+      population: "População",
+      urban: "Urbanização",
+    } as Record<string, string>,
+    /** How each variable reads in a sentence. */
+    varLong: {
+      income: "renda domiciliar por pessoa",
+      evangelical: "% de evangélicos",
+      catholic: "% de católicos",
+      noReligion: "% sem religião",
+      degree: "% de adultos (25+) com ensino superior",
+      population: "população",
+      urban: "% da população em área urbana",
+    } as Record<string, string>,
+    format: (v: string, x: number) =>
+      v === "income"
+        ? `R$ ${Math.round(x).toLocaleString("pt-BR")}`
+        : v === "population"
+          ? Math.round(x).toLocaleString("pt-BR")
+          : `${x.toFixed(1).replace(".", ",")}%`,
+    unit: (v: string, census: number) =>
+      v === "income"
+        ? `Renda média por pessoa, em reais de julho de 2022 (Censo ${census})`
+        : v === "population"
+          ? `Habitantes (Censo ${census}), escala logarítmica`
+          : `${v === "degree" ? "Adultos de 25 anos ou mais" : v === "urban" ? "População" : census === 2022 ? "Pessoas de 10 anos ou mais" : "População"} (Censo ${census})`,
+    noUrban2022: "O Censo 2022 ainda não tem a divisão urbano/rural por município",
+    regions: {
+      all: "Brasil",
+      N: "Norte",
+      NE: "Nordeste",
+      CO: "Centro-Oeste",
+      SE: "Sudeste",
+      S: "Sul",
+    } as Record<string, string>,
+    title: (pt: string, rival: string, year: number, region: string) =>
+      `${pt} × ${rival}, ${year} · 1º turno · ${region}`,
+    meta: (census: number, places: number) =>
+      `Censo ${census} · ${places.toLocaleString("pt-BR")} municípios`,
+    warning:
+      "Cada ponto é um município, não uma pessoa. Se as cidades com mais evangélicos votam mais em alguém, isso não prova que os evangélicos dessas cidades votaram nele (falácia ecológica). Para falar de pessoas, quem responde são as pesquisas.",
+    scatterCap: (v: string, who: string, other: string) =>
+      `${v} × voto em ${who}. Cor: ${other}. Tamanho: população. A linha é o voto em cada décimo da população.`,
+    scatterAria: (v: string, who: string) =>
+      `Gráfico de dispersão: ${v} de cada município contra o voto em ${who}`,
+    mapCap: (v: string) => `${v} por município, em dez faixas com a mesma população cada`,
+    mapAria: (v: string) => `Mapa dos municípios por ${v}`,
+    decileLow: "menos",
+    decileHigh: "mais",
+    otherLegend: (v: string) => `Cor: ${v}`,
+    line: "Voto por décimo da população",
+    tipVote: (who: string, x: string) => `${who}: ${x}`,
+    noData: "Sem dado do Censo",
+    quadTitle: (a: string, b: string) => `${a} × ${b}: como votaram os quatro grupos`,
+    quadNote:
+      "Cada eixo dividido na mediana: metade da população em cada lado. Percentual de votos válidos somando todos os votos do grupo, como se fosse uma cidade só.",
+    quadLabel: (a: string, ha: boolean, b: string, hb: boolean) =>
+      `${a} ${ha ? "acima" : "abaixo"} da mediana · ${b} ${hb ? "acima" : "abaixo"}`,
+    quadMeta: (places: number, pop: number) =>
+      `${places.toLocaleString("pt-BR")} municípios · ${(pop / 1e6).toLocaleString("pt-BR", { maximumFractionDigits: 1 })} milhões de habitantes`,
+    gapTitle: "Quanto cada variável separa o voto no PT, eleição a eleição",
+    gapNote:
+      "Diferença, em pontos, entre o voto no candidato do PT no quinto da população que mora nos municípios com mais daquela característica e no quinto com menos. Abaixo de zero: quanto mais da característica, menos PT.",
+    gapAria:
+      "Gráfico de linhas: diferença no voto do PT entre os municípios do topo e da base de cada variável, de 1994 a 2026",
+    gapPoint: (v: string, year: number, x: string) => `${v}, ${year}: ${x} pontos`,
+    note: "Voto: 1º turno, percentual dos votos válidos, comparando o candidato do PT com o adversário mais votado do país em cada eleição. Cada eleição usa o Censo mais próximo: 1994 com o de 1991; 1998 e 2002 com o de 2000; 2006 a 2014 com o de 2010; 2018 a 2026 com o de 2022. Renda corrigida pela inflação (INPC) para reais de julho de 2022. Religião: em 2022 o IBGE só divulga por município as pessoas de 10 anos ou mais; nos outros censos, a população toda; em 1991 os evangélicos são a soma das igrejas tradicionais e pentecostais (8,5% no total, perto dos 9,0% oficiais). Municípios criados depois de um censo ficam sem dado nele. 2026: arquivos do TSE na noite da apuração.",
+    play: "Reproduzir",
+    pause: "Pausar",
+    capital: {
+      title: (name: string, pt: string, rival: string) =>
+        `${name} por dentro: ${pt} × ${rival}, área por área`,
+      meta: (areas: number, placed: string) => `${areas} áreas · ${placed} dos votos localizados`,
+      missing: (n: number, total: number) =>
+        `O TSE ainda não publicou ${n.toLocaleString("pt-BR")} dos ${total.toLocaleString("pt-BR")} boletins de urna desta cidade; as áreas com menos de 70% dos boletins aparecem esmaecidas no mapa e o voto delas é parcial.`,
+      coverage: (pct: number) => `Boletins publicados: ${pct}% das seções da área`,
+      lowCoverage: "Menos de 70% dos boletins",
+      paintCensus: (v: string) => v,
+      warning:
+        "Cada ponto é uma área do IBGE (um grupo de bairros), não uma pessoa. E o eleitor vota onde tirou o título, que nem sempre é onde mora hoje: o voto de uma área é o voto dado nas seções que ficam nela.",
+      scatterCap: (v: string, who: string, other: string) =>
+        `${v} × voto em ${who}, por área. Cor: ${other}. Tamanho: população.`,
+      scatterAria: (v: string, who: string, name: string) =>
+        `Gráfico de dispersão: ${v} de cada área de ${name} contra o voto em ${who}`,
+      mapCapVote: (pt: string, rival: string) =>
+        `Quem venceu em cada área, ${pt} ou ${rival}; quanto mais forte, maior a vantagem`,
+      mapCapCensus: (v: string) => `${v} por área, em dez faixas com a mesma população cada`,
+      mapAria: (name: string) => `Mapa de ${name} por área de ponderação do IBGE`,
+      area: (bairros: string[]) =>
+        bairros.length > 3
+          ? `${bairros.slice(0, 3).join(", ")} e mais ${bairros.length - 3}`
+          : bairros.join(", "),
+      noVotes: "Sem seção eleitoral nesta área",
+      noUrban: "Urbanização não existe por área (as capitais são quase todas urbanas); mostrando renda",
+      onlyFirstRound2026:
+        "Por área, só há o 1º turno de 2026: os boletins de urna das seções. A linha do tempo acima não muda este painel.",
+      note: "Áreas de ponderação do IBGE: grupos de bairros para os quais o Censo 2022 publica os resultados da amostra (religião, escolaridade, renda), de 12 em Macapá a 332 em São Paulo. Contornos: setores censitários de 2022 unidos por área. Voto: boletim de urna de cada seção no 1º turno de 2026 (site de resultados do TSE), somado na área onde fica o local de votação, pelas coordenadas que o TSE publica. Renda: média domiciliar por pessoa, julho de 2022.",
     },
   },
 
