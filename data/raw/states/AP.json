@@ -11,7 +11,8 @@
       {"p": "Quaest", "date": "2026-08-24", "n": 804, "method": "in_person", "v": {"Dr. Furlan": 55, "Clécio": 35, "Delegado Marcos": 0, "others": 1, "undecided": 9}},
       {"p": "Real Time Big Data", "date": "2026-09-07", "n": 1600, "method": "in_person", "v": {"Dr. Furlan": 62, "Clécio": 31, "Delegado Marcos": 2, "undecided": 5}},
       {"p": "Quaest", "date": "2026-09-23", "n": 804, "method": "in_person", "v": {"Dr. Furlan": 53, "Clécio": 40, "Delegado Marcos": 1, "others": 2, "undecided": 4}},
-      {"p": "Paraná Pesquisas", "date": "2026-09-27", "n": 1000, "method": "in_person", "v": {"Dr. Furlan": 55.7, "Clécio": 37.4, "Delegado Marcos": 0.5, "others": 0.5, "undecided": 5.9}}
+      {"p": "Paraná Pesquisas", "date": "2026-09-27", "n": 1000, "method": "in_person", "v": {"Dr. Furlan": 55.7, "Clécio": 37.4, "Delegado Marcos": 0.5, "others": 0.5, "undecided": 5.9}},
+      {"p": "Real Time Big Data", "date": "2026-09-29", "n": 1600, "method": "phone", "v": {"Dr. Furlan": 59, "Clécio": 38, "others": 0, "undecided": 3}}
     ]
   },
   "governor_r2": {
@@ -23,7 +24,8 @@
       {"p": "Paraná Pesquisas", "date": "2026-07-20", "n": 1100, "method": "in_person", "v": {"Dr. Furlan": 66.0, "Clécio": 26.7, "undecided": 7.3}},
       {"p": "Quaest", "date": "2026-08-24", "n": 804, "method": "in_person", "v": {"Dr. Furlan": 54, "Clécio": 36, "undecided": 10}},
       {"p": "Real Time Big Data", "date": "2026-09-07", "n": 1600, "method": "in_person", "v": {"Dr. Furlan": 64, "Clécio": 31, "undecided": 5}},
-      {"p": "Quaest", "date": "2026-09-23", "n": 804, "method": "in_person", "v": {"Dr. Furlan": 54, "Clécio": 39, "undecided": 7}}
+      {"p": "Quaest", "date": "2026-09-23", "n": 804, "method": "in_person", "v": {"Dr. Furlan": 54, "Clécio": 39, "undecided": 7}},
+      {"p": "Real Time Big Data", "date": "2026-09-29", "n": 1600, "method": "phone", "v": {"Dr. Furlan": 59, "Clécio": 38, "undecided": 3}}
     ]
   },
   "senate_r1": {
@@ -33,7 +35,8 @@
       {"p": "Real Time Big Data", "date": "2026-07-23", "n": 1600, "method": "", "v": {"Rayssa Furlan": 32, "Randolfe": 18, "Lucas Barreto": 12, "Alliny Serrão": 9, "Capiberibe": 7, "Acácio Favacho": 3, "others": 3, "undecided": 16}},
       {"p": "Quaest", "date": "2026-08-24", "n": 804, "method": "in_person", "v": {"Rayssa Furlan": 27, "Randolfe": 19, "Lucas Barreto": 18, "Alliny Serrão": 9, "Acácio Favacho": 7, "Capiberibe": 4, "others": 0, "undecided": 16}},
       {"p": "Real Time Big Data", "date": "2026-09-07", "n": 1600, "method": "in_person", "v": {"Rayssa Furlan": 30, "Randolfe": 20, "Lucas Barreto": 14, "Alliny Serrão": 9, "Capiberibe": 6, "Acácio Favacho": 5, "others": 1, "undecided": 12}},
-      {"p": "Quaest", "date": "2026-09-23", "n": 804, "method": "in_person", "v": {"Rayssa Furlan": 28, "Randolfe": 20, "Lucas Barreto": 19, "Alliny Serrão": 11, "Acácio Favacho": 9, "Capiberibe": 2, "others": 2, "undecided": 9}}
+      {"p": "Quaest", "date": "2026-09-23", "n": 804, "method": "in_person", "v": {"Rayssa Furlan": 28, "Randolfe": 20, "Lucas Barreto": 19, "Alliny Serrão": 11, "Acácio Favacho": 9, "Capiberibe": 2, "others": 2, "undecided": 9}},
+      {"p": "Real Time Big Data", "date": "2026-09-29", "n": 1600, "method": "phone", "v": {"Rayssa Furlan": 30, "Randolfe": 20, "Lucas Barreto": 20, "Alliny Serrão": 13, "Acácio Favacho": 11, "Capiberibe": 1, "others": 1, "undecided": 4}}
     ]
   },
   "notes": "en.wikipedia pages for Amapá were not fetchable (cache-only); all rows come from news articles, mainly Gazeta do Povo. Governor race is essentially Dr. Furlan (PSD, ex-mayor of Macapá) vs incumbent Clécio Luís (União); minor candidates Delegado Marcos Reategui (DC), Carlos Cley (PSTU), Jairo Palheta (PCO) - last two in Outros. Furlan leads every poll, likely 1st-round win; Clécio narrowed the gap in late Sept (Quaest 53x40, Paraná 55.7x37.4). Paraná Pesquisas 2026-09-27: Gazeta do Povo printed the 1st round in valid votes (59.2/39.7) and labelled them confusingly as 2nd round; total-vote 1st-round figures come from Revista Oeste; its 2nd round was only available in valid votes (59.7x40.3) so it is not in gov_t2. Real Time Big Data 2026-07-23 had no 2nd round. Senate: Real Time Big Data 2026-07-23 included Teles Júnior (PDT, 3%, apparently not in the final field; counted in Outros) - drop if strict. Real Time Big Data 2026-09-07 senate sums to 97 as published. Not included (different convention, sum of two votes): Paraná Pesquisas Jun (scenario with Teles Júnior), Jul (partial) and 2026-09-27 (Rayssa 54.0, Randolfe 36.7, Lucas Barreto 36.1, Acácio 21.4, Alliny 20.0, Capiberibe 6.1, B/N 3.5, undecided 2.7). AtlasIntel Mar senate skipped (scenarios with Waldez Góes, not running). 'Capiberibe' = João Capiberibe ('Capi').",
@@ -46,6 +49,7 @@
     "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-governador-senador-amapa-setembro-2026/",
     "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-governador-senador-amapa-setembro-2026/",
     "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/parana-pesquisas-governador-senador-amapa-setembro-2026/",
-    "https://revistaoeste.com/politica/parana-pesquisas-furlan-tem-557-e-clecio-374-no-amapa/"
+    "https://revistaoeste.com/politica/parana-pesquisas-furlan-tem-557-e-clecio-374-no-amapa/",
+    "https://pt.wikipedia.org/wiki/Pesquisas_eleitorais_para_a_eleição_estadual_de_2026_no_Amapá"
   ]
 }

@@ -15,7 +15,9 @@
       {"p": "Real Time Big Data", "date": "2026-09-15", "n": 1600, "method": "", "v": {"Moro": 35, "Sandro Alex": 27, "Requião Filho": 22, "Luiz França": 2, "others": 1, "undecided": 13}},
       {"p": "Quaest", "date": "2026-09-23", "n": 804, "method": "", "v": {"Moro": 36, "Requião Filho": 20, "Sandro Alex": 20, "Luiz França": 1, "others": 2, "undecided": 21}},
       {"p": "Neokemp", "date": "2026-09-23", "n": 1008, "method": "", "v": {"Moro": 48.7, "Requião Filho": 25.9, "Sandro Alex": 20.8, "Luiz França": 0.4, "others": 0.9, "undecided": 3.3}},
-      {"p": "Real Time Big Data", "date": "2026-09-28", "n": 1600, "method": "", "v": {"Moro": 36, "Sandro Alex": 28, "Requião Filho": 23, "Luiz França": 1, "others": 1, "undecided": 11}}
+      {"p": "Real Time Big Data", "date": "2026-09-28", "n": 1600, "method": "", "v": {"Moro": 36, "Sandro Alex": 28, "Requião Filho": 23, "Luiz França": 1, "others": 1, "undecided": 11}},
+      {"p": "Neokemp", "date": "2026-10-01", "n": 1008, "method": "", "v": {"Moro": 47.7, "Requião Filho": 26, "Sandro Alex": 23, "Luiz França": 0.6, "others": 0.4, "undecided": 2.3}},
+      {"p": "Real Time Big Data", "date": "2026-10-01", "n": 1600, "method": "phone", "v": {"Moro": 37, "Requião Filho": 24, "Sandro Alex": 29, "Luiz França": 1, "undecided": 8}}
     ]
   },
   "governor_r2": {
@@ -30,7 +32,8 @@
       {"p": "Real Time Big Data", "date": "2026-09-08", "n": 1600, "method": "", "v": {"Moro": 43, "Sandro Alex": 36, "undecided": 21}},
       {"p": "Real Time Big Data", "date": "2026-09-15", "n": 1600, "method": "", "v": {"Moro": 42, "Sandro Alex": 38}},
       {"p": "Quaest", "date": "2026-09-23", "n": 804, "method": "", "v": {"Moro": 43, "Sandro Alex": 29, "undecided": 28}},
-      {"p": "Real Time Big Data", "date": "2026-09-28", "n": 1600, "method": "", "v": {"Moro": 41, "Sandro Alex": 39, "undecided": 20}}
+      {"p": "Real Time Big Data", "date": "2026-09-28", "n": 1600, "method": "", "v": {"Moro": 41, "Sandro Alex": 39, "undecided": 20}},
+      {"p": "Real Time Big Data", "date": "2026-10-01", "n": 1600, "method": "phone", "v": {"Moro": 42, "Sandro Alex": 42, "undecided": 16}}
     ]
   },
   "senate_r1": {
@@ -41,7 +44,9 @@
       {"p": "Real Time Big Data", "date": "2026-08-27", "n": 1600, "method": "", "v": {"Deltan": 20, "Alexandre Curi": 18, "Filipe Barros": 17, "Gleisi": 15, "Cristina Graeml": 14, "Dr. Rosinha": 5, "others": 1, "undecided": 10}},
       {"p": "Real Time Big Data", "date": "2026-09-15", "n": 1600, "method": "", "v": {"Deltan": 19, "Alexandre Curi": 18, "Filipe Barros": 18, "Gleisi": 16, "Cristina Graeml": 15, "Dr. Rosinha": 6, "others": 1, "undecided": 7}},
       {"p": "Quaest", "date": "2026-09-23", "n": 804, "method": "", "v": {"Alexandre Curi": 14, "Deltan": 11, "Filipe Barros": 11, "Gleisi": 10, "Dr. Rosinha": 5, "Cristina Graeml": 5, "others": 2, "undecided": 42}},
-      {"p": "Real Time Big Data", "date": "2026-09-28", "n": 1600, "method": "", "v": {"Deltan": 19, "Alexandre Curi": 18, "Filipe Barros": 18, "Gleisi": 16, "Cristina Graeml": 15, "Dr. Rosinha": 6, "others": 1, "undecided": 7}}
+      {"p": "Real Time Big Data", "date": "2026-09-28", "n": 1600, "method": "", "v": {"Deltan": 19, "Alexandre Curi": 18, "Filipe Barros": 18, "Gleisi": 16, "Cristina Graeml": 15, "Dr. Rosinha": 6, "others": 1, "undecided": 7}},
+      {"p": "Neokemp", "date": "2026-10-01", "n": 1008, "method": "", "v": {"Deltan": 24.9, "Alexandre Curi": 12.1, "Filipe Barros": 23, "Gleisi": 15.7, "Cristina Graeml": 8.9, "Dr. Rosinha": 9.7, "others": 1.1, "undecided": 4.5}},
+      {"p": "Real Time Big Data", "date": "2026-10-01", "n": 1600, "method": "phone", "v": {"Deltan": 21, "Alexandre Curi": 19, "Filipe Barros": 19, "Gleisi": 16, "Cristina Graeml": 12, "Dr. Rosinha": 7, "others": 1, "undecided": 5}}
     ]
   },
   "notes": "Final governor field: Sergio Moro (PL), Requião Filho (PDT), Sandro Alex (PSD, with Rafael Greca as running mate), Luiz França (Missão) and minor candidates (Tayná Miessa UP, Alexandre Salomão Mobiliza, Samuel de Mattos PSTU, Adriano Funileiro/Teixeira PCO) in Outros. Earlier polls (Quaest July, Paraná Pesquisas May scenario 1) included Rafael Greca (MDB) as a gubernatorial candidate; Quaest 2026-07-25 1st round skipped (only scenario had Greca at 12%); Paraná Pesquisas 2026-05-10 uses scenario 2 without Greca (Outros = Tony Garcia, DC, not in final field). gov_t2 uses Moro x Sandro Alex (9 polls) rather than Moro x Requião Filho (7 polls); Requião and Sandro Alex swap 2nd place depending on institute. Alfa Inteligência 2026-08-22 governor values from a Gazeta roundup: others/BNI given only as a combined 16%, so no BNI/Outros keys; its 2nd round has no BNI. RTBD 2026-09-15 2nd round: BNI not published in the source read. Paraná Pesquisas 2026-09-27 (valid votes only) dropped. IRG September polls (governor and senate) were suspended by TRE-PR on 2026-09-25 and their numbers are unavailable. Neokemp reports very low BNI (3.3%). RTBD senate 2026-09-15 (PR-00532/2026) and 2026-09-28 (PR-04181/2026) have identical published numbers in Gazeta; both kept but possible copy error. Deltan Dallagnol's candidacy eligibility was reported as under question (Gazeta 'Entenda a situação eleitoral de Deltan Dallagnol'); check TSE status. Method: Quaest and RTBD methods not confirmed from the sources, left blank. No Jan-Apr polls matching the final field were found.",
@@ -63,6 +68,7 @@
     "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-senado-parana-agosto-2026-2/",
     "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-senado-parana-setembro-2026-2/",
     "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-senador-parana-setembro-2026/",
-    "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-senado-parana-setembro-2026-3/"
+    "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-senado-parana-setembro-2026-3/",
+    "https://pt.wikipedia.org/wiki/Pesquisas_eleitorais_para_a_eleição_estadual_de_2026_no_Paraná"
   ]
 }

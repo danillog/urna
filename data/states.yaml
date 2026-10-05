@@ -4,7 +4,7 @@
 year: 2026
 
 # Only polls whose fieldwork ended inside this window are used.
-poll_window: { start: 2026-01-01, end: 2026-09-29 }
+poll_window: { start: 2026-01-01, end: 2026-10-03 }
 
 # Named lines per chart; everyone else is folded into "others".
 max_named_candidates: 4
@@ -19,6 +19,9 @@ excluded_polls:
   - [AM, governor_r1, Quaest, 2026-09-23]
   - [AM, governor_r2, Quaest, 2026-09-23]
   - [AM, senate_r1, Quaest, 2026-09-23]
+  # Published only as valid votes (see SP.json notes).
+  - [SP, governor_r1, Real Time Big Data, 2026-09-28]
+  - [SP, governor_r2, Real Time Big Data, 2026-09-28]
 
 names:
   AC: Acre

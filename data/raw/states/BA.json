@@ -22,7 +22,8 @@
       {"p": "Real Time Big Data", "date": "2026-09-08", "n": 1600, "method": "", "v": {"ACM Neto": 44, "Jerônimo": 45, "Ronaldo Mansur": 1, "others": 2, "undecided": 8}},
       {"p": "Futura", "date": "2026-09-19", "n": 1000, "method": "phone", "v": {"ACM Neto": 51.3, "Jerônimo": 43.6, "Ronaldo Mansur": 0.4, "others": 0.5, "undecided": 4.2}},
       {"p": "Paraná Pesquisas", "date": "2026-09-23", "n": 1400, "method": "", "v": {"ACM Neto": 46.7, "Jerônimo": 42.0, "Ronaldo Mansur": 0.8, "others": 1.2, "undecided": 9.3}},
-      {"p": "Quaest", "date": "2026-09-23", "n": 900, "method": "", "v": {"ACM Neto": 42, "Jerônimo": 40, "Ronaldo Mansur": 0, "others": 1, "undecided": 17}}
+      {"p": "Quaest", "date": "2026-09-23", "n": 900, "method": "", "v": {"ACM Neto": 42, "Jerônimo": 40, "Ronaldo Mansur": 0, "others": 1, "undecided": 17}},
+      {"p": "Real Time Big Data", "date": "2026-09-26", "n": 1600, "method": "phone", "v": {"ACM Neto": 43, "Jerônimo": 47, "others": 2, "undecided": 8}}
     ]
   },
   "governor_r2": {
@@ -43,7 +44,8 @@
       {"p": "AtlasIntel", "date": "2026-09-02", "n": 1804, "method": "online", "v": {"ACM Neto": 49.2, "Jerônimo": 48.6, "undecided": 2.1}},
       {"p": "Real Time Big Data", "date": "2026-09-08", "n": 1600, "method": "", "v": {"ACM Neto": 45, "Jerônimo": 46, "undecided": 9}},
       {"p": "Paraná Pesquisas", "date": "2026-09-23", "n": 1400, "method": "", "v": {"ACM Neto": 48.4, "Jerônimo": 44.2, "undecided": 7.5}},
-      {"p": "Quaest", "date": "2026-09-23", "n": 900, "method": "", "v": {"ACM Neto": 45, "Jerônimo": 43, "undecided": 12}}
+      {"p": "Quaest", "date": "2026-09-23", "n": 900, "method": "", "v": {"ACM Neto": 45, "Jerônimo": 43, "undecided": 12}},
+      {"p": "Real Time Big Data", "date": "2026-09-26", "n": 1600, "method": "phone", "v": {"ACM Neto": 44, "Jerônimo": 48, "undecided": 9}}
     ]
   },
   "senate_r1": {
@@ -81,6 +83,7 @@
     "https://www.cartacapital.com.br/politica/as-disputas-pelo-governo-e-pelo-senado-na-bahia-segundo-o-parana-pesquisas/",
     "https://www.acheisudoeste.com.br/noticias/bahia/atlasintel-aponta-empate-entre-acm-neto-e-jeronimo-rodrigues-na-disputa-pelo-governo-da-bahia",
     "https://www.portalcubo.com/pesquisa-futura-aponta-acm-neto-com-51-3-e-jer%C3%B4nimo-rodrigues-com-43-6-na-bahia",
-    "https://www.politicalivre.com.br/2026/09/acm-neto-lidera-corrida-ao-governo-com-49-8-contra-44-4-de-jeronimo-aponta-pesquisa-futura-politica-livre"
+    "https://www.politicalivre.com.br/2026/09/acm-neto-lidera-corrida-ao-governo-com-49-8-contra-44-4-de-jeronimo-aponta-pesquisa-futura-politica-livre",
+    "https://pt.wikipedia.org/wiki/Pesquisas_eleitorais_para_a_eleição_estadual_de_2026_na_Bahia"
   ]
 }

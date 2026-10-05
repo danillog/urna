@@ -563,15 +563,21 @@ table.clickable tbody tr:focus-visible {
 .tabs {
   display: flex;
   gap: 4px;
-  border-bottom: 1px solid var(--line);
+  /* An inset line rather than a border: the scroll box clips its children at the
+     border, and the selected tab's underline has to cover the line. */
+  box-shadow: inset 0 -1px var(--line);
+  /* Four tabs do not fit a phone: they scroll sideways instead of the page. */
+  overflow-x: auto;
+  scrollbar-width: none;
 }
 .tabs button {
+  flex: none;
+  white-space: nowrap;
   font: 600 17px/1 var(--display);
   letter-spacing: 0.02em;
   padding: 10px 14px 12px;
   border: 0;
   border-bottom: 3px solid transparent;
-  margin-bottom: -1px;
   background: transparent;
   color: var(--muted);
   cursor: pointer;
@@ -913,4 +919,405 @@ table.clickable tbody tr:focus-visible {
 .chip.compact {
   padding: 5px 7px;
   font-size: 12px;
+}
+
+/* Live count (apuração): status line, map by state and percentage bars. */
+.ap-badge {
+  font: 600 12px/1 var(--body);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 5px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  color: var(--ink-2);
+}
+.ap-badge[data-status="live"] {
+  color: var(--c-red);
+  border-color: currentColor;
+}
+.ap-badge[data-status="live"]::before {
+  content: "";
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  margin-right: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  vertical-align: 1px;
+  animation: ap-pulse 1.6s ease-in-out infinite;
+}
+.ap-badge[data-status="done"] {
+  color: var(--c-teal);
+  border-color: currentColor;
+}
+.ap-badge[data-status="error"] {
+  color: var(--c-orange);
+  border-color: currentColor;
+}
+@keyframes ap-pulse {
+  50% {
+    opacity: 0.25;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ap-badge[data-status="live"]::before {
+    animation: none;
+  }
+}
+.ap-status {
+  display: grid;
+  gap: 6px;
+}
+.ap-progress {
+  height: 8px;
+  border-radius: 4px;
+  background: var(--grid);
+  overflow: hidden;
+}
+.ap-progress span {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: var(--ink);
+  transition: width 0.6s ease;
+}
+.ap-status-text {
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+}
+.ap-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+@media (max-width: 820px) {
+  .ap-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+.ap-map-col {
+  display: grid;
+  gap: 8px;
+}
+.ap-map-col .map path {
+  cursor: pointer;
+}
+.ap-bars {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+.ap-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 4px 12px;
+  align-items: baseline;
+}
+.ap-name {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2px 6px;
+  min-width: 0;
+}
+.ap-name b {
+  font-weight: 600;
+}
+.ap-party {
+  color: var(--muted);
+  font-size: 12px;
+}
+.ap-tag {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: var(--ink);
+  color: var(--surface);
+}
+.ap-num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.15;
+}
+.ap-num b {
+  display: block;
+  font: 700 22px/1 var(--display);
+}
+.ap-num span {
+  color: var(--muted);
+  font-size: 12px;
+}
+.ap-track {
+  grid-column: 1 / -1;
+  position: relative;
+  height: 10px;
+  border-radius: 3px;
+  background: var(--grid);
+}
+.ap-track span {
+  display: block;
+  height: 100%;
+  border-radius: 3px;
+  background: var(--mc, var(--c-gray));
+  transition: width 0.6s ease;
+}
+/* Half of the valid votes: crossing it wins the first round. */
+.ap-majority::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: -3px;
+  bottom: -3px;
+  border-left: 1px dashed var(--ink-2);
+}
+@media (prefers-reduced-motion: reduce) {
+  .ap-progress span,
+  .ap-track span {
+    transition: none;
+  }
+}
+/* Five offices do not fit one line on a phone. */
+.seg-wrap {
+  flex-wrap: wrap;
+}
+.ap-results {
+  display: grid;
+  gap: 12px;
+}
+.ap-h {
+  margin: 0;
+  font: 600 15px/1.2 var(--body);
+  color: var(--ink-2);
+}
+.ap-link {
+  font: 600 15px/1.2 var(--body);
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--ink);
+  text-align: left;
+  text-decoration: underline;
+  text-decoration-color: var(--axis);
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+.ap-link:focus-visible {
+  outline: 2px solid var(--c-blue);
+  outline-offset: 2px;
+}
+/* The last seat in dispute (two senators): who is in and who is out. */
+.ap-cut {
+  border-top: 1px dashed var(--ink-2);
+  padding-top: 4px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* Apuração, deputies: the elected grouped under their party list. */
+.ap-groups {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 14px;
+}
+.ap-group-h {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+.ap-summary {
+  margin: 0 0 12px;
+}
+
+/* Congress: seats by left–right group on a diverging scale, neutral gray at the centre.
+   Checked with the dataviz validator in both themes; groups are also told apart by
+   their place in the arc, the legend and the table. */
+:root {
+  --ideo-left: #b2182b;
+  --ideo-centre-left: #e8794e;
+  --ideo-centre: #b3b0a8;
+  --ideo-centre-right: #4393c3;
+  --ideo-right: #1d4f91;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ideo-left: #e04f6e;
+    --ideo-centre-left: #c08636;
+    --ideo-centre: #5a5e63;
+    --ideo-centre-right: #3a9fa8;
+    --ideo-right: #6b7cf0;
+  }
+}
+:root[data-theme="dark"] {
+  --ideo-left: #e04f6e;
+  --ideo-centre-left: #c08636;
+  --ideo-centre: #5a5e63;
+  --ideo-centre-right: #3a9fa8;
+  --ideo-right: #6b7cf0;
+}
+.g-left {
+  --gc: var(--ideo-left);
+}
+.g-centre-left {
+  --gc: var(--ideo-centre-left);
+}
+.g-centre {
+  --gc: var(--ideo-centre);
+}
+.g-centre-right {
+  --gc: var(--ideo-centre-right);
+}
+.g-right {
+  --gc: var(--ideo-right);
+}
+.cg-key {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 6px;
+  vertical-align: -1px;
+  background: var(--gc);
+}
+.cg-key.g-none {
+  background: transparent;
+  box-shadow: inset 0 0 0 1.5px var(--muted);
+}
+.tooltip .key i.cg-key {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 0;
+  flex: none;
+}
+.cg-chart {
+  position: relative;
+  width: 100%;
+  max-width: 760px;
+  margin: 8px auto 4px;
+}
+.cg-chart svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.cg-chart circle {
+  fill: var(--gc);
+  transition: opacity 0.15s;
+}
+/* Unplaced parties: a hollow ring, so they never read as a group of their own. */
+.cg-chart circle.g-none {
+  fill: transparent;
+  stroke: var(--muted);
+  stroke-width: 0.004;
+}
+.cg-chart svg.dim circle:not(.on) {
+  opacity: 0.25;
+}
+.cg-total {
+  text-anchor: middle;
+  font: 700 0.16px var(--display);
+  fill: var(--ink);
+}
+.cg-total-label {
+  text-anchor: middle;
+  font: 600 0.055px var(--body);
+  fill: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.cg-table td b {
+  font-weight: 600;
+}
+.cg-table tbody tr.on td {
+  background: var(--grid);
+}
+.cg-delta,
+.cg-group {
+  color: var(--muted);
+  font-size: 12px;
+}
+.cg-traj-h,
+.cg-traj {
+  text-align: center;
+}
+.cg-traj svg {
+  vertical-align: middle;
+}
+.cg-traj circle {
+  fill: var(--gc);
+  stroke: var(--surface);
+  stroke-width: 1;
+}
+.cg-traj polyline {
+  fill: none;
+  stroke: var(--muted);
+  stroke-width: 1;
+}
+.cg-traj circle.g-none {
+  fill: var(--muted);
+}
+.cg-traj circle.now {
+  stroke: var(--ink);
+  stroke-width: 1.5;
+}
+.cg-axis {
+  stroke: var(--axis);
+  stroke-width: 1;
+}
+
+/* Legend selection: the chosen seats keep their color, the rest fade. The
+   Centrão is a mark over the left–right colors, not a sixth group: selected,
+   its seats also get a ring. */
+.cg-key.cz-key {
+  background: transparent;
+  box-shadow: inset 0 0 0 2px var(--ink);
+}
+.cg-chart svg.filtering:not(.dim) circle:not(.sel) {
+  opacity: 0.18;
+}
+.cg-chart svg.cz-on circle.cz.sel {
+  stroke: var(--ink);
+  stroke-width: 1.6px;
+  vector-effect: non-scaling-stroke;
+}
+.cg-sum {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+.cg-tag {
+  font: 600 10px/1 var(--body);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 2px 5px;
+  border-radius: 4px;
+  border: 1px solid var(--ink-2);
+  color: var(--ink-2);
+  vertical-align: 1px;
+}
+
+/* Sources under a view: each study or dataset is a link. */
+.sources {
+  margin-top: 6px;
+}
+.sources-h {
+  font-weight: 600;
+  color: var(--ink-2);
+}
+.sources a {
+  color: var(--ink-2);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.sources a:hover {
+  color: var(--ink);
 }

@@ -17,6 +17,7 @@ import {
 } from "../model/map-data";
 import type { MunicipalMap, RoundId } from "../types";
 import { button, byId } from "./dom";
+import { sourcesHtml } from "./sources";
 import { STEPS, hdiTier, step } from "../model/indicators";
 import { ChoroplethMap } from "./map";
 
@@ -236,6 +237,7 @@ export class MapView {
     this.highlighted = null; // the base map changes under it
     byId("map-meta").textContent = t.mapMunicipalities(integer(wins.reduce((n, w) => n + w.wins, 0)));
     byId("map-note").textContent = president ? t.mapNotePresident : t.mapNoteMayor;
+    byId("map-sources").innerHTML = sourcesHtml([t.sources.tseOpenData, t.sources.ibgeMesh]);
     this.renderLegend(race, wins);
 
     this.drawing!.paint(
@@ -283,6 +285,11 @@ export class MapView {
     byId("map-note").textContent = estimate
       ? t.mapNoteIdhmEstimate(t.indicator.hdi.format(this.data.map.idhmEstimate!.error2010))
       : t.mapNoteIdhm;
+    byId("map-sources").innerHTML = sourcesHtml(
+      estimate
+        ? [t.sources.atlas, t.sources.census2022, t.sources.ibgeMesh]
+        : [t.sources.atlas, t.sources.ipeadata, t.sources.ibgeMesh],
+    );
     const legend = byId("map-legend");
     legend.replaceChildren(
       ...STEPS.hdi.map((from, k) => {

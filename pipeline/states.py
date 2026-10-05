@@ -6,8 +6,10 @@ import json
 from datetime import date
 from pathlib import Path
 
+from .accuracy import pollster_accuracy
 from .polls import OTHERS, UNDECIDED, DataError, Poll, day_of_year, poll_record, validate
 from .pollsters import PollsterRegistry
+from .results import match
 
 RACES = {"governor_r1": ("governor", "r1"), "governor_r2": ("governor", "r2"), "senate_r1": ("senate", "r1")}
 # Party names longer than this are written out ("Republicanos") instead of as acronyms.
@@ -66,8 +68,22 @@ def load_polls(uf: str, race: str, block: dict, config: dict, pollsters: Pollste
     return polls
 
 
+def not_on_ballot(names: list[str]) -> str:
+    return (
+        f"{' e '.join(names) if len(names) < 3 else ', '.join(names)} não "
+        f"{'aparece' if len(names) == 1 else 'aparecem'} no resultado oficial do TSE: "
+        "a comparação com as pesquisas usa só quem recebeu votos."
+    )
+
+
 def build_race(
-    uf: str, race: str, block: dict, config: dict, election_date: date, pollsters: PollsterRegistry
+    uf: str,
+    race: str,
+    block: dict,
+    config: dict,
+    election_date: date,
+    pollsters: PollsterRegistry,
+    official: list[dict] | None = None,
 ) -> dict | None:
     polls = load_polls(uf, race, block, config, pollsters)
     if not polls:
@@ -97,6 +113,12 @@ def build_race(
     has_undecided = any(UNDECIDED in p.values for p in collapsed)
     series = named + ([OTHERS] if has_others else []) + ([UNDECIDED] if has_undecided else [])
     year = election_date.year
+    result, notes = None, []
+    if official:
+        shares, missing = match(parties, official)
+        result = {c: shares[c] for c in named if c in shares} or None
+        if missing:
+            notes.append(not_on_ballot(missing))
     return {
         "date": election_date.isoformat(),
         "electionDay": day_of_year(election_date, year),
@@ -105,17 +127,21 @@ def build_race(
         "parties": {c: display_party(parties.get(c, "")) for c in named},
         "dashed": [],
         "polls": [poll_record(p, year, series) for p in collapsed],
-        "result": None,
+        "result": result,
         "winner": None,
-        "accuracy": [],
+        "accuracy": pollster_accuracy(collapsed, result, election_date) if result else [],
         "validVotesOnly": False,
-        "notes": [],
+        "notes": notes,
         "folded": folded,
     }
 
 
 def build_states(
-    config: dict, raw_dir: Path, round_dates: dict[str, date], pollsters: PollsterRegistry
+    config: dict,
+    raw_dir: Path,
+    round_dates: dict[str, date],
+    pollsters: PollsterRegistry,
+    results: dict | None = None,
 ) -> dict:
     out = {}
     for path in sorted(raw_dir.glob("*.json")):
@@ -132,7 +158,9 @@ def build_states(
         }
         for race, (office, round_id) in RACES.items():
             if source.get(race):
-                built = build_race(uf, race, source[race], config, round_dates[round_id], pollsters)
+                # Official results so far: the 1st round, governor and Senate.
+                official = results[office][uf]["candidates"] if results and round_id == "r1" else None
+                built = build_race(uf, race, source[race], config, round_dates[round_id], pollsters, official)
                 if built:
                     entry[office][round_id] = built
         out[uf] = entry

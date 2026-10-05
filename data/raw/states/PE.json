@@ -18,7 +18,10 @@
       {"p": "AtlasIntel", "date": "2026-09-20", "n": 1836, "method": "", "v": {"Raquel Lyra": 48.6, "João Campos": 47.4, "Ivan Moraes": 2.1, "Renan Hallais": 0.8, "undecided": 1.1}},
       {"p": "Datafolha", "date": "2026-09-24", "n": 1204, "method": "", "v": {"Raquel Lyra": 48, "João Campos": 44, "Ivan Moraes": 1, "Renan Hallais": 1, "others": 1, "undecided": 6}},
       {"p": "Quaest", "date": "2026-09-24", "n": 1302, "method": "", "v": {"Raquel Lyra": 41, "João Campos": 39, "Ivan Moraes": 1, "Renan Hallais": 1, "others": 0, "undecided": 18}},
-      {"p": "Real Time Big Data", "date": "2026-09-26", "n": 1600, "method": "", "v": {"Raquel Lyra": 43, "João Campos": 45, "Ivan Moraes": 2, "Renan Hallais": 2, "others": 1, "undecided": 7}}
+      {"p": "Real Time Big Data", "date": "2026-09-26", "n": 1600, "method": "", "v": {"Raquel Lyra": 43, "João Campos": 45, "Ivan Moraes": 2, "Renan Hallais": 2, "others": 1, "undecided": 7}},
+      {"p": "Quaest", "date": "2026-09-28", "n": 1302, "method": "in_person", "v": {"Raquel Lyra": 42, "João Campos": 42, "others": 1, "undecided": 15}},
+      {"p": "Paraná Pesquisas", "date": "2026-09-29", "n": 1352, "method": "in_person", "v": {"Raquel Lyra": 44.8, "João Campos": 45.3, "others": 2.1, "undecided": 7.9}},
+      {"p": "Datafolha", "date": "2026-10-01", "n": 1204, "method": "in_person", "v": {"Raquel Lyra": 46, "João Campos": 44, "others": 2.1, "undecided": 7}}
     ]
   },
   "governor_r2": {
@@ -38,7 +41,12 @@
       {"p": "AtlasIntel", "date": "2026-09-16", "n": 1793, "method": "", "v": {"Raquel Lyra": 51.1, "João Campos": 47.3, "undecided": 1.5}},
       {"p": "AtlasIntel", "date": "2026-09-20", "n": 1836, "method": "", "v": {"Raquel Lyra": 49.2, "João Campos": 48.5, "undecided": 2.2}},
       {"p": "Datafolha", "date": "2026-09-24", "n": 1204, "method": "", "v": {"Raquel Lyra": 51, "João Campos": 45, "undecided": 4}},
-      {"p": "Quaest", "date": "2026-09-24", "n": 1302, "method": "", "v": {"Raquel Lyra": 43, "João Campos": 41, "undecided": 16}}
+      {"p": "Quaest", "date": "2026-09-24", "n": 1302, "method": "", "v": {"Raquel Lyra": 43, "João Campos": 41, "undecided": 16}},
+      {"p": "Ipespe", "date": "2026-09-26", "n": 1000, "method": "phone", "v": {"Raquel Lyra": 46, "João Campos": 48, "undecided": 6}},
+      {"p": "Real Time Big Data", "date": "2026-09-26", "n": 1600, "method": "phone", "v": {"Raquel Lyra": 45, "João Campos": 46, "undecided": 9}},
+      {"p": "Quaest", "date": "2026-09-28", "n": 1302, "method": "in_person", "v": {"Raquel Lyra": 44, "João Campos": 44, "undecided": 12}},
+      {"p": "Paraná Pesquisas", "date": "2026-09-29", "n": 1352, "method": "in_person", "v": {"Raquel Lyra": 46, "João Campos": 46.9, "undecided": 7.1}},
+      {"p": "Datafolha", "date": "2026-10-01", "n": 1204, "method": "in_person", "v": {"Raquel Lyra": 50, "João Campos": 46, "undecided": 4}}
     ]
   },
   "senate_r1": {
@@ -75,6 +83,7 @@
     "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/parana-pesquisas-governador-senador-pernambuco-julho-2026/",
     "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-governador-senador-pernambuco-julho-2026/",
     "https://www.brasildefato.com.br/2026/07/28/pesquisa-quaest-com-jovens-evangelicos-e-bolsonaristas-raquel-lyra-consolida-virada-sobre-joao-campos-em-pernambuco/",
-    "https://www.cartacapital.com.br/politica/as-intencoes-de-voto-de-raquel-lyra-e-joao-campos-em-pernambuco-segundo-nova-pesquisa/"
+    "https://www.cartacapital.com.br/politica/as-intencoes-de-voto-de-raquel-lyra-e-joao-campos-em-pernambuco-segundo-nova-pesquisa/",
+    "https://pt.wikipedia.org/wiki/Pesquisas_eleitorais_para_a_eleição_estadual_de_2026_em_Pernambuco"
   ]
 }

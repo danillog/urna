@@ -37,7 +37,10 @@
       {"p": "Real Time Big Data", "date": "2026-09-12", "n": 2000, "method": "", "v": {"Eduardo Paes": 42, "Douglas Ruas": 33, "undecided": 25}},
       {"p": "AtlasIntel", "date": "2026-09-20", "n": 1829, "method": "", "v": {"Eduardo Paes": 49.2, "Douglas Ruas": 40.6, "undecided": 10.3}},
       {"p": "Quaest", "date": "2026-09-22", "n": 1302, "method": "", "v": {"Eduardo Paes": 44, "Douglas Ruas": 31, "undecided": 25}},
-      {"p": "Datafolha", "date": "2026-09-24", "n": 1204, "method": "", "v": {"Eduardo Paes": 54, "Douglas Ruas": 38, "undecided": 7}}
+      {"p": "Datafolha", "date": "2026-09-24", "n": 1204, "method": "", "v": {"Eduardo Paes": 54, "Douglas Ruas": 38, "undecided": 7}},
+      {"p": "Quaest", "date": "2026-09-28", "n": 1302, "method": "in_person", "v": {"Eduardo Paes": 43, "Douglas Ruas": 33, "undecided": 24}},
+      {"p": "Datafolha", "date": "2026-10-01", "n": 1204, "method": "in_person", "v": {"Eduardo Paes": 52, "Douglas Ruas": 38, "undecided": 9}},
+      {"p": "Quaest", "date": "2026-10-03", "n": 3204, "method": "in_person", "v": {"Eduardo Paes": 45, "Douglas Ruas": 33, "undecided": 22}}
     ]
   },
   "senate_r1": {
@@ -72,6 +75,7 @@
     "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/atlasintel-governador-rio-de-janeiro-setembro-2026-2/",
     "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/parana-pesquisas-governador-senado-rio-de-janeiro-setembro-2026-2/",
     "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-governador-senador-rio-de-janeiro-setembro-2026-2/",
-    "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/datafolha-governador-senador-rio-de-janeiro-setembro-2026-2/"
+    "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/datafolha-governador-senador-rio-de-janeiro-setembro-2026-2/",
+    "https://pt.wikipedia.org/wiki/Pesquisas_eleitorais_para_a_eleição_estadual_de_2026_no_Rio_de_Janeiro"
   ]
 }

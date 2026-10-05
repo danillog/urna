@@ -6,23 +6,28 @@ import mapJson from "../data/generated/map.json?raw";
 import americasJson from "../data/generated/americas.json?raw";
 import americasTopoJson from "../data/generated/americas.topo.json?raw";
 import indicatorsJson from "../data/generated/americas-indicators.json?raw";
+import apuracaoCidadesJson from "../data/generated/apuracao-cidades.json?raw";
+import congressJson from "../data/generated/congress.json?raw";
 import { formatDate, formatIsoDate, dayToDate } from "./format";
 import { t } from "./i18n/pt-BR";
 import type { AmericasData } from "./model/americas";
+import type { CongressData } from "./model/congress";
 import { MapData } from "./model/map-data";
 import { buildView } from "./model/view";
-import { fromSearch, raceFor, toSearch, type AppState } from "./state";
+import { fromSearch, latestYear, raceFor, toSearch, type AppState } from "./state";
 import type { Dataset, MunicipalMap } from "./types";
 import { renderChart } from "./ui/chart";
 import { renderContext } from "./ui/context";
 import { renderControls, setupControls } from "./ui/controls";
 import { byId } from "./ui/dom";
 import { AmericasView, americasFromSearch, americasToSearch } from "./ui/americas-view";
+import { ApuracaoView, apuracaoFromSearch, apuracaoToSearch } from "./ui/apuracao-view";
+import { CongressView, congressFromSearch, congressToSearch } from "./ui/congress-view";
 import { renderLegend } from "./ui/legend";
 import { MapView, mapFromSearch, mapToSearch } from "./ui/map-view";
 import { renderAccuracy, renderComparison, renderHighlightBar, renderPollTable } from "./ui/tables";
 
-const VIEWS = ["polls", "map", "americas"] as const;
+const VIEWS = ["polls", "apuracao", "congress", "map", "americas"] as const;
 type View = (typeof VIEWS)[number];
 
 const data = dataset as unknown as Dataset;
@@ -30,16 +35,21 @@ const params = new URLSearchParams(window.location.search);
 let view: View = VIEWS.find((v) => v === params.get("view")) ?? "polls";
 let state: AppState = fromSearch(data, view === "polls" ? window.location.search : "");
 
-// The map data is parsed the first time the map tab opens.
+// The map data is parsed the first time a tab that draws Brazil opens.
 let municipalMap: MunicipalMap | null = null;
 let mapView: MapView | null = null;
 
+function loadMunicipalMap(): MunicipalMap {
+  municipalMap ??= JSON.parse(mapJson) as MunicipalMap;
+  return municipalMap;
+}
+
+const stateNames = () => Object.fromEntries(Object.values(data.states).map((st) => [st.uf, st.name]));
+
 function ensureMap(): MapView {
   if (!mapView) {
-    municipalMap = JSON.parse(mapJson) as MunicipalMap;
-    const mapData = new MapData(municipalMap);
+    const mapData = new MapData(loadMunicipalMap());
     const initial = mapFromSearch(mapData, view === "map" ? params : new URLSearchParams());
-    const stateNames = Object.fromEntries(Object.values(data.states).map((st) => [st.uf, st.name]));
     mapView = new MapView(
       mapData,
       initial,
@@ -47,10 +57,47 @@ function ensureMap(): MapView {
         syncUrl();
         mapView!.render(municipalMap!);
       },
-      stateNames,
+      stateNames(),
     );
   }
   return mapView;
+}
+
+let apuracaoView: ApuracaoView | null = null;
+
+function ensureApuracao(): ApuracaoView {
+  if (!apuracaoView) {
+    const initial = apuracaoFromSearch(view === "apuracao" ? params : new URLSearchParams());
+    const rounds = data.presidential[latestYear(data)]!.rounds;
+    apuracaoView = new ApuracaoView(
+      loadMunicipalMap(),
+      JSON.parse(apuracaoCidadesJson),
+      initial.state,
+      initial.source,
+      { r1: rounds.r1?.colors, r2: rounds.r2?.colors },
+      stateNames(),
+      () => {
+        syncUrl();
+        apuracaoView!.render();
+      },
+    );
+  }
+  return apuracaoView;
+}
+
+let congressView: CongressView | null = null;
+let congressData: CongressData | null = null;
+
+function ensureCongress(): CongressView {
+  if (!congressView) {
+    congressData = JSON.parse(congressJson) as CongressData;
+    const initial = congressFromSearch(congressData, view === "congress" ? params : new URLSearchParams());
+    congressView = new CongressView(congressData, initial, () => {
+      syncUrl();
+      congressView!.render();
+    });
+  }
+  return congressView;
 }
 
 let americasView: AmericasView | null = null;
@@ -79,6 +126,14 @@ function syncUrl(): void {
     const p = new URLSearchParams({ view: "map" });
     mapToSearch(mapView.current, p);
     search = `?${p.toString()}`;
+  } else if (view === "apuracao" && apuracaoView) {
+    const p = new URLSearchParams({ view: "apuracao" });
+    apuracaoToSearch(apuracaoView.current, apuracaoView.currentSource, p);
+    search = `?${p.toString()}`;
+  } else if (view === "congress" && congressView) {
+    const p = new URLSearchParams({ view: "congress" });
+    congressToSearch(congressView.current, congressData!, p);
+    search = `?${p.toString()}`;
   } else if (view === "americas" && americasView) {
     const p = new URLSearchParams({ view: "americas" });
     americasToSearch(americasView.current, p);
@@ -99,6 +154,8 @@ function showView(next: View): void {
   view = next;
   if (view !== "map") mapView?.stop();
   if (view !== "americas") americasView?.stop();
+  if (view !== "apuracao") apuracaoView?.stop();
+  if (view !== "congress") congressView?.stop();
   for (const v of VIEWS) {
     byId(`${v}-view`).hidden = v !== view;
     byId(`tab-${v}`).setAttribute("aria-selected", String(v === view));
@@ -111,7 +168,11 @@ function showView(next: View): void {
   byId("lede").textContent = copy.lede;
   if (view === "map") ensureMap().render(municipalMap!);
   else if (view === "americas") ensureAmericas().render();
-  else renderPolls();
+  else if (view === "congress") ensureCongress().render();
+  else if (view === "apuracao") {
+    ensureApuracao().render();
+    apuracaoView!.start();
+  } else renderPolls();
   syncUrl();
 }
 

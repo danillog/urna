@@ -17,7 +17,8 @@
       {"p": "Paraná Pesquisas", "date": "2026-09-18", "n": 1352, "method": "", "v": {"Zucco": 36.4, "Juliana Brizola": 31.3, "Gabriel Souza": 12.9, "Maranata": 3.1, "others": 3.8, "undecided": 12.4}},
       {"p": "AtlasIntel", "date": "2026-09-20", "n": 1819, "method": "online", "v": {"Zucco": 41.6, "Juliana Brizola": 36.1, "Gabriel Souza": 13.5, "Maranata": 0.8, "others": 0.1, "undecided": 7.9}},
       {"p": "Quaest", "date": "2026-09-23", "n": 900, "method": "", "v": {"Zucco": 29, "Juliana Brizola": 23, "Gabriel Souza": 10, "Maranata": 3, "others": 2, "undecided": 33}},
-      {"p": "Neokemp", "date": "2026-09-24", "n": 1008, "method": "", "v": {"Zucco": 44.9, "Juliana Brizola": 28.8, "Gabriel Souza": 15.7, "Maranata": 2.0, "others": 0.4, "undecided": 8.3}}
+      {"p": "Neokemp", "date": "2026-09-24", "n": 1008, "method": "", "v": {"Zucco": 44.9, "Juliana Brizola": 28.8, "Gabriel Souza": 15.7, "Maranata": 2.0, "others": 0.4, "undecided": 8.3}},
+      {"p": "Real Time Big Data", "date": "2026-09-28", "n": 1600, "method": "phone", "v": {"Zucco": 40, "Juliana Brizola": 35, "Gabriel Souza": 19, "Maranata": 2, "others": 1, "undecided": 3}}
     ]
   },
   "governor_r2": {
@@ -33,7 +34,8 @@
       {"p": "AtlasIntel", "date": "2026-09-01", "n": 1783, "method": "", "v": {"Zucco": 48.5, "Juliana Brizola": 43.9, "undecided": 7.6}},
       {"p": "Real Time Big Data", "date": "2026-09-09", "n": 1600, "method": "", "v": {"Zucco": 44, "Juliana Brizola": 44, "undecided": 12}},
       {"p": "AtlasIntel", "date": "2026-09-20", "n": 1819, "method": "online", "v": {"Zucco": 49.7, "Juliana Brizola": 39.3, "undecided": 11}},
-      {"p": "Quaest", "date": "2026-09-23", "n": 900, "method": "", "v": {"Zucco": 40, "Juliana Brizola": 34, "undecided": 26}}
+      {"p": "Quaest", "date": "2026-09-23", "n": 900, "method": "", "v": {"Zucco": 40, "Juliana Brizola": 34, "undecided": 26}},
+      {"p": "Real Time Big Data", "date": "2026-09-28", "n": 1600, "method": "phone", "v": {"Zucco": 49, "Juliana Brizola": 44, "undecided": 7}}
     ]
   },
   "senate_r1": {
@@ -66,6 +68,7 @@
     "https://www.jornaldocomercio.com/politica/2026/09/1264394-zucco-tem-416-e-juliana-brizola-361-mostra-pesquisa-atlasintel.html",
     "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-governador-senador-rio-grande-do-sul-setembro-2026/",
     "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/neokemp-governador-senador-rio-grande-do-sul-setembro-2026/",
-    "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-governador-senado-rio-grande-do-sul-setembro-2026-2/"
+    "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-governador-senado-rio-grande-do-sul-setembro-2026-2/",
+    "https://pt.wikipedia.org/wiki/Pesquisas_eleitorais_para_a_eleição_estadual_de_2026_no_Rio_Grande_do_Sul"
   ]
 }

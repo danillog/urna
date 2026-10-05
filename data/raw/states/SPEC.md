@@ -42,6 +42,7 @@ One poll per line keeps diffs readable.
 | `v` | Percentages of **total** votes in the prompted (*estimulada*) scenario. |
 | `v.undecided` | Blank + null + undecided + no answer (*BNI*). Omit if not published. |
 | `v.others` | Sum of every listed candidate not in `candidates`. Optional. |
+| `wikipedia` | Optional, per race: `{"name on the Wikipedia page": "our name"}`, for candidates the crawler cannot match by name and party. |
 
 ## Rules
 

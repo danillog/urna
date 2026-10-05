@@ -13,6 +13,7 @@ from pathlib import Path
 
 import yaml
 
+from . import results
 from .polls import DataError
 from .pollsters import PollsterRegistry
 from .presidential import build_presidential
@@ -35,7 +36,13 @@ def build_dataset() -> dict:
     return {
         "methods": pollsters.methods(),
         "presidential": build_presidential(elections, DATA / "raw" / "presidential", pollsters),
-        "states": build_states(states_config, DATA / "raw" / "states", round_dates, pollsters),
+        "states": build_states(
+            states_config,
+            DATA / "raw" / "states",
+            round_dates,
+            pollsters,
+            results.load(states_config["year"], "r1"),
+        ),
     }
 
 

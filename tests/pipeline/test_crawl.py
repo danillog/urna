@@ -1,3 +1,4 @@
+import json
 import re
 from datetime import date
 
@@ -206,3 +207,206 @@ def test_registry_checklist():
     assert [(m.scope, m.pollster) for m in check.states] == [("SP", "Quaest")]
     assert [(m.pollster, m.end) for m in check.upcoming] == [("Datafolha", date(2026, 10, 3))]
     assert crawl.summarize_states(check.states) == ["SP: 1 · last 25/09 · Quaest 1"]
+
+
+# --- Wikipedia (pt) → state files ---------------------------------------------------
+
+STATE_POLLSTERS = PollsterRegistry(
+    [
+        *POLLSTERS._pollsters,
+        Pollster("Quaest", re.compile("quaest", re.I), "in_person"),
+        Pollster("Vox Brasil", re.compile("vox brasil", re.I), "in_person"),
+        Pollster("Vox Populi", re.compile("vox", re.I), "in_person"),
+    ]
+)
+WINDOW = (date(2026, 1, 1), date(2026, 10, 3))
+
+
+def state_registration(pollster, end, uf="PI", offices=("governor", "senate")):
+    return Registration(f"{uf}1", pollster, frozenset(offices), uf, end, end, end, 1200)
+
+
+def test_match_candidate():
+    ours = {"Joel Rodrigues": "PP", "Rafael Fonteles": "PT", "Dr. Daniel": "PSD", "Pastor Isamar": "UNIÃO"}
+    assert crawl.match_candidate("Joel Rodrigues ( PP )", ours, {}) == "Joel Rodrigues"
+    assert crawl.match_candidate("Rafael Fonteles PT", ours, {}) == "Rafael Fonteles"
+    # One shared word is not enough with another party.
+    assert crawl.match_candidate("Toni Rodrigues ( PL )", ours, {}) is None
+    assert crawl.match_candidate("Daniel Santos ( PSD )", ours, {}) == "Dr. Daniel"
+    assert crawl.match_candidate("Isamar ( União Brasil )", ours, {}) == "Pastor Isamar"
+    # Titles do not tell candidates apart.
+    assert crawl.match_candidate("Pastor Everaldo ( PL )", ours, {}) is None
+    assert crawl.match_candidate("Cadu de Lula ( PT )", {"Cadu Xavier": "PT"}, {}) == "Cadu Xavier"
+    assert crawl.match_candidate("Fulano ( PT )", ours, {"Fulano": "Rafael Fonteles"}) == "Rafael Fonteles"
+
+
+def test_resolve_pollster_uses_the_registry_for_short_names():
+    regs = [state_registration("VOX BRASIL PESQUISAS", date(2026, 9, 29), uf="SP")]
+    assert crawl.resolve_pollster("Vox", "SP", date(2026, 9, 29), "governor", STATE_POLLSTERS, regs) == (
+        "Vox Brasil"
+    )
+    assert crawl.resolve_pollster("Vox", "SP", date(2026, 9, 1), "governor", STATE_POLLSTERS, regs) == (
+        "Vox Populi"
+    )
+    assert crawl.resolve_pollster(
+        "Genial/Quaest", "SP", date(2026, 9, 1), "governor", STATE_POLLSTERS, None
+    ) == ("Quaest")
+
+
+def state_source():
+    return {
+        "uf": "PI",
+        "state": "Piauí",
+        "governor_r1": {
+            "candidates": {"Rafael Fonteles": "PT", "Joel Rodrigues": "PP", "Toni Rodrigues": "PL"},
+            "polls": [
+                {"p": "Quaest", "date": "2026-09-20", "n": 1000, "method": "in_person",
+                 "v": {"Rafael Fonteles": 60, "Joel Rodrigues": 25, "Toni Rodrigues": 2, "undecided": 13}},
+            ],
+        },
+        "governor_r2": {
+            "matchup": ["Rafael Fonteles", "Joel Rodrigues"],
+            "candidates": {"Rafael Fonteles": "PT", "Joel Rodrigues": "PP"},
+            "polls": [
+                {"p": "Quaest", "date": "2026-09-20", "n": 1000, "method": "in_person",
+                 "v": {"Rafael Fonteles": 65, "Joel Rodrigues": 28, "undecided": 7}},
+            ],
+        },
+        "senate_r1": {
+            "candidates": {"Marcelo Castro": "MDB", "Ciro Nogueira": "PP"},
+            "note": "consolidated",
+            "polls": [],
+        },
+        "notes": "",
+        "sources": [],
+    }  # fmt: skip
+
+
+def pt_poll(pollster, end, *scenarios, n=1200):
+    return WikiPoll(pollster, f"{end:%d/%m}", end, n, [Scenario(s) for s in scenarios])
+
+
+def test_crawl_state_race_adds_new_polls_and_reports_the_rest():
+    source = state_source()
+    polls = [
+        # New and registered.
+        pt_poll(
+            "DataFolha",
+            date(2026, 9, 30),
+            {
+                "Rafael Fonteles ( PT )": 61,
+                "Joel Rodrigues ( PP )": 24.5,
+                "Outros": 3,
+                "Indecisos ou Absentos": 11.5,
+            },
+        ),
+        # Already in the file, a day apart, with other numbers.
+        pt_poll(
+            "Genial/Quaest",
+            date(2026, 9, 21),
+            {"Rafael Fonteles ( PT )": 63, "Joel Rodrigues ( PP )": 25, "Indecisos ou Absentos": 12},
+        ),
+        # Older than our latest poll: maybe left out on purpose.
+        pt_poll(
+            "Datafolha",
+            date(2026, 9, 1),
+            {"Rafael Fonteles ( PT )": 60, "Joel Rodrigues ( PP )": 26, "Indecisos ou Absentos": 14},
+        ),
+        # A local institute we do not follow.
+        pt_poll(
+            "Instituto Local",
+            date(2026, 10, 1),
+            {"Rafael Fonteles ( PT )": 70, "Joel Rodrigues ( PP )": 20, "Indecisos ou Absentos": 10},
+        ),
+        # Valid votes only.
+        pt_poll("Real Time", date(2026, 10, 2), {"Rafael Fonteles ( PT )": 70, "Joel Rodrigues ( PP )": 30}),
+        # Joel Rodrigues is missing: not our race.
+        pt_poll("Datafolha", date(2026, 10, 3), {"Rafael Fonteles ( PT )": 70, "Indecisos ou Absentos": 30}),
+    ]
+    report = crawl.StateReport()
+    regs = [state_registration("DATAFOLHA", date(2026, 9, 30))]
+    added = crawl.crawl_state_race(
+        "PI", "governor_r1", source, polls, WINDOW, set(), STATE_POLLSTERS, regs, report
+    )
+
+    assert added
+    assert source["governor_r1"]["polls"][-1] == {
+        "p": "Datafolha",
+        "date": "2026-09-30",
+        "n": 1200,
+        "method": "in_person",
+        "v": {"Rafael Fonteles": 61, "Joel Rodrigues": 24.5, "others": 3, "undecided": 11.5},
+    }
+    assert len(source["governor_r1"]["polls"]) == 2
+    assert report.pending == {("PI", "Datafolha", date(2026, 9, 30))}
+    assert report.disagreements == [
+        "PI governor_r1 · Quaest 21/09: dataset × Wikipedia: Rafael Fonteles 60 × 63"
+    ]
+    assert (report.older, report.not_followed) == (1, 1)
+    assert any("Real Time Big Data 02/10" in r and "valid votes" in r for r in report.review)
+    assert any("Datafolha 03/10" in r and "missing Joel Rodrigues" in r for r in report.review)
+
+
+def test_crawl_state_race_keeps_to_the_runoff_matchup():
+    source = state_source()
+    polls = [
+        pt_poll(
+            "Datafolha",
+            date(2026, 9, 30),
+            {"Rafael Fonteles ( PT )": 60, "Toni Rodrigues ( PL )": 30, "Indecisos e Absentos": 10},
+            {"Rafael Fonteles ( PT )": 64, "Joel Rodrigues ( PP )": 29, "Indecisos e Absentos": 7},
+        ),
+        # Another matchup only: not ours, and nothing to review.
+        pt_poll(
+            "Quaest",
+            date(2026, 9, 30),
+            {"Rafael Fonteles ( PT )": 61, "Toni Rodrigues ( PL )": 31, "Indecisos e Absentos": 8},
+        ),
+    ]
+    report = crawl.StateReport()
+    regs = [
+        state_registration("DATAFOLHA", date(2026, 9, 30)),
+        state_registration("QUAEST", date(2026, 9, 30)),
+    ]
+    crawl.crawl_state_race("PI", "governor_r2", source, polls, WINDOW, set(), STATE_POLLSTERS, regs, report)
+    assert [p["v"] for p in source["governor_r2"]["polls"][1:]] == [
+        {"Rafael Fonteles": 64, "Joel Rodrigues": 29, "undecided": 7}
+    ]
+    assert report.review == []
+
+
+def test_crawl_state_race_leaves_out_the_raw_sum_of_two_senate_votes():
+    source = state_source()
+    polls = [
+        pt_poll(
+            "Datafolha",
+            date(2026, 9, 30),
+            {"Marcelo Castro ( MDB )": 70, "Ciro Nogueira ( PP )": 60, "Indecisos / Branco / Nulo": 40},
+        ),
+        pt_poll(
+            "Quaest",
+            date(2026, 9, 30),
+            {
+                "Marcelo Castro ( MDB )": 30,
+                "Ciro Nogueira ( PP )": 25,
+                "Outros": 20,
+                "Indecisos / Branco / Nulo": 25,
+            },
+        ),
+    ]
+    report = crawl.StateReport()
+    regs = [
+        state_registration("DATAFOLHA", date(2026, 9, 30)),
+        state_registration("QUAEST", date(2026, 9, 30)),
+    ]
+    crawl.crawl_state_race("PI", "senate_r1", source, polls, WINDOW, set(), STATE_POLLSTERS, regs, report)
+    assert [p["p"] for p in source["senate_r1"]["polls"]] == ["Quaest"]
+    assert any("raw sum of the two Senate votes" in r for r in report.review)
+
+
+def test_dump_state_keeps_the_file_layout():
+    from pipeline.build import DATA
+
+    for path in sorted((DATA / "raw" / "states").glob("*.json")):
+        text = path.read_text(encoding="utf-8")
+        assert crawl.dump_state(json.loads(text)) == text, path.name

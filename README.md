@@ -101,7 +101,7 @@ npm run check        # typecheck, tests, lint, dataset freshness
 ### Finding new polls
 
 ```bash
-npm run crawler              # add new presidential polls, report what is still missing
+npm run crawler              # add new presidential, governor and Senate polls, report what is still missing
 npm run crawler -- --dry-run # report only
 git diff data/raw            # review what was added
 ```
@@ -111,13 +111,19 @@ The crawler reads two sources. Each covers what the other cannot:
 | Source | What it gives | What the crawler does with it |
 |---|---|---|
 | [Wikipedia poll tables](https://en.wikipedia.org/wiki/Opinion_polling_for_the_2026_Brazilian_presidential_election) | The numbers, for presidential polls | Appends polls that are missing from the CSVs and flags polls whose numbers disagree with the dataset. |
+| Portuguese Wikipedia state pages ([São Paulo](https://pt.wikipedia.org/wiki/Pesquisas_eleitorais_para_a_eleição_estadual_de_2026_em_São_Paulo), …) | The numbers, for governor and Senate polls | Appends polls newer than the latest one of each race to `data/raw/states/<UF>.json`, and flags disagreements. |
 | [TSE poll registry](https://dadosabertos.tse.jus.br/dataset/pesquisas-eleitorais-2026) | Every registered poll (pollster, dates, sample), updated daily, but not the results | Confirms each new poll and lists published polls that are still missing, national and per state. |
 
 A Wikipedia poll is added only when:
 - **it is confirmed:** the TSE registry has a matching registration, or its pollster already has polls in that race;
 - **it is unambiguous:** one scenario matches the race (for a runoff, exactly the two candidates), and there is a blank/null/undecided column, since a poll without one may be valid votes only.
 
-Everything else is listed for a human to check. Polls rejected on purpose go in `skip_polls` in `data/elections.yaml`, so they are not proposed again. State polls have no machine-readable source with numbers: the registry checklist says which ones to look up.
+For governor and Senate polls, also:
+- **it is newer than the race's latest poll:** older polls missing from a file may have been left out on purpose, so they are only counted;
+- **it is the race we follow:** every candidate above 5% in our latest poll is in the scenario, a runoff poll tests the file's `matchup`, and a Senate poll adds up to about 100% (the raw sum of two votes is on another scale);
+- **it comes from a pollster we follow** (`data/pollsters.yaml`) or one that already polls that state, not a local institute.
+
+Everything else is listed for a human to check. Polls rejected on purpose go in `skip_polls` in `data/elections.yaml` (president) or `excluded_polls` in `data/states.yaml` (states), so they are not proposed again. When a page names a candidate in a way the crawler cannot match, map it in the race's `wikipedia` field (see [the spec](data/raw/states/SPEC.md)).
 
 ### Adding a poll by hand
 
@@ -164,6 +170,33 @@ The data comes from three steps, and each one can be checked on its own.
 - **Boundaries:** Natural Earth admin-1, simplified with mapshaper.
 
 Cuba (no competitive elections), annulled elections and dependent territories are gray. Venezuela 2024 shows the official result, flagged as disputed.
+
+## Live count (apuração)
+
+The **Apuração** tab shows the TSE's count as it happens, for president, governor, senator and deputies. Majoritarian offices get a map with each state in the color of whoever leads there, plus percentage bars. Deputies get seats per party or federation and the most voted names, one state at a time. Until the TSE publishes the official seats, they come from our own projection of the law's rules (quotient, 80/20 thresholds, largest averages) on the votes counted so far. Run on São Paulo's 2024 council, the projection gives the same 55 seats and the same 55 people as the official result.
+
+The page stays a static file. The TSE's results JSON does not allow other sites to read it (no CORS), so a small Cloudflare Worker in `worker/` reads the files, boils them down to one JSON of at most about 30 KB and caches it for 30 seconds. Open pages ask once a minute, which is how often the TSE refreshes its files.
+
+| Route | What |
+|---|---|
+| `/presidente/r1`, `/presidente/r2` (or `/r1`, `/r2`) | country + 27 states |
+| `/governador/r1`, `/governador/r2`, `/senador/r1` | 27 states |
+| `/deputado-federal/r1/<uf>`, `/deputado-estadual/r1/<uf>` | one state (district deputies in the DF) |
+| `/teste/<any of the above>` | 2024 data, finished and real: capitals' mayors for the majoritarian offices, the capital's council for deputies |
+
+```bash
+cd worker && npm install
+npx wrangler dev          # http://localhost:8787, used by `npm run dev`
+npx wrangler deploy       # prints the Worker's URL
+```
+
+The page reads that URL from `VITE_APURACAO_URL` in `.env.production`, so `npm run build` picks it up. Without it the tab says the live count is unavailable. The Worker has its own Cloudflare account (`account_id` in `worker/wrangler.toml`): the free plan's 100k requests a day are counted per account, so a busy night cannot use up other projects' quota.
+
+Ways to try the tab, any day:
+
+- `?view=apuracao&simular=1` runs a made-up count from 0 to 100% in 90 seconds, in the browser, with no Worker. It works with every office (`&cargo=senador`, `&cargo=deputado-federal&uf=MG`).
+- `?view=apuracao&fonte=teste` goes through the Worker with the real 2024 data.
+- `?view=apuracao` is the real thing. Before 5 p.m. (Brasília) on election day it shows "Aguardando".
 
 ## Project layout
 

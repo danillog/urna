@@ -27,7 +27,9 @@
       {"p": "Quaest", "date": "2026-08-24", "n": 804, "method": "", "v": {"Eduardo Gomes": 14, "Gaguim": 13, "Paulo Mourão": 9, "Alexandre Guimarães": 8, "Ronaldo Dimas": 6, "Vanderlei Luxemburgo": 5, "undecided": 34}},
       {"p": "Real Time Big Data", "date": "2026-08-25", "n": 1600, "method": "phone", "v": {"Eduardo Gomes": 26, "Alexandre Guimarães": 18, "Gaguim": 10, "Vanderlei Luxemburgo": 9, "Ronaldo Dimas": 8, "Paulo Mourão": 6, "undecided": 10}},
       {"p": "Real Time Big Data", "date": "2026-09-14", "n": 1600, "method": "", "v": {"Eduardo Gomes": 25, "Alexandre Guimarães": 16, "Gaguim": 14, "Vanderlei Luxemburgo": 12, "Paulo Mourão": 9, "Ronaldo Dimas": 9, "others": 10, "undecided": 5}},
-      {"p": "Quaest", "date": "2026-09-22", "n": 804, "method": "", "v": {"Eduardo Gomes": 18, "Gaguim": 16, "Alexandre Guimarães": 11, "Paulo Mourão": 7, "Vanderlei Luxemburgo": 6, "Ronaldo Dimas": 6, "others": 11, "undecided": 25}}
+      {"p": "Quaest", "date": "2026-09-22", "n": 804, "method": "", "v": {"Eduardo Gomes": 18, "Gaguim": 16, "Alexandre Guimarães": 11, "Paulo Mourão": 7, "Vanderlei Luxemburgo": 6, "Ronaldo Dimas": 6, "others": 11, "undecided": 25}},
+      {"p": "Real Time Big Data", "date": "2026-09-24", "n": 1600, "method": "phone", "v": {"Eduardo Gomes": 26, "Gaguim": 16, "Alexandre Guimarães": 16, "Vanderlei Luxemburgo": 10, "Paulo Mourão": 11, "Ronaldo Dimas": 9, "others": 8, "undecided": 5}},
+      {"p": "Real Time Big Data", "date": "2026-10-01", "n": 1600, "method": "phone", "v": {"Eduardo Gomes": 24, "Gaguim": 17, "Alexandre Guimarães": 17, "Vanderlei Luxemburgo": 8, "Paulo Mourão": 11, "Ronaldo Dimas": 8, "others": 11, "undecided": 4}}
     ]
   },
   "notes": "en.wikipedia pages not fetchable and the WebSearch budget ran out before Tocantins was searched; all 4 polls come from Gazeta do Povo articles reached via its URL pattern. Local institutes and pre-August polls are missing; coverage is thin. GOVERNOR: Quaest Aug included Subtenente Luiz Carlos (Democrata, 2%, later ruled ineligible/'inapto'; replaced by Siqueira Campos Jr) — counted in Outros. RTBD Sep did not list Siqueira Campos Jr (row sums to 99). SENATE: Eli Borges (Republicanos) left out of the 6 named candidates (8% Quaest Sep, 7% RTBD Aug, 5% RTBD Sep) and counted in Outros where the full list was available; Quaest Aug and RTBD Aug rows have no Outros because the small candidates were not fully itemized (Quaest Aug listed 'others 5%' but its items sum to 94; RTBD Aug includes Eli Borges 7, Professor Osvaldo 3, others <=1). Luxemburgo and Ronaldo Dimas are both Podemos per the source. Pollsters diverge on governor: Quaest has Dorinha ahead by 9-14 in the 1st round; RTBD shows a near-tie and Vicentinho narrowly ahead in the runoff.",
@@ -36,6 +38,7 @@
     "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-governador-senador-tocantins-agosto-2026/",
     "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-governador-senado-tocantins-setembro-2026/",
     "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-governador-senador-tocantins-agosto-2026/",
-    "https://www.gazetadopovo.com.br/eleicoes/2026/candidatos/to/governador/"
+    "https://www.gazetadopovo.com.br/eleicoes/2026/candidatos/to/governador/",
+    "https://pt.wikipedia.org/wiki/Pesquisas_eleitorais_para_a_eleição_estadual_de_2026_em_Tocantins"
   ]
 }

@@ -7,7 +7,8 @@
       {"p": "Quaest", "date": "2026-08-24", "n": 804, "method": "", "v": {"Riedel": 40, "Fábio Trad": 13, "Delcídio": 8, "Catan": 3, "others": 5, "undecided": 31}},
       {"p": "AtlasIntel", "date": "2026-09-01", "n": 1204, "method": "online", "v": {"Riedel": 49, "Fábio Trad": 26, "Catan": 12.4, "Delcídio": 0.3, "others": 0.8, "undecided": 11.5}},
       {"p": "Real Time Big Data", "date": "2026-09-09", "n": 1600, "method": "", "v": {"Riedel": 42, "Fábio Trad": 26, "Catan": 13, "Delcídio": 5, "others": 6, "undecided": 8}},
-      {"p": "Quaest", "date": "2026-09-24", "n": 804, "method": "", "v": {"Riedel": 51, "Fábio Trad": 12, "Delcídio": 6, "Catan": 3, "others": 4, "undecided": 24}}
+      {"p": "Quaest", "date": "2026-09-24", "n": 804, "method": "", "v": {"Riedel": 51, "Fábio Trad": 12, "Delcídio": 6, "Catan": 3, "others": 4, "undecided": 24}},
+      {"p": "Ranking Brasil", "date": "2026-09-25", "n": 2000, "method": "", "v": {"Riedel": 50, "Fábio Trad": 18, "Catan": 3, "Delcídio": 9, "others": 6.3, "undecided": 13.5}}
     ]
   },
   "governor_r2": {
@@ -34,6 +35,7 @@
     "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/atlasintel-governador-mato-grosso-do-sul-setembro-2026/",
     "https://www.rcn67.com.br/campo-grande/riedel-e-flavio-bolsonaro-lideram-intencoes-de-voto-em-mato-grosso-do-sul-aponta-pesquisa",
     "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-governador-senado-mato-grosso-do-sul-setembro-2026/",
-    "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-governador-senador-mato-grosso-do-sul-setembro-2026/"
+    "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-governador-senador-mato-grosso-do-sul-setembro-2026/",
+    "https://pt.wikipedia.org/wiki/Pesquisas_eleitorais_para_a_eleição_estadual_de_2026_em_Mato_Grosso_do_Sul"
   ]
 }

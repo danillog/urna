@@ -12,7 +12,8 @@
       {"p": "Anova", "date": "2026-09-05", "n": 2000, "method": "", "v": {"Lucas Ribeiro": 43.4, "Cícero Lucena": 18.2, "Efraim Filho": 12.1, "others": 0.8, "undecided": 25.5}},
       {"p": "Data Ranking", "date": "2026-09-07", "n": 2000, "method": "", "v": {"Lucas Ribeiro": 41.3, "Cícero Lucena": 18.1, "Efraim Filho": 13.1, "others": 3.2, "undecided": 23.4}},
       {"p": "Quaest", "date": "2026-09-21", "n": 804, "method": "", "v": {"Lucas Ribeiro": 49, "Cícero Lucena": 15, "Efraim Filho": 16, "others": 1, "undecided": 19}},
-      {"p": "Anova", "date": "2026-09-22", "n": 2000, "method": "", "v": {"Lucas Ribeiro": 48, "Cícero Lucena": 17.4, "Efraim Filho": 15.3, "others": 1.2, "undecided": 18.4}}
+      {"p": "Anova", "date": "2026-09-22", "n": 2000, "method": "", "v": {"Lucas Ribeiro": 48, "Cícero Lucena": 17.4, "Efraim Filho": 15.3, "others": 1.2, "undecided": 18.4}},
+      {"p": "Real Time Big Data", "date": "2026-10-01", "n": 1600, "method": "phone", "v": {"Lucas Ribeiro": 45, "Cícero Lucena": 18, "Efraim Filho": 24, "others": 1, "undecided": 13}}
     ]
   },
   "governor_r2": {
@@ -23,7 +24,8 @@
       {"p": "Real Time Big Data", "date": "2026-08-22", "n": 1600, "method": "in_person", "v": {"Lucas Ribeiro": 46, "Efraim Filho": 30, "undecided": 24}},
       {"p": "Quaest", "date": "2026-08-24", "n": 804, "method": "in_person", "v": {"Lucas Ribeiro": 47, "Efraim Filho": 33, "undecided": 20}},
       {"p": "AtlasIntel", "date": "2026-09-02", "n": 1207, "method": "online", "v": {"Lucas Ribeiro": 47.5, "Efraim Filho": 40.4, "undecided": 12.1}},
-      {"p": "Quaest", "date": "2026-09-21", "n": 804, "method": "", "v": {"Lucas Ribeiro": 56, "Efraim Filho": 24, "undecided": 20}}
+      {"p": "Quaest", "date": "2026-09-21", "n": 804, "method": "", "v": {"Lucas Ribeiro": 56, "Efraim Filho": 24, "undecided": 20}},
+      {"p": "Real Time Big Data", "date": "2026-10-01", "n": 1600, "method": "phone", "v": {"Lucas Ribeiro": 52, "Efraim Filho": 30, "undecided": 18}}
     ]
   },
   "senate_r1": {
@@ -33,7 +35,8 @@
       {"p": "Real Time Big Data", "date": "2026-05-26", "n": 1600, "method": "in_person", "v": {"João Azevêdo": 32, "Veneziano": 25, "Nabor Wanderley": 9, "Marcelo Queiroga": 13, "Major Fábio": 3, "André Gadelha": 2, "others": 2, "undecided": 14}},
       {"p": "Real Time Big Data", "date": "2026-08-22", "n": 1600, "method": "in_person", "v": {"João Azevêdo": 29, "Veneziano": 23, "Nabor Wanderley": 15, "Marcelo Queiroga": 15, "Major Fábio": 4, "André Gadelha": 4, "undecided": 10}},
       {"p": "Quaest", "date": "2026-08-24", "n": 804, "method": "in_person", "v": {"João Azevêdo": 27, "Veneziano": 17, "Nabor Wanderley": 9, "Marcelo Queiroga": 6, "Major Fábio": 5, "André Gadelha": 2, "undecided": 32}},
-      {"p": "Quaest", "date": "2026-09-21", "n": 804, "method": "", "v": {"João Azevêdo": 28, "Veneziano": 18, "Nabor Wanderley": 12, "Marcelo Queiroga": 7, "Major Fábio": 3, "André Gadelha": 1, "others": 1, "undecided": 30}}
+      {"p": "Quaest", "date": "2026-09-21", "n": 804, "method": "", "v": {"João Azevêdo": 28, "Veneziano": 18, "Nabor Wanderley": 12, "Marcelo Queiroga": 7, "Major Fábio": 3, "André Gadelha": 1, "others": 1, "undecided": 30}},
+      {"p": "Real Time Big Data", "date": "2026-10-01", "n": 1600, "method": "phone", "v": {"João Azevêdo": 31, "Veneziano": 24, "Nabor Wanderley": 16, "Marcelo Queiroga": 16, "Major Fábio": 5, "others": 1, "undecided": 7}}
     ]
   },
   "notes": "gov_t2: Lucas x Efraim chosen (Lucas x Cícero was polled equally often; same 5 polls). Lucas x Cícero values: RTBD May 39-34 (BNI 27), RTBD Aug 42-35 (23), Quaest Aug 48-29 (23), Atlas 45.6-29.6 (24.8), Quaest Sep 54-25 (21). RTBD May-26 included Olímpio Rocha (PSOL, 2%, not in final field) -> Outros. Local institutes (Índice, Anova, Data Ranking) come from secondary sources (Polêmica Paraíba, Revista Fórum, Poder Paraíba); Índice BNI not available; Anova Sep-5 and Data Ranking BNI are the combined 'undecided/blank' figure reported by Revista Fórum; Anova/Data Ranking method not stated. Skipped: IPOPP Jul 6-11 (Sérgio Gama + Olímpio Rocha 3.35%, not in final field), Índice Apr/Jul (details not retrievable), Seta/Polêmica and a later Data Ranking poll (conflicting/insufficient details). Institutes disagree on 2nd place: AtlasIntel has Efraim clearly 2nd (30.9), others have Cícero and Efraim close at 15-20. Lucas Ribeiro may win in the 1st round (near 50% of total votes in latest Quaest/Anova).",
@@ -47,6 +50,7 @@
     "https://revistaforum.com.br/politica/pesquisas-para-o-governo-da-pb-a-disputa-entre-cicero-lucas-e-efraim-segundo-3-institutos/",
     "https://poderparaiba.com.br/pesquisa-anova-aponta-lucas-ribeiro-com-48-na-disputa-pelo-governo-da-paraiba/",
     "https://www.cartacapital.com.br/politica/disputa-pelo-governo-da-paraiba-esta-apertada-mostra-pesquisa/",
-    "https://exame.com/brasil/real-time-big-data-ribeiro-abre-10-pontos-sobre-lucena-no-1o-turno-na-paraiba/"
+    "https://exame.com/brasil/real-time-big-data-ribeiro-abre-10-pontos-sobre-lucena-no-1o-turno-na-paraiba/",
+    "https://pt.wikipedia.org/wiki/Pesquisas_eleitorais_para_a_eleição_estadual_de_2026_em_Paraíba"
   ]
 }

@@ -1,0 +1,40 @@
+# Written by `uv run python -m pipeline.congress --refresh-2026`.
+# provisional: true while the TSE has not named the deputies; seats are then
+# projected by the electoral quotient from the votes counted.
+provisional: true
+chamber:
+  PL: 121
+  PT: 70
+  UNIÃO: 46
+  PSD: 44
+  PP: 41
+  Republicanos: 40
+  MDB: 36
+  PODE: 27
+  PSB: 15
+  PSOL: 14
+  PCdoB: 11
+  PSDB: 11
+  NOVO: 10
+  PV: 7
+  PDT: 6
+  Avante: 5
+  PRD: 5
+  SD: 2
+  REDE: 1
+  MISSÃO: 1
+senate:
+  PL: 28
+  PT: 9
+  MDB: 8
+  Republicanos: 6
+  PP: 6
+  PSD: 5
+  UNIÃO: 5
+  PSB: 4
+  NOVO: 3
+  PSDB: 2
+  PODE: 2
+  REDE: 1
+  PDT: 1
+  S/Partido: 1

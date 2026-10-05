@@ -26,7 +26,8 @@
       {"p": "IP Sensus", "date": "2026-09-22", "n": 1200, "method": "", "v": {"Allyson": 29, "Álvaro Dias": 26.1, "Cadu Xavier": 22.9, "undecided": 17.4}},
       {"p": "Exatus", "date": "2026-09-23", "n": 1500, "method": "", "v": {"Allyson": 44.11, "Cadu Xavier": 22.52, "Álvaro Dias": 20.6, "Robério Paulino": 0.29, "Rodrigo Bolsonaro": 0.2, "others": 0.15, "undecided": 12.13}},
       {"p": "Quaest", "date": "2026-09-24", "n": 804, "method": "", "v": {"Allyson": 39, "Cadu Xavier": 21, "Álvaro Dias": 18, "Rodrigo Bolsonaro": 1, "Robério Paulino": 0, "others": 0, "undecided": 21}},
-      {"p": "Qualittá", "date": "2026-09-25", "n": 1200, "method": "", "v": {"Allyson": 43.9, "Cadu Xavier": 20.8, "Álvaro Dias": 16.9, "Rodrigo Bolsonaro": 0.2, "undecided": 18.2}}
+      {"p": "Qualittá", "date": "2026-09-25", "n": 1200, "method": "", "v": {"Allyson": 43.9, "Cadu Xavier": 20.8, "Álvaro Dias": 16.9, "Rodrigo Bolsonaro": 0.2, "undecided": 18.2}},
+      {"p": "AtlasIntel", "date": "2026-09-28", "n": 1207, "method": "online", "v": {"Allyson": 27.1, "Cadu Xavier": 37.1, "Álvaro Dias": 27.3, "others": 2.5, "undecided": 6}}
     ]
   },
   "governor_r2": {
@@ -36,7 +37,8 @@
       {"p": "AtlasIntel", "date": "2026-07-21", "n": 1245, "method": "", "v": {"Allyson": 34.2, "Cadu Xavier": 39.4, "undecided": 26.4}},
       {"p": "Quaest", "date": "2026-08-23", "n": 804, "method": "", "v": {"Allyson": 35, "Cadu Xavier": 34, "undecided": 31}},
       {"p": "Real Time Big Data", "date": "2026-09-09", "n": 1600, "method": "", "v": {"Allyson": 50, "Cadu Xavier": 32, "undecided": 18}},
-      {"p": "Quaest", "date": "2026-09-24", "n": 804, "method": "", "v": {"Allyson": 50, "Cadu Xavier": 30, "undecided": 20}}
+      {"p": "Quaest", "date": "2026-09-24", "n": 804, "method": "", "v": {"Allyson": 50, "Cadu Xavier": 30, "undecided": 20}},
+      {"p": "AtlasIntel", "date": "2026-09-28", "n": 1207, "method": "online", "v": {"Allyson": 41.6, "Cadu Xavier": 41.9, "undecided": 16.4}}
     ]
   },
   "senate_r1": {
@@ -65,6 +67,7 @@
     "https://www.opotiguar.com.br/pesquisa-seta-allyson-cresce-e-cadu-se-aproxima-de-alvaro",
     "https://www.opotiguar.com.br/instituto-setaopotiguar-allyson-lidera-corrida-ao-governo-do-rn-com-384-alvaro-dias-tem-207-e-cadu-xavier-soma-133",
     "https://www.portalclaudiooliveira.com/2026/09/metadatagrupo-dial-mostra-allyson-com.html",
-    "https://www.portalclaudiooliveira.com/2026/09/ip-sensus-allyson-tem-29-alvaro-dias.html"
+    "https://www.portalclaudiooliveira.com/2026/09/ip-sensus-allyson-tem-29-alvaro-dias.html",
+    "https://pt.wikipedia.org/wiki/Pesquisas_eleitorais_para_a_eleição_estadual_de_2026_em_Rio_Grande_do_Norte"
   ]
 }

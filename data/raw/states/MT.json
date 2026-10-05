@@ -17,7 +17,8 @@
       {"p": "MT Dados", "date": "2026-09-17", "n": 3080, "method": "", "v": {"Pivetta": 34, "Wellington Fagundes": 26, "Natasha": 14, "Sargento Laudicério": 2, "Rafaell Millas": 1, "Maurício Coelho": 1, "undecided": 22}},
       {"p": "Paraná Pesquisas", "date": "2026-09-17", "n": 1352, "method": "in_person", "v": {"Pivetta": 42.4, "Wellington Fagundes": 29.6, "Natasha": 13.5, "Sargento Laudicério": 0.8, "Maurício Coelho": 0.4, "Rafaell Millas": 0.4, "undecided": 12.9}},
       {"p": "Instituto Veritá", "date": "2026-09-24", "n": 1220, "method": "", "v": {"Pivetta": 39.1, "Wellington Fagundes": 32.3, "Natasha": 15.0, "Sargento Laudicério": 1.3, "Rafaell Millas": 0.7, "Maurício Coelho": 0.5, "undecided": 11.1}},
-      {"p": "Quaest", "date": "2026-09-24", "n": 804, "method": "in_person", "v": {"Pivetta": 29, "Wellington Fagundes": 27, "Natasha": 11, "Maurício Coelho": 2, "Sargento Laudicério": 2, "Rafaell Millas": 1, "undecided": 28}}
+      {"p": "Quaest", "date": "2026-09-24", "n": 804, "method": "in_person", "v": {"Pivetta": 29, "Wellington Fagundes": 27, "Natasha": 11, "Maurício Coelho": 2, "Sargento Laudicério": 2, "Rafaell Millas": 1, "undecided": 28}},
+      {"p": "Paraná Pesquisas", "date": "2026-09-29", "n": 1352, "method": "in_person", "v": {"Pivetta": 46.4, "Wellington Fagundes": 27.1, "Natasha": 15.5, "others": 1.2, "undecided": 9.9}}
     ]
   },
   "governor_r2": {
@@ -34,7 +35,8 @@
       {"p": "AtlasIntel", "date": "2026-09-09", "n": 1209, "method": "online", "v": {"Wellington Fagundes": 40.4, "Pivetta": 36.9, "undecided": 22.7}},
       {"p": "MT Dados", "date": "2026-09-17", "n": 3080, "method": "", "v": {"Pivetta": 38, "Wellington Fagundes": 32, "undecided": 30}},
       {"p": "Paraná Pesquisas", "date": "2026-09-17", "n": 1352, "method": "in_person", "v": {"Pivetta": 49.1, "Wellington Fagundes": 37.4, "undecided": 13.5}},
-      {"p": "Quaest", "date": "2026-09-24", "n": 804, "method": "in_person", "v": {"Wellington Fagundes": 41, "Pivetta": 36, "undecided": 23}}
+      {"p": "Quaest", "date": "2026-09-24", "n": 804, "method": "in_person", "v": {"Wellington Fagundes": 41, "Pivetta": 36, "undecided": 23}},
+      {"p": "Paraná Pesquisas", "date": "2026-09-29", "n": 1352, "method": "in_person", "v": {"Pivetta": 53.1, "Wellington Fagundes": 34.6, "undecided": 12.2}}
     ]
   },
   "senate_r1": {
@@ -67,6 +69,7 @@
     "https://mtdados.com.br/pesquisa-governo-mt-2026-julho",
     "https://mtdados.com.br/pesquisa-governo-mt-2026-4a-rodada",
     "https://mtdados.com.br/pesquisa-senado-mt-2026-4a-rodada",
-    "https://www.midiajur.com.br/eleicoes-2026/parana-pesquisas-pivetta-tem-424-contra-296-de-wellington-e-135-de-natasha/87016"
+    "https://www.midiajur.com.br/eleicoes-2026/parana-pesquisas-pivetta-tem-424-contra-296-de-wellington-e-135-de-natasha/87016",
+    "https://pt.wikipedia.org/wiki/Pesquisas_eleitorais_para_a_eleição_estadual_de_2026_em_Mato_Grosso"
   ]
 }

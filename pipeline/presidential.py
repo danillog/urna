@@ -6,6 +6,7 @@ from dataclasses import replace
 from datetime import date
 from pathlib import Path
 
+from . import results
 from .accuracy import pollster_accuracy
 from .polls import (
     OTHERS,
@@ -50,6 +51,13 @@ def build_round(
 
     candidates = election["candidates"]
     result = spec.get("result")
+    official = results.load(year, round_id) if not result else None
+    if official:
+        # 2026 on: read from the TSE's files (pipeline.results) instead of typed in.
+        shares, _ = results.match(
+            {c: m["party"] for c, m in candidates.items() if c in series}, official["president"]["candidates"]
+        )
+        result = shares or None
     return {
         "date": election_date.isoformat(),
         "electionDay": day_of_year(election_date, year),

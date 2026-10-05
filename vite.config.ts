@@ -13,6 +13,6 @@ export default defineConfig({
   build: { target: "es2022", reportCompressedSize: true },
   test: {
     environment: "jsdom",
-    include: ["tests/web/**/*.test.ts"],
+    include: ["tests/web/**/*.test.ts", "tests/worker/**/*.test.ts"],
   },
 });

@@ -1,0 +1,245 @@
+# Seats per party in Congress after each general election, and where each
+# party sits from left to right. Read by pipeline/congress.py.
+#
+# Seats are written with the acronym the party used that year (PFL, not DEM, in
+# 2002). The Chamber is the delegation elected; the Senate is the whole house
+# after the election (the third or two thirds just elected plus those midway
+# through their eight years), by the party each senator was in at the time.
+#
+# Sources:
+# - Chamber 1990–2022 and Senate 2002–2022: the results infoboxes of the English
+#   Wikipedia's "<year> Brazilian general election" articles (TSE figures);
+#   federations of 2022 split by party from the same article's detailed tables.
+# - 2026: data/raw/congress/2026.yaml, from the TSE count and the Senate's open
+#   data (`uv run python -m pipeline.congress --refresh-2026`).
+# The Senate before 2002 is left out: Wikipedia has only the senators elected
+# each year, and the house after 1990 mixed terms of different lengths for the
+# new states.
+
+chamber:
+  1990: { PMDB: 108, PFL: 83, PDT: 46, PDS: 42, PRN: 40, PSDB: 38, PTB: 38, PT: 35, PDC: 22, PL: 16, PSB: 11, PSC: 6, PCdoB: 5, PRS: 4, PCB: 3, PTR: 2, PST: 2, PMN: 1, PSD: 1 }
+  1994: { PMDB: 107, PFL: 89, PSDB: 62, PPR: 52, PT: 49, PP: 36, PDT: 34, PTB: 31, PSB: 15, PL: 13, PCdoB: 10, PMN: 4, PSD: 3, PSC: 3, PPS: 2, PRP: 1, PRN: 1, PV: 1 }
+  1998: { PFL: 105, PSDB: 99, PMDB: 83, PPB: 60, PT: 58, PTB: 31, PDT: 25, PSB: 19, PL: 12, PCdoB: 7, PPS: 3, PSD: 3, PSC: 3, PMN: 2, PRONA: 1, PST: 1, PSL: 1 }
+  2002: { PT: 91, PFL: 84, PMDB: 76, PSDB: 70, PPB: 48, PTB: 26, PL: 26, PSB: 22, PDT: 21, PPS: 15, PCdoB: 12, PRONA: 6, PV: 5, PSD: 4, PST: 3, PSC: 1, PSL: 1, PMN: 1, PSDC: 1 }
+  2006: { PMDB: 89, PT: 83, PSDB: 65, PFL: 65, PP: 42, PSB: 27, PDT: 24, PL: 23, PTB: 22, PPS: 21, PV: 13, PCdoB: 13, PSC: 9, PTC: 4, PSOL: 3, PMN: 3, PRONA: 2, PHS: 2, PTdoB: 1, PAN: 1, PRB: 1 }
+  2010: { PT: 88, PMDB: 78, PSDB: 54, DEM: 43, PR: 42, PP: 41, PSB: 34, PDT: 28, PTB: 21, PSC: 17, PV: 15, PCdoB: 15, PPS: 12, PRB: 7, PMN: 4, PSOL: 3, PTdoB: 3, PHS: 2, PRTB: 2, PRP: 2, PTC: 1, PSL: 1 }
+  2014: { PT: 69, PMDB: 66, PSDB: 54, PP: 38, PSD: 36, PSB: 34, PR: 34, PTB: 25, PRB: 21, DEM: 21, PDT: 19, SD: 15, PSC: 13, PROS: 11, PPS: 10, PCdoB: 10, PV: 8, PSOL: 5, PHS: 5, PTN: 4, PRP: 3, PMN: 3, PEN: 2, PSDC: 2, PTC: 2, PTdoB: 1, PSL: 1, PRTB: 1 }
+  2018: { PT: 56, PSL: 52, PP: 37, PSD: 34, MDB: 34, PR: 33, PSB: 32, PRB: 30, PSDB: 29, DEM: 29, PDT: 28, SD: 13, PODE: 11, PSOL: 10, PTB: 10, PCdoB: 9, NOVO: 8, PROS: 8, PSC: 8, PPS: 8, Avante: 7, PHS: 6, Patriota: 5, PV: 4, PRP: 4, PMN: 3, PTC: 2, REDE: 1, PPL: 1, DC: 1 }
+  2022: { PL: 99, PT: 69, UNIÃO: 59, PP: 47, PSD: 42, MDB: 42, Republicanos: 40, PDT: 17, PSB: 14, PSDB: 13, PSOL: 12, PODE: 12, Avante: 7, PCdoB: 6, PV: 6, PSC: 6, Cidadania: 5, SD: 4, Patriota: 4, NOVO: 3, PROS: 3, REDE: 2, PTB: 1 }
+
+senate:
+  2002: { PFL: 19, PMDB: 19, PT: 14, PSDB: 11, PDT: 5, PSB: 4, PTB: 3, PL: 3, PPB: 1, PPS: 1, PSD: 1 }
+  2006: { PFL: 18, PMDB: 16, PSDB: 14, PT: 10, PDT: 5, PTB: 4, PSB: 3, PL: 3, PCdoB: 2, PRB: 2, PP: 1, PPS: 1, PRTB: 1, PSOL: 1 }
+  2010: { PMDB: 19, PT: 15, PSDB: 11, DEM: 6, PTB: 6, PP: 5, PR: 4, PDT: 4, PSB: 3, PCdoB: 2, PSOL: 2, PPS: 1, PRB: 1, PSC: 1, PMN: 1 }
+  2014: { PMDB: 18, PT: 12, PSDB: 10, PDT: 8, PSB: 7, DEM: 5, PP: 5, PR: 4, PSD: 3, PTB: 3, PROS: 1, PSOL: 1, PCdoB: 1, PV: 1, SD: 1, PRB: 1 }
+  2018: { MDB: 12, PSDB: 8, PSD: 7, PT: 6, DEM: 6, PP: 6, PDT: 5, REDE: 5, PODE: 5, PSL: 4, PTB: 3, PSB: 2, PHS: 2, PR: 2, PPS: 2, PSC: 1, SD: 1, PRP: 1, PRB: 1, PROS: 1, PTC: 1 }
+  2022: { PL: 13, UNIÃO: 12, PSD: 10, MDB: 10, PT: 9, PP: 7, PODE: 6, PSDB: 4, Republicanos: 3, PDT: 2, PSB: 1, PSC: 1, Cidadania: 1, REDE: 1, PROS: 1 }
+
+# Party names, for the table and tooltips.
+names:
+  Avante: Avante (ex-PTdoB)
+  Cidadania: Cidadania (ex-PCB, PPS)
+  DC: Democracia Cristã (ex-PSDC)
+  DEM: Democratas (ex-PFL)
+  MDB: Movimento Democrático Brasileiro
+  NOVO: Partido Novo
+  PCB: Partido Comunista Brasileiro
+  PCdoB: Partido Comunista do Brasil
+  PDC: Partido Democrata Cristão
+  PDS: Partido Democrático Social
+  PDT: Partido Democrático Trabalhista
+  PEN: Partido Ecológico Nacional
+  PFL: Partido da Frente Liberal
+  PHS: Partido Humanista da Solidariedade
+  PL: Partido Liberal
+  PMDB: Partido do Movimento Democrático Brasileiro
+  PMN: Partido da Mobilização Nacional
+  PODE: Podemos (ex-PTN)
+  PP: Progressistas
+  PPB: Partido Progressista Brasileiro
+  PPR: Partido Progressista Reformador
+  PPS: Partido Popular Socialista (ex-PCB)
+  PR: Partido da República
+  PRB: Partido Republicano Brasileiro
+  PRN: Partido da Reconstrução Nacional
+  PROS: Partido Republicano da Ordem Social
+  PSB: Partido Socialista Brasileiro
+  PSC: Partido Social Cristão
+  PSD: Partido Social Democrático
+  PSDB: Partido da Social Democracia Brasileira
+  PSL: Partido Social Liberal
+  PSOL: Partido Socialismo e Liberdade
+  PT: Partido dos Trabalhadores
+  PTB: Partido Trabalhista Brasileiro
+  PTC: Partido Trabalhista Cristão (ex-PRN)
+  PV: Partido Verde
+  Patriota: Patriota (ex-PEN)
+  REDE: Rede Sustentabilidade
+  Republicanos: Republicanos (ex-PRB)
+  SD: Solidariedade
+  UNIÃO: União Brasil (DEM + PSL)
+  PRD: Partido Renovação Democrática (PTB + Patriota)
+  MISSÃO: Partido Missão
+  S/Partido: Sem partido
+
+# Left–right placement, by acronym. Each takes one of:
+#   bls: <party>        Zucco & Power's estimate for that party (see below)
+#   bolognesi: <party>  Bolognesi, Ribeiro & Codato's score, converted to the same scale
+#   mean: [a, b]        a party formed by merger: the mean of its founders that year
+# A list gives the placement by period (`since`/`until`, election years), for
+# acronyms that named different parties. Acronyms not listed are unclassified.
+#
+# Zucco & Power: legislators place every party on a left–right scale in each
+# wave of the Brazilian Legislative Surveys (1990–2021); the estimates are
+# rescaled to about −1 (left) to +1 (right). Each election is placed with the
+# wave taken during the term it elected (1990 → 1993, …, 2018 → 2021); 2022 and
+# 2026 with the last one (2021). When a party is missing from that wave, the
+# nearest wave up to four years away is used; beyond that it stays unclassified.
+#   Zucco, C. and Power, T. J. (2024). The Ideology of Brazilian Parties and
+#   Presidents: A Research Note on Coalitional Presidentialism Under Stress.
+#   Latin American Politics and Society 66(1), doi:10.1017/lap.2023.24.
+#   Data: doi:10.7910/DVN/6KVTUV (CC0), file
+#   data/raw/congress/bls9_party_ideology.tab.
+placement:
+  PT: { bls: PT }
+  PMDB: { bls: MDB }
+  MDB: { bls: MDB }
+  PSDB: { bls: PSDB }
+  PFL: { bls: DEM }
+  DEM: { bls: DEM }
+  PDS: { bls: PP }
+  PPR: { bls: PP }
+  PPB: { bls: PP }
+  PP:
+    - { until: 1994, bls: PPold } # the Partido Progressista of 1993–95, merged into the PPB
+    - { since: 1998, bls: PP }
+  PL: { bls: PL }
+  PR: { bls: PL }
+  PDT: { bls: PDT }
+  PTB: { bls: PTB }
+  PSB: { bls: PSB }
+  PCdoB: { bls: PCDOB }
+  PCB: { bls: CID }
+  PPS: { bls: CID }
+  Cidadania: { bls: CID }
+  PV: { bls: PV }
+  PSOL: { bls: PSOL }
+  REDE: { bls: REDE }
+  PSD:
+    - { since: 2011, bls: PSD } # Kassab's PSD; the PSD of the 1990s was another party
+  PRB: { bls: REP }
+  Republicanos: { bls: REP }
+  SD: { bls: SD }
+  PTN: { bls: PODE }
+  PODE: { bls: PODE }
+  PROS: { bls: PROS }
+  PSC: { bls: PSC }
+  NOVO: { bls: NOVO }
+  PSL: { bls: PSL }
+  PRN: { bls: PRN }
+  PDC: { bls: PDC }
+  PSTU: { bls: PSTU }
+  PTC: { bolognesi: PTC }
+  PTdoB: { bolognesi: Avante }
+  Avante: { bolognesi: Avante }
+  PMN: { bolognesi: PMN }
+  Mobiliza: { bolognesi: PMN }
+  PHS: { bolognesi: PHS }
+  PRP: { bolognesi: PRP }
+  PSDC: { bolognesi: DC }
+  DC: { bolognesi: DC }
+  PRTB: { bolognesi: PRTB }
+  PPL: { bolognesi: PPL }
+  PMB: { bolognesi: PMB }
+  PEN: { bolognesi: Patriota }
+  Patriota: { bolognesi: Patriota }
+  PCO: { bolognesi: PCO }
+  UNIÃO: { mean: [DEM, PSL] }
+  PRD: { mean: [PTB, Patriota] }
+
+# Bolognesi, B., Ribeiro, E. and Codato, A. (2023). Uma nova classificação
+# ideológica dos partidos políticos brasileiros. Dados 66(2): e20210164,
+# table 1: mean placement by 519 political scientists in 2018, 0 (left) to 10
+# (right). Converted to Zucco & Power's scale by a straight line fitted on the
+# parties both place (their 2017 wave), and used only for parties Zucco & Power
+# do not cover.
+bolognesi:
+  PSTU: 0.51
+  PCO: 0.61
+  PCB: 0.91
+  PSOL: 1.28
+  PCdoB: 1.92
+  PT: 2.97
+  PDT: 3.92
+  PSB: 4.05
+  Rede: 4.77
+  PPS: 4.92
+  PV: 5.29
+  PTB: 6.1
+  Avante: 6.32
+  SDD: 6.5
+  PMN: 6.88
+  PMB: 6.9
+  PHS: 6.96
+  MDB: 7.01
+  PSD: 7.09
+  PSDB: 7.11
+  Podemos: 7.24
+  PPL: 7.27
+  PRTB: 7.45
+  Pros: 7.47
+  PRP: 7.59
+  PRB: 7.78
+  PR: 7.78
+  PTC: 7.86
+  DC: 8.11
+  PSL: 8.11
+  Novo: 8.13
+  Progressistas: 8.2
+  PSC: 8.33
+  Patriota: 8.55
+  DEM: 8.57
+
+# The same parties in Zucco & Power's names, for the conversion.
+bolognesi_to_bls:
+  PSOL: PSOL
+  PCdoB: PCDOB
+  PT: PT
+  PDT: PDT
+  PSB: PSB
+  Rede: REDE
+  PPS: CID
+  PV: PV
+  PTB: PTB
+  SDD: SD
+  MDB: MDB
+  PSD: PSD
+  PSDB: PSDB
+  Podemos: PODE
+  Pros: PROS
+  PRB: REP
+  PR: PL
+  Progressistas: PP
+  PSC: PSC
+  DEM: DEM
+
+# Where the scale is cut into five groups, on Zucco & Power's scale. Our own
+# cuts, even steps around the centre; the dots keep each party's exact place.
+groups:
+  left: -0.5
+  centre-left: -0.15
+  centre: 0.15
+  centre-right: 0.5
+
+# The Centrão is not a place on the left–right scale but a way of acting: parties
+# that back whichever government is in power in exchange for posts and budget.
+# It has no register and its members change, so it is marked only from `since`,
+# with the parties the source lists as its core then.
+centrao:
+  since: 2022
+  parties: [PP, Republicanos, PL, UNIÃO, PSD, Avante, SD]
+  source:
+    title: "Quem é quem no Centrão em 2026: conheça os líderes e partidos do bloco"
+    outlet: Estado de Minas
+    date: 2026-07-24
+    url: https://www.em.com.br/nacional/2026/07/7467289-quem-e-quem-no-centrao-em-2026-conheca-os-lideres-e-partidos-do-bloco.html

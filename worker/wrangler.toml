@@ -1,0 +1,8 @@
+name = "urna-apuracao"
+main = "src/index.ts"
+# Its own Cloudflare account, apart from other projects: the free plan's daily
+# request limit is per account, so a busy election night cannot use up theirs.
+account_id = "73dd22f9ee5bbad0df9d9afab4cdbd21"
+compatibility_date = "2026-09-01"
+# Free plan: 100k requests/day. Each open page asks once a minute and the
+# answer is cached at the edge, so this lasts roughly 1,650 page-hours a day.

@@ -12,7 +12,9 @@
       {"p": "Real Time Big Data", "date": "2026-09-07", "n": 1600, "method": "", "v": {"Hana Ghassan": 37, "Dr. Daniel": 35, "Araceli": 5, "others": 1, "undecided": 22}},
       {"p": "AtlasIntel", "date": "2026-09-10", "n": 1212, "method": "online", "v": {"Hana Ghassan": 48.5, "Dr. Daniel": 41.7, "Araceli": 1.5, "others": 1.5, "undecided": 6.7}},
       {"p": "Quaest", "date": "2026-09-25", "n": 804, "method": "", "v": {"Dr. Daniel": 41, "Hana Ghassan": 32, "Araceli": 2, "others": 2, "undecided": 23}},
-      {"p": "Real Time Big Data", "date": "2026-09-26", "n": 1600, "method": "", "v": {"Hana Ghassan": 44, "Dr. Daniel": 37, "Araceli": 2, "others": 1, "undecided": 16}}
+      {"p": "Real Time Big Data", "date": "2026-09-26", "n": 1600, "method": "", "v": {"Hana Ghassan": 44, "Dr. Daniel": 37, "Araceli": 2, "others": 1, "undecided": 16}},
+      {"p": "AtlasIntel", "date": "2026-10-02", "n": 1206, "method": "online", "v": {"Hana Ghassan": 50.4, "Dr. Daniel": 44.4, "Araceli": 0.8, "others": 0.3, "undecided": 4.1}},
+      {"p": "Quaest", "date": "2026-10-03", "n": 1800, "method": "in_person", "v": {"Hana Ghassan": 31, "Dr. Daniel": 44, "Araceli": 2, "others": 1, "undecided": 22}}
     ]
   },
   "governor_r2": {
@@ -26,7 +28,10 @@
       {"p": "Quaest", "date": "2026-08-28", "n": 804, "method": "", "v": {"Hana Ghassan": 36, "Dr. Daniel": 36, "undecided": 28}},
       {"p": "Real Time Big Data", "date": "2026-09-07", "n": 1600, "method": "", "v": {"Hana Ghassan": 40, "Dr. Daniel": 36, "undecided": 24}},
       {"p": "AtlasIntel", "date": "2026-09-10", "n": 1212, "method": "online", "v": {"Hana Ghassan": 50.2, "Dr. Daniel": 45.4, "undecided": 4.3}},
-      {"p": "Quaest", "date": "2026-09-25", "n": 804, "method": "", "v": {"Hana Ghassan": 36, "Dr. Daniel": 47, "undecided": 17}}
+      {"p": "Quaest", "date": "2026-09-25", "n": 804, "method": "", "v": {"Hana Ghassan": 36, "Dr. Daniel": 47, "undecided": 17}},
+      {"p": "Real Time Big Data", "date": "2026-09-26", "n": 1600, "method": "phone", "v": {"Hana Ghassan": 45, "Dr. Daniel": 37, "undecided": 18}},
+      {"p": "AtlasIntel", "date": "2026-10-02", "n": 1206, "method": "online", "v": {"Hana Ghassan": 51.3, "Dr. Daniel": 44.9, "undecided": 3.8}},
+      {"p": "Quaest", "date": "2026-10-03", "n": 1800, "method": "in_person", "v": {"Hana Ghassan": 37, "Dr. Daniel": 48, "undecided": 15}}
     ]
   },
   "senate_r1": {
@@ -41,7 +46,8 @@
       {"p": "AtlasIntel", "date": "2026-09-10", "n": 1212, "method": "online", "v": {"Helder Barbalho": 24.9, "Éder Mauro": 18.1, "Zequinha Marinho": 15.1, "Chicão": 13.2, "Celso Sabino": 11.6, "Gizelle Freitas": 1.7, "others": 3.3, "undecided": 12.1}},
       {"p": "Real Time Big Data", "date": "2026-09-14", "n": 1600, "method": "", "v": {"Helder Barbalho": 36, "Éder Mauro": 16, "Chicão": 13, "Zequinha Marinho": 13, "Celso Sabino": 11, "Gizelle Freitas": 1, "others": 4, "undecided": 6}},
       {"p": "Quaest", "date": "2026-09-25", "n": 804, "method": "", "v": {"Helder Barbalho": 25, "Éder Mauro": 15, "Chicão": 15, "Zequinha Marinho": 10, "Celso Sabino": 5, "Gizelle Freitas": 1, "others": 2, "undecided": 27}},
-      {"p": "Real Time Big Data", "date": "2026-09-26", "n": 1600, "method": "", "v": {"Helder Barbalho": 36, "Éder Mauro": 16, "Chicão": 16, "Zequinha Marinho": 13, "Celso Sabino": 10, "Gizelle Freitas": 1, "others": 4, "undecided": 5}}
+      {"p": "Real Time Big Data", "date": "2026-09-26", "n": 1600, "method": "", "v": {"Helder Barbalho": 36, "Éder Mauro": 16, "Chicão": 16, "Zequinha Marinho": 13, "Celso Sabino": 10, "Gizelle Freitas": 1, "others": 4, "undecided": 5}},
+      {"p": "Quaest", "date": "2026-10-03", "n": 1800, "method": "in_person", "v": {"Helder Barbalho": 20, "Éder Mauro": 16, "Zequinha Marinho": 11, "Chicão": 13, "Celso Sabino": 6, "Gizelle Freitas": 1, "others": 2, "undecided": 31}}
     ]
   },
   "notes": "Wikipedia (en) has no poll tables for Pará; all rows come from news articles. Final governor field: Hana Ghassan (MDB, incumbent after Helder resigned to run for Senate), Dr. Daniel Santos (PODE, ex-mayor of Ananindeua), Araceli Lemos (PSOL) plus minor PSTU/UP/Democrata candidates (PSTU and Democrata nominees changed over the year: Cléber Rabelo -> Well Macêdo; José Moita -> Ruth Reis), all folded into Outros. Mário Couto (DC/PL) appeared in spring/July scenarios but left the race: for Quaest Apr/Jul and Doxa May the scenario without Couto was used; Real Time Big Data 2026-08-03 only had a scenario with Couto (12%), so its gov_t1 row was dropped (its 2nd-round and Senate rows kept). Dropped: Real Time Big Data 2026-09-26 governor 1st round as published by Gazeta do Povo in valid votes (total-vote numbers 44/37/2 taken from Diário do Pará instead) and its 2nd round (55x45, valid votes only). AtlasIntel 2026-09-10 2nd round: total votes from Exame (Hana 50.2, Daniel 45.4, undecided 3.3, blank/null 1.0); Gazeta only printed valid votes (52.5x47.5). AtlasIntel Sept Senate: Gazeta printed valid votes; the total-vote numbers are from CNN Brasil, which gives fieldwork 5-9 Sep and n=1202 (governor article says 5-10 Sep, n=1212). Senate: Quaest Apr/Jul skipped because every scenario included Paulo Rocha (PT) and/or Joaquim Passarinho (PL), who did not run. Doxa May Senate: 6 names + 'undecided/floating' 14% summing to 100, convention (consolidated vs 1st vote) not stated - treat with care. Quaest 2026-09-25 Senate: CNN labelled it 'first seat' but it sums to 100 with BNI and matches the consolidated format used by Quaest in August - some doubt. Big house effect: Quaest has Dr. Daniel ahead (+9 in late Sept), AtlasIntel and Real Time Big Data have Hana ahead. No polls found for Jan-Mar 2026.",
@@ -61,6 +67,7 @@
     "https://www.cnnbrasil.com.br/eleicoes/quaest-dr-daniel-tem-41-hana-soma-32-na-disputa-ao-governo-do-pa/",
     "https://www.cnnbrasil.com.br/eleicoes/quaest-helder-lidera-disputa-pelo-senado-no-pa-2a-vaga-tem-empate-tecnico/",
     "https://diariodopara.com.br/eleicoes-2026/real-time-big-data-hana-chega-a-44-e-abre-7-pontos-sobre-daniel-santos-na-disputa-pelo-governo-do-para/",
-    "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-governador-senado-para-setembro-2026-2/"
+    "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-governador-senado-para-setembro-2026-2/",
+    "https://pt.wikipedia.org/wiki/Pesquisas_eleitorais_para_a_eleição_estadual_de_2026_no_Pará"
   ]
 }

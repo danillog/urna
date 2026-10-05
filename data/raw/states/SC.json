@@ -12,7 +12,8 @@
       {"p": "Neokemp", "date": "2026-09-12", "n": 1008, "method": "", "v": {"Jorginho Mello": 51.2, "João Rodrigues": 24.0, "Gelson Merísio": 15.1, "Marcelo Brigadeiro": 1.8, "others": 2.5, "undecided": 5.6}},
       {"p": "Real Time Big Data", "date": "2026-09-16", "n": 1600, "method": "", "v": {"Jorginho Mello": 49, "João Rodrigues": 15, "Gelson Merísio": 8, "Marcelo Brigadeiro": 2, "others": 2, "undecided": 24}},
       {"p": "Paraná Pesquisas", "date": "2026-09-22", "n": 1384, "method": "", "v": {"Jorginho Mello": 58.8, "João Rodrigues": 16.5, "Gelson Merísio": 11.3, "Marcelo Brigadeiro": 1.2, "others": 3.0, "undecided": 9.4}},
-      {"p": "Quaest", "date": "2026-09-23", "n": 804, "method": "", "v": {"Jorginho Mello": 54, "João Rodrigues": 13, "Gelson Merísio": 10, "Marcelo Brigadeiro": 1, "others": 2, "undecided": 20}}
+      {"p": "Quaest", "date": "2026-09-23", "n": 804, "method": "", "v": {"Jorginho Mello": 54, "João Rodrigues": 13, "Gelson Merísio": 10, "Marcelo Brigadeiro": 1, "others": 2, "undecided": 20}},
+      {"p": "Neokemp", "date": "2026-09-30", "n": 1008, "method": "", "v": {"Jorginho Mello": 58.2, "João Rodrigues": 16.7, "Gelson Merísio": 18.3, "Marcelo Brigadeiro": 1.2, "others": 1.7, "undecided": 4}}
     ]
   },
   "governor_r2": {
@@ -49,6 +50,7 @@
     "https://www.metropoles.com/brasil/quaest-amin-tem-19-ao-senado-por-sc-carlos-bolsonaro-16-e-de-toni-12",
     "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/atlasintel-senador-santa-catarina-setembro-2026/",
     "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-senador-santa-catarina-setembro-2026/",
-    "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-senador-santa-catarina-setembro-2026/"
+    "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-senador-santa-catarina-setembro-2026/",
+    "https://pt.wikipedia.org/wiki/Pesquisas_eleitorais_para_a_eleição_estadual_de_2026_em_Santa_Catarina"
   ]
 }

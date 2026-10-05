@@ -180,6 +180,15 @@ export class ChoroplethMap {
     this.tooltipFor = tooltipFor;
   }
 
+  /** Calls back with the area's index when one is clicked (a drag to pan is not a click). */
+  onAreaClick(callback: (i: number) => void): void {
+    this.svg.addEventListener("click", (e) => {
+      const target = e.target;
+      if (target instanceof SVGPathElement && target.dataset.i !== undefined)
+        callback(Number(target.dataset.i));
+    });
+  }
+
   /** Brings these municipalities forward and fades the rest; null clears it. */
   highlight(indices: number[] | null): void {
     this.hideTooltip();

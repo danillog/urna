@@ -11,6 +11,7 @@
     "data": "uv run python -m pipeline.build",
     "crawler": "uv run python -m pipeline.crawl",
     "map": "uv run python -m pipeline.fetch_tse_results && uv run python -m pipeline.municipal_map",
+    "apuracao:cidades": "uv run python -m pipeline.apuracao_cidades",
     "americas": "uv run python -m pipeline.americas.discover && uv run python -m pipeline.americas.geo && uv run python -m pipeline.americas.build && uv run python -m pipeline.americas.indicators",
     "test": "vitest run",
     "test:data": "uv run pytest",

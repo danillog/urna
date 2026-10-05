@@ -116,6 +116,8 @@
 
   <nav class="tabs" role="tablist" aria-label="Seções">
     <button type="button" role="tab" id="tab-polls" data-view="polls" aria-selected="true" aria-controls="polls-view">Pesquisas</button>
+    <button type="button" role="tab" id="tab-apuracao" data-view="apuracao" aria-selected="false" aria-controls="apuracao-view">Apuração</button>
+    <button type="button" role="tab" id="tab-congress" data-view="congress" aria-selected="false" aria-controls="congress-view">Congresso</button>
     <button type="button" role="tab" id="tab-map" data-view="map" aria-selected="false" aria-controls="map-view">Mapa por município</button>
     <button type="button" role="tab" id="tab-americas" data-view="americas" aria-selected="false" aria-controls="americas-view">Américas</button>
   </nav>
@@ -197,6 +199,100 @@
     </section>
   </div>
 
+  <div class="view" id="apuracao-view" role="tabpanel" aria-labelledby="tab-apuracao" hidden>
+    <div class="controls">
+      <div class="group">
+        <span class="group-label" id="lbl-ap-office">Cargo</span>
+        <div class="seg seg-wrap" role="group" aria-labelledby="lbl-ap-office" id="ap-offices">
+          <button type="button" data-office="presidente" aria-pressed="true">Presidente</button>
+          <button type="button" data-office="governador" aria-pressed="false">Governador</button>
+          <button type="button" data-office="senador" aria-pressed="false">Senador</button>
+          <button type="button" data-office="deputado-federal" aria-pressed="false">Dep. federal</button>
+          <button type="button" data-office="deputado-estadual" aria-pressed="false">Dep. estadual</button>
+        </div>
+      </div>
+      <div class="group">
+        <span class="group-label" id="lbl-ap-round">Turno</span>
+        <div class="seg" role="group" aria-labelledby="lbl-ap-round" id="ap-rounds">
+          <button type="button" data-round="r1" aria-pressed="true">1º turno</button>
+          <button type="button" data-round="r2" aria-pressed="false">2º turno</button>
+        </div>
+      </div>
+      <div class="group">
+        <label class="group-label" for="ap-uf">Estado</label>
+        <select id="ap-uf" class="select"></select>
+      </div>
+      <div class="group">
+        <span class="group-label" id="lbl-ap-level">Mapa por</span>
+        <div class="seg" role="group" aria-labelledby="lbl-ap-level" id="ap-levels">
+          <button type="button" data-level="mun" aria-pressed="true">Cidade</button>
+          <button type="button" data-level="uf" aria-pressed="false">Estado</button>
+        </div>
+      </div>
+    </div>
+
+    <section class="panel" aria-labelledby="ap-title">
+      <div class="panel-head">
+        <h2 class="panel-title" id="ap-title"></h2>
+        <span class="ap-badge" id="ap-badge" data-status="loading" role="status"></span>
+      </div>
+      <div class="ap-status">
+        <div class="ap-progress" id="ap-progress" role="progressbar" aria-labelledby="ap-counted" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="ap-progress-bar"></span></div>
+        <div class="ap-status-text"><b id="ap-counted"></b> <span class="meta" id="ap-updated" aria-live="polite"></span></div>
+      </div>
+      <div class="ap-layout">
+        <div class="ap-map-col">
+          <div class="legend map-legend" id="ap-legend"></div>
+          <div class="map" id="ap-map">
+            <div class="map-zoom" role="group" aria-label="Zoom">
+              <button type="button" id="ap-zoom-in" aria-label="Aproximar" title="Aproximar">+</button>
+              <button type="button" id="ap-zoom-out" aria-label="Afastar" title="Afastar">−</button>
+              <button type="button" id="ap-zoom-reset" aria-label="Ver o Brasil inteiro" title="Ver o Brasil inteiro">⟲</button>
+            </div>
+          </div>
+        </div>
+        <div class="ap-bars-col">
+          <div class="ap-results" id="ap-results"></div>
+          <p class="meta" id="ap-totals"></p>
+        </div>
+      </div>
+      <p class="map-note" id="ap-note"></p>
+      <p class="map-note sources" id="ap-sources"></p>
+    </section>
+  </div>
+
+  <div class="view" id="congress-view" role="tabpanel" aria-labelledby="tab-congress" hidden>
+    <div class="controls">
+      <div class="group">
+        <span class="group-label" id="lbl-cg-house">Casa</span>
+        <div class="seg" role="group" aria-labelledby="lbl-cg-house" id="cg-houses">
+          <button type="button" data-house="chamber" aria-pressed="true">Câmara</button>
+          <button type="button" data-house="senate" aria-pressed="false">Senado</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline">
+      <button type="button" class="play" id="cg-play" aria-label="Reproduzir" aria-pressed="false">▶</button>
+      <div class="timeline-track">
+        <input type="range" id="cg-slider" min="0" max="0" step="1" value="0" aria-label="Ano da eleição">
+        <div class="timeline-years" id="cg-years"></div>
+      </div>
+    </div>
+
+    <section class="panel" aria-labelledby="cg-title">
+      <div class="panel-head">
+        <h2 class="panel-title" id="cg-title"></h2>
+        <span class="meta" id="cg-meta"></span>
+      </div>
+      <div class="legend map-legend" id="cg-legend"></div>
+      <div class="cg-chart" id="cg-chart"></div>
+      <div class="scroll"><table id="cg-table" class="cg-table"></table></div>
+      <p class="map-note" id="cg-note"></p>
+      <p class="map-note sources" id="cg-sources"></p>
+    </section>
+  </div>
+
   <div class="view" id="map-view" role="tabpanel" aria-labelledby="tab-map" hidden>
     <div class="controls">
       <div class="group">
@@ -243,6 +339,7 @@
         <div class="map-hint" id="map-hint" hidden></div>
       </div>
       <p class="map-note" id="map-note"></p>
+      <p class="map-note sources" id="map-sources"></p>
     </section>
   </div>
 

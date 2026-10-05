@@ -12,7 +12,8 @@
       {"p": "Paraná Pesquisas", "date": "2026-09-20", "n": 1400, "method": "in_person", "v": {"JHC": 48.6, "Renan Filho": 41.6, "Lenilda Luna": 0.6, "Márcio Jambo": 0.6, "undecided": 8.4}},
       {"p": "DataTrends", "date": "2026-09-21", "n": 1200, "method": "phone", "v": {"Renan Filho": 45, "JHC": 44, "Lenilda Luna": 1, "Márcio Jambo": 0, "undecided": 10}},
       {"p": "Quaest", "date": "2026-09-24", "n": 804, "method": "", "v": {"JHC": 43, "Renan Filho": 41, "Lenilda Luna": 0, "Márcio Jambo": 0, "others": 1, "undecided": 16}},
-      {"p": "Real Time Big Data", "date": "2026-09-24", "n": 1600, "method": "in_person", "v": {"Renan Filho": 47, "JHC": 44, "Lenilda Luna": 0, "Márcio Jambo": 0, "undecided": 9}}
+      {"p": "Real Time Big Data", "date": "2026-09-24", "n": 1600, "method": "in_person", "v": {"Renan Filho": 47, "JHC": 44, "Lenilda Luna": 0, "Márcio Jambo": 0, "undecided": 9}},
+      {"p": "Ranking Brasil", "date": "2026-09-26", "n": 1200, "method": "", "v": {"JHC": 49, "Renan Filho": 39, "others": 2, "undecided": 10}}
     ]
   },
   "governor_r2": {
@@ -27,7 +28,8 @@
       {"p": "Paraná Pesquisas", "date": "2026-09-20", "n": 1400, "method": "in_person", "v": {"JHC": 49.6, "Renan Filho": 43.2, "undecided": 7.3}},
       {"p": "DataTrends", "date": "2026-09-21", "n": 1200, "method": "phone", "v": {"JHC": 46, "Renan Filho": 47, "undecided": 7}},
       {"p": "Quaest", "date": "2026-09-24", "n": 804, "method": "", "v": {"JHC": 45, "Renan Filho": 42, "undecided": 13}},
-      {"p": "Real Time Big Data", "date": "2026-09-24", "n": 1600, "method": "in_person", "v": {"JHC": 45, "Renan Filho": 47, "undecided": 8}}
+      {"p": "Real Time Big Data", "date": "2026-09-24", "n": 1600, "method": "in_person", "v": {"JHC": 45, "Renan Filho": 47, "undecided": 8}},
+      {"p": "Paraná Pesquisas", "date": "2026-09-29", "n": 1400, "method": "in_person", "v": {"JHC": 50.4, "Renan Filho": 43.8, "undecided": 5.9}}
     ]
   },
   "senate_r1": {
@@ -51,6 +53,7 @@
     "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-governador-senador-alagoas-setembro-2026/",
     "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-governador-senador-alagoas-setembro-2026-2/",
     "https://revistaforum.com.br/politica/disputa-governo-al/",
-    "https://exame.com/brasil/real-time-big-data-renan-filho-tem-47-e-jhc-44-no-1o-turno-em-alagoas/"
+    "https://exame.com/brasil/real-time-big-data-renan-filho-tem-47-e-jhc-44-no-1o-turno-em-alagoas/",
+    "https://pt.wikipedia.org/wiki/Pesquisas_eleitorais_para_a_eleição_estadual_de_2026_em_Alagoas"
   ]
 }

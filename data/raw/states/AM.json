@@ -11,7 +11,8 @@
       {"p": "Real Time Big Data", "date": "2026-08-25", "n": 1600, "method": "in_person", "v": {"Omar Aziz": 34, "Roberto Cidade": 22, "Maria do Carmo": 21, "David Almeida": 14, "Cabo Daciolo": 4, "others": 1, "undecided": 4}},
       {"p": "AtlasIntel", "date": "2026-09-03", "n": 1185, "method": "", "v": {"Omar Aziz": 31, "Maria do Carmo": 27.4, "Roberto Cidade": 18.8, "David Almeida": 8.7, "Cabo Daciolo": 6.3, "others": 1.3, "undecided": 6.4}},
       {"p": "Paraná Pesquisas", "date": "2026-09-04", "n": 1350, "method": "in_person", "v": {"Omar Aziz": 29.6, "Roberto Cidade": 21.5, "Maria do Carmo": 19.4, "David Almeida": 16.8, "Cabo Daciolo": 3.0, "others": 0.7, "undecided": 9.0}},
-      {"p": "Quaest", "date": "2026-09-23", "n": 804, "method": "in_person", "v": {"Omar Aziz": 29, "Maria do Carmo": 19, "Roberto Cidade": 18, "David Almeida": 11, "Cabo Daciolo": 2, "others": 1, "undecided": 20}}
+      {"p": "Quaest", "date": "2026-09-23", "n": 804, "method": "in_person", "v": {"Omar Aziz": 29, "Maria do Carmo": 19, "Roberto Cidade": 18, "David Almeida": 11, "Cabo Daciolo": 2, "others": 1, "undecided": 20}},
+      {"p": "Real Time Big Data", "date": "2026-10-01", "n": 1600, "method": "phone", "v": {"Omar Aziz": 36, "Maria do Carmo": 24, "Roberto Cidade": 24, "David Almeida": 9, "others": 3, "undecided": 4}}
     ]
   },
   "governor_r2": {
@@ -24,7 +25,8 @@
       {"p": "Real Time Big Data", "date": "2026-08-25", "n": 1600, "method": "in_person", "v": {"Omar Aziz": 42, "Maria do Carmo": 43, "undecided": 15}},
       {"p": "AtlasIntel", "date": "2026-09-03", "n": 1185, "method": "", "v": {"Omar Aziz": 40.8, "Maria do Carmo": 46.6, "undecided": 12.6}},
       {"p": "Paraná Pesquisas", "date": "2026-09-04", "n": 1350, "method": "in_person", "v": {"Omar Aziz": 51.7, "Maria do Carmo": 37.0, "undecided": 11.3}},
-      {"p": "Quaest", "date": "2026-09-23", "n": 804, "method": "in_person", "v": {"Omar Aziz": 44, "Maria do Carmo": 42, "undecided": 14}}
+      {"p": "Quaest", "date": "2026-09-23", "n": 804, "method": "in_person", "v": {"Omar Aziz": 44, "Maria do Carmo": 42, "undecided": 14}},
+      {"p": "Real Time Big Data", "date": "2026-10-01", "n": 1600, "method": "phone", "v": {"Omar Aziz": 45, "Maria do Carmo": 43, "undecided": 12}}
     ]
   },
   "senate_r1": {
@@ -33,7 +35,8 @@
     "polls": [
       {"p": "Quaest", "date": "2026-08-24", "n": 804, "method": "in_person", "v": {"Eduardo Braga": 25, "Alberto Neto": 16, "Plínio Valério": 13, "Wilson Lima": 12, "Professora Evany": 3, "Ismael Munduruku": 1, "others": 1, "undecided": 29}},
       {"p": "Real Time Big Data", "date": "2026-08-25", "n": 1600, "method": "in_person", "v": {"Alberto Neto": 24, "Wilson Lima": 19, "Eduardo Braga": 18, "Plínio Valério": 14, "Ismael Munduruku": 5, "Professora Evany": 3, "others": 4, "undecided": 13}},
-      {"p": "Quaest", "date": "2026-09-23", "n": 804, "method": "in_person", "v": {"Eduardo Braga": 27, "Alberto Neto": 17, "Plínio Valério": 14, "Wilson Lima": 13, "Ismael Munduruku": 2, "Professora Evany": 1, "others": 1, "undecided": 25}}
+      {"p": "Quaest", "date": "2026-09-23", "n": 804, "method": "in_person", "v": {"Eduardo Braga": 27, "Alberto Neto": 17, "Plínio Valério": 14, "Wilson Lima": 13, "Ismael Munduruku": 2, "Professora Evany": 1, "others": 1, "undecided": 25}},
+      {"p": "Real Time Big Data", "date": "2026-10-01", "n": 1600, "method": "phone", "v": {"Eduardo Braga": 19, "Alberto Neto": 25, "Plínio Valério": 19, "Wilson Lima": 19, "others": 8, "undecided": 9}}
     ]
   },
   "notes": "en.wikipedia has no 2026 poll tables for Amazonas; rows come from news articles. Final governor field: Omar Aziz (PSD), Professora Maria do Carmo Seffair (PL), Roberto Cidade (União, incumbent since Wilson Lima resigned to run for Senate), David Almeida (Avante, ex-mayor of Manaus), Cabo Daciolo (Mobiliza), Isael Munduruku (Rede), Gilberto Vasconcelos (PSTU); the last two are in Outros. Excluded from gov_t1: Quaest 2026-03-11 (Aziz 33, Almeida 23, Maria 21, BNI 23) and Real Time Big Data 2026-03-18 (Aziz 39, Maria 27, Almeida 22, BNI 12) because Roberto Cidade (~18-22% later) was not yet in the scenarios; Direto ao Ponto (Mar) because it included Tadeu de Souza; a June poll by 'Jenav' (low-reputation, 2nd round apparently in valid votes). AtlasIntel May gov row uses the plain scenario (not the one with Lula/Bolsonaro endorsements); Cabo Daciolo was not in it. Action (Jul) gives only the four main names, no blank/null/undecided. Projeta (Jun) BNI = blank/null 12.9 + undecided 6.3; Daciolo not tested. PoderData 2026-09-23 (n=1200) was found only partially (Aziz 32, Maria 21, Cidade 20; 2nd round Aziz 46 x Cidade 40) so it was left out. Quaest 2026-09-23 (AM-01856/2026) was SUSPENDED by TRE-AM on 2026-09-27 for questionnaire defects after the numbers had circulated - maintainer may want to drop it. Quaest 2026-08-24 2nd round Aziz x Almeida misprinted in Gazeta (49x46); not used anyway. gov_t2 uses Aziz x Maria do Carmo (most polled; Maria is 2nd in the latest Quaest, AtlasIntel and PoderData); Aziz x Cidade is nearly as polled (Quaest Aug 44x40, RTBD Aug 42x41, Paraná Sep 45.0x39.3, Quaest Sep 44x38, PoderData Sep 46x40). Senate: only 3 rows in the consolidated format. Left out: Paraná Pesquisas 2026-09-04 (sum of two votes: Braga 50.0, Alberto Neto 39.3, Plínio 28.9, Wilson Lima 25.6, Evany 5.2), PoderData 2026-09-23 (1st vote: Braga 42, Alberto Neto 29; incomplete), AtlasIntel May, Quaest Mar and RTBD Mar (scenarios with Marcelo Ramos/Marcos Rotta, who are not in the final field).",
@@ -51,6 +54,7 @@
     "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/quaest-governador-senador-amazonas-setembro-2026/",
     "https://gazetadaamazonia.com.br/28/09/2026/tre-am-suspende-pesquisa-quaest/",
     "https://bncamazonas.com.br/poder/cidade-20/",
-    "https://www.poder360.com.br/poder-eleicoes-2026/eduardo-braga-tem-42-e-alberto-neto-29-na-disputa-pelo-senado-no-am/"
+    "https://www.poder360.com.br/poder-eleicoes-2026/eduardo-braga-tem-42-e-alberto-neto-29-na-disputa-pelo-senado-no-am/",
+    "https://pt.wikipedia.org/wiki/Pesquisas_eleitorais_para_a_eleição_estadual_de_2026_no_Amazonas"
   ]
 }

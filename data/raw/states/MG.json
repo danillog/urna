@@ -15,7 +15,11 @@
       {"p": "Real Time Big Data", "date": "2026-09-19", "n": 2000, "method": "", "v": {"Cleitinho": 35, "Patrus": 19, "Kalil": 10, "Mateus Simões": 10, "Flávio Roscoe": 8, "Gabriel": 6, "others": 4, "undecided": 8}},
       {"p": "AtlasIntel", "date": "2026-09-20", "n": 1799, "method": "", "v": {"Cleitinho": 39.3, "Patrus": 31, "Kalil": 8.3, "Mateus Simões": 5.6, "Flávio Roscoe": 7.3, "Gabriel": 2.7, "others": 1.9, "undecided": 3.8}},
       {"p": "Quaest", "date": "2026-09-22", "n": 1506, "method": "", "v": {"Cleitinho": 37, "Patrus": 16, "Kalil": 8, "Mateus Simões": 7, "Flávio Roscoe": 5, "Gabriel": 2, "others": 2, "undecided": 23}},
-      {"p": "Datafolha", "date": "2026-09-24", "n": 1204, "method": "", "v": {"Cleitinho": 40, "Patrus": 15, "Kalil": 9, "Mateus Simões": 5, "Flávio Roscoe": 5, "Gabriel": 3, "others": 6, "undecided": 19}}
+      {"p": "Datafolha", "date": "2026-09-24", "n": 1204, "method": "", "v": {"Cleitinho": 40, "Patrus": 15, "Kalil": 9, "Mateus Simões": 5, "Flávio Roscoe": 5, "Gabriel": 3, "others": 6, "undecided": 19}},
+      {"p": "Real Time Big Data", "date": "2026-09-26", "n": 2000, "method": "phone", "v": {"Cleitinho": 38, "Patrus": 20, "Kalil": 9, "Mateus Simões": 8, "Flávio Roscoe": 8, "Gabriel": 5, "others": 4, "undecided": 8}},
+      {"p": "AtlasIntel", "date": "2026-09-27", "n": 1838, "method": "online", "v": {"Cleitinho": 41.8, "Patrus": 33.6, "Kalil": 5, "Mateus Simões": 6.2, "Flávio Roscoe": 4.9, "Gabriel": 2.1, "others": 2.9, "undecided": 3.4}},
+      {"p": "Quaest", "date": "2026-09-28", "n": 1506, "method": "in_person", "v": {"Cleitinho": 37, "Patrus": 18, "Kalil": 9, "Mateus Simões": 6, "Flávio Roscoe": 5, "Gabriel": 2, "others": 3, "undecided": 20}},
+      {"p": "Datafolha", "date": "2026-10-01", "n": 1204, "method": "in_person", "v": {"Cleitinho": 40, "Patrus": 16, "Kalil": 11, "Mateus Simões": 4, "Flávio Roscoe": 4, "Gabriel": 2, "others": 5, "undecided": 17}}
     ]
   },
   "governor_r2": {
@@ -45,7 +49,10 @@
       {"p": "Real Time Big Data", "date": "2026-09-19", "n": 2000, "method": "", "v": {"Marília Campos": 18, "Aécio Neves": 13, "Carlos Viana": 16, "Domingos Sávio": 16, "Marcelo Aro": 12, "Áurea Carolina": 7, "others": 7, "undecided": 12}},
       {"p": "Quaest", "date": "2026-09-22", "n": 1506, "method": "", "v": {"Marília Campos": 13, "Aécio Neves": 10, "Carlos Viana": 10, "Domingos Sávio": 10, "Marcelo Aro": 6, "Áurea Carolina": 3, "undecided": 44}},
       {"p": "Datafolha", "date": "2026-09-24", "n": 1204, "method": "", "v": {"Marília Campos": 13, "Aécio Neves": 11, "Carlos Viana": 11, "Domingos Sávio": 9, "Marcelo Aro": 6, "Áurea Carolina": 5, "others": 11, "undecided": 35}},
-      {"p": "Real Time Big Data", "date": "2026-09-26", "n": 2000, "method": "", "v": {"Marília Campos": 19, "Aécio Neves": 12, "Carlos Viana": 16, "Domingos Sávio": 16, "Marcelo Aro": 11, "Áurea Carolina": 8, "others": 7, "undecided": 12}}
+      {"p": "Real Time Big Data", "date": "2026-09-26", "n": 2000, "method": "", "v": {"Marília Campos": 19, "Aécio Neves": 12, "Carlos Viana": 16, "Domingos Sávio": 16, "Marcelo Aro": 11, "Áurea Carolina": 8, "others": 7, "undecided": 12}},
+      {"p": "Quaest", "date": "2026-09-28", "n": 1506, "method": "in_person", "v": {"Marília Campos": 13, "Aécio Neves": 12, "Carlos Viana": 12, "Domingos Sávio": 14, "Marcelo Aro": 6, "Áurea Carolina": 4, "others": 4, "undecided": 35}},
+      {"p": "Datafolha", "date": "2026-10-01", "n": 1204, "method": "in_person", "v": {"Marília Campos": 13, "Aécio Neves": 11, "Carlos Viana": 11, "Domingos Sávio": 9, "Marcelo Aro": 6, "Áurea Carolina": 5, "others": 10, "undecided": 35}},
+      {"p": "Real Time Big Data", "date": "2026-10-02", "n": 2000, "method": "phone", "v": {"Marília Campos": 19, "Aécio Neves": 9, "Carlos Viana": 20, "Domingos Sávio": 20, "Marcelo Aro": 9, "Áurea Carolina": 7, "others": 9, "undecided": 7}}
     ]
   },
   "notes": "Governor field (TSE, 11 candidates): Cleitinho (Republicanos), Patrus Ananias (PT), Kalil (PDT), Mateus Simões (PSD), Flávio Roscoe (PL), Gabriel Azevedo (MDB) named; Ben Mendes (Missão), Túlio Lopes (PCB), Indira Xavier (UP), Henrique Áreas (PCO), Rafael Duda (PSTU) summed in Outros. Patrus only entered the polls in July (earlier PT-allied candidate was Rodrigo Pacheco, PSB, who left the race), so all Jan-Jun polls (AtlasIntel 25-30 Mar, Futura 24-28 Mar, Real Time Big Data 19-20 Mar, Quaest 22-26 Apr, etc.) were skipped: their scenarios have Pacheco and no Patrus. July rows (Quaest 22-26 Jul scenario 1, RTBD 25-29 Jul scenario with Roscoe) include Maria da Consolação (PSOL, ~1-3%, not in the final field) inside Outros. Real Time Big Data 23-26 Sep governor poll published only in valid votes (Cleitinho 41, Patrus 22, Kalil 10, Simões 9, Roscoe 9, Gabriel 5) -> excluded from gov_t1/gov_t2 (its senate numbers are in total, consolidated, and are kept). gov_t2: Cleitinho x Patrus chosen (tied with Cleitinho x Kalil as most-polled, 11 vs 11 polls; Patrus is 2nd in all September polls). Datafolha Aug 18-20 had no 2nd-round data. Wide pollster spread: AtlasIntel and RTBD show Patrus ~30%/~19% vs Quaest/Datafolha 11-16%. Quaest 2026-09-22 senate: minor candidates only reported as <=1% each, so Outros omitted. Carlos Viana listed as PSD per 2026 articles.",
@@ -67,6 +74,7 @@
     "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/genial-quaest-governador-senador-minas-gerais-abril-2026/",
     "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/atlasintel-governador-senador-minas-gerais-abril-2026/",
     "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/futura-inteligencia-governador-senador-minas-gerais-abril-2026/",
-    "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-governador-minas-gerais-maio-2026/"
+    "https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/real-time-big-data-governador-minas-gerais-maio-2026/",
+    "https://pt.wikipedia.org/wiki/Pesquisas_eleitorais_para_a_eleição_estadual_de_2026_em_Minas_Gerais"
   ]
 }
