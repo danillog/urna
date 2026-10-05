@@ -14,6 +14,7 @@
     "apuracao:cidades": "uv run python -m pipeline.apuracao_cidades",
     "census": "uv run python -m pipeline.census_vote",
     "capitals": "uv run python -m pipeline.capitals",
+    "profiles": "uv run python -m pipeline.profiles",
     "americas": "uv run python -m pipeline.americas.discover && uv run python -m pipeline.americas.geo && uv run python -m pipeline.americas.build && uv run python -m pipeline.americas.indicators",
     "test": "vitest run",
     "test:data": "uv run pytest",

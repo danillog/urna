@@ -118,6 +118,7 @@
     <button type="button" role="tab" id="tab-polls" data-view="polls" aria-selected="true" aria-controls="polls-view">Pesquisas</button>
     <button type="button" role="tab" id="tab-apuracao" data-view="apuracao" aria-selected="false" aria-controls="apuracao-view">Apuração</button>
     <button type="button" role="tab" id="tab-congress" data-view="congress" aria-selected="false" aria-controls="congress-view">Congresso</button>
+    <button type="button" role="tab" id="tab-people" data-view="people" aria-selected="false" aria-controls="people-view">Eleitos 2026</button>
     <button type="button" role="tab" id="tab-map" data-view="map" aria-selected="false" aria-controls="map-view">Mapa por município</button>
     <button type="button" role="tab" id="tab-census" data-view="census" aria-selected="false" aria-controls="census-view">Voto e Censo</button>
     <button type="button" role="tab" id="tab-americas" data-view="americas" aria-selected="false" aria-controls="americas-view">Américas</button>
@@ -294,6 +295,54 @@
       <div class="scroll"><table id="cg-table" class="cg-table"></table></div>
       <p class="map-note" id="cg-note"></p>
       <p class="map-note sources" id="cg-sources"></p>
+    </section>
+  </div>
+
+  <div class="view" id="people-view" role="tabpanel" aria-labelledby="tab-people" hidden>
+    <div class="controls">
+      <div class="group pp-search-group">
+        <label class="group-label" for="pp-search">Buscar</label>
+        <input type="search" id="pp-search" class="select pp-search" placeholder="Nome ou partido" autocomplete="off">
+      </div>
+      <div class="group">
+        <span class="group-label" id="lbl-pp-office">Cargo</span>
+        <div class="seg seg-wrap" role="group" aria-labelledby="lbl-pp-office" id="pp-offices">
+          <button type="button" data-office="" aria-pressed="true">Todos</button>
+          <button type="button" data-office="governador" aria-pressed="false">Governador</button>
+          <button type="button" data-office="senador" aria-pressed="false">Senador</button>
+          <button type="button" data-office="deputado-federal" aria-pressed="false">Dep. federal</button>
+        </div>
+      </div>
+      <div class="group">
+        <label class="group-label" for="pp-uf">Estado</label>
+        <select id="pp-uf" class="select"></select>
+      </div>
+      <div class="group">
+        <label class="group-label" for="pp-party">Partido</label>
+        <select id="pp-party" class="select"></select>
+      </div>
+    </div>
+
+    <section class="panel" aria-labelledby="pp-title">
+      <div class="panel-head">
+        <h2 class="panel-title" id="pp-title"></h2>
+        <span class="meta" id="pp-meta"></span>
+      </div>
+      <div class="pp-renewal" id="pp-renewal"></div>
+      <div class="legend map-legend" id="pp-kinds"></div>
+      <p class="cv-warning" id="pp-warning"></p>
+    </section>
+
+    <section class="panel pp-profile" id="pp-profile" aria-live="polite" hidden></section>
+
+    <section class="panel" aria-labelledby="pp-list-title">
+      <div class="panel-head">
+        <h2 class="panel-title" id="pp-list-title"></h2>
+      </div>
+      <ul class="pp-list" id="pp-list"></ul>
+      <button type="button" class="chip pp-more" id="pp-more" hidden></button>
+      <p class="map-note" id="pp-note"></p>
+      <p class="map-note sources" id="pp-sources"></p>
     </section>
   </div>
 

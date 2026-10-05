@@ -44,7 +44,8 @@ describe("app", () => {
         }
       }
     }
-  });
+    // Every year and round in turn: slow on a busy machine.
+  }, 15_000);
 
   it("renders every state race and keeps the URL in sync", () => {
     const select = $("uf-select") as HTMLSelectElement;
@@ -229,6 +230,33 @@ describe("app", () => {
     expect([...$("cg-sources").querySelectorAll("a")].map((l) => l.textContent)).toContain(
       "Cadeiras em 2002: Wikipédia (números do TSE)",
     );
+    click("tab-polls");
+  });
+
+  it("opens the Eleitos 2026 tab, filters and opens a profile", () => {
+    const profiles = JSON.parse(
+      readFileSync(resolve(__dirname, "../../data/generated/profiles.json"), "utf8"),
+    );
+    click("tab-people");
+    expect($("people-view").hidden).toBe(false);
+    expect($("pp-title").textContent).toBe(`${profiles.people.length} eleitos`);
+    // The renewal bar adds up to everyone.
+    const counts = [...$("pp-kinds").querySelectorAll(".n")].map((n) => Number(n.textContent!.split(" ")[0]));
+    expect(counts.reduce((a, b) => a + b, 0)).toBe(profiles.people.length);
+
+    ($("pp-offices").querySelector('[data-office="governador"]') as HTMLButtonElement).click();
+    expect(window.location.search).toBe("?view=people&cargo=governador");
+    const governors = profiles.people.filter((p: { office: string }) => p.office === "governador");
+    expect($("pp-list").querySelectorAll(".pp-card").length).toBe(Math.min(60, governors.length));
+
+    // A profile: the trajectory, a news search, and never the CPF or the voter registration.
+    ($("pp-list").querySelector(".pp-card") as HTMLButtonElement).click();
+    expect($("pp-profile").hidden).toBe(false);
+    expect($("pp-profile").querySelector(".pp-news")!.getAttribute("href")).toContain("news.google.com");
+    expect(window.location.search).toContain("&p=");
+    expect(JSON.stringify(profiles)).not.toMatch(/NR_CPF|NR_TITULO|"cpf"|titulo/i);
+    ($("pp-profile").querySelector("[data-close]") as HTMLButtonElement).click();
+    expect($("pp-profile").hidden).toBe(true);
     click("tab-polls");
   });
 

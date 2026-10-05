@@ -18,6 +18,8 @@ data/raw/americas/indicators/
 data/raw/ipea/
 # IBGE tracts and weighting areas, TSE polling places and ballot-box reports (pipeline.capitals)
 data/raw/capitals/
+# TSE candidate files, Câmara and Senate profiles (pipeline.profiles): personal data, never published as is
+data/raw/profiles/
 .wrangler/
 
 # Working notes, kept out of the repository

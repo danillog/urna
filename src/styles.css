@@ -1538,3 +1538,210 @@ table.clickable tbody tr:focus-visible {
   opacity: 0.6;
   cursor: progress;
 }
+
+/* Eleitos 2026: renewal bar, a grid of cards, one profile. */
+.pp-search {
+  min-width: 14em;
+}
+.pp-bar {
+  display: flex;
+  height: 16px;
+  border-radius: 4px;
+  overflow: hidden;
+  gap: 2px;
+  margin: 8px 0 10px;
+}
+.pp-bar span {
+  display: block;
+  height: 100%;
+  background: var(--mc);
+}
+.pp-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 8px;
+}
+.pp-card {
+  width: 100%;
+  text-align: left;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 8px;
+  row-gap: 2px;
+  align-items: center;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--ink);
+  font: inherit;
+  cursor: pointer;
+}
+.pp-card:hover,
+.pp-card.on {
+  border-color: var(--ink);
+}
+.pp-card > .map-key {
+  grid-row: span 2;
+}
+.pp-card b {
+  font-weight: 600;
+}
+.pp-card-meta {
+  grid-column: 2;
+  font-size: 12px;
+  color: var(--muted);
+}
+.pp-card .pp-tag {
+  grid-column: 2;
+  justify-self: start;
+}
+.pp-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font: 600 11px/1 var(--body);
+  padding: 3px 6px;
+  border-radius: 4px;
+  border: 1px solid var(--line);
+  color: var(--ink-2);
+}
+.pp-more {
+  margin-top: 12px;
+}
+.pp-head {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+.pp-head > div {
+  flex: 1;
+  min-width: 0;
+}
+.pp-head .panel-title {
+  margin: 0;
+}
+.pp-sub {
+  margin: 4px 0 8px;
+  color: var(--ink-2);
+}
+.pp-photo {
+  width: 84px;
+  height: 108px;
+  object-fit: cover;
+  border-radius: 6px;
+  background: var(--grid);
+}
+.pp-facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 10px 20px;
+  margin: 12px 0;
+}
+.pp-facts dt {
+  font: 600 11px/1.2 var(--display);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.pp-facts dd {
+  margin: 2px 0 0;
+  overflow-wrap: anywhere;
+}
+.pp-career {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-left: 2px solid var(--line);
+}
+.pp-career li {
+  display: grid;
+  grid-template-columns: 3.2em minmax(0, 1fr) auto auto;
+  gap: 10px;
+  align-items: baseline;
+  padding: 6px 0 6px 12px;
+  font-size: 14px;
+}
+.pp-year {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+.pp-party {
+  color: var(--ink-2);
+  font-size: 12px;
+}
+.pp-result {
+  font: 600 11px/1 var(--body);
+  padding: 3px 6px;
+  border-radius: 4px;
+  border: 1px solid var(--line);
+  color: var(--muted);
+}
+.pp-result.r-elected {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+@media (max-width: 520px) {
+  .pp-career li {
+    grid-template-columns: 3.2em minmax(0, 1fr);
+  }
+  .pp-head {
+    flex-wrap: wrap;
+  }
+}
+.pp-contact {
+  margin-top: 16px;
+}
+.pp-socials a,
+.pp-facts a {
+  color: var(--ink);
+}
+.pp-links {
+  margin-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.pp-link {
+  font: 600 13px/1 var(--body);
+  padding: 9px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--ink);
+  color: var(--ink);
+  text-decoration: none;
+}
+.pp-link:hover {
+  background: var(--grid);
+}
+.pp-positions,
+.pp-news-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+}
+.pp-positions li {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 14px;
+  padding: 4px 0;
+  border-bottom: 1px solid var(--grid);
+}
+.pp-years {
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.pp-news-list li {
+  display: grid;
+  gap: 2px;
+  font-size: 14px;
+}
+.pp-news-list a {
+  color: var(--ink);
+}

@@ -97,6 +97,11 @@ export const t = {
       headline: "Quem ocupa as cadeiras do Congresso",
       lede: "Cada bolinha é uma cadeira, da esquerda para a direita conforme a posição do partido naquela época, medida por pesquisas acadêmicas. Dê play para ver a Câmara e o Senado mudarem eleição a eleição; passe o mouse num partido para ver as cadeiras e de onde vem a classificação dele.",
     },
+    people: {
+      eyebrow: "Eleições 2026 · quem foi eleito",
+      headline: "De onde vêm os eleitos",
+      lede: "Governadores, senadores e deputados federais eleitos em 2026: quem é estreante, quem volta ao cargo e quem já passou por outros. Cada perfil traz a trajetória desde 2010, de onde a pessoa vem e, para quem já está no Congresso, o contato do gabinete e as redes.",
+    },
     census: {
       eyebrow: "Voto e Censo · municípios, 1994 a 2026",
       headline: "Quem vota em quem, pelo perfil das cidades",
@@ -377,10 +382,124 @@ export const t = {
       label: "TSE: boletins de urna por seção, 1º turno de 2026",
       url: "https://resultados.tse.jus.br/oficial/app/index.html",
     },
+    wikidata: { label: "Wikidata: cargos, redes sociais e Wikipédia", url: "https://www.wikidata.org/" },
+    googleNews: {
+      label: "Google Notícias (busca automática)",
+      url: "https://news.google.com/?hl=pt-BR&gl=BR&ceid=BR:pt-419",
+    },
+    tseCandidates: {
+      label: "TSE, dados abertos: candidatos 2010–2026",
+      url: "https://dadosabertos.tse.jus.br/",
+    },
+    camaraOpenData: {
+      label: "Câmara dos Deputados: dados abertos (deputados)",
+      url: "https://dadosabertos.camara.leg.br/",
+    },
     senateOpenData: {
       label: "Senado Federal: dados abertos (senadores em exercício)",
       url: "https://legis.senado.leg.br/dadosabertos/docs/",
     },
+  },
+
+  people: {
+    office: {
+      governador: "Governador",
+      senador: "Senador",
+      "deputado-federal": "Deputado federal",
+      "deputado-estadual": "Deputado estadual",
+      "deputado-distrital": "Deputado distrital",
+      vereador: "Vereador",
+      prefeito: "Prefeito",
+      "vice-prefeito": "Vice-prefeito",
+      "vice-governador": "Vice-governador",
+      presidente: "Presidente",
+      "vice-presidente": "Vice-presidente",
+      "suplente-senador": "Suplente de senador",
+    } as Record<string, string>,
+    officePlural: {
+      governador: "governadores",
+      senador: "senadores",
+      "deputado-federal": "deputados federais",
+    } as Record<string, string>,
+    kind: {
+      new: "Estreante",
+      tried: "Já disputou, nunca eleito",
+      appointed: "Já teve cargo nomeado",
+      "other-office": "Já eleito para outro cargo",
+      returning: "Volta ao mesmo cargo",
+    } as Record<string, string>,
+    kindLong: {
+      new: "nenhuma candidatura desde 2010 e nenhum cargo público conhecido",
+      tried: "disputou antes e não venceu",
+      appointed: "nunca eleito, mas já foi ministro, secretário ou teve outro cargo público por nomeação",
+      "other-office": "já teve outro mandato (vereador, prefeito, deputado estadual…)",
+      returning: "já ocupou este cargo (reeleição ou retorno)",
+    } as Record<string, string>,
+    result: {
+      elected: "Eleito",
+      runoff: "2º turno",
+      substitute: "Suplente",
+      lost: "Não eleito",
+      unfit: "Registro inapto no arquivo do TSE",
+    } as Record<string, string>,
+    status: {
+      runoff: "Vai ao 2º turno",
+      projected: "Projeção",
+      staying: "Eleito em 2022, até 2031",
+    } as Record<string, string>,
+    all: "Todos",
+    allUfs: "Todos os estados",
+    allParties: "Todos os partidos",
+    title: (n: number) => `${n.toLocaleString("pt-BR")} ${n === 1 ? "eleito" : "eleitos"}`,
+    meta: (deputies: boolean) =>
+      deputies ? "TSE, 1º turno de 2026" : "TSE, 1º turno de 2026 · deputados por projeção",
+    renewalAria: "Divisão dos eleitos por trajetória",
+    share: (n: number, total: number) => `${n} (${Math.round((n / Math.max(1, total)) * 100)}%)`,
+    warning:
+      "Trajetória reconstruída com as candidaturas registradas no TSE desde 2010: mandatos anteriores a isso não aparecem. Deputados federais: até o TSE divulgar os eleitos, a lista é nossa projeção pelo quociente eleitoral; os nomes podem mudar.",
+    listTitle: (n: number, total: number) =>
+      n === total
+        ? `${n.toLocaleString("pt-BR")} pessoas`
+        : `${n.toLocaleString("pt-BR")} de ${total.toLocaleString("pt-BR")}`,
+    more: (n: number) => `Mostrar mais ${n}`,
+    none: "Ninguém com esses filtros.",
+    close: "Fechar",
+    age: (n: number) => `${n} anos na posse`,
+    votes: (n: string, share: string) => `${n} votos (${share} dos válidos)`,
+    facts: {
+      from: "Naturalidade",
+      education: "Escolaridade",
+      occupation: "Profissão declarada",
+      votes: "Votos em 2026",
+      age: "Idade",
+    },
+    career: "Trajetória nas urnas",
+    positions: "Cargos públicos",
+    positionsNote:
+      "Inclui cargos por nomeação (ministérios, secretarias), que não passam pelas urnas. Fonte: Wikidata.",
+    years: (from: number | null, to: number | null) =>
+      from && to ? `${from}–${to}` : from ? `desde ${from}` : to ? `até ${to}` : "",
+    wikipedia: "Wikipédia",
+    newsTitle: "Notícias recentes",
+    newsAuto: (date: string) =>
+      `Busca automática pelo nome entre aspas e o cargo, feita em ${date}; pode trazer homônimos.`,
+    noNews: "Nenhuma notícia encontrada na busca automática.",
+    moreNews: "Mais notícias",
+    careerEmpty: (since: number) => `Nenhuma candidatura registrada no TSE entre ${since} e 2024.`,
+    partyPath: (path: string) => `Partidos pelos quais concorreu: ${path}`,
+    contact: "Contato do gabinete atual",
+    contactNote: "Mandato 2023–2026 no Congresso; muda em fevereiro de 2027.",
+    noContact: "Ainda sem gabinete no Congresso: o contato oficial sai depois da posse.",
+    governorContact: "Governadores não têm um cadastro público de contato como o do Congresso.",
+    email: "E-mail",
+    phone: "Telefone",
+    room: "Gabinete",
+    site: "Site",
+    networks: "Redes sociais",
+    news: "Ver notícias",
+    newsNote: "Abre a busca do Google Notícias com o nome, o cargo e o estado.",
+    page: (house: string) => (house === "camara" ? "Página na Câmara" : "Página no Senado"),
+    note: "Perfis: candidaturas do TSE de 2010 a 2026, ligadas entre eleições pelo título de eleitor (que não é publicado aqui, assim como o CPF). Cargos públicos (inclusive por nomeação), redes e Wikipédia: Wikidata, casado pelo nome e pela data de nascimento. Notícias: busca automática no Google Notícias. Idade na data da posse, naturalidade, escolaridade e profissão são as declaradas ao TSE. Resultado de cada candidatura como está nos arquivos do TSE; decisões judiciais posteriores podem não aparecer. Contato, site e redes: Câmara dos Deputados e Senado Federal, para quem já é parlamentar. Governadores no 2º turno aparecem os dois candidatos, até 25 de outubro.",
   },
 
   census: {

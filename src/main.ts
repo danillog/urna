@@ -10,12 +10,14 @@ import apuracaoCidadesJson from "../data/generated/apuracao-cidades.json?raw";
 import congressJson from "../data/generated/congress.json?raw";
 import censusVoteJson from "../data/generated/census-vote.json?raw";
 import capitalsJson from "../data/generated/capitals.json?raw";
+import profilesJson from "../data/generated/profiles.json?raw";
 import { formatDate, formatIsoDate, dayToDate } from "./format";
 import { t } from "./i18n/pt-BR";
 import type { AmericasData } from "./model/americas";
 import type { CongressData } from "./model/congress";
 import { decodeCensusVote, type CensusVote, type EncodedCensusVote } from "./model/census-vote";
 import type { CapitalsData } from "./model/capitals";
+import type { ProfilesData } from "./model/profiles";
 import { MapData } from "./model/map-data";
 import { buildView } from "./model/view";
 import { fromSearch, latestYear, raceFor, toSearch, type AppState } from "./state";
@@ -28,12 +30,13 @@ import { AmericasView, americasFromSearch, americasToSearch } from "./ui/america
 import { ApuracaoView, apuracaoFromSearch, apuracaoToSearch } from "./ui/apuracao-view";
 import { CongressView, congressFromSearch, congressToSearch } from "./ui/congress-view";
 import { CensusView, censusFromSearch, censusToSearch } from "./ui/census-view";
+import { PeopleView, peopleFromSearch, peopleToSearch } from "./ui/people-view";
 import { renderLegend } from "./ui/legend";
 import { setupShare } from "./ui/share";
 import { MapView, mapFromSearch, mapToSearch } from "./ui/map-view";
 import { renderAccuracy, renderComparison, renderHighlightBar, renderPollTable } from "./ui/tables";
 
-const VIEWS = ["polls", "apuracao", "congress", "map", "census", "americas"] as const;
+const VIEWS = ["polls", "apuracao", "congress", "people", "map", "census", "americas"] as const;
 type View = (typeof VIEWS)[number];
 
 const data = dataset as unknown as Dataset;
@@ -106,6 +109,20 @@ function ensureCongress(): CongressView {
   return congressView;
 }
 
+let peopleView: PeopleView | null = null;
+
+function ensurePeople(): PeopleView {
+  if (!peopleView) {
+    const data = JSON.parse(profilesJson) as ProfilesData;
+    const initial = peopleFromSearch(data, view === "people" ? params : new URLSearchParams());
+    peopleView = new PeopleView(data, initial, () => {
+      syncUrl();
+      peopleView!.render();
+    });
+  }
+  return peopleView;
+}
+
 let censusView: CensusView | null = null;
 let censusData: CensusVote | null = null;
 let capitalsData: CapitalsData | null = null;
@@ -161,6 +178,10 @@ function syncUrl(): void {
     const p = new URLSearchParams({ view: "congress" });
     congressToSearch(congressView.current, congressData!, p);
     search = `?${p.toString()}`;
+  } else if (view === "people" && peopleView) {
+    const p = new URLSearchParams({ view: "people" });
+    peopleToSearch(peopleView.current, p);
+    search = `?${p.toString()}`;
   } else if (view === "census" && censusView) {
     const p = new URLSearchParams({ view: "census" });
     censusToSearch(censusView.current, censusData!, capitalsData!, p);
@@ -202,6 +223,7 @@ function showView(next: View): void {
   else if (view === "americas") ensureAmericas().render();
   else if (view === "congress") ensureCongress().render();
   else if (view === "census") ensureCensus().render();
+  else if (view === "people") ensurePeople().render();
   else if (view === "apuracao") {
     ensureApuracao().render();
     apuracaoView!.start();
