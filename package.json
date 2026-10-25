@@ -2,12 +2,14 @@
   "name": "urna",
   "version": "1.0.0",
   "private": true,
-  "description": "Brazilian election poll tracker: every published poll, a smoothed average and pollster accuracy, in a single offline HTML file.",
+  "description": "Brazilian election poll tracker: every published poll, a smoothed average and pollster accuracy, the vote by municipality, Congress and the 2026 elected.",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview",
+    "deploy": "bash scripts/deploy.sh",
+    "ship": "bash scripts/publish.sh",
     "data": "uv run python -m pipeline.build",
     "crawler": "uv run python -m pipeline.crawl",
     "map": "uv run python -m pipeline.fetch_tse_results && uv run python -m pipeline.municipal_map",
@@ -15,6 +17,7 @@
     "census": "uv run python -m pipeline.census_vote",
     "capitals": "uv run python -m pipeline.capitals",
     "profiles": "uv run python -m pipeline.profiles",
+    "refresh": "uv run python -m pipeline.refresh",
     "americas": "uv run python -m pipeline.americas.discover && uv run python -m pipeline.americas.geo && uv run python -m pipeline.americas.build && uv run python -m pipeline.americas.indicators",
     "test": "vitest run",
     "test:data": "uv run pytest",
@@ -51,11 +54,16 @@
     "@types/topojson-client": "^3.1.5",
     "@types/topojson-specification": "^1.0.5",
     "jsdom": "^27.0.1",
-    "mapshaper": "^0.7.76",
+    "mapshaper": "^0.7.78",
     "prettier": "^3.9.9",
     "typescript": "^7.0.2",
     "vite": "^7.3.6",
-    "vite-plugin-singlefile": "^2.3.3",
-    "vitest": "^3.2.7"
+    "vitest": "^4.1.11"
+  },
+  "overrides": {
+    "adm-zip": "^0.6.1",
+    "fflate": "^0.8.3",
+    "image-size": "^2.0.4",
+    "file-type": "^21.3.1"
   }
 }
