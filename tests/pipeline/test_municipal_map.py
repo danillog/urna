@@ -115,9 +115,12 @@ def test_csv_members_reads_only_the_national_file():
         buf = io.BytesIO()
         with zipfile.ZipFile(buf, "w") as zf:
             for n in names:
-                zf.writestr(n, "")
+                zf.writestr(n, "x" * len(n) if n.endswith("BRASIL.csv") else "")
         return zipfile.ZipFile(buf)
 
     assert csv_members(archive("x_1996_AC.csv", "x_1996_BRASIL.csv", "leiame.pdf")) == ["x_1996_BRASIL.csv"]
     assert csv_members(archive("x_2022_AC.csv", "x_2022_BR.csv")) == ["x_2022_BR.csv"]
     assert csv_members(archive("x_2000_AC.csv", "x_2000_AL.csv")) == ["x_2000_AC.csv", "x_2000_AL.csv"]
+    # 2026 ships both national files, "_BR" with only the header.
+    got = csv_members(archive("x_2026_AC.csv", "x_2026_BR.csv", "x_2026_BRASIL.csv"))
+    assert got == ["x_2026_BRASIL.csv"]

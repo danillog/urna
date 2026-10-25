@@ -16,6 +16,8 @@ export const NO_DATA = 0xffff;
  */
 export type CensusVar =
   | "income"
+  // Inside the capitals only (the IBGE's weighting areas publish it): the median income.
+  | "incomeMedian"
   | "catholic"
   | "evangelical"
   | "noReligion"
@@ -26,10 +28,41 @@ export type CensusVar =
   | "degree"
   | "illiterate"
   | "population"
-  | "urban";
+  | "urban"
+  | "gini"
+  // Inside the capitals only, from the census universe by tract:
+  | "white"
+  | "black"
+  | "brown"
+  | "asian"
+  | "indigenous"
+  | "negro"
+  | "elderly"
+  | "sameSex"
+  // Inside the capitals only, from the census sample by weighting area:
+  | "incomeRatio"
+  | "schoolYears"
+  | "spiritist"
+  | "afro"
+  | "unemployed"
+  | "commuteLong"
+  | "commuteWalk"
+  | "commuteMoto"
+  | "commuteCar"
+  | "commuteTransit"
+  | "renting"
+  | "poorWalls"
+  | "noInternet"
+  | "migrant"
+  // …and from the census universe by tract (as is "illiterate" there):
+  | "flat"
+  | "bathrooms"
+  | "sewer";
 
 /** Religion: four categories adding up to 100% of the people. */
 export const RELIGION: CensusVar[] = ["catholic", "evangelical", "noReligion", "otherReligion"];
+/** Colour or race as people declare it, five categories adding up to 100% (capitals only). */
+export const COLOUR: CensusVar[] = ["white", "black", "brown", "asian", "indigenous"];
 /** Schooling of adults 25+: four levels, lowest first, adding up to 100%. */
 export const SCHOOLING: CensusVar[] = ["eduBasic", "eduFund", "eduMid", "degree"];
 export const CENSUS_VARS: CensusVar[] = [
@@ -39,6 +72,7 @@ export const CENSUS_VARS: CensusVar[] = [
   "illiterate",
   "population",
   "urban",
+  "gini",
 ];
 
 /** Shape of data/generated/census-vote.json. */
@@ -48,22 +82,32 @@ export interface EncodedCensusVote {
   incomeTo2022: number;
   /** Census year → variable → base64 typed array (Uint16; population Uint32). */
   census: Record<string, Record<CensusVar, string>>;
-  elections: {
-    year: number;
-    census: number;
-    /** The PT's candidate and the strongest rival nationally, as shown. */
-    pt: string;
-    rival: string;
-    rivalParty: string;
-    /** Tenths of a percent of valid votes. */
-    ptShare: string;
-    rivalShare: string;
-    valid: string;
-  }[];
+  /** Census year → the people each distribution is of (Uint32): religion, schooling. */
+  bases?: Record<string, { religion: string; schooling: string }>;
+  elections: EncodedElection[];
+  /** The runoffs (2002 on), same shape: picked by round, the timeline stays the 1st round.
+   * On the page they come apart (`census-runoffs`), with only their years here. */
+  runoffs?: EncodedElection[];
+  runoffYears?: number[];
+}
+
+export interface EncodedElection {
+  year: number;
+  round?: "r1" | "r2";
+  census: number;
+  /** The PT's candidate and the strongest rival nationally, as shown. */
+  pt: string;
+  rival: string;
+  rivalParty: string;
+  /** Tenths of a percent of valid votes. */
+  ptShare: string;
+  rivalShare: string;
+  valid: string;
 }
 
 export interface Election {
   year: number;
+  round: "r1" | "r2";
   census: number;
   pt: string;
   rival: string;
@@ -76,8 +120,16 @@ export interface Election {
 export interface CensusVote {
   censusYears: number[];
   incomeTo2022: number;
-  census: Record<number, Record<CensusVar, Uint16Array | Uint32Array>>;
+  /** Municipal censuses: the variables in CENSUS_VARS (the others exist inside the capitals only). */
+  census: Record<number, Partial<Record<CensusVar, Uint16Array | Uint32Array>>>;
+  /** Who each distribution is of; 0 where unknown (then the whole population stands in). */
+  bases: Record<number, { religion: Uint32Array; schooling: Uint32Array }>;
+  /** 1st rounds, the timeline. */
   elections: Election[];
+  /** Runoffs, 2002 on: downloaded when first asked for (empty until then). */
+  runoffs: Election[];
+  /** Years that had a runoff, known before the runoffs arrive. */
+  runoffYears: number[];
 }
 
 function buffer(b64: string): ArrayBuffer {
@@ -90,21 +142,35 @@ function buffer(b64: string): ArrayBuffer {
 export function decodeCensusVote(e: EncodedCensusVote): CensusVote {
   const census: CensusVote["census"] = {};
   for (const [year, vars] of Object.entries(e.census)) {
-    const decoded = {} as Record<CensusVar, Uint16Array | Uint32Array>;
+    const decoded: Partial<Record<CensusVar, Uint16Array | Uint32Array>> = {};
     for (const v of CENSUS_VARS)
       decoded[v] = v === "population" ? new Uint32Array(buffer(vars[v])) : new Uint16Array(buffer(vars[v]));
     census[Number(year)] = decoded;
   }
+  const bases: CensusVote["bases"] = {};
+  for (const [year, b] of Object.entries(e.bases ?? {}))
+    bases[Number(year)] = {
+      religion: new Uint32Array(buffer(b.religion)),
+      schooling: new Uint32Array(buffer(b.schooling)),
+    };
   return {
     censusYears: e.censusYears,
     incomeTo2022: e.incomeTo2022,
     census,
-    elections: e.elections.map((x) => ({
-      ...x,
-      ptShare: new Uint16Array(buffer(x.ptShare)),
-      rivalShare: new Uint16Array(buffer(x.rivalShare)),
-      valid: new Uint32Array(buffer(x.valid)),
-    })),
+    bases,
+    elections: e.elections.map(decodeElection),
+    runoffs: (e.runoffs ?? []).map(decodeElection),
+    runoffYears: e.runoffYears ?? (e.runoffs ?? []).map((r) => r.year),
+  };
+}
+
+export function decodeElection(x: EncodedElection): Election {
+  return {
+    ...x,
+    round: x.round ?? "r1",
+    ptShare: new Uint16Array(buffer(x.ptShare)),
+    rivalShare: new Uint16Array(buffer(x.rivalShare)),
+    valid: new Uint32Array(buffer(x.valid)),
   };
 }
 
@@ -113,7 +179,7 @@ export function decodeCensusVote(e: EncodedCensusVote): CensusVote {
  * for population, percent for the rest; null when the census has none.
  */
 export function valueAt(data: CensusVote, year: number, v: CensusVar, i: number): number | null {
-  const raw = data.census[year]?.[v][i];
+  const raw = data.census[year]?.[v]?.[i];
   if (raw === undefined) return null;
   if (v === "population") return raw > 0 ? raw : null;
   if (raw === NO_DATA) return null;
@@ -122,7 +188,7 @@ export function valueAt(data: CensusVote, year: number, v: CensusVar, i: number)
 }
 
 /** Whether a variable is drawn on a log scale (it spans orders of magnitude). */
-export const isLog = (v: CensusVar) => v === "income" || v === "population";
+export const isLog = (v: CensusVar) => v === "income" || v === "incomeMedian" || v === "population";
 
 /** Share of valid votes (percent) of the PT's candidate or the rival; null where there was no vote. */
 export function voteAt(e: Election, side: "pt" | "rival", i: number): number | null {
@@ -250,7 +316,8 @@ export interface CompositionGroup {
 
 /**
  * The towns grouped by the vote one side got, and for each group how its people split
- * by religion and by schooling, every person counting once (a big city weighs more).
+ * by religion and by schooling, every person counting once (a big city weighs more):
+ * religion over the people it was asked of, schooling over adults.
  * Categories shown as categories: the whole distribution, not one share of it.
  */
 export function composition(
@@ -266,12 +333,15 @@ export function composition(
     if (!inRegion(i) || v === null || !e.valid[i]) continue;
     groups[groupOf(v, cuts)]!.push(i);
   }
-  const mix = (places: number[], vars: CensusVar[]) => {
+  // Each place weighs as many people as the distribution is of: those aged 10+ for religion
+  // in 2022, adults for schooling; the whole population where the census gives no count.
+  const mix = (places: number[], vars: CensusVar[], base: "religion" | "schooling") => {
     const sums: Record<string, number> = Object.fromEntries(vars.map((v) => [v, 0]));
     let weight = 0;
+    const counts = data.bases[e.census]?.[base];
     for (const i of places) {
       const values = vars.map((v) => valueAt(data, e.census, v, i));
-      const w = valueAt(data, e.census, "population", i) ?? 0;
+      const w = counts?.[i] || (valueAt(data, e.census, "population", i) ?? 0);
       if (!w || values.some((x) => x === null)) continue;
       vars.forEach((v, k) => (sums[v]! += values[k]! * w));
       weight += w;
@@ -285,8 +355,8 @@ export function composition(
     to: k < cuts.length ? cuts[k]! : null,
     places: places.length,
     population: places.reduce((s, i) => s + (valueAt(data, e.census, "population", i) ?? 0), 0),
-    religion: mix(places, RELIGION),
-    schooling: mix(places, SCHOOLING),
+    religion: mix(places, RELIGION, "religion"),
+    schooling: mix(places, SCHOOLING, "schooling"),
   }));
 }
 

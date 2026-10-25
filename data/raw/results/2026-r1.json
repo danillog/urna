@@ -1,93 +1,93 @@
 {
  "source": "https://resultados.tse.jus.br/oficial/ele2026",
- "fetchedAt": "2026-10-05T02:01:32+00:00",
+ "fetchedAt": "2026-10-06T00:24:40+00:00",
  "president": {
-  "counted": 99.97,
-  "totalizedAt": "04/10/2026 23:00:31",
+  "counted": 100.0,
+  "totalizedAt": "05/10/2026 12:51:05",
   "candidates": [
    {
     "name": "FLAVIO BOLSONARO",
     "party": "PL",
-    "votes": 56099686,
-    "share": 47.04,
-    "status": ""
+    "votes": 56104503,
+    "share": 47.03,
+    "status": "2º turno"
    },
    {
     "name": "LULA",
     "party": "PT",
-    "votes": 53852849,
-    "share": 45.15,
-    "status": ""
+    "votes": 53879538,
+    "share": 45.16,
+    "status": "2º turno"
    },
    {
     "name": "ESCRITOR AUGUSTO CURY",
     "party": "AVANTE",
-    "votes": 3448116,
+    "votes": 3448569,
     "share": 2.89,
-    "status": ""
+    "status": "Não eleito"
    },
    {
     "name": "RENAN SANTOS",
     "party": "MISSÃO",
-    "votes": 2675665,
+    "votes": 2675887,
     "share": 2.24,
-    "status": ""
+    "status": "Não eleito"
    },
    {
     "name": "RONALDO CAIADO",
     "party": "PSD",
-    "votes": 2604881,
+    "votes": 2605148,
     "share": 2.18,
-    "status": ""
+    "status": "Não eleito"
    },
    {
     "name": "ZEMA",
     "party": "NOVO",
-    "votes": 326470,
+    "votes": 326488,
     "share": 0.27,
-    "status": ""
+    "status": "Não eleito"
    },
    {
     "name": "SAMARA",
     "party": "UP",
-    "votes": 122906,
+    "votes": 122911,
     "share": 0.1,
-    "status": ""
+    "status": "Não eleito"
    },
    {
     "name": "HERTZ DIAS",
     "party": "PSTU",
-    "votes": 43100,
+    "votes": 43103,
     "share": 0.04,
-    "status": ""
+    "status": "Não eleito"
    },
    {
     "name": "CLARIANA BARAO",
     "party": "DC",
-    "votes": 40041,
+    "votes": 40043,
     "share": 0.03,
-    "status": ""
+    "status": "Não eleito"
    },
    {
     "name": "EDMILSON COSTA",
     "party": "PCB",
-    "votes": 22688,
+    "votes": 22693,
     "share": 0.02,
-    "status": ""
+    "status": "Não eleito"
    },
    {
     "name": "VETERINÁRIO WILSON GRASSI",
     "party": "DEMOCRATA",
-    "votes": 16876,
+    "votes": 16881,
     "share": 0.01,
-    "status": ""
+    "status": "Não eleito"
    },
    {
     "name": "RUI COSTA PIMENTA",
     "party": "PCO",
     "votes": 15024,
     "share": 0.01,
-    "status": ""
+    "status": "Não eleito"
    }
   ]
  },
@@ -175,57 +175,57 @@
    ]
   },
   "AM": {
-   "counted": 99.83,
-   "totalizedAt": "04/10/2026 21:55:17",
+   "counted": 100.0,
+   "totalizedAt": "05/10/2026 04:59:33",
    "candidates": [
     {
      "name": "OMAR AZIZ",
      "party": "PSD",
-     "votes": 839064,
-     "share": 40.58,
-     "status": ""
+     "votes": 841846,
+     "share": 40.63,
+     "status": "2º turno"
     },
     {
      "name": "PROFESSORA MARIA DO CARMO",
      "party": "PL",
-     "votes": 507225,
-     "share": 24.53,
-     "status": ""
+     "votes": 507335,
+     "share": 24.49,
+     "status": "2º turno"
     },
     {
      "name": "ROBERTO CIDADE",
      "party": "UNIÃO",
-     "votes": 452808,
-     "share": 21.9,
-     "status": ""
+     "votes": 453896,
+     "share": 21.91,
+     "status": "Não eleito"
     },
     {
      "name": "DAVID ALMEIDA",
      "party": "AVANTE",
-     "votes": 218358,
-     "share": 10.56,
-     "status": ""
+     "votes": 218490,
+     "share": 10.54,
+     "status": "Não eleito"
     },
     {
      "name": "CABO DACIOLO",
      "party": "MOBILIZA",
-     "votes": 36174,
+     "votes": 36176,
      "share": 1.75,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "ISAEL MUNDURUKU",
      "party": "REDE",
-     "votes": 11454,
+     "votes": 11459,
      "share": 0.55,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "GILBERTO VASCONCELOS",
      "party": "PSTU",
      "votes": 2783,
      "share": 0.13,
-     "status": ""
+     "status": "Não eleito"
     }
    ]
   },
@@ -271,112 +271,112 @@
    ]
   },
   "BA": {
-   "counted": 99.84,
-   "totalizedAt": "04/10/2026 23:00:53",
+   "counted": 100.0,
+   "totalizedAt": "05/10/2026 00:50:30",
    "candidates": [
     {
      "name": "JERÔNIMO RODRIGUES",
      "party": "PT",
-     "votes": 4616788,
-     "share": 55.77,
-     "status": ""
+     "votes": 4626509,
+     "share": 55.8,
+     "status": "Eleito"
     },
     {
      "name": "ACM NETO",
      "party": "UNIÃO",
-     "votes": 3621413,
-     "share": 43.75,
-     "status": ""
+     "votes": 3625227,
+     "share": 43.72,
+     "status": "Não eleito"
     },
     {
      "name": "RONALDO MANSUR",
      "party": "PSOL",
-     "votes": 27230,
+     "votes": 27243,
      "share": 0.33,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "AROLDO FELIX",
      "party": "UP",
-     "votes": 5235,
+     "votes": 5238,
      "share": 0.06,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "MARIA BONA",
      "party": "PCO",
-     "votes": 4025,
+     "votes": 4028,
      "share": 0.05,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "ARIEL CAPISTRANO",
      "party": "DC",
-     "votes": 2843,
+     "votes": 2845,
      "share": 0.03,
-     "status": ""
+     "status": "Não eleito"
     }
    ]
   },
   "CE": {
-   "counted": 99.97,
-   "totalizedAt": "04/10/2026 22:53:11",
+   "counted": 100.0,
+   "totalizedAt": "04/10/2026 23:10:27",
    "candidates": [
     {
      "name": "ELMANO DE FREITAS",
      "party": "PT",
-     "votes": 2874183,
+     "votes": 2875573,
      "share": 53.19,
-     "status": ""
+     "status": "Eleito"
     },
     {
      "name": "CIRO GOMES",
      "party": "PSDB",
-     "votes": 2498301,
-     "share": 46.23,
-     "status": ""
+     "votes": 2498891,
+     "share": 46.22,
+     "status": "Não eleito"
     },
     {
      "name": "DELEGADO HUGGO",
      "party": "MISSÃO",
-     "votes": 17214,
+     "votes": 17219,
      "share": 0.32,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "VERA LÚCIA",
      "party": "NOVO",
      "votes": 5701,
      "share": 0.11,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "SERLEY LEAL",
      "party": "UP",
      "votes": 4344,
      "share": 0.08,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "ZÉ BATISTA",
      "party": "PSTU",
      "votes": 2161,
      "share": 0.04,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "DANILO SOARES",
      "party": "DEMOCRATA",
-     "votes": 1742,
+     "votes": 1743,
      "share": 0.03,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "IERI BRAGA",
      "party": "PCO",
      "votes": 463,
      "share": 0.01,
-     "status": ""
+     "status": "Não eleito"
     }
    ]
   },
@@ -546,147 +546,147 @@
    ]
   },
   "MA": {
-   "counted": 99.83,
-   "totalizedAt": "04/10/2026 22:51:41",
+   "counted": 100.0,
+   "totalizedAt": "05/10/2026 02:00:33",
    "candidates": [
     {
      "name": "EDUARDO BRAIDE",
      "party": "PSD",
-     "votes": 2102102,
-     "share": 54.73,
-     "status": ""
+     "votes": 2104122,
+     "share": 54.71,
+     "status": "Eleito"
     },
     {
      "name": "ORLEANS BRANDÃO",
      "party": "MDB",
-     "votes": 1351181,
-     "share": 35.18,
-     "status": ""
+     "votes": 1354044,
+     "share": 35.21,
+     "status": "Não eleito"
     },
     {
      "name": "FELIPE CAMARÃO",
      "party": "PT",
-     "votes": 373388,
-     "share": 9.72,
-     "status": ""
+     "votes": 374039,
+     "share": 9.73,
+     "status": "Não eleito"
     },
     {
      "name": "ROBERTO ROCHA",
      "party": "PRTB",
-     "votes": 48918,
+     "votes": 48924,
      "share": 1.27,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "ANDRÉ LUIS",
      "party": "MISSÃO",
      "votes": 7905,
      "share": 0.21,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "SAULO ARCANGELI",
      "party": "PSTU",
-     "votes": 4686,
+     "votes": 4693,
      "share": 0.12,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "REGINALDO LIMA",
      "party": "PCB",
      "votes": 1096,
      "share": 0.03,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "DIMAS CASSIMIRO",
      "party": "PCO",
      "votes": 257,
      "share": 0.01,
-     "status": ""
+     "status": "Não eleito"
     }
    ]
   },
   "MG": {
-   "counted": 99.99,
-   "totalizedAt": "04/10/2026 22:57:06",
+   "counted": 100.0,
+   "totalizedAt": "05/10/2026 00:50:04",
    "candidates": [
     {
      "name": "CLEITINHO AZEVEDO",
      "party": "REPUBLICANOS",
-     "votes": 6321261,
+     "votes": 6321590,
      "share": 55.4,
-     "status": ""
+     "status": "Eleito"
     },
     {
      "name": "PATRUS ANANIAS",
      "party": "PT",
-     "votes": 3005635,
-     "share": 26.34,
-     "status": ""
+     "votes": 3006088,
+     "share": 26.35,
+     "status": "Não eleito"
     },
     {
      "name": "FLÁVIO ROSCOE",
      "party": "PL",
-     "votes": 795181,
+     "votes": 795193,
      "share": 6.97,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "MATEUS SIMÕES",
      "party": "PSD",
-     "votes": 530246,
+     "votes": 530292,
      "share": 4.65,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "ALEXANDRE KALIL",
      "party": "PDT",
-     "votes": 403463,
+     "votes": 403466,
      "share": 3.54,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "GABRIEL",
      "party": "MDB",
-     "votes": 237050,
+     "votes": 237051,
      "share": 2.08,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "BEN MENDES",
      "party": "MISSÃO",
-     "votes": 80307,
+     "votes": 80308,
      "share": 0.7,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "INDIRA XAVIER",
      "party": "UP",
      "votes": 20662,
      "share": 0.18,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "PROFESSOR TÚLIO LOPES",
      "party": "PCB",
      "votes": 10957,
      "share": 0.1,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "RAFAEL DUDA",
      "party": "PSTU",
      "votes": 4764,
      "share": 0.04,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "HENRIQUE ÁREAS",
      "party": "PCO",
      "votes": 1464,
      "share": 0.01,
-     "status": ""
+     "status": "Não eleito"
     }
    ]
   },
@@ -801,91 +801,91 @@
    ]
   },
   "PA": {
-   "counted": 99.96,
-   "totalizedAt": "04/10/2026 22:48:42",
+   "counted": 100.0,
+   "totalizedAt": "04/10/2026 23:55:28",
    "candidates": [
     {
      "name": "DR. DANIEL",
      "party": "PODE",
-     "votes": 2345255,
-     "share": 51.4,
-     "status": ""
+     "votes": 2345721,
+     "share": 51.39,
+     "status": "Eleito"
     },
     {
      "name": "HANA GHASSAN",
      "party": "MDB",
-     "votes": 2123802,
-     "share": 46.54,
-     "status": ""
+     "votes": 2125084,
+     "share": 46.55,
+     "status": "Não eleito"
     },
     {
      "name": "ARACELI",
      "party": "PSOL",
-     "votes": 85843,
+     "votes": 85857,
      "share": 1.88,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "GAL LEITE",
      "party": "UP",
-     "votes": 5502,
+     "votes": 5503,
      "share": 0.12,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "WELL MACEDO",
      "party": "PSTU",
      "votes": 2676,
      "share": 0.06,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "RUTH REIS",
      "party": "DEMOCRATA",
      "votes": 1987,
      "share": 0.04,
-     "status": ""
+     "status": "Não eleito"
     }
    ]
   },
   "PB": {
-   "counted": 99.98,
-   "totalizedAt": "04/10/2026 22:12:55",
+   "counted": 100.0,
+   "totalizedAt": "04/10/2026 23:21:51",
    "candidates": [
     {
      "name": "LUCAS RIBEIRO",
      "party": "PP",
-     "votes": 1470037,
+     "votes": 1470252,
      "share": 64.3,
-     "status": ""
+     "status": "Eleito"
     },
     {
      "name": "EFRAIM FILHO",
      "party": "PL",
-     "votes": 552725,
+     "votes": 552836,
      "share": 24.18,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "CÍCERO LUCENA",
      "party": "MDB",
-     "votes": 252859,
+     "votes": 252884,
      "share": 11.06,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "YURI EZEQUIEL",
      "party": "UP",
-     "votes": 8270,
+     "votes": 8272,
      "share": 0.36,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "CAMILO DUARTE",
      "party": "PCO",
      "votes": 2378,
      "share": 0.1,
-     "status": ""
+     "status": "Não eleito"
     }
    ]
   },
@@ -945,78 +945,78 @@
    ]
   },
   "PI": {
-   "counted": 99.83,
-   "totalizedAt": "04/10/2026 22:38:17",
+   "counted": 100.0,
+   "totalizedAt": "04/10/2026 23:36:35",
    "candidates": [
     {
      "name": "RAFAEL FONTELES",
      "party": "PT",
-     "votes": 1434543,
-     "share": 71.09,
-     "status": ""
+     "votes": 1436697,
+     "share": 71.08,
+     "status": "Eleito"
     },
     {
      "name": "JOEL RODRIGUES",
      "party": "PP",
-     "votes": 556999,
-     "share": 27.6,
-     "status": ""
+     "votes": 557972,
+     "share": 27.61,
+     "status": "Não eleito"
     },
     {
      "name": "PROFESSOR GISVALDO",
      "party": "PSOL",
-     "votes": 10000,
-     "share": 0.5,
-     "status": ""
+     "votes": 10002,
+     "share": 0.49,
+     "status": "Não eleito"
     },
     {
      "name": "DRA. LÚCIA SANTOS",
      "party": "PSDB",
-     "votes": 9602,
+     "votes": 9611,
      "share": 0.48,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "ELIZEU AGUIAR",
      "party": "NOVO",
      "votes": 5141,
      "share": 0.25,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "GERALDO CARVALHO",
      "party": "PSTU",
      "votes": 1858,
      "share": 0.09,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "SANTIAGO BELIZÁRIO",
      "party": "UP",
      "votes": 1777,
      "share": 0.09,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "LOURDES MELO",
      "party": "PCO",
-     "votes": 1293,
+     "votes": 1296,
      "share": 0.06,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "PROFESSOR JURITY",
      "party": "DC",
-     "votes": 1101,
+     "votes": 1102,
      "share": 0.05,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "RAVENNA DA INCLUSÃO",
      "party": "DEMOCRATA",
-     "votes": 818,
+     "votes": 819,
      "share": 0.04,
-     "status": ""
+     "status": "Não eleito"
     }
    ]
   },
@@ -1153,63 +1153,63 @@
   },
   "RN": {
    "counted": 100.0,
-   "totalizedAt": "04/10/2026 22:50:36",
+   "totalizedAt": "04/10/2026 23:01:26",
    "candidates": [
     {
      "name": "ALLYSON",
      "party": "UNIÃO",
      "votes": 733809,
      "share": 36.94,
-     "status": ""
+     "status": "2º turno"
     },
     {
      "name": "CADU DE LULA",
      "party": "PT",
      "votes": 718300,
      "share": 36.16,
-     "status": ""
+     "status": "2º turno"
     },
     {
      "name": "ÁLVARO DIAS",
      "party": "PL",
      "votes": 530580,
      "share": 26.71,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "ARINALDA DO MLB",
      "party": "UP",
      "votes": 1466,
      "share": 0.07,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "DÁRIO BARBOSA",
      "party": "PSTU",
      "votes": 1388,
      "share": 0.07,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "GODEIRO LINHARESS",
      "party": "DC",
      "votes": 464,
      "share": 0.02,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "RODRIGO DE BOLSONARO",
      "party": "AGIR",
      "votes": 434,
      "share": 0.02,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "HENRIQUE LYRA",
      "party": "PCO",
      "votes": 227,
      "share": 0.01,
-     "status": ""
+     "status": "Não eleito"
     }
    ]
   },
@@ -1662,64 +1662,64 @@
    ]
   },
   "AM": {
-   "counted": 99.83,
-   "totalizedAt": "04/10/2026 21:55:17",
+   "counted": 100.0,
+   "totalizedAt": "05/10/2026 04:59:33",
    "candidates": [
     {
      "name": "EDUARDO BRAGA",
      "party": "MDB",
-     "votes": 1237060,
-     "share": 32.27,
-     "status": ""
+     "votes": 1240471,
+     "share": 32.29,
+     "status": "Eleito"
     },
     {
      "name": "PLINIO VALÉRIO",
      "party": "PSDB",
-     "votes": 946211,
-     "share": 24.68,
-     "status": ""
+     "votes": 948793,
+     "share": 24.7,
+     "status": "Eleito"
     },
     {
      "name": "CAPITÃO ALBERTO NETO",
      "party": "PL",
-     "votes": 908445,
-     "share": 23.7,
-     "status": ""
+     "votes": 909155,
+     "share": 23.66,
+     "status": "Não eleito"
     },
     {
      "name": "WILSON LIMA",
      "party": "UNIÃO",
-     "votes": 455505,
-     "share": 11.88,
-     "status": ""
+     "votes": 456854,
+     "share": 11.89,
+     "status": "Não eleito"
     },
     {
      "name": "PROFESSORA EVANY",
      "party": "PSOL",
-     "votes": 220777,
-     "share": 5.76,
-     "status": ""
+     "votes": 220880,
+     "share": 5.75,
+     "status": "Não eleito"
     },
     {
      "name": "XUXA DO AMAZONAS",
      "party": "MOBILIZA",
-     "votes": 46753,
+     "votes": 46757,
      "share": 1.22,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "DAILSON CORRÊA",
      "party": "DC",
      "votes": 13913,
      "share": 0.36,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "EVANDRO DE OLIVEIRA",
      "party": "PSTU",
-     "votes": 5021,
+     "votes": 5022,
      "share": 0.13,
-     "status": ""
+     "status": "Não eleito"
     }
    ]
   },
@@ -1793,140 +1793,140 @@
    ]
   },
   "BA": {
-   "counted": 99.75,
-   "totalizedAt": "04/10/2026 22:57:37",
+   "counted": 100.0,
+   "totalizedAt": "05/10/2026 00:50:30",
    "candidates": [
     {
      "name": "RUI COSTA",
      "party": "PT",
-     "votes": 4321785,
-     "share": 30.05,
-     "status": ""
+     "votes": 4335196,
+     "share": 30.07,
+     "status": "Eleito"
     },
     {
      "name": "JAQUES WAGNER",
      "party": "PT",
-     "votes": 3973771,
-     "share": 27.63,
-     "status": ""
+     "votes": 3986690,
+     "share": 27.65,
+     "status": "Eleito"
     },
     {
      "name": "ANGELO CORONEL",
      "party": "REPUBLICANOS",
-     "votes": 2894243,
-     "share": 20.12,
-     "status": ""
+     "votes": 2898885,
+     "share": 20.11,
+     "status": "Não eleito"
     },
     {
      "name": "JOÃO ROMA",
      "party": "PL",
-     "votes": 2874709,
-     "share": 19.99,
-     "status": ""
+     "votes": 2879443,
+     "share": 19.97,
+     "status": "Não eleito"
     },
     {
      "name": "PROFESSORA DELLIANA",
      "party": "PSOL",
-     "votes": 214969,
+     "votes": 215190,
      "share": 1.49,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "MARCELO CARVALHO",
      "party": "REDE",
-     "votes": 50869,
+     "votes": 50929,
      "share": 0.35,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "CARLOS SODRÉ",
      "party": "MOBILIZA",
-     "votes": 21350,
+     "votes": 21374,
      "share": 0.15,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "MARCELO SANTTANA",
      "party": "DC",
-     "votes": 13159,
+     "votes": 13173,
      "share": 0.09,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "GREGORIO GOULD",
      "party": "UP",
-     "votes": 12596,
+     "votes": 12609,
      "share": 0.09,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "MARCELO MILLET",
      "party": "PCO",
-     "votes": 4915,
+     "votes": 4920,
      "share": 0.03,
-     "status": ""
+     "status": "Não eleito"
     }
    ]
   },
   "CE": {
-   "counted": 99.97,
-   "totalizedAt": "04/10/2026 22:53:11",
+   "counted": 100.0,
+   "totalizedAt": "04/10/2026 23:10:27",
    "candidates": [
     {
      "name": "CID GOMES",
      "party": "PSB",
-     "votes": 3032130,
-     "share": 31.22,
-     "status": ""
+     "votes": 3033562,
+     "share": 31.23,
+     "status": "Eleito"
     },
     {
      "name": "LUIZIANNE",
      "party": "REDE",
-     "votes": 2821416,
-     "share": 29.05,
-     "status": ""
+     "votes": 2822806,
+     "share": 29.06,
+     "status": "Eleito"
     },
     {
      "name": "CAPITÃO WAGNER",
      "party": "UNIÃO",
-     "votes": 2011005,
-     "share": 20.71,
-     "status": ""
+     "votes": 2011388,
+     "share": 20.7,
+     "status": "Não eleito"
     },
     {
      "name": "ALCIDES FERNANDES",
      "party": "PL",
-     "votes": 1776455,
+     "votes": 1776782,
      "share": 18.29,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "CATARINA MATOS",
      "party": "UP",
-     "votes": 39182,
+     "votes": 39185,
      "share": 0.4,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "GUILHERME THEOPHILO",
      "party": "NOVO",
      "votes": 24218,
      "share": 0.25,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "REGINALDO",
      "party": "PSTU",
      "votes": 7065,
      "share": 0.07,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "LINO ALVES",
      "party": "PCO",
      "votes": 2677,
      "share": 0.03,
-     "status": ""
+     "status": "Não eleito"
     }
    ]
   },
@@ -2180,203 +2180,203 @@
    ]
   },
   "MA": {
-   "counted": 99.83,
-   "totalizedAt": "04/10/2026 22:51:41",
+   "counted": 100.0,
+   "totalizedAt": "05/10/2026 02:00:33",
    "candidates": [
     {
      "name": "FUFUCA",
      "party": "PP",
-     "votes": 1527706,
-     "share": 21.49,
-     "status": ""
+     "votes": 1530187,
+     "share": 21.5,
+     "status": "Eleito"
     },
     {
      "name": "LAHESIO BONFIM",
      "party": "NOVO",
-     "votes": 1470356,
-     "share": 20.69,
-     "status": ""
+     "votes": 1471859,
+     "share": 20.68,
+     "status": "Eleito"
     },
     {
      "name": "ROSEANA SARNEY",
      "party": "MDB",
-     "votes": 1169216,
-     "share": 16.45,
-     "status": ""
+     "votes": 1171634,
+     "share": 16.46,
+     "status": "Não eleito"
     },
     {
      "name": "WEVERTON ROCHA",
      "party": "PDT",
-     "votes": 1084458,
+     "votes": 1086318,
      "share": 15.26,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "ELIZIANE GAMA",
      "party": "PT",
-     "votes": 695274,
+     "votes": 696298,
      "share": 9.78,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "CIDÔNIO GONÇALVES",
      "party": "PL",
-     "votes": 602824,
-     "share": 8.48,
-     "status": ""
+     "votes": 602997,
+     "share": 8.47,
+     "status": "Não eleito"
     },
     {
      "name": "DR.HILTON GONÇALO",
      "party": "MOBILIZA",
-     "votes": 457908,
+     "votes": 458681,
      "share": 6.44,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "ENILTON RODRIGUES",
      "party": "PSOL",
-     "votes": 83912,
+     "votes": 83949,
      "share": 1.18,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "SIMPLÍCIO ARAÚJO",
      "party": "DC",
-     "votes": 23991,
+     "votes": 23995,
      "share": 0.34,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "WILSON LEITE",
      "party": "PSTU",
-     "votes": 10906,
+     "votes": 10908,
      "share": 0.15,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "RAIMUNDO MOREIRA",
      "party": "PCB",
-     "votes": 5004,
+     "votes": 5019,
      "share": 0.07,
-     "status": ""
+     "status": "Não eleito"
     }
    ]
   },
   "MG": {
-   "counted": 99.99,
-   "totalizedAt": "04/10/2026 22:57:06",
+   "counted": 100.0,
+   "totalizedAt": "05/10/2026 00:50:04",
    "candidates": [
     {
      "name": "DOMINGOS SÁVIO",
      "party": "PL",
-     "votes": 4968699,
+     "votes": 4968829,
      "share": 24.21,
-     "status": ""
+     "status": "Eleito"
     },
     {
      "name": "MARÍLIA CAMPOS",
      "party": "PT",
-     "votes": 3990342,
+     "votes": 3990864,
      "share": 19.45,
-     "status": ""
+     "status": "Eleito"
     },
     {
      "name": "CARLOS VIANA",
      "party": "PSD",
-     "votes": 3583379,
+     "votes": 3583487,
      "share": 17.46,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "ÁUREA CAROLINA",
      "party": "PSOL",
-     "votes": 2664451,
+     "votes": 2664763,
      "share": 12.98,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "MARCELO ARO",
      "party": "PP",
-     "votes": 2387685,
+     "votes": 2387973,
      "share": 11.64,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "MARCO ANTÔNIO SUPERMAN",
      "party": "NOVO",
-     "votes": 1895563,
+     "votes": 1895603,
      "share": 9.24,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "AÉCIO NEVES",
      "party": "PSDB",
-     "votes": 836453,
+     "votes": 836595,
      "share": 4.08,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "MANOEL CARVALHO",
      "party": "MDB",
      "votes": 43227,
      "share": 0.21,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "ARCANJO PIMENTA",
      "party": "MDB",
      "votes": 40714,
      "share": 0.2,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "CARLIN MOURA",
      "party": "AVANTE",
      "votes": 35892,
      "share": 0.17,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "ANA LUIZA DO MLB",
      "party": "UP",
      "votes": 27620,
      "share": 0.13,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "VICTÓRIA MELLO VIC",
      "party": "PSTU",
      "votes": 17444,
      "share": 0.09,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "JUÍZ RAMON MOREIRA",
      "party": "DC",
      "votes": 14463,
      "share": 0.07,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "FIDÉLIS ALCÂNTARA",
      "party": "UP",
      "votes": 7546,
      "share": 0.04,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "JORDANO METALÚRGICO",
      "party": "PSTU",
      "votes": 7282,
      "share": 0.04,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "TIÃO PESSOA",
      "party": "PCO",
      "votes": 3184,
      "share": 0.02,
-     "status": ""
+     "status": "Não eleito"
     }
    ]
   },
@@ -2526,168 +2526,168 @@
    ]
   },
   "PA": {
-   "counted": 99.96,
-   "totalizedAt": "04/10/2026 22:48:42",
+   "counted": 100.0,
+   "totalizedAt": "04/10/2026 23:55:28",
    "candidates": [
     {
      "name": "HELDER",
      "party": "MDB",
-     "votes": 2340608,
-     "share": 26.14,
-     "status": ""
+     "votes": 2342070,
+     "share": 26.15,
+     "status": "Eleito"
     },
     {
      "name": "CHICÃO",
      "party": "UNIÃO",
-     "votes": 2013089,
-     "share": 22.48,
-     "status": ""
+     "votes": 2014409,
+     "share": 22.49,
+     "status": "Eleito"
     },
     {
      "name": "DELEGADO ÉDER MAURO",
      "party": "PL",
-     "votes": 1997447,
-     "share": 22.31,
-     "status": ""
+     "votes": 1997768,
+     "share": 22.3,
+     "status": "Não eleito"
     },
     {
      "name": "ZEQUINHA MARINHO",
      "party": "PODE",
-     "votes": 1889324,
+     "votes": 1889653,
      "share": 21.1,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "CELSO SABINO",
      "party": "PDT",
-     "votes": 526842,
+     "votes": 526994,
      "share": 5.88,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "GIZELLE FREITAS",
      "party": "PSOL",
-     "votes": 85753,
+     "votes": 85760,
      "share": 0.96,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "LIVIA NORONHA",
      "party": "SOLIDARIEDADE",
-     "votes": 39855,
+     "votes": 39864,
      "share": 0.45,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "CONTI",
      "party": "PSOL",
-     "votes": 35132,
+     "votes": 35138,
      "share": 0.39,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "FERNANDA LOPES",
      "party": "UP",
      "votes": 13359,
      "share": 0.15,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "CORONEL JONILDO",
      "party": "DC",
-     "votes": 12546,
+     "votes": 12547,
      "share": 0.14,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "EDLAINE RODRIGUES",
      "party": "DEMOCRATA",
      "votes": 8766,
      "share": 0.1,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "BRENO GUIMARÃES",
      "party": "MOBILIZA",
      "votes": 7047,
      "share": 0.08,
-     "status": ""
+     "status": "Não eleito"
     }
    ]
   },
   "PB": {
-   "counted": 99.98,
-   "totalizedAt": "04/10/2026 22:12:55",
+   "counted": 100.0,
+   "totalizedAt": "04/10/2026 23:21:51",
    "candidates": [
     {
      "name": "JOAO AZEVÊDO",
      "party": "PSB",
-     "votes": 1391766,
+     "votes": 1391994,
      "share": 32.5,
-     "status": ""
+     "status": "Eleito"
     },
     {
      "name": "VENEZIANO",
      "party": "MDB",
-     "votes": 974459,
+     "votes": 974550,
      "share": 22.76,
-     "status": ""
+     "status": "Eleito"
     },
     {
      "name": "NABOR",
      "party": "REPUBLICANOS",
-     "votes": 895267,
+     "votes": 895398,
      "share": 20.91,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "DR. MARCELO QUEIROGA",
      "party": "PL",
-     "votes": 533606,
+     "votes": 533723,
      "share": 12.46,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "MAJOR FÁBIO",
      "party": "NOVO",
-     "votes": 329077,
-     "share": 7.68,
-     "status": ""
+     "votes": 329160,
+     "share": 7.69,
+     "status": "Não eleito"
     },
     {
      "name": "ANDRÉ GADELHA",
      "party": "MDB",
-     "votes": 121166,
+     "votes": 121172,
      "share": 2.83,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "ROSILENE SANTANA",
      "party": "UP",
-     "votes": 21466,
+     "votes": 21471,
      "share": 0.5,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "RINALDO JÚNIOR",
      "party": "DC",
-     "votes": 8518,
+     "votes": 8519,
      "share": 0.2,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "JOÃO BATISTA",
      "party": "UP",
      "votes": 4099,
      "share": 0.1,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "ADRIANO TRAJANO",
      "party": "PCO",
      "votes": 2676,
      "share": 0.06,
-     "status": ""
+     "status": "Não eleito"
     }
    ]
   },
@@ -2782,120 +2782,120 @@
    ]
   },
   "PI": {
-   "counted": 99.83,
-   "totalizedAt": "04/10/2026 22:38:17",
+   "counted": 100.0,
+   "totalizedAt": "04/10/2026 23:36:35",
    "candidates": [
     {
      "name": "MARCELO CASTRO",
      "party": "MDB",
-     "votes": 1305549,
-     "share": 35.91,
-     "status": ""
+     "votes": 1307833,
+     "share": 35.92,
+     "status": "Eleito"
     },
     {
      "name": "JÚLIO CÉSAR O JULIM DO LULA",
      "party": "PSD",
-     "votes": 987483,
-     "share": 27.16,
-     "status": ""
+     "votes": 989146,
+     "share": 27.17,
+     "status": "Eleito"
     },
     {
      "name": "CIRO NOGUEIRA",
      "party": "PP",
-     "votes": 903416,
-     "share": 24.85,
-     "status": ""
+     "votes": 904961,
+     "share": 24.86,
+     "status": "Não eleito"
     },
     {
      "name": "TIAGO JUNQUEIRA",
      "party": "PL",
-     "votes": 324366,
-     "share": 8.92,
-     "status": ""
+     "votes": 324530,
+     "share": 8.91,
+     "status": "Não eleito"
     },
     {
      "name": "ANTÔNIO BARROS",
      "party": "NOVO",
-     "votes": 38529,
+     "votes": 38544,
      "share": 1.06,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "MARIA MADALENA NUNES",
      "party": "PSOL",
-     "votes": 27010,
+     "votes": 27015,
      "share": 0.74,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "ANTÔNIO JOSÉ LIRA",
      "party": "AVANTE",
-     "votes": 22399,
+     "votes": 22408,
      "share": 0.62,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "FRANCINALDO LEÃO",
      "party": "PSOL",
-     "votes": 11426,
+     "votes": 11429,
      "share": 0.31,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "JORGE LOPES",
      "party": "PSDB",
-     "votes": 9169,
+     "votes": 9174,
      "share": 0.25,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "DIONISIO CARVALHO",
      "party": "DC",
-     "votes": 7831,
+     "votes": 7832,
      "share": 0.22,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "JARDENYA BEZERRA",
      "party": "DEMOCRATA",
-     "votes": 6474,
+     "votes": 6476,
      "share": 0.18,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "IRMÃO EVANDRO MARQUES",
      "party": "DC",
-     "votes": 6275,
+     "votes": 6279,
      "share": 0.17,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "PEDRO LAURENTINO",
      "party": "UP",
-     "votes": 5907,
+     "votes": 5909,
      "share": 0.16,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "DANNIEL ROCHA",
      "party": "PSTU",
      "votes": 2790,
      "share": 0.08,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "MISSIONÁRIO EVANDRO CRAVEIRO",
      "party": "DEMOCRATA",
      "votes": 1513,
      "share": 0.04,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "CLOVES JOSÉ",
      "party": "PCO",
      "votes": 634,
      "share": 0.02,
-     "status": ""
+     "status": "Não eleito"
     }
    ]
   },
@@ -3081,98 +3081,98 @@
   },
   "RN": {
    "counted": 100.0,
-   "totalizedAt": "04/10/2026 22:50:36",
+   "totalizedAt": "04/10/2026 23:01:26",
    "candidates": [
     {
      "name": "STYVENSON VALENTIM",
      "party": "PODE",
      "votes": 1055000,
      "share": 29.25,
-     "status": ""
+     "status": "Eleito"
     },
     {
      "name": "SAMANDA DE LULA",
      "party": "PT",
      "votes": 635924,
      "share": 17.63,
-     "status": ""
+     "status": "Eleito"
     },
     {
      "name": "ZENAIDE MAIA",
      "party": "PSD",
      "votes": 630159,
      "share": 17.47,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "CORONEL HÉLIO",
      "party": "PL",
      "votes": 620354,
      "share": 17.2,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "RAFAEL MOTTA",
      "party": "PDT",
      "votes": 510674,
      "share": 14.16,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "TÉRCIO TINÔCO",
      "party": "UNIÃO",
      "votes": 102834,
      "share": 2.85,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "SANDRO PIMENTEL",
      "party": "PSOL",
      "votes": 22237,
      "share": 0.62,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "SONIA GODEIRO",
      "party": "PSOL",
      "votes": 14338,
      "share": 0.4,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "PROFESSOR GUILHERME",
      "party": "UP",
      "votes": 5511,
      "share": 0.15,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "ROSÁLIA FERNANDES",
      "party": "PSTU",
      "votes": 3795,
      "share": 0.11,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "LUCIANA MANDU",
      "party": "PSTU",
      "votes": 2486,
      "share": 0.07,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "CLÓVIS COSTA DO COLETIVO NÓS",
      "party": "AGIR",
      "votes": 1796,
      "share": 0.05,
-     "status": ""
+     "status": "Não eleito"
     },
     {
      "name": "GARI WENDELL BATISTA",
      "party": "AGIR",
      "votes": 1698,
      "share": 0.05,
-     "status": ""
+     "status": "Não eleito"
     }
    ]
   },

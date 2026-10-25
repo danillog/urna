@@ -3,6 +3,10 @@
 President (1994 onwards) and mayor (1996 onwards), one CSV per election year
 in data/raw/tse/, summed over electoral zones. Uses only the standard library.
 
+When an archive comes without the presidential votes (2026's, published the day after
+the 1st round, ships the national file empty), they are taken from the TSE's results
+site instead, municipality by municipality, once every ballot box is counted.
+
     uv run python -m pipeline.fetch_tse_results            # every year not downloaded yet
     uv run python -m pipeline.fetch_tse_results 2022 2024  # specific years (re-downloads)
 """
@@ -11,6 +15,7 @@ from __future__ import annotations
 
 import csv
 import io
+import json
 import sys
 import tempfile
 import urllib.request
@@ -19,7 +24,7 @@ from collections import defaultdict
 from pathlib import Path
 
 URL = "https://cdn.tse.jus.br/estatistica/sead/odsele/votacao_candidato_munzona/votacao_candidato_munzona_{year}.zip"
-PRESIDENTIAL_YEARS = [str(y) for y in range(1994, 2023, 4)]
+PRESIDENTIAL_YEARS = [str(y) for y in range(1994, 2027, 4)]
 MUNICIPAL_YEARS = [str(y) for y in range(1996, 2025, 4)]
 OUTPUT_DIR = Path(__file__).resolve().parent.parent / "data" / "raw" / "tse"
 OFFICES = {"PRESIDENTE": "president", "PREFEITO": "mayor"}
@@ -61,9 +66,11 @@ def download(year: str, target: Path) -> None:
 def csv_members(zf: zipfile.ZipFile) -> list[str]:
     """The national file when the archive ships one ("_BR.csv" or "_BRASIL.csv",
     depending on the year); reading it next to the state files would count
-    every vote twice."""
+    every vote twice. 2026 ships both, the "_BR" one holding only the header, so the
+    largest wins."""
     names = [n for n in zf.namelist() if n.lower().endswith(".csv")]
     national = [n for n in names if n.upper().endswith(("_BR.CSV", "_BRASIL.CSV"))]
+    national.sort(key=lambda n: zf.getinfo(n).file_size, reverse=True)
     return national[:1] or names
 
 
@@ -101,6 +108,33 @@ def aggregate(archive: Path, votes: dict[Key, int]) -> int:
     return rows
 
 
+def from_results_site(votes: dict[Key, int], round_id: str = "r1") -> int:
+    """2026 president for a round, from resultados.tse.jus.br; only fully counted places
+    (in a runoff the TSE lists every municipality, as every one votes for president)."""
+    from concurrent.futures import ThreadPoolExecutor
+
+    from . import apuracao_cidades as live
+    from .sources import tse_results
+
+    election = tse_results.election(2026, round_id, "federal")
+    url = f"{tse_results.base(2026)}/{election}/config/mun-e{election.zfill(6)}-cm.json"
+    config = json.loads(live.get(url))
+    places = [(a["cd"], m["cd"], m["nm"]) for a in config["abr"] if a["cd"] != "zz" for m in a["mu"]]
+    with ThreadPoolExecutor(live.WORKERS) as pool:
+        got = list(pool.map(lambda p: live.read(election, 1, p[0], p[1]), places))
+    missing = [
+        f"{uf.upper()} {name}"
+        for (uf, _, name), r in zip(places, got, strict=True)
+        if not r or r["counted"] < 100
+    ]
+    if missing:
+        raise SystemExit(f"not fully counted or unreadable: {missing[:10]} ({len(missing)} places)")
+    for (uf, tse, name), r in zip(places, got, strict=True):
+        for candidate, party, n in r["cands"]:
+            votes[round_id[1], uf.upper(), str(int(tse)), name, "president", candidate, party, ""] += n
+    return len(places)
+
+
 def fetch_year(year: str) -> None:
     votes: dict[Key, int] = defaultdict(int)
     with tempfile.TemporaryDirectory() as tmp:
@@ -108,6 +142,18 @@ def fetch_year(year: str) -> None:
         print(f"Downloading {year}...")
         download(year, archive)
         print(f"  {year}: {aggregate(archive, votes):,} rows for president or mayor")
+    if year == "2026":
+        from .sources import tse_results
+
+        for round_id in ("r1", "r2"):
+            if any(k[4] == "president" and k[0] == round_id[1] for k in votes):
+                continue  # the archive has it
+            try:
+                tse_results.election(2026, round_id, "federal")
+            except tse_results.NotPublished:
+                continue  # no runoff listed yet
+            print(f"  {year} {round_id}: no presidential votes in the archive; reading the results site")
+            print(f"  {year} {round_id}: {from_results_site(votes, round_id):,} municipalities")
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     path = output_path(year)
     with path.open("w", newline="", encoding="utf-8") as f:

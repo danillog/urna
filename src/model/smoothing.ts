@@ -35,12 +35,13 @@ export function bandwidth(spanDays: number, presidential: boolean): number {
  * Weight of each poll: grows with the square root of the sample size (clamped),
  * and is divided by the square root of how many polls the same pollster
  * released within a week, so daily trackers do not dominate the average.
+ * `byPollster` multiplies it further (a pollster missing from it counts as 1).
  */
-export function pollWeights(polls: Poll[]): number[] {
+export function pollWeights(polls: Poll[], byPollster?: ReadonlyMap<string, number>): number[] {
   return polls.map((p) => {
     const sample = Math.min(MAX_SAMPLE, Math.max(MIN_SAMPLE, p.n ?? DEFAULT_SAMPLE));
     const crowd = polls.filter((q) => q.p === p.p && Math.abs(q.d - p.d) <= CROWDING_DAYS).length;
-    return Math.sqrt(sample / DEFAULT_SAMPLE) / Math.sqrt(crowd);
+    return (Math.sqrt(sample / DEFAULT_SAMPLE) / Math.sqrt(crowd)) * (byPollster?.get(p.p) ?? 1);
   });
 }
 
@@ -68,13 +69,14 @@ export function smoothSeries(
   series: string,
   grid: number[],
   bw: number,
+  byPollster?: ReadonlyMap<string, number>,
 ): TrendPoint[] | null {
   const polls = allPolls.filter((p) => p.v[series] != null);
   if (!polls.length) return null;
   if (polls.length < MIN_POLLS_FOR_AVERAGE) return dailyMeans(polls, series);
 
   const values = polls.map((p) => p.v[series]!);
-  const baseWeights = pollWeights(polls);
+  const baseWeights = pollWeights(polls, byPollster);
   const minDay = Math.min(...polls.map((p) => p.d));
   const maxDay = Math.max(...polls.map((p) => p.d));
   const out: TrendPoint[] = [];

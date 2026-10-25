@@ -17,11 +17,13 @@ Input: Câmara dos Deputados open data, votacoesOrientacoes-<year>.csv and votac
 
 from __future__ import annotations
 
+import calendar
 import csv
 import json
 import re
 import sys
 from collections import defaultdict
+from datetime import UTC, datetime
 from pathlib import Path
 
 import yaml
@@ -53,6 +55,8 @@ NAMES = {
     "SOLIDARIED": "SD", "SOLIDARIEDADE": "SD", "REPUBLICAN": "Republicanos", "REPUBLICANOS": "Republicanos",
     "NOVO": "NOVO", "PODEMOS": "PODE", "PODE": "PODE", "CIDADANIA": "Cidadania", "AVANTE": "Avante",
     "PATRIOTA": "Patriota", "UNIÃO": "UNIÃO", "UNIAO": "UNIÃO", "PCDOB": "PCdoB", "PTDOB": "PTdoB",
+    # The Senate's spellings.
+    "REPUBLICA": "Republicanos", "PROGRES": "PP", "PROGRESSISTAS": "PP",
 }  # fmt: skip
 # Abbreviations inside bloc names ("Bl MdbPsdRepPode").
 BLOC_PARTS = {
@@ -61,6 +65,9 @@ BLOC_PARTS = {
 }  # fmt: skip
 # Our reading of the shares, written on the page: 70% or more with the government is its base.
 BASE, OPPOSITION = 70, 40
+# The Centrão as measured: with the government, at this share or more, under at least one PT
+# president and one from another party (decided 06/10/2026; see the plan's open decisions).
+CENTRAO = 80
 
 
 def cached(kind: str, year: int) -> Path:
@@ -124,6 +131,54 @@ def term_of(day: str) -> str | None:
     return next((key for key, _, _, start, end in TERMS if start <= day <= end), None)
 
 
+# The Senate's API has the leaders' orientations from 2019 on.
+SENATE_FROM = (2019, 2)
+
+
+def senate(placer) -> tuple[dict, str]:
+    """Lineage → term → share of contested roll calls where the party's leader in the Senate
+    oriented as the government's; same reading as the Chamber's."""
+    from .mandate import SENADO, senado_json  # mandate imports this module
+
+    today = datetime.now(UTC).date()
+    agree: dict[tuple[str, str], list[int]] = defaultdict(lambda: [0, 0])
+    y, m = SENATE_FROM
+    while (y, m) <= (today.year, today.month):
+        last = calendar.monthrange(y, m)[1]
+        data = senado_json(
+            f"orientacoes-{y}-{m:02d}.json",
+            f"{SENADO}/plenario/votacao/orientacaoBancada/{y}{m:02d}01/{y}{m:02d}{last}",
+            refresh=(y, m) == (today.year, today.month),
+        )
+        for v in (data or {}).get("votacoes") or []:
+            day = str(v.get("dataInicioVotacao", ""))[:10]
+            term = term_of(day)
+            given = v.get("orientacoesLideranca") or []
+            sides = {o["partido"].strip(): side(o.get("voto") or "") for o in given}
+            gov = next((o for p, o in sides.items() if p.upper().rstrip(".") in GOVERNMENT), None)
+            if not gov or not term:
+                continue
+            parties = {p: o for p, o in sides.items() if p.upper().rstrip(".") not in GOVERNMENT}
+            if not any(o and o != gov for o in parties.values()):
+                continue
+            for bancada, o in parties.items():
+                # Women's caucus ("Banc Fem", "B.Feminina"): not a party.
+                caucus = bancada.startswith(("Banc", "B."))
+                if o is None or caucus or bancada.upper().rstrip(".") in NOT_PARTIES:
+                    continue
+                for party in members(bancada):
+                    cell = agree[(placer.lineage(party, int(day[:4])), term)]
+                    cell[0] += o == gov
+                    cell[1] += 1
+        y, m = (y + 1, 1) if m == 12 else (y, m + 1)
+    out: dict = {}
+    for (lineage, term), (with_gov, total) in sorted(agree.items()):
+        if total < 20:
+            continue
+        out.setdefault(lineage, {})[term] = {"share": round(with_gov / total * 100, 1), "votes": total}
+    return out, f"{SENATE_FROM[0]}-{SENATE_FROM[1]:02d}"
+
+
 def main() -> int:
     last = (
         int(sorted(p.stem[-4:] for p in RAW.glob("votacoes-*.csv"))[-1])
@@ -184,7 +239,7 @@ def main() -> int:
         "terms": [
             {"key": k, "label": label, "party": party, "from": a, "to": b} for k, label, party, a, b in TERMS
         ],
-        "thresholds": {"base": BASE, "opposition": OPPOSITION},
+        "thresholds": {"base": BASE, "opposition": OPPOSITION, "centrao": CENTRAO},
         "parties": {},
     }
     for (lineage, term), (with_gov, total) in sorted(agree.items()):
@@ -194,6 +249,9 @@ def main() -> int:
             "share": round(with_gov / total * 100, 1),
             "votes": total,
         }
+    print("Senate…", flush=True)
+    out["senate"], out["senateSince"] = senate(placer)
+    print(f"  {len(out['senate'])} parties in the Senate since {out['senateSince']}")
     OUTPUT.write_text(json.dumps(out, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     print(f"  {len(out['parties'])} parties")
     print(f"wrote {OUTPUT.relative_to(DATA.parent)} ({OUTPUT.stat().st_size / 1e3:,.0f} kB)")

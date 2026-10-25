@@ -12,11 +12,17 @@ export interface AppState {
   excludedMethods: Set<MethodFilter>;
   /** Pollster whose polls stand out on the chart. */
   highlight: string | null;
+  /** Chart zoomed to the last this many days (the average still uses every poll); null: all. */
+  zoomDays: number | null;
+  /** The average also weighs each pollster by its past record (see recordWeights). */
+  weighByRecord: boolean;
 }
 
 const OFFICES: Office[] = ["president", "governor", "senate"];
 const ROUNDS: RoundId[] = ["r1", "r2"];
 const DEFAULT_UF = "SP";
+export const ZOOM_DAYS = [90, 30];
+const WEIGH_BY_RECORD = "historico";
 
 export function latestYear(data: Dataset): string {
   return Object.keys(data.presidential).sort().at(-1)!;
@@ -31,6 +37,8 @@ export function defaultState(data: Dataset): AppState {
     excludedPollsters: new Set(),
     excludedMethods: new Set(),
     highlight: null,
+    zoomDays: null,
+    weighByRecord: false,
   };
 }
 
@@ -74,6 +82,9 @@ export function fromSearch(data: Dataset, search: string): AppState {
   if (uf && data.states[uf]) s.uf = uf;
   const excluded = params.get("exclude");
   if (excluded) s.excludedPollsters = new Set(excluded.split(",").filter(Boolean));
+  const days = Number(params.get("dias"));
+  if (ZOOM_DAYS.includes(days)) s.zoomDays = days;
+  if (params.get("peso") === WEIGH_BY_RECORD) s.weighByRecord = true;
   return normalize(data, s);
 }
 
@@ -85,6 +96,8 @@ export function toSearch(data: Dataset, s: AppState): string {
   if (s.office !== "president") params.set("uf", s.uf);
   if (s.round !== "r1") params.set("round", s.round);
   if (s.excludedPollsters.size) params.set("exclude", [...s.excludedPollsters].sort().join(","));
+  if (s.zoomDays) params.set("dias", String(s.zoomDays));
+  if (s.weighByRecord) params.set("peso", WEIGH_BY_RECORD);
   const query = params.toString().replace(/%2C/g, ",");
   return query ? `?${query}` : "";
 }

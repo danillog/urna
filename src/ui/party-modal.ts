@@ -1,7 +1,7 @@
 import { escapeHtml } from "../format";
 import { t } from "../i18n/pt-BR";
 import { history, type CongressData, type CongressParty, type House } from "../model/congress";
-import { pattern, stances, type GovernismoData } from "../model/governismo";
+import { pattern, stances, type GovernismoData, type GovHouse } from "../model/governismo";
 import { sourcesHtml } from "./sources";
 
 const groupClass = (p: CongressParty) => `g-${p.group ?? "none"}`;
@@ -105,18 +105,22 @@ export function partyModalHtml(data: CongressData, gov: GovernismoData, lineage:
     .find(Boolean)!;
   const rows = stances(gov, lineage);
   const summary = pattern(rows);
-  const gRows = rows
-    .map(
-      (r) =>
-        `<li class="pm-gov s-${r.stance}"><span class="pm-term">${escapeHtml(r.term.label)} <span class="meta">${r.term.from.slice(0, 4)}–${r.term.to.slice(0, 4)}</span></span>` +
-        `<span class="pm-track"><span style="width:${r.share.toFixed(1)}%"></span></span>` +
-        `<b>${r.share.toFixed(0)}%</b><span class="pm-stance">${t.party.stance[r.stance]}</span></li>`,
-    )
-    .join("");
+  const list = (house: GovHouse) =>
+    stances(gov, lineage, house)
+      .map(
+        (r) =>
+          `<li class="pm-gov s-${r.stance}"><span class="pm-term">${escapeHtml(r.term.label)} <span class="meta">${r.term.from.slice(0, 4)}–${r.term.to.slice(0, 4)}</span></span>` +
+          `<span class="pm-track"><span style="width:${r.share.toFixed(1)}%"></span></span>` +
+          `<b>${r.share.toFixed(0)}%</b><span class="pm-stance">${t.party.stance[r.stance]}</span></li>`,
+      )
+      .join("");
+  const gRows = list("chamber");
+  const sRows = list("senate");
   return (
     `<div class="pm-head"><div><h2 class="panel-title" id="cg-modal-title">${escapeHtml(latest.party)}</h2>` +
-    `<p class="pm-sub">${escapeHtml(latest.name)}${latest.centrao ? ` <span class="cg-tag">${t.congress.centrao}</span>` : ""}</p></div>` +
-    `<button type="button" class="chip" data-close-modal>${t.people.close}</button></div>` +
+    `<p class="pm-sub" id="pm-sub">${escapeHtml(latest.name)}${latest.centrao ? ` <span class="cg-tag">${t.congress.centrao}</span>` : ""}</p></div>` +
+    `<div class="pm-actions"><button type="button" class="share-btn" data-share="party" aria-label="${escapeHtml(t.share.aria(latest.party))}">${t.share.button}</button>` +
+    `<button type="button" class="chip" data-close-modal>${t.people.close}</button></div></div>` +
     (names.length > 1
       ? `<p class="meta">${t.party.names}: ${names.map((n) => `${escapeHtml(n.name)} (${n.from === n.to ? n.from : `${n.from}–${n.to}`})`).join(" → ")}</p>`
       : "") +
@@ -124,13 +128,24 @@ export function partyModalHtml(data: CongressData, gov: GovernismoData, lineage:
     (rows.length
       ? `<p class="meta">${t.party.govNote(gov.thresholds.base, gov.thresholds.opposition)}</p>` +
         (summary ? `<p class="pm-summary">${t.party.pattern[summary]}</p>` : "") +
+        (sRows ? `<h4 class="pm-house">${t.party.govHouse.chamber}</h4>` : "") +
         `<ul class="pm-govs">${gRows}</ul>`
       : `<p class="meta">${t.party.noGov}</p>`) +
+    (sRows
+      ? `<h4 class="pm-house">${t.party.govHouse.senate}</h4><ul class="pm-govs">${sRows}</ul>` +
+        `<p class="meta">${t.party.senateNote(gov.senateSince!.split("-").reverse().join("/"))}</p>`
+      : "") +
+    (latest.seats &&
+    [...data.houses.chamber, ...data.houses.senate].some(
+      (e) => e.year === 2026 && e.parties.some((p) => p.lineage === lineage),
+    )
+      ? `<p class="pp-links"><a class="pp-link" href="?view=people&partido=${encodeURIComponent(latest.party)}">${t.party.elected2026(latest.party)}</a></p>`
+      : "") +
     `<h3 class="ap-h">${t.party.seatsTitle}</h3>` +
-    `<div class="pm-charts"><figure><figcaption class="cv-cap">${t.congress.houseName.chamber}</figcaption>${seatsChart(data, "chamber", lineage)}</figure>` +
+    `<div class="pm-charts"><figure id="pm-seats-chamber"><figcaption class="cv-cap">${t.congress.houseName.chamber}</figcaption>${seatsChart(data, "chamber", lineage)}</figure>` +
     `<figure><figcaption class="cv-cap">${t.congress.houseName.senate}</figcaption>${seatsChart(data, "senate", lineage)}</figure></div>` +
-    `<h3 class="ap-h">${t.party.ideologyTitle}</h3>${ideologyChart(data, lineage)}` +
+    `<h3 class="ap-h">${t.party.ideologyTitle}</h3><div id="pm-ideology">${ideologyChart(data, lineage)}</div>` +
     `<p class="map-note">${t.party.note}</p>` +
-    `<p class="map-note sources">${sourcesHtml([t.sources.camaraOrientations, t.sources.zuccoPower, t.sources.bolognesi])}</p>`
+    `<p class="map-note sources" id="pm-sources">${sourcesHtml([t.sources.camaraOrientations, ...(sRows ? [t.sources.senateMandate] : []), t.sources.zuccoPower, t.sources.bolognesi])}</p>`
   );
 }

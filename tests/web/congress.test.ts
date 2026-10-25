@@ -8,6 +8,9 @@ import {
   inFocus,
   seatsByGroup,
   type CongressData,
+  selectedSeats,
+  type CongressParty,
+  type CongressElection,
 } from "../../src/model/congress";
 
 const data = congress as unknown as CongressData;
@@ -74,5 +77,35 @@ describe("legend selection", () => {
     expect(inFocus(pp, ["centrao"])).toBe(true);
     expect(inFocus(pt, ["centrao"])).toBe(false);
     expect(inFocus(pt, ["left"])).toBe(true);
+  });
+});
+
+describe("newcomers", () => {
+  const party = (seats: number, newcomers: number, group: CongressParty["group"]) =>
+    ({ party: "X", lineage: "X", seats, newcomers, group, centrao: false }) as CongressParty;
+
+  it("selects a party's newcomers as seats, and the whole party when its group is on", () => {
+    const left = party(10, 4, "left");
+    const right = party(20, 7, "right");
+    expect(selectedSeats(left, ["newcomers"])).toBe(4);
+    expect(selectedSeats(left, ["left", "newcomers"])).toBe(10); // the whole party, once
+    const e = { year: 2026, total: 30, parties: [left, right] } as CongressElection;
+    expect(focusSeats(e, ["newcomers"])).toBe(11);
+    expect(focusSeats(e, ["right", "newcomers"])).toBe(24);
+  });
+});
+
+describe("the address", () => {
+  it("opens the legislature in office for today's benches, not the one just elected", async () => {
+    const { congressFromSearch, congressToSearch } = await import("../../src/ui/congress-view");
+    const s = congressFromSearch(data, new URLSearchParams("bancada=hoje"));
+    expect(s.moment).toBe("now");
+    expect(s.year).toBe(2022);
+    // Without "hoje", the latest election; with a year asked, that year.
+    expect(congressFromSearch(data, new URLSearchParams()).year).toBe(2026);
+    expect(congressFromSearch(data, new URLSearchParams("bancada=hoje&ano=2018")).year).toBe(2018);
+    const back = new URLSearchParams();
+    congressToSearch(s, data, back);
+    expect(back.toString()).toBe("ano=2022&bancada=hoje");
   });
 });

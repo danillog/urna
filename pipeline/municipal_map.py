@@ -24,7 +24,9 @@ import base64
 import csv
 import json
 import re
+import subprocess
 import sys
+import tempfile
 import unicodedata
 from array import array
 from collections import defaultdict
@@ -116,6 +118,29 @@ def slim_topology(raw: dict) -> tuple[dict, list[str]]:
     return raw, order
 
 
+# The page's mesh: 75% of the IBGE's points and a 40,000-step grid. Checked by eye against
+# the original at state zoom (no visible change) and at the deepest zoom (small corners
+# lost); 12% smaller once compressed. Lower settings turn small towns into polygons.
+SIMPLIFY = "75%"
+QUANTIZATION = "4e4"
+
+
+def simplified_mesh() -> dict:
+    """The IBGE mesh through mapshaper (npm dev dependency), geometry order unchanged."""
+    source = IBGE_DIR / "municipios.topo.json"
+    cached(source.name, TOPOLOGY_URL)
+    with tempfile.TemporaryDirectory() as tmp:
+        out = Path(tmp) / "mesh.json"
+        run = subprocess.run(
+            ["npx", "--no-install", "mapshaper", str(source), "-simplify", SIMPLIFY, "keep-shapes", "planar",
+             "-o", str(out), "format=topojson", f"quantization={QUANTIZATION}"],
+            cwd=DATA.parent, capture_output=True, text=True,
+        )  # fmt: skip
+        if run.returncode:
+            raise RuntimeError(f"mapshaper failed:\n{run.stdout}{run.stderr}")
+        return json.loads(out.read_text(encoding="utf-8"))
+
+
 # --- Results --------------------------------------------------------------------------
 
 
@@ -141,6 +166,20 @@ def read_results(paths: list[Path]) -> tuple[dict[tuple[str, str, str], Votes], 
                 if row["outcome"].startswith("ELEITO"):
                     elected[race][code] = (row["candidate"], row["party"])
     return races, places, elected
+
+
+def results_site_rounds(paths: list[Path]) -> set[tuple[str, str]]:
+    """(year, round) of presidential votes read from the TSE's results site rather than the
+    open-data archive (pipeline.fetch_tse_results falls back to it); those rows carry no
+    outcome."""
+    seen: dict[tuple[str, str], bool] = {}
+    for path in paths:
+        with path.open(encoding="utf-8") as f:
+            for row in csv.DictReader(f):
+                if row["office"] == "president":
+                    key = (row["year"], f"r{row['round']}")
+                    seen[key] = seen.get(key, True) and not row["outcome"]
+    return {k for k, empty in seen.items() if empty}
 
 
 def final_round(rounds: dict[str, Votes]) -> Votes:
@@ -300,7 +339,10 @@ def main() -> int:
     overrides = (
         yaml.safe_load((DATA / "municipalities.yaml").read_text(encoding="utf-8"))["tse_to_ibge"] or {}
     )
-    topology, order = slim_topology(json.loads(cached("municipios.topo.json", TOPOLOGY_URL)))
+    _, order = slim_topology(json.loads(cached("municipios.topo.json", TOPOLOGY_URL)))
+    topology, simplified_order = slim_topology(simplified_mesh())
+    if simplified_order != order:
+        raise SystemExit("mapshaper changed the order of the municipalities")
     ibge = ibge_municipalities()
     races, places, elected = read_results(paths)
 
@@ -324,6 +366,7 @@ def main() -> int:
         "races": {},
     }
     by_office: dict[str, dict[str, dict[str, Votes]]] = defaultdict(lambda: defaultdict(dict))
+    from_results_site = results_site_rounds(paths)
     for (office, year, round_id), votes in races.items():
         by_office[office][year][round_id] = votes
 
@@ -332,6 +375,8 @@ def main() -> int:
         colors = {name: m["color"] for name, m in meta.get("candidates", {}).items()}
         for round_id, votes in sorted(rounds.items()):
             race = presidential_race(votes, order, tse_by_ibge, candidate_names(year, elections), colors)
+            if (year, round_id) in from_results_site:
+                race["source"] = "results"
             out["races"][f"president-{year}-{round_id}"] = race
             print(f"  president {year} {round_id}: {len(votes)} municipalities, {race['labels'][:4]}")
     for year, rounds in sorted(by_office["mayor"].items()):

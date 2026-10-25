@@ -5,7 +5,7 @@ import {
   GROUPS,
   focusSeats,
   hemicycle,
-  inFocus,
+  selectedSeats,
   history,
   seatsByGroup,
   type CongressData,
@@ -13,8 +13,13 @@ import {
   type CongressParty,
   type FocusKey,
   type House,
+  inOfficeYear,
+  type PartySwitch,
+  type Measured,
+  isCongress,
 } from "../model/congress";
-import type { GovernismoData } from "../model/governismo";
+import { measuredBase, measuredCentrao, type GovernismoData } from "../model/governismo";
+import { byParty, type IdeologyData } from "../model/ideology";
 import { button, byId } from "./dom";
 import { partyModalHtml } from "./party-modal";
 import { sourcesHtml, type SourceLink } from "./sources";
@@ -26,7 +31,12 @@ export interface CongressState {
   focus: FocusKey[];
   /** The party line whose history is open in the modal. */
   party: string | null;
+  /** The legislature in office: by the party each was elected for, or by the party today. */
+  moment: "elected" | "now";
 }
+
+/** Houses in the address: ?casa=senado, ?casa=alesp, ?casa=camara-sp. */
+const HOUSE_SLUGS: Record<string, House> = { senado: "senate", alesp: "alesp", "camara-sp": "cmsp" };
 
 /** Focus keys in the address: ?destaque=esquerda,centrao. */
 const FOCUS_SLUGS: Record<FocusKey, string> = {
@@ -37,6 +47,9 @@ const FOCUS_SLUGS: Record<FocusKey, string> = {
   right: "direita",
   none: "sem-classificacao",
   centrao: "centrao",
+  base: "base-medida",
+  centraoMeasured: "centrao-medido",
+  newcomers: "novatos",
 };
 
 /** Time between elections while the timeline plays. */
@@ -46,7 +59,7 @@ const SVG = "http://www.w3.org/2000/svg";
 const groupClass = (p: CongressParty) => `g-${p.group ?? "none"}${p.centrao ? " cz" : ""}`;
 
 export function congressFromSearch(data: CongressData, params: URLSearchParams): CongressState {
-  const house: House = params.get("casa") === "senado" ? "senate" : "chamber";
+  const house: House = HOUSE_SLUGS[params.get("casa") ?? ""] ?? "chamber";
   const years = data.houses[house].map((e) => e.year);
   const asked = Number(params.get("ano"));
   const slugs = (params.get("destaque") ?? "").split(",");
@@ -60,14 +73,23 @@ export function congressFromSearch(data: CongressData, params: URLSearchParams):
     lines.find((p) => p.lineage === askedParty)?.lineage ??
     lines.find((p) => p.party.toUpperCase() === askedParty?.toUpperCase())?.lineage ??
     null;
-  return { house, year: years.includes(asked) ? asked : years.at(-1)!, focus, party };
+  const moment = params.get("bancada") === "hoje" && data.now ? "now" : "elected";
+  // "Today" exists only for the legislature in office: without a year, open that one, not the
+  // one just elected (in 2026, between October and February, those differ).
+  const fallback = (moment === "now" && inOfficeYear(data, house)) || years.at(-1)!;
+  return { house, year: years.includes(asked) ? asked : fallback, focus, party, moment };
 }
 
 export function congressToSearch(s: CongressState, data: CongressData, params: URLSearchParams): void {
-  if (s.house === "senate") params.set("casa", "senado");
+  if (s.house !== "chamber")
+    params.set(
+      "casa",
+      Object.keys(HOUSE_SLUGS).find((k) => HOUSE_SLUGS[k] === s.house)!,
+    );
   if (s.year !== data.houses[s.house].at(-1)!.year) params.set("ano", String(s.year));
   if (s.focus.length) params.set("destaque", s.focus.map((k) => FOCUS_SLUGS[k]).join(","));
   if (s.party) params.set("partido", s.party);
+  if (s.moment === "now" && s.year === inOfficeYear(data, s.house)) params.set("bancada", "hoje");
 }
 
 /** Closes a dialog; where close() is missing (jsdom, old browsers) does what it would. */
@@ -90,12 +112,18 @@ export class CongressView {
   constructor(
     private readonly data: CongressData,
     private readonly governismo: GovernismoData,
+    private readonly ideology: IdeologyData | null,
     private state: CongressState,
     private readonly onChange: () => void,
   ) {
     byId("cg-houses")
       .querySelectorAll<HTMLButtonElement>("button")
       .forEach((b) => b.addEventListener("click", () => this.set({ house: b.dataset.house as House })));
+    byId("cg-moment")
+      .querySelectorAll<HTMLButtonElement>("button")
+      .forEach((b) =>
+        b.addEventListener("click", () => this.set({ moment: b.dataset.moment as "elected" | "now" })),
+      );
     const slider = byId<HTMLInputElement>("cg-slider");
     slider.addEventListener("input", () => this.set({ year: this.years[Number(slider.value)]! }, true));
     byId("cg-legend").addEventListener("click", (e) => {
@@ -163,8 +191,16 @@ export class CongressView {
     return this.data.houses[this.state.house].map((e) => e.year);
   }
 
+  /** Whether the election on screen is the legislature in office (which has a "today"). */
+  private get inOffice(): boolean {
+    return this.state.year === inOfficeYear(this.data, this.state.house);
+  }
+
   private get election(): CongressElection {
-    return this.data.houses[this.state.house].find((e) => e.year === this.state.year)!;
+    const elected = this.data.houses[this.state.house].find((e) => e.year === this.state.year)!;
+    if (this.state.moment === "now" && this.inOffice && this.data.now)
+      return { ...this.data.now[this.state.house as "chamber" | "senate"], year: elected.year };
+    return elected;
   }
 
   private set(patch: Partial<CongressState>, stop = false): void {
@@ -226,7 +262,18 @@ export class CongressView {
       .querySelectorAll<HTMLButtonElement>("button")
       .forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.house === s.house)));
     this.renderTimeline();
-    const title = t.congress.title(s.house, e.year) + (e.provisional ? ` · ${t.congress.projection}` : "");
+    const today = s.moment === "now" && this.inOffice && this.data.now;
+    const title = today
+      ? t.congress.titleNow(s.house, this.data.now!.date.split("-").reverse().join("/"))
+      : t.congress.title(s.house, e.year) + (e.provisional ? ` · ${t.congress.projection}` : "");
+    byId("cg-moment-group").hidden = !this.inOffice || !this.data.now;
+    byId("cg-moment")
+      .querySelectorAll<HTMLButtonElement>("button")
+      .forEach((b) =>
+        b.setAttribute("aria-pressed", String(b.dataset.moment === (today ? "now" : "elected"))),
+      );
+    this.renderSwitches();
+    this.renderIdeology(e);
     byId("cg-title").textContent = title;
     byId("cg-meta").textContent = t.congress.meta(e.total, Math.floor(e.total / 2) + 1);
     this.renderLegend(e);
@@ -235,6 +282,7 @@ export class CongressView {
     const c = this.data.centrao;
     byId("cg-note").textContent = [
       e.provisional ? t.congress.provisional : "",
+      isCongress(this.state.house) ? "" : t.congress.spNote,
       t.congress.note,
       t.congress.centraoNote(c.since, c.source.outlet),
     ]
@@ -250,7 +298,9 @@ export class CongressView {
     const seats =
       e.year === 2026
         ? [t.sources.tseResults, ...(this.state.house === "senate" ? [t.sources.senateOpenData] : [])]
-        : [t.sources.seats(e.year)];
+        : isCongress(this.state.house)
+          ? [t.sources.seats(e.year)]
+          : [t.sources.tseCandidates];
     return [
       t.sources.zuccoPower,
       t.sources.zuccoPowerData,
@@ -284,7 +334,7 @@ export class CongressView {
     const focus = this.focus;
     const chip = (key: FocusKey, keyClass: string, n: number) => {
       const b = button(
-        `<i class="cg-key ${keyClass}"></i><span>${key === "centrao" ? t.congress.centrao : t.congress.group[key]}</span><span class="n">${n}</span>`,
+        `<i class="cg-key ${keyClass}"></i><span>${key === "centrao" ? t.congress.centrao : key === "base" ? t.congress.base : key === "centraoMeasured" ? t.congress.centraoMeasured : key === "newcomers" ? t.congress.newcomers : t.congress.group[key]}</span><span class="n">${n}</span>`,
         { className: "chip map-chip", pressed: focus.includes(key) },
       );
       b.dataset.focus = key;
@@ -301,8 +351,29 @@ export class CongressView {
           e.parties.filter((p) => p.centrao).reduce((n, p) => n + p.seats, 0),
         ),
       );
+    if (e.parties.some((p) => p.newcomers !== undefined)) {
+      const b = chip(
+        "newcomers",
+        "nv-key",
+        e.parties.reduce((n, p) => n + (p.newcomers ?? 0), 0),
+      );
+      b.title = t.congress.newcomersTitle;
+      chips.push(b);
+    }
+    const centraoM = this.measured(e).centrao;
+    if (centraoM) {
+      const b = chip("centraoMeasured", "cm-key", focusSeats(e, ["centraoMeasured"], { centrao: centraoM }));
+      b.title = t.congress.centraoMeasuredTitle(this.governismo.thresholds.centrao ?? 80);
+      chips.push(b);
+    }
+    const base = this.base(e);
+    if (base) {
+      const b = chip("base", "bz-key", focusSeats(e, ["base"], { base: base.lineages }));
+      b.title = t.congress.baseTitle(base.term.label, this.governismo.thresholds.base);
+      chips.push(b);
+    }
     if (focus.length) {
-      const seats = focusSeats(e, focus);
+      const seats = focusSeats(e, focus, this.measured(e));
       const majority = Math.floor(e.total / 2) + 1;
       const sum = document.createElement("span");
       sum.className = "cg-sum";
@@ -314,6 +385,7 @@ export class CongressView {
       const hint = document.createElement("span");
       hint.className = "map-steps";
       hint.textContent = t.congress.legendHint;
+      hint.dataset.shareSkip = "";
       chips.push(hint);
     }
     byId("cg-legend").replaceChildren(...chips);
@@ -324,23 +396,49 @@ export class CongressView {
     return e.year >= this.data.centrao.since;
   }
 
-  /** The selection that applies to the election on screen: no Centrão before it is marked. */
+  /** The measured sets for this election: its following term's base, and the Centrão
+   * (from 2002 on, when the roll-call orientations begin). */
+  private measured(e: CongressElection): Measured {
+    if (!isCongress(this.state.house)) return {};
+    const house = this.state.house;
+    const centrao = e.year >= 2002 ? measuredCentrao(this.governismo, house) : undefined;
+    return { base: this.base(e)?.lineages, centrao: centrao?.size ? centrao : undefined };
+  }
+
+  /** The government's base measured by votes in the term after this election, if there is one. */
+  private base(e: CongressElection) {
+    return isCongress(this.state.house) ? measuredBase(this.governismo, e.year, this.state.house) : null;
+  }
+
+  /** The selection that applies to the election on screen: no Centrão before it is marked,
+   * no measured base where there is no measure. */
   private get focus(): FocusKey[] {
-    return this.centraoMarked(this.election)
-      ? this.state.focus
-      : this.state.focus.filter((k) => k !== "centrao");
+    const e = this.election;
+    return this.state.focus.filter(
+      (k) =>
+        (k !== "centrao" || this.centraoMarked(e)) &&
+        (k !== "base" || this.base(e) !== null) &&
+        (k !== "centraoMeasured" || this.measured(e).centrao !== undefined) &&
+        (k !== "newcomers" || e.parties.some((p) => p.newcomers !== undefined)),
+    );
   }
 
   private renderChart(e: CongressElection, title: string): void {
     const { seats, radius } = hemicycle(e.parties.map((p) => p.seats));
     this.svg.setAttribute("aria-label", t.congress.aria(title));
+    const measured = this.measured(e);
+    const nth = new Map<number, number>(); // seats drawn so far, per party
     const dots = seats.map((seat) => {
       const c = document.createElementNS(SVG, "circle");
       c.setAttribute("cx", seat.x.toFixed(4));
       c.setAttribute("cy", (-seat.y).toFixed(4));
       c.setAttribute("r", radius.toFixed(4));
       const party = e.parties[seat.party]!;
-      c.setAttribute("class", groupClass(party) + (inFocus(party, this.focus) ? " sel" : ""));
+      const k = nth.get(seat.party) ?? 0;
+      nth.set(seat.party, k + 1);
+      // A party's newcomers are its first seats in the drawing: a count, not who they are.
+      const on = k < selectedSeats(party, this.focus, measured);
+      c.setAttribute("class", groupClass(party) + (on ? " sel" : ""));
       c.dataset.p = String(seat.party);
       return c;
     });
@@ -368,7 +466,7 @@ export class CongressView {
       `<th>${t.congress.position}</th><th class="cg-traj-h">${t.congress.trajectory}</th></tr></thead>`;
     const focus = this.focus;
     const rows = e.parties.map((p, index) => {
-      if (focus.length && !inFocus(p, focus)) return "";
+      if (focus.length && !selectedSeats(p, focus, this.measured(e))) return "";
       const prev = before?.parties.find((q) => q.lineage === p.lineage)?.seats ?? 0;
       const delta = before ? p.seats - prev : 0;
       const change =
@@ -473,5 +571,72 @@ export class CongressView {
         : "") +
       `<div class="tt-s tt-foot">${escapeHtml(t.congress.source(p.source))}</div>`
     );
+  }
+
+  /** Who changed party since elected: for the legislature in office, this house. */
+  private renderSwitches(): void {
+    const box = byId("cg-switches");
+    const all = (this.data.now?.switches ?? []).filter((x) => x.house === this.state.house);
+    box.hidden = !this.inOffice || !all.length;
+    if (box.hidden) return;
+    const moved = all.filter((x) => !x.extinct);
+    const folded = all.filter((x) => x.extinct);
+    const rows = (list: PartySwitch[]) =>
+      list
+        .map(
+          (x) =>
+            `<tr><td>${escapeHtml(x.name)} <span class="meta">${x.uf}</span></td><td>${escapeHtml(x.from)}</td><td>${escapeHtml(x.to)}</td></tr>`,
+        )
+        .join("");
+    const head = `<thead><tr><th>${t.congress.switches.who}</th><th>${t.congress.switches.from}</th><th>${t.congress.switches.to}</th></tr></thead>`;
+    box.innerHTML =
+      `<summary>${escapeHtml(t.congress.switches.summary(moved.length, folded.length, this.data.now!.date.split("-").reverse().join("/")))}</summary>` +
+      `<p class="meta">${t.congress.switches.note}</p>` +
+      `<div class="scroll"><table>${head}<tbody>${rows(moved)}</tbody></table></div>` +
+      (folded.length
+        ? `<h4 class="pm-house">${t.congress.switches.foldedTitle}</h4><div class="scroll"><table>${head}<tbody>${rows(folded)}</tbody></table></div>`
+        : "");
+  }
+
+  /** The legislature in office, member by member along its votes' left–right line. */
+  private renderIdeology(e: CongressElection): void {
+    const box = byId("cg-ideo");
+    const house = isCongress(this.state.house) ? this.ideology?.[this.state.house] : undefined;
+    box.hidden = !this.inOffice || !house;
+    if (box.hidden || !house) return;
+    const I = t.congress.ideology;
+    const groupOf = new Map(e.parties.map((p) => [p.party.toUpperCase(), p.group ?? "none"]));
+    const rows = byParty(house, 3);
+    const W = 760;
+    const row = 22;
+    const m = { l: 110, r: 16, t: 26, b: 26 };
+    const H = m.t + m.b + rows.length * row;
+    const x = (v: number) => m.l + ((v + 1) / 2) * (W - m.l - m.r);
+    const dots = rows
+      .map(({ party, mean, members }, k) => {
+        const y = m.t + k * row + row / 2;
+        const g = groupOf.get(party.toUpperCase()) ?? "none";
+        return (
+          `<text x="${m.l - 8}" y="${y}" dy="0.32em" class="cv-tick" text-anchor="end">${escapeHtml(party)} (${members.length})</text>` +
+          `<line x1="${x(-1)}" x2="${x(1)}" y1="${y}" y2="${y}" class="cv-rule"/>` +
+          members
+            .map(
+              (mm) =>
+                `<circle cx="${x(mm.score).toFixed(1)}" cy="${y}" r="3.5" class="g-${g} cg-ideo-dot"><title>${escapeHtml(`${mm.name} (${mm.party}-${mm.uf}): ${mm.score.toFixed(2).replace(".", ",")}`)}</title></circle>`,
+            )
+            .join("") +
+          `<line x1="${x(mean).toFixed(1)}" x2="${x(mean).toFixed(1)}" y1="${y - 8}" y2="${y + 8}" class="cg-ideo-mean"/>`
+        );
+      })
+      .join("");
+    const axis =
+      `<line x1="${x(0)}" x2="${x(0)}" y1="${m.t - 6}" y2="${H - m.b}" class="cv-zero"/>` +
+      `<text x="${x(-1)}" y="${m.t - 10}" class="cv-tick">${I.left}</text>` +
+      `<text x="${x(1)}" y="${m.t - 10}" class="cv-tick" text-anchor="end">${I.right}</text>`;
+    const v = house.validation;
+    box.innerHTML =
+      `<h3 class="ap-h">${I.title(t.congress.houseName[this.state.house]!)}</h3>` +
+      `<p class="meta">${I.note(this.ideology!.minVotes, v.r === null ? "—" : v.r.toFixed(2).replace(".", ","), v.parties)}</p>` +
+      `<div class="scroll"><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${escapeHtml(I.aria)}">${axis}${dots}</svg></div>`;
   }
 }

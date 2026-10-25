@@ -39,9 +39,11 @@ function toy(population = [10, 10, 10, 70]): CensusVote {
     censusYears: [2022],
     incomeTo2022: 1,
     census: { 2022: census },
+    bases: {},
     elections: [
       {
         year: 2026,
+        round: "r1",
         census: 2022,
         pt: "A",
         rival: "B",
@@ -51,6 +53,8 @@ function toy(population = [10, 10, 10, 70]): CensusVote {
         valid: Uint32Array.from(population),
       },
     ],
+    runoffs: [],
+    runoffYears: [],
   };
 }
 
@@ -85,7 +89,7 @@ describe("census × vote model", () => {
     const weighted = (year: number, v: "evangelical" | "catholic") => {
       let num = 0;
       let den = 0;
-      for (let i = 0; i < data.census[year]!.population.length; i++) {
+      for (let i = 0; i < data.census[year]!.population!.length; i++) {
         const x = valueAt(data, year, v, i);
         const p = valueAt(data, year, "population", i);
         if (x !== null && p) {
@@ -124,5 +128,16 @@ describe("census × vote model", () => {
     expect(gap(data, election(2002), "income", all)!).toBeGreaterThan(0);
     expect(gap(data, election(2006), "income", all)!).toBeLessThan(-20);
     expect(gap(data, election(2026), "evangelical", all)!).toBeLessThan(-10);
+  });
+
+  it("weighs each distribution by the people it is of", () => {
+    const d = toy([100, 100, 100, 100]);
+    // The two towns above 50% for A: 10% and 40% Evangelical. Equal people: 25%.
+    const even = composition(d, d.elections[0]!, "pt", all, [50])[1]!;
+    expect(even.religion!.evangelical).toBeCloseTo(25);
+    // Religion asked of 100 people in the first and 300 in the second: 32.5%.
+    d.bases[2022] = { religion: Uint32Array.from([100, 300, 0, 0]), schooling: new Uint32Array(4) };
+    const based = composition(d, d.elections[0]!, "pt", all, [50])[1]!;
+    expect(based.religion!.evangelical).toBeCloseTo(32.5);
   });
 });

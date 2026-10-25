@@ -1,0 +1,4474 @@
+{
+ "rules": {
+  "window": 10
+ },
+ "counts": {
+  "polls": 1531,
+  "president": 776,
+  "states": 755,
+  "pollsters": 52,
+  "withMethod": 17
+ },
+ "president": [
+  {
+   "year": 2010,
+   "round": "r1",
+   "pt": "Dilma",
+   "rival": "Serra",
+   "result": {
+    "Dilma": 46.91,
+    "Serra": 32.61,
+    "Marina": 19.33
+   },
+   "polls": 4,
+   "ptError": 6.16,
+   "rivalError": -1.82,
+   "marginError": 7.98,
+   "absError": 3.72,
+   "pollsters": [
+    {
+     "p": "Ibope",
+     "d": 274,
+     "e": {
+      "Dilma": 4.18,
+      "Serra": -1.09,
+      "Marina": -1.94
+     },
+     "abs": 2.4
+    },
+    {
+     "p": "Vox Populi",
+     "d": 274,
+     "e": {
+      "Dilma": 7.11,
+      "Serra": -2.72,
+      "Marina": -3.24
+     },
+     "abs": 4.36
+    },
+    {
+     "p": "Datafolha",
+     "d": 274,
+     "e": {
+      "Dilma": 4.18,
+      "Serra": -1.09,
+      "Marina": -1.94
+     },
+     "abs": 2.4
+    },
+    {
+     "p": "Sensus",
+     "d": 270,
+     "e": {
+      "Dilma": 9.17,
+      "Serra": -2.39,
+      "Marina": -5.63
+     },
+     "abs": 5.73
+    }
+   ]
+  },
+  {
+   "year": 2010,
+   "round": "r2",
+   "pt": "Dilma",
+   "rival": "Serra",
+   "result": {
+    "Dilma": 56.05,
+    "Serra": 43.95
+   },
+   "polls": 4,
+   "ptError": 0.41,
+   "rivalError": -0.41,
+   "marginError": 0.82,
+   "absError": 0.72,
+   "pollsters": [
+    {
+     "p": "Datafolha",
+     "d": 302,
+     "e": {
+      "Dilma": -0.62,
+      "Serra": 0.62
+     },
+     "abs": 0.62
+    },
+    {
+     "p": "Vox Populi",
+     "d": 302,
+     "e": {
+      "Dilma": 0.62,
+      "Serra": -0.62
+     },
+     "abs": 0.62
+    },
+    {
+     "p": "Sensus",
+     "d": 301,
+     "e": {
+      "Dilma": 1.17,
+      "Serra": -1.17
+     },
+     "abs": 1.17
+    },
+    {
+     "p": "Ibope",
+     "d": 302,
+     "e": {
+      "Dilma": 0.47,
+      "Serra": -0.47
+     },
+     "abs": 0.47
+    }
+   ]
+  },
+  {
+   "year": 2014,
+   "round": "r1",
+   "pt": "Dilma",
+   "rival": "Aécio",
+   "result": {
+    "Dilma": 41.59,
+    "Aécio": 33.55,
+    "Marina": 21.32
+   },
+   "polls": 2,
+   "ptError": 3.3,
+   "rivalError": -9.17,
+   "marginError": 12.48,
+   "absError": 5.97,
+   "pollsters": [
+    {
+     "p": "Ibope",
+     "d": 271,
+     "e": {
+      "Dilma": 3.76,
+      "Aécio": -11.46,
+      "Marina": 7.75
+     },
+     "abs": 7.66
+    },
+    {
+     "p": "Datafolha",
+     "d": 276,
+     "e": {
+      "Dilma": 2.85,
+      "Aécio": -6.88,
+      "Marina": 3.12
+     },
+     "abs": 4.28
+    }
+   ]
+  },
+  {
+   "year": 2014,
+   "round": "r2",
+   "pt": "Dilma",
+   "rival": "Aécio",
+   "result": {
+    "Dilma": 51.64,
+    "Aécio": 48.36
+   },
+   "polls": 4,
+   "ptError": 0.54,
+   "rivalError": -0.54,
+   "marginError": 1.07,
+   "absError": 1.5,
+   "pollsters": [
+    {
+     "p": "Vox Populi",
+     "d": 297,
+     "e": {
+      "Dilma": 2.36,
+      "Aécio": -2.36
+     },
+     "abs": 2.36
+    },
+    {
+     "p": "MDA",
+     "d": 296,
+     "e": {
+      "Dilma": -1.94,
+      "Aécio": 1.94
+     },
+     "abs": 1.94
+    },
+    {
+     "p": "Datafolha",
+     "d": 297,
+     "e": {
+      "Dilma": 0.36,
+      "Aécio": -0.36
+     },
+     "abs": 0.36
+    },
+    {
+     "p": "Ibope",
+     "d": 297,
+     "e": {
+      "Dilma": 1.36,
+      "Aécio": -1.36
+     },
+     "abs": 1.36
+    }
+   ]
+  },
+  {
+   "year": 2018,
+   "round": "r1",
+   "pt": "Haddad",
+   "rival": "Bolsonaro",
+   "result": {
+    "Bolsonaro": 46.03,
+    "Haddad": 29.28,
+    "Ciro": 12.47,
+    "Alckmin": 4.76,
+    "Marina": 1.0
+   },
+   "polls": 9,
+   "ptError": -2.66,
+   "rivalError": -4.56,
+   "marginError": 1.9,
+   "absError": 3.27,
+   "pollsters": [
+    {
+     "p": "MDA",
+     "d": 277,
+     "e": {
+      "Bolsonaro": -3.45,
+      "Haddad": -1.44,
+      "Ciro": -0.99,
+      "Alckmin": 1.97,
+      "Marina": 1.55
+     },
+     "abs": 1.88
+    },
+    {
+     "p": "Datafolha",
+     "d": 278,
+     "e": {
+      "Bolsonaro": -5.12,
+      "Haddad": -4.28,
+      "Ciro": 2.3,
+      "Alckmin": 3.19,
+      "Marina": 2.41
+     },
+     "abs": 3.46
+    },
+    {
+     "p": "FSB",
+     "d": 272,
+     "e": {
+      "Bolsonaro": -10.4,
+      "Haddad": -1.69,
+      "Ciro": -2.13,
+      "Alckmin": 7.88,
+      "Marina": 3.6
+     },
+     "abs": 5.14
+    },
+    {
+     "p": "Ibope",
+     "d": 274,
+     "e": {
+      "Bolsonaro": -3.17,
+      "Haddad": -3.09,
+      "Ciro": 0.63,
+      "Alckmin": 3.57,
+      "Marina": 2.57
+     },
+     "abs": 2.61
+    },
+    {
+     "p": "Paraná Pesquisas",
+     "d": 276,
+     "e": {
+      "Bolsonaro": -4.08,
+      "Haddad": -3.08,
+      "Ciro": -1.17,
+      "Alckmin": 4.13,
+      "Marina": 3.21
+     },
+     "abs": 3.13
+    },
+    {
+     "p": "Real Time Big Data",
+     "d": 276,
+     "e": {
+      "Bolsonaro": -5.55,
+      "Haddad": -0.71,
+      "Ciro": 1.82,
+      "Alckmin": 2.38,
+      "Marina": 3.76
+     },
+     "abs": 2.84
+    },
+    {
+     "p": "Ipespe",
+     "d": 276,
+     "e": {
+      "Bolsonaro": -4.65,
+      "Haddad": -3.99,
+      "Ciro": 0.17,
+      "Alckmin": 3.29,
+      "Marina": 3.6
+     },
+     "abs": 3.14
+    },
+    {
+     "p": "PoderData",
+     "d": 276,
+     "e": {
+      "Bolsonaro": -11.15,
+      "Haddad": -0.21,
+      "Ciro": 4.97,
+      "Alckmin": 3.38,
+      "Marina": 1.33
+     },
+     "abs": 4.21
+    },
+    {
+     "p": "Veritá",
+     "d": 277,
+     "e": {
+      "Bolsonaro": 6.5,
+      "Haddad": -5.48,
+      "Ciro": -1.84,
+      "Alckmin": 0.56,
+      "Marina": 0.77
+     },
+     "abs": 3.03
+    }
+   ]
+  },
+  {
+   "year": 2018,
+   "round": "r2",
+   "pt": "Haddad",
+   "rival": "Bolsonaro",
+   "result": {
+    "Bolsonaro": 55.13,
+    "Haddad": 44.87
+   },
+   "polls": 8,
+   "ptError": -2.94,
+   "rivalError": 2.8,
+   "marginError": -5.75,
+   "absError": 3.44,
+   "pollsters": [
+    {
+     "p": "Datafolha",
+     "d": 299,
+     "e": {
+      "Bolsonaro": -1.11,
+      "Haddad": -0.04
+     },
+     "abs": 0.58
+    },
+    {
+     "p": "PoderData",
+     "d": 290,
+     "e": {
+      "Bolsonaro": 9.64,
+      "Haddad": -9.64
+     },
+     "abs": 9.64
+    },
+    {
+     "p": "Real Time Big Data",
+     "d": 296,
+     "e": {
+      "Bolsonaro": 1.19,
+      "Haddad": -1.19
+     },
+     "abs": 1.19
+    },
+    {
+     "p": "FSB",
+     "d": 293,
+     "e": {
+      "Bolsonaro": 4.64,
+      "Haddad": -4.64
+     },
+     "abs": 4.64
+    },
+    {
+     "p": "MDA",
+     "d": 299,
+     "e": {
+      "Bolsonaro": 1.85,
+      "Haddad": -1.85
+     },
+     "abs": 1.85
+    },
+    {
+     "p": "Ibope",
+     "d": 299,
+     "e": {
+      "Bolsonaro": -1.72,
+      "Haddad": 1.72
+     },
+     "abs": 1.72
+    },
+    {
+     "p": "Ipespe",
+     "d": 296,
+     "e": {
+      "Bolsonaro": 2.82,
+      "Haddad": -2.82
+     },
+     "abs": 2.82
+    },
+    {
+     "p": "Paraná Pesquisas",
+     "d": 297,
+     "e": {
+      "Bolsonaro": 5.1,
+      "Haddad": -5.1
+     },
+     "abs": 5.1
+    }
+   ]
+  },
+  {
+   "year": 2022,
+   "round": "r1",
+   "pt": "Lula",
+   "rival": "Bolsonaro",
+   "result": {
+    "Lula": 48.43,
+    "Bolsonaro": 43.2,
+    "Tebet": 4.16,
+    "Ciro": 3.04
+   },
+   "polls": 8,
+   "ptError": 2.09,
+   "rivalError": -4.89,
+   "marginError": 6.98,
+   "absError": 2.83,
+   "pollsters": [
+    {
+     "p": "Datafolha",
+     "d": 273,
+     "e": {
+      "Lula": 3.18,
+      "Bolsonaro": -6.64,
+      "Tebet": 2.29,
+      "Ciro": 2.34
+     },
+     "abs": 3.61
+    },
+    {
+     "p": "Ipespe",
+     "d": 272,
+     "e": {
+      "Lula": 1.57,
+      "Bolsonaro": -7.33,
+      "Tebet": 2.36,
+      "Ciro": 4.57
+     },
+     "abs": 3.96
+    },
+    {
+     "p": "FSB",
+     "d": 267,
+     "e": {
+      "Lula": 1.02,
+      "Bolsonaro": -4.74,
+      "Tebet": 0.24,
+      "Ciro": 4.65
+     },
+     "abs": 2.66
+    },
+    {
+     "p": "Ipec",
+     "d": 273,
+     "e": {
+      "Lula": 3.22,
+      "Bolsonaro": -5.84,
+      "Tebet": 1.33,
+      "Ciro": 2.45
+     },
+     "abs": 3.21
+    },
+    {
+     "p": "AtlasIntel",
+     "d": 272,
+     "e": {
+      "Lula": 2.91,
+      "Bolsonaro": -1.24,
+      "Tebet": -1.48,
+      "Ciro": 0.98
+     },
+     "abs": 1.65
+    },
+    {
+     "p": "Quaest",
+     "d": 269,
+     "e": {
+      "Lula": 2.68,
+      "Bolsonaro": -6.53,
+      "Tebet": 1.4,
+      "Ciro": 3.63
+     },
+     "abs": 3.56
+    },
+    {
+     "p": "Ideia",
+     "d": 270,
+     "e": {
+      "Lula": 1.04,
+      "Bolsonaro": -4.25,
+      "Tebet": 1.1,
+      "Ciro": 3.28
+     },
+     "abs": 2.42
+    },
+    {
+     "p": "MDA",
+     "d": 272,
+     "e": {
+      "Lula": 1.07,
+      "Bolsonaro": -2.55,
+      "Tebet": 0.66,
+      "Ciro": 2.0
+     },
+     "abs": 1.57
+    }
+   ]
+  },
+  {
+   "year": 2022,
+   "round": "r2",
+   "pt": "Lula",
+   "rival": "Bolsonaro",
+   "result": {
+    "Lula": 50.9,
+    "Bolsonaro": 49.1
+   },
+   "polls": 10,
+   "ptError": 0.69,
+   "rivalError": -0.7,
+   "marginError": 1.38,
+   "absError": 1.65,
+   "pollsters": [
+    {
+     "p": "AtlasIntel",
+     "d": 301,
+     "e": {
+      "Lula": 2.51,
+      "Bolsonaro": -2.51
+     },
+     "abs": 2.51
+    },
+    {
+     "p": "Ipespe",
+     "d": 296,
+     "e": {
+      "Lula": 2.29,
+      "Bolsonaro": -2.29
+     },
+     "abs": 2.29
+    },
+    {
+     "p": "Paraná Pesquisas",
+     "d": 300,
+     "e": {
+      "Lula": -0.47,
+      "Bolsonaro": 0.47
+     },
+     "abs": 0.47
+    },
+    {
+     "p": "Ipec",
+     "d": 301,
+     "e": {
+      "Lula": 2.86,
+      "Bolsonaro": -2.86
+     },
+     "abs": 2.86
+    },
+    {
+     "p": "PoderData",
+     "d": 297,
+     "e": {
+      "Lula": 1.79,
+      "Bolsonaro": -1.79
+     },
+     "abs": 1.79
+    },
+    {
+     "p": "Quaest",
+     "d": 301,
+     "e": {
+      "Lula": 0.82,
+      "Bolsonaro": -0.82
+     },
+     "abs": 0.82
+    },
+    {
+     "p": "Gerp",
+     "d": 298,
+     "e": {
+      "Lula": -3.65,
+      "Bolsonaro": 2.55
+     },
+     "abs": 3.1
+    },
+    {
+     "p": "Futura",
+     "d": 298,
+     "e": {
+      "Lula": -1.27,
+      "Bolsonaro": 1.17
+     },
+     "abs": 1.22
+    },
+    {
+     "p": "Datafolha",
+     "d": 301,
+     "e": {
+      "Lula": 1.79,
+      "Bolsonaro": -0.71
+     },
+     "abs": 1.25
+    },
+    {
+     "p": "MDA",
+     "d": 300,
+     "e": {
+      "Lula": 0.19,
+      "Bolsonaro": -0.19
+     },
+     "abs": 0.19
+    }
+   ]
+  },
+  {
+   "year": 2026,
+   "round": "r1",
+   "pt": "Lula",
+   "rival": "Flávio",
+   "result": {
+    "Lula": 45.16,
+    "Flávio": 47.03,
+    "Cury": 2.89
+   },
+   "polls": 11,
+   "ptError": -0.28,
+   "rivalError": -3.88,
+   "marginError": 3.6,
+   "absError": 2.27,
+   "pollsters": [
+    {
+     "p": "Futura",
+     "d": 275,
+     "e": {
+      "Lula": -3.58,
+      "Flávio": -3.4,
+      "Cury": 1.11
+     },
+     "abs": 2.7
+    },
+    {
+     "p": "Quaest",
+     "d": 275,
+     "e": {
+      "Lula": 0.82,
+      "Flávio": -3.35,
+      "Cury": 0.56
+     },
+     "abs": 1.58
+    },
+    {
+     "p": "Palver",
+     "d": 275,
+     "e": {
+      "Lula": -2.16,
+      "Flávio": -0.03,
+      "Cury": -1.89
+     },
+     "abs": 1.36
+    },
+    {
+     "p": "AtlasIntel",
+     "d": 274,
+     "e": {
+      "Lula": 1.82,
+      "Flávio": -2.97,
+      "Cury": -0.78
+     },
+     "abs": 1.86
+    },
+    {
+     "p": "Ideia",
+     "d": 270,
+     "e": {
+      "Lula": -4.42,
+      "Flávio": -7.32,
+      "Cury": 4.04
+     },
+     "abs": 5.26
+    },
+    {
+     "p": "Vox Brasil",
+     "d": 273,
+     "e": {
+      "Lula": -0.17,
+      "Flávio": -1.15,
+      "Cury": -1.55
+     },
+     "abs": 0.96
+    },
+    {
+     "p": "Indexa",
+     "d": 271,
+     "e": {
+      "Lula": 0.72,
+      "Flávio": -7.03,
+      "Cury": 1.82
+     },
+     "abs": 3.19
+    },
+    {
+     "p": "Real Time Big Data",
+     "d": 272,
+     "e": {
+      "Lula": 1.75,
+      "Flávio": -5.05,
+      "Cury": 0.81
+     },
+     "abs": 2.54
+    },
+    {
+     "p": "Datafolha",
+     "d": 275,
+     "e": {
+      "Lula": 0.0,
+      "Flávio": -4.02,
+      "Cury": 0.34
+     },
+     "abs": 1.45
+    },
+    {
+     "p": "MDA",
+     "d": 274,
+     "e": {
+      "Lula": 2.57,
+      "Flávio": -4.95,
+      "Cury": 0.65
+     },
+     "abs": 2.72
+    },
+    {
+     "p": "PoderData",
+     "d": 274,
+     "e": {
+      "Lula": -0.48,
+      "Flávio": -3.41,
+      "Cury": 0.3
+     },
+     "abs": 1.4
+    }
+   ]
+  }
+ ],
+ "statesBySide": {
+  "direita": {
+   "n": 195,
+   "mean": -1.23
+  },
+  "esquerda": {
+   "n": 102,
+   "mean": -0.05
+  },
+  "centro": {
+   "n": 28,
+   "mean": 2.29
+  },
+  "sem classificação": {
+   "n": 16,
+   "mean": 0.45
+  }
+ },
+ "states": [
+  {
+   "uf": "AC",
+   "office": "governor",
+   "p": "Quaest",
+   "cand": "Mailza",
+   "party": "PP",
+   "side": "direita",
+   "e": -5.32,
+   "abs": 5.24
+  },
+  {
+   "uf": "AC",
+   "office": "governor",
+   "p": "Quaest",
+   "cand": "Alan Rick",
+   "party": "REPUBLICANOS",
+   "side": "direita",
+   "e": 2.3,
+   "abs": 5.24
+  },
+  {
+   "uf": "AC",
+   "office": "governor",
+   "p": "Quaest",
+   "cand": "Tião Bocalom",
+   "party": "PSDB",
+   "side": "direita",
+   "e": 8.3,
+   "abs": 5.24
+  },
+  {
+   "uf": "AC",
+   "office": "governor",
+   "p": "Quaest",
+   "cand": "Thor Dantas",
+   "party": "PSB",
+   "side": "esquerda",
+   "e": -5.03,
+   "abs": 5.24
+  },
+  {
+   "uf": "AC",
+   "office": "governor",
+   "p": "Veritá",
+   "cand": "Mailza",
+   "party": "PP",
+   "side": "direita",
+   "e": -12.11,
+   "abs": 6.27
+  },
+  {
+   "uf": "AC",
+   "office": "governor",
+   "p": "Veritá",
+   "cand": "Alan Rick",
+   "party": "REPUBLICANOS",
+   "side": "direita",
+   "e": 3.53,
+   "abs": 6.27
+  },
+  {
+   "uf": "AC",
+   "office": "governor",
+   "p": "Veritá",
+   "cand": "Tião Bocalom",
+   "party": "PSDB",
+   "side": "direita",
+   "e": 3.16,
+   "abs": 6.27
+  },
+  {
+   "uf": "AC",
+   "office": "senate",
+   "p": "Quaest",
+   "cand": "Gladson Cameli",
+   "party": "PP",
+   "side": "direita",
+   "e": 5.44,
+   "abs": 5.66
+  },
+  {
+   "uf": "AC",
+   "office": "senate",
+   "p": "Quaest",
+   "cand": "Márcio Bittar",
+   "party": "PL",
+   "side": "direita",
+   "e": -12.01,
+   "abs": 5.66
+  },
+  {
+   "uf": "AC",
+   "office": "senate",
+   "p": "Quaest",
+   "cand": "Mara Rocha",
+   "party": "REPUBLICANOS",
+   "side": "direita",
+   "e": -4.19,
+   "abs": 5.66
+  },
+  {
+   "uf": "AC",
+   "office": "senate",
+   "p": "Quaest",
+   "cand": "Jorge Viana",
+   "party": "PT",
+   "side": "esquerda",
+   "e": -0.99,
+   "abs": 5.66
+  },
+  {
+   "uf": "AL",
+   "office": "governor",
+   "p": "Quaest",
+   "cand": "JHC",
+   "party": "PSDB",
+   "side": "direita",
+   "e": -1.01,
+   "abs": 0.72
+  },
+  {
+   "uf": "AL",
+   "office": "governor",
+   "p": "Quaest",
+   "cand": "Renan Filho",
+   "party": "MDB",
+   "side": "centro",
+   "e": 1.44,
+   "abs": 0.72
+  },
+  {
+   "uf": "AL",
+   "office": "governor",
+   "p": "Quaest",
+   "cand": "Lenilda Luna",
+   "party": "UP",
+   "side": "sem classificação",
+   "e": -0.38,
+   "abs": 0.72
+  },
+  {
+   "uf": "AL",
+   "office": "governor",
+   "p": "Quaest",
+   "cand": "Márcio Jambo",
+   "party": "DEMOCRATA",
+   "side": "sem classificação",
+   "e": -0.05,
+   "abs": 0.72
+  },
+  {
+   "uf": "AL",
+   "office": "governor",
+   "p": "Real Time Big Data",
+   "cand": "JHC",
+   "party": "PSDB",
+   "side": "direita",
+   "e": -3.85,
+   "abs": 2.14
+  },
+  {
+   "uf": "AL",
+   "office": "governor",
+   "p": "Real Time Big Data",
+   "cand": "Renan Filho",
+   "party": "MDB",
+   "side": "centro",
+   "e": 4.28,
+   "abs": 2.14
+  },
+  {
+   "uf": "AL",
+   "office": "governor",
+   "p": "Real Time Big Data",
+   "cand": "Lenilda Luna",
+   "party": "UP",
+   "side": "sem classificação",
+   "e": -0.38,
+   "abs": 2.14
+  },
+  {
+   "uf": "AL",
+   "office": "governor",
+   "p": "Real Time Big Data",
+   "cand": "Márcio Jambo",
+   "party": "DEMOCRATA",
+   "side": "sem classificação",
+   "e": -0.05,
+   "abs": 2.14
+  },
+  {
+   "uf": "AL",
+   "office": "governor",
+   "p": "Ranking Brasil",
+   "cand": "JHC",
+   "party": "PSDB",
+   "side": "direita",
+   "e": 2.24,
+   "abs": 3.14
+  },
+  {
+   "uf": "AL",
+   "office": "governor",
+   "p": "Ranking Brasil",
+   "cand": "Renan Filho",
+   "party": "MDB",
+   "side": "centro",
+   "e": -4.04,
+   "abs": 3.14
+  },
+  {
+   "uf": "AL",
+   "office": "senate",
+   "p": "Quaest",
+   "cand": "Marina JHC",
+   "party": "PSDB",
+   "side": "direita",
+   "e": -1.17,
+   "abs": 2.08
+  },
+  {
+   "uf": "AL",
+   "office": "senate",
+   "p": "Quaest",
+   "cand": "Renan Calheiros",
+   "party": "MDB",
+   "side": "centro",
+   "e": 0.73,
+   "abs": 2.08
+  },
+  {
+   "uf": "AL",
+   "office": "senate",
+   "p": "Quaest",
+   "cand": "Arthur Lira",
+   "party": "PP",
+   "side": "direita",
+   "e": -1.84,
+   "abs": 2.08
+  },
+  {
+   "uf": "AL",
+   "office": "senate",
+   "p": "Quaest",
+   "cand": "Davi Davino Filho",
+   "party": "REPUBLICANOS",
+   "side": "direita",
+   "e": 4.59,
+   "abs": 2.08
+  },
+  {
+   "uf": "AL",
+   "office": "senate",
+   "p": "Real Time Big Data",
+   "cand": "Marina JHC",
+   "party": "PSDB",
+   "side": "direita",
+   "e": -2.36,
+   "abs": 5.36
+  },
+  {
+   "uf": "AL",
+   "office": "senate",
+   "p": "Real Time Big Data",
+   "cand": "Renan Calheiros",
+   "party": "MDB",
+   "side": "centro",
+   "e": 2.48,
+   "abs": 5.36
+  },
+  {
+   "uf": "AL",
+   "office": "senate",
+   "p": "Real Time Big Data",
+   "cand": "Arthur Lira",
+   "party": "PP",
+   "side": "direita",
+   "e": -6.4,
+   "abs": 5.36
+  },
+  {
+   "uf": "AL",
+   "office": "senate",
+   "p": "Real Time Big Data",
+   "cand": "Davi Davino Filho",
+   "party": "REPUBLICANOS",
+   "side": "direita",
+   "e": 10.18,
+   "abs": 5.36
+  },
+  {
+   "uf": "AM",
+   "office": "governor",
+   "p": "Real Time Big Data",
+   "cand": "Omar Aziz",
+   "party": "PSD",
+   "side": "direita",
+   "e": -3.13,
+   "abs": 1.97
+  },
+  {
+   "uf": "AM",
+   "office": "governor",
+   "p": "Real Time Big Data",
+   "cand": "Maria do Carmo",
+   "party": "PL",
+   "side": "direita",
+   "e": 0.51,
+   "abs": 1.97
+  },
+  {
+   "uf": "AM",
+   "office": "governor",
+   "p": "Real Time Big Data",
+   "cand": "Roberto Cidade",
+   "party": "UNIÃO",
+   "side": "direita",
+   "e": 3.09,
+   "abs": 1.97
+  },
+  {
+   "uf": "AM",
+   "office": "governor",
+   "p": "Real Time Big Data",
+   "cand": "David Almeida",
+   "party": "AVANTE",
+   "side": "centro",
+   "e": -1.16,
+   "abs": 1.97
+  },
+  {
+   "uf": "AM",
+   "office": "senate",
+   "p": "Real Time Big Data",
+   "cand": "Alberto Neto",
+   "party": "PL",
+   "side": "direita",
+   "e": 3.81,
+   "abs": 7.01
+  },
+  {
+   "uf": "AM",
+   "office": "senate",
+   "p": "Real Time Big Data",
+   "cand": "Eduardo Braga",
+   "party": "MDB",
+   "side": "centro",
+   "e": -11.41,
+   "abs": 7.01
+  },
+  {
+   "uf": "AM",
+   "office": "senate",
+   "p": "Real Time Big Data",
+   "cand": "Plínio Valério",
+   "party": "PSDB",
+   "side": "direita",
+   "e": -3.82,
+   "abs": 7.01
+  },
+  {
+   "uf": "AM",
+   "office": "senate",
+   "p": "Real Time Big Data",
+   "cand": "Wilson Lima",
+   "party": "UNIÃO",
+   "side": "direita",
+   "e": 8.99,
+   "abs": 7.01
+  },
+  {
+   "uf": "AP",
+   "office": "governor",
+   "p": "Paraná Pesquisas",
+   "cand": "Dr. Furlan",
+   "party": "PSD",
+   "side": "direita",
+   "e": -3.56,
+   "abs": 2.26
+  },
+  {
+   "uf": "AP",
+   "office": "governor",
+   "p": "Paraná Pesquisas",
+   "cand": "Clécio",
+   "party": "UNIÃO",
+   "side": "direita",
+   "e": 2.77,
+   "abs": 2.26
+  },
+  {
+   "uf": "AP",
+   "office": "governor",
+   "p": "Paraná Pesquisas",
+   "cand": "Delegado Marcos",
+   "party": "DC",
+   "side": "direita",
+   "e": 0.45,
+   "abs": 2.26
+  },
+  {
+   "uf": "AP",
+   "office": "governor",
+   "p": "Real Time Big Data",
+   "cand": "Dr. Furlan",
+   "party": "PSD",
+   "side": "direita",
+   "e": -1.93,
+   "abs": 2.07
+  },
+  {
+   "uf": "AP",
+   "office": "governor",
+   "p": "Real Time Big Data",
+   "cand": "Clécio",
+   "party": "UNIÃO",
+   "side": "direita",
+   "e": 2.21,
+   "abs": 2.07
+  },
+  {
+   "uf": "AP",
+   "office": "senate",
+   "p": "Real Time Big Data",
+   "cand": "Rayssa Furlan",
+   "party": "PODE",
+   "side": "direita",
+   "e": 1.27,
+   "abs": 2.7
+  },
+  {
+   "uf": "AP",
+   "office": "senate",
+   "p": "Real Time Big Data",
+   "cand": "Randolfe",
+   "party": "PT",
+   "side": "esquerda",
+   "e": 2.28,
+   "abs": 2.7
+  },
+  {
+   "uf": "AP",
+   "office": "senate",
+   "p": "Real Time Big Data",
+   "cand": "Lucas Barreto",
+   "party": "PSD",
+   "side": "direita",
+   "e": -3.39,
+   "abs": 2.7
+  },
+  {
+   "uf": "AP",
+   "office": "senate",
+   "p": "Real Time Big Data",
+   "cand": "Alliny Serrão",
+   "party": "UNIÃO",
+   "side": "direita",
+   "e": 3.86,
+   "abs": 2.7
+  },
+  {
+   "uf": "BA",
+   "office": "governor",
+   "p": "Real Time Big Data",
+   "cand": "ACM Neto",
+   "party": "UNIÃO",
+   "side": "direita",
+   "e": 3.02,
+   "abs": 3.87
+  },
+  {
+   "uf": "BA",
+   "office": "governor",
+   "p": "Real Time Big Data",
+   "cand": "Jerônimo",
+   "party": "PT",
+   "side": "esquerda",
+   "e": -4.71,
+   "abs": 3.87
+  },
+  {
+   "uf": "BA",
+   "office": "governor",
+   "p": "Paraná Pesquisas",
+   "cand": "ACM Neto",
+   "party": "UNIÃO",
+   "side": "direita",
+   "e": 6.66,
+   "abs": 7.02
+  },
+  {
+   "uf": "BA",
+   "office": "governor",
+   "p": "Paraná Pesquisas",
+   "cand": "Jerônimo",
+   "party": "PT",
+   "side": "esquerda",
+   "e": -7.37,
+   "abs": 7.02
+  },
+  {
+   "uf": "BA",
+   "office": "governor",
+   "p": "Quaest",
+   "cand": "ACM Neto",
+   "party": "UNIÃO",
+   "side": "direita",
+   "e": 3.47,
+   "abs": 3.79
+  },
+  {
+   "uf": "BA",
+   "office": "governor",
+   "p": "Quaest",
+   "cand": "Jerônimo",
+   "party": "PT",
+   "side": "esquerda",
+   "e": -4.11,
+   "abs": 3.79
+  },
+  {
+   "uf": "BA",
+   "office": "senate",
+   "p": "Real Time Big Data",
+   "cand": "Rui Costa",
+   "party": "PT",
+   "side": "esquerda",
+   "e": 1.39,
+   "abs": 2.67
+  },
+  {
+   "uf": "BA",
+   "office": "senate",
+   "p": "Real Time Big Data",
+   "cand": "Jaques Wagner",
+   "party": "PT",
+   "side": "esquerda",
+   "e": -5.18,
+   "abs": 2.67
+  },
+  {
+   "uf": "BA",
+   "office": "senate",
+   "p": "Real Time Big Data",
+   "cand": "João Roma",
+   "party": "PL",
+   "side": "direita",
+   "e": -0.87,
+   "abs": 2.67
+  },
+  {
+   "uf": "BA",
+   "office": "senate",
+   "p": "Real Time Big Data",
+   "cand": "Angelo Coronel",
+   "party": "REPUBLICANOS",
+   "side": "direita",
+   "e": -3.26,
+   "abs": 2.67
+  },
+  {
+   "uf": "CE",
+   "office": "governor",
+   "p": "Datafolha",
+   "cand": "Ciro Gomes",
+   "party": "PSDB",
+   "side": "direita",
+   "e": 3.22,
+   "abs": 2.48
+  },
+  {
+   "uf": "CE",
+   "office": "governor",
+   "p": "Datafolha",
+   "cand": "Elmano",
+   "party": "PT",
+   "side": "esquerda",
+   "e": -4.88,
+   "abs": 2.48
+  },
+  {
+   "uf": "CE",
+   "office": "governor",
+   "p": "Datafolha",
+   "cand": "Delegado Huggo",
+   "party": "MISSÃO",
+   "side": "sem classificação",
+   "e": 0.8,
+   "abs": 2.48
+  },
+  {
+   "uf": "CE",
+   "office": "governor",
+   "p": "Datafolha",
+   "cand": "Vera Lúcia",
+   "party": "NOVO",
+   "side": "direita",
+   "e": 1.01,
+   "abs": 2.48
+  },
+  {
+   "uf": "CE",
+   "office": "governor",
+   "p": "Paraná Pesquisas",
+   "cand": "Ciro Gomes",
+   "party": "PSDB",
+   "side": "direita",
+   "e": 4.55,
+   "abs": 3.1
+  },
+  {
+   "uf": "CE",
+   "office": "governor",
+   "p": "Paraná Pesquisas",
+   "cand": "Elmano",
+   "party": "PT",
+   "side": "esquerda",
+   "e": -6.61,
+   "abs": 3.1
+  },
+  {
+   "uf": "CE",
+   "office": "governor",
+   "p": "Paraná Pesquisas",
+   "cand": "Delegado Huggo",
+   "party": "MISSÃO",
+   "side": "sem classificação",
+   "e": 0.89,
+   "abs": 3.1
+  },
+  {
+   "uf": "CE",
+   "office": "governor",
+   "p": "Paraná Pesquisas",
+   "cand": "Vera Lúcia",
+   "party": "NOVO",
+   "side": "direita",
+   "e": 0.33,
+   "abs": 3.1
+  },
+  {
+   "uf": "CE",
+   "office": "governor",
+   "p": "AtlasIntel",
+   "cand": "Ciro Gomes",
+   "party": "PSDB",
+   "side": "direita",
+   "e": 2.7,
+   "abs": 2.77
+  },
+  {
+   "uf": "CE",
+   "office": "governor",
+   "p": "AtlasIntel",
+   "cand": "Elmano",
+   "party": "PT",
+   "side": "esquerda",
+   "e": -2.83,
+   "abs": 2.77
+  },
+  {
+   "uf": "CE",
+   "office": "senate",
+   "p": "Real Time Big Data",
+   "cand": "Cid Gomes",
+   "party": "PSB",
+   "side": "esquerda",
+   "e": -2.97,
+   "abs": 3.42
+  },
+  {
+   "uf": "CE",
+   "office": "senate",
+   "p": "Real Time Big Data",
+   "cand": "Capitão Wagner",
+   "party": "UNIÃO",
+   "side": "direita",
+   "e": 1.04,
+   "abs": 3.42
+  },
+  {
+   "uf": "CE",
+   "office": "senate",
+   "p": "Real Time Big Data",
+   "cand": "Luizianne",
+   "party": "REDE",
+   "side": "esquerda",
+   "e": -6.23,
+   "abs": 3.42
+  },
+  {
+   "uf": "CE",
+   "office": "senate",
+   "p": "Real Time Big Data",
+   "cand": "Alcides Fernandes",
+   "party": "PL",
+   "side": "direita",
+   "e": 3.45,
+   "abs": 3.42
+  },
+  {
+   "uf": "CE",
+   "office": "senate",
+   "p": "AtlasIntel",
+   "cand": "Cid Gomes",
+   "party": "PSB",
+   "side": "esquerda",
+   "e": -3.16,
+   "abs": 2.17
+  },
+  {
+   "uf": "CE",
+   "office": "senate",
+   "p": "AtlasIntel",
+   "cand": "Capitão Wagner",
+   "party": "UNIÃO",
+   "side": "direita",
+   "e": 2.46,
+   "abs": 2.17
+  },
+  {
+   "uf": "CE",
+   "office": "senate",
+   "p": "AtlasIntel",
+   "cand": "Luizianne",
+   "party": "REDE",
+   "side": "esquerda",
+   "e": -1.63,
+   "abs": 2.17
+  },
+  {
+   "uf": "CE",
+   "office": "senate",
+   "p": "AtlasIntel",
+   "cand": "Alcides Fernandes",
+   "party": "PL",
+   "side": "direita",
+   "e": 1.45,
+   "abs": 2.17
+  },
+  {
+   "uf": "DF",
+   "office": "governor",
+   "p": "Datafolha",
+   "cand": "Celina Leão",
+   "party": "PP",
+   "side": "direita",
+   "e": 3.5,
+   "abs": 3.91
+  },
+  {
+   "uf": "DF",
+   "office": "governor",
+   "p": "Datafolha",
+   "cand": "Leandro Grass",
+   "party": "PT",
+   "side": "esquerda",
+   "e": -8.93,
+   "abs": 3.91
+  },
+  {
+   "uf": "DF",
+   "office": "governor",
+   "p": "Datafolha",
+   "cand": "Paula Belmonte",
+   "party": "PSDB",
+   "side": "direita",
+   "e": 1.95,
+   "abs": 3.91
+  },
+  {
+   "uf": "DF",
+   "office": "governor",
+   "p": "Datafolha",
+   "cand": "Cappelli",
+   "party": "PSB",
+   "side": "esquerda",
+   "e": 1.26,
+   "abs": 3.91
+  },
+  {
+   "uf": "DF",
+   "office": "governor",
+   "p": "Real Time Big Data",
+   "cand": "Celina Leão",
+   "party": "PP",
+   "side": "direita",
+   "e": 2.23,
+   "abs": 3.16
+  },
+  {
+   "uf": "DF",
+   "office": "governor",
+   "p": "Real Time Big Data",
+   "cand": "Leandro Grass",
+   "party": "PT",
+   "side": "esquerda",
+   "e": -5.62,
+   "abs": 3.16
+  },
+  {
+   "uf": "DF",
+   "office": "governor",
+   "p": "Real Time Big Data",
+   "cand": "Paula Belmonte",
+   "party": "PSDB",
+   "side": "direita",
+   "e": 2.59,
+   "abs": 3.16
+  },
+  {
+   "uf": "DF",
+   "office": "governor",
+   "p": "Real Time Big Data",
+   "cand": "Cappelli",
+   "party": "PSB",
+   "side": "esquerda",
+   "e": 2.21,
+   "abs": 3.16
+  },
+  {
+   "uf": "DF",
+   "office": "senate",
+   "p": "Datafolha",
+   "cand": "Michelle Bolsonaro",
+   "party": "PL",
+   "side": "direita",
+   "e": -1.04,
+   "abs": 2.58
+  },
+  {
+   "uf": "DF",
+   "office": "senate",
+   "p": "Datafolha",
+   "cand": "Leila do Vôlei",
+   "party": "PDT",
+   "side": "esquerda",
+   "e": 0.68,
+   "abs": 2.58
+  },
+  {
+   "uf": "DF",
+   "office": "senate",
+   "p": "Datafolha",
+   "cand": "Bia Kicis",
+   "party": "PL",
+   "side": "direita",
+   "e": -5.53,
+   "abs": 2.58
+  },
+  {
+   "uf": "DF",
+   "office": "senate",
+   "p": "Datafolha",
+   "cand": "Erika Kokay",
+   "party": "PT",
+   "side": "esquerda",
+   "e": -3.09,
+   "abs": 2.58
+  },
+  {
+   "uf": "DF",
+   "office": "senate",
+   "p": "Real Time Big Data",
+   "cand": "Michelle Bolsonaro",
+   "party": "PL",
+   "side": "direita",
+   "e": 0.26,
+   "abs": 2.85
+  },
+  {
+   "uf": "DF",
+   "office": "senate",
+   "p": "Real Time Big Data",
+   "cand": "Leila do Vôlei",
+   "party": "PDT",
+   "side": "esquerda",
+   "e": -1.7,
+   "abs": 2.85
+  },
+  {
+   "uf": "DF",
+   "office": "senate",
+   "p": "Real Time Big Data",
+   "cand": "Bia Kicis",
+   "party": "PL",
+   "side": "direita",
+   "e": -7.91,
+   "abs": 2.85
+  },
+  {
+   "uf": "DF",
+   "office": "senate",
+   "p": "Real Time Big Data",
+   "cand": "Erika Kokay",
+   "party": "PT",
+   "side": "esquerda",
+   "e": -1.55,
+   "abs": 2.85
+  },
+  {
+   "uf": "ES",
+   "office": "governor",
+   "p": "Quaest",
+   "cand": "Ferraço",
+   "party": "MDB",
+   "side": "centro",
+   "e": 8.25,
+   "abs": 4.66
+  },
+  {
+   "uf": "ES",
+   "office": "governor",
+   "p": "Quaest",
+   "cand": "Pazolini",
+   "party": "REPUBLICANOS",
+   "side": "direita",
+   "e": -9.91,
+   "abs": 4.66
+  },
+  {
+   "uf": "ES",
+   "office": "governor",
+   "p": "Quaest",
+   "cand": "Helder Salomão",
+   "party": "PT",
+   "side": "esquerda",
+   "e": 0.06,
+   "abs": 4.66
+  },
+  {
+   "uf": "ES",
+   "office": "governor",
+   "p": "Quaest",
+   "cand": "Breno Barcelos",
+   "party": "MISSÃO",
+   "side": "sem classificação",
+   "e": 0.43,
+   "abs": 4.66
+  },
+  {
+   "uf": "ES",
+   "office": "governor",
+   "p": "Real Time Big Data",
+   "cand": "Ferraço",
+   "party": "MDB",
+   "side": "centro",
+   "e": 12.81,
+   "abs": 8.22
+  },
+  {
+   "uf": "ES",
+   "office": "governor",
+   "p": "Real Time Big Data",
+   "cand": "Pazolini",
+   "party": "REPUBLICANOS",
+   "side": "direita",
+   "e": -11.11,
+   "abs": 8.22
+  },
+  {
+   "uf": "ES",
+   "office": "governor",
+   "p": "Real Time Big Data",
+   "cand": "Helder Salomão",
+   "party": "PT",
+   "side": "esquerda",
+   "e": -0.74,
+   "abs": 8.22
+  },
+  {
+   "uf": "ES",
+   "office": "senate",
+   "p": "Real Time Big Data",
+   "cand": "Casagrande",
+   "party": "PSB",
+   "side": "esquerda",
+   "e": 4.77,
+   "abs": 4.38
+  },
+  {
+   "uf": "ES",
+   "office": "senate",
+   "p": "Real Time Big Data",
+   "cand": "Meneguelli",
+   "party": "PSD",
+   "side": "direita",
+   "e": 6.19,
+   "abs": 4.38
+  },
+  {
+   "uf": "ES",
+   "office": "senate",
+   "p": "Real Time Big Data",
+   "cand": "Contarato",
+   "party": "PT",
+   "side": "esquerda",
+   "e": -0.31,
+   "abs": 4.38
+  },
+  {
+   "uf": "ES",
+   "office": "senate",
+   "p": "Real Time Big Data",
+   "cand": "Maguinha Malta",
+   "party": "PL",
+   "side": "direita",
+   "e": -6.27,
+   "abs": 4.38
+  },
+  {
+   "uf": "ES",
+   "office": "senate",
+   "p": "Quaest",
+   "cand": "Casagrande",
+   "party": "PSB",
+   "side": "esquerda",
+   "e": 9.08,
+   "abs": 5.99
+  },
+  {
+   "uf": "ES",
+   "office": "senate",
+   "p": "Quaest",
+   "cand": "Meneguelli",
+   "party": "PSD",
+   "side": "direita",
+   "e": 7.37,
+   "abs": 5.99
+  },
+  {
+   "uf": "ES",
+   "office": "senate",
+   "p": "Quaest",
+   "cand": "Contarato",
+   "party": "PT",
+   "side": "esquerda",
+   "e": -0.78,
+   "abs": 5.99
+  },
+  {
+   "uf": "ES",
+   "office": "senate",
+   "p": "Quaest",
+   "cand": "Maguinha Malta",
+   "party": "PL",
+   "side": "direita",
+   "e": -6.74,
+   "abs": 5.99
+  },
+  {
+   "uf": "GO",
+   "office": "governor",
+   "p": "Goiás Pesquisas",
+   "cand": "Daniel Vilela",
+   "party": "MDB",
+   "side": "centro",
+   "e": -6.82,
+   "abs": 4.51
+  },
+  {
+   "uf": "GO",
+   "office": "governor",
+   "p": "Goiás Pesquisas",
+   "cand": "Marconi Perillo",
+   "party": "PSDB",
+   "side": "direita",
+   "e": 7.51,
+   "abs": 4.51
+  },
+  {
+   "uf": "GO",
+   "office": "governor",
+   "p": "Goiás Pesquisas",
+   "cand": "Wilder Morais",
+   "party": "PL",
+   "side": "direita",
+   "e": -0.6,
+   "abs": 4.51
+  },
+  {
+   "uf": "GO",
+   "office": "governor",
+   "p": "Goiás Pesquisas",
+   "cand": "Luis Cesar Bueno",
+   "party": "PT",
+   "side": "esquerda",
+   "e": -3.13,
+   "abs": 4.51
+  },
+  {
+   "uf": "GO",
+   "office": "governor",
+   "p": "Paraná Pesquisas",
+   "cand": "Daniel Vilela",
+   "party": "MDB",
+   "side": "centro",
+   "e": -8.73,
+   "abs": 6.24
+  },
+  {
+   "uf": "GO",
+   "office": "governor",
+   "p": "Paraná Pesquisas",
+   "cand": "Marconi Perillo",
+   "party": "PSDB",
+   "side": "direita",
+   "e": 11.66,
+   "abs": 6.24
+  },
+  {
+   "uf": "GO",
+   "office": "governor",
+   "p": "Paraná Pesquisas",
+   "cand": "Wilder Morais",
+   "party": "PL",
+   "side": "direita",
+   "e": -1.5,
+   "abs": 6.24
+  },
+  {
+   "uf": "GO",
+   "office": "governor",
+   "p": "Paraná Pesquisas",
+   "cand": "Luis Cesar Bueno",
+   "party": "PT",
+   "side": "esquerda",
+   "e": -3.07,
+   "abs": 6.24
+  },
+  {
+   "uf": "MA",
+   "office": "governor",
+   "p": "Quaest",
+   "cand": "Eduardo Braide",
+   "party": "PSD",
+   "side": "direita",
+   "e": -2.44,
+   "abs": 2.69
+  },
+  {
+   "uf": "MA",
+   "office": "governor",
+   "p": "Quaest",
+   "cand": "Orleans Brandão",
+   "party": "MDB",
+   "side": "centro",
+   "e": -4.53,
+   "abs": 2.69
+  },
+  {
+   "uf": "MA",
+   "office": "governor",
+   "p": "Quaest",
+   "cand": "Felipe Camarão",
+   "party": "PT",
+   "side": "esquerda",
+   "e": 1.63,
+   "abs": 2.69
+  },
+  {
+   "uf": "MA",
+   "office": "governor",
+   "p": "Quaest",
+   "cand": "Roberto Rocha",
+   "party": "PRTB",
+   "side": "direita",
+   "e": 2.14,
+   "abs": 2.69
+  },
+  {
+   "uf": "MA",
+   "office": "senate",
+   "p": "Quaest",
+   "cand": "Roseana Sarney",
+   "party": "MDB",
+   "side": "centro",
+   "e": 9.93,
+   "abs": 4.0
+  },
+  {
+   "uf": "MA",
+   "office": "senate",
+   "p": "Quaest",
+   "cand": "André Fufuca",
+   "party": "PP",
+   "side": "direita",
+   "e": -0.67,
+   "abs": 4.0
+  },
+  {
+   "uf": "MA",
+   "office": "senate",
+   "p": "Quaest",
+   "cand": "Lahesio Bonfim",
+   "party": "NOVO",
+   "side": "direita",
+   "e": -4.01,
+   "abs": 4.0
+  },
+  {
+   "uf": "MA",
+   "office": "senate",
+   "p": "Quaest",
+   "cand": "Weverton Rocha",
+   "party": "PDT",
+   "side": "esquerda",
+   "e": -1.37,
+   "abs": 4.0
+  },
+  {
+   "uf": "MG",
+   "office": "governor",
+   "p": "Datafolha",
+   "cand": "Cleitinho",
+   "party": "REPUBLICANOS",
+   "side": "direita",
+   "e": -7.21,
+   "abs": 6.04
+  },
+  {
+   "uf": "MG",
+   "office": "governor",
+   "p": "Datafolha",
+   "cand": "Patrus",
+   "party": "PT",
+   "side": "esquerda",
+   "e": -7.07,
+   "abs": 6.04
+  },
+  {
+   "uf": "MG",
+   "office": "governor",
+   "p": "Datafolha",
+   "cand": "Kalil",
+   "party": "PDT",
+   "side": "esquerda",
+   "e": 9.71,
+   "abs": 6.04
+  },
+  {
+   "uf": "MG",
+   "office": "governor",
+   "p": "Datafolha",
+   "cand": "Mateus Simões",
+   "party": "PSD",
+   "side": "direita",
+   "e": 0.17,
+   "abs": 6.04
+  },
+  {
+   "uf": "MG",
+   "office": "governor",
+   "p": "Real Time Big Data",
+   "cand": "Cleitinho",
+   "party": "REPUBLICANOS",
+   "side": "direita",
+   "e": -5.4,
+   "abs": 3.12
+  },
+  {
+   "uf": "MG",
+   "office": "governor",
+   "p": "Real Time Big Data",
+   "cand": "Patrus",
+   "party": "PT",
+   "side": "esquerda",
+   "e": -1.91,
+   "abs": 3.12
+  },
+  {
+   "uf": "MG",
+   "office": "governor",
+   "p": "Real Time Big Data",
+   "cand": "Kalil",
+   "party": "PDT",
+   "side": "esquerda",
+   "e": 3.13,
+   "abs": 3.12
+  },
+  {
+   "uf": "MG",
+   "office": "governor",
+   "p": "Real Time Big Data",
+   "cand": "Mateus Simões",
+   "party": "PSD",
+   "side": "direita",
+   "e": 2.02,
+   "abs": 3.12
+  },
+  {
+   "uf": "MG",
+   "office": "governor",
+   "p": "AtlasIntel",
+   "cand": "Cleitinho",
+   "party": "REPUBLICANOS",
+   "side": "direita",
+   "e": -12.13,
+   "abs": 5.99
+  },
+  {
+   "uf": "MG",
+   "office": "governor",
+   "p": "AtlasIntel",
+   "cand": "Patrus",
+   "party": "PT",
+   "side": "esquerda",
+   "e": 8.43,
+   "abs": 5.99
+  },
+  {
+   "uf": "MG",
+   "office": "governor",
+   "p": "AtlasIntel",
+   "cand": "Kalil",
+   "party": "PDT",
+   "side": "esquerda",
+   "e": 1.64,
+   "abs": 5.99
+  },
+  {
+   "uf": "MG",
+   "office": "governor",
+   "p": "AtlasIntel",
+   "cand": "Mateus Simões",
+   "party": "PSD",
+   "side": "direita",
+   "e": 1.77,
+   "abs": 5.99
+  },
+  {
+   "uf": "MG",
+   "office": "governor",
+   "p": "Quaest",
+   "cand": "Cleitinho",
+   "party": "REPUBLICANOS",
+   "side": "direita",
+   "e": -9.15,
+   "abs": 5.89
+  },
+  {
+   "uf": "MG",
+   "office": "governor",
+   "p": "Quaest",
+   "cand": "Patrus",
+   "party": "PT",
+   "side": "esquerda",
+   "e": -3.85,
+   "abs": 5.89
+  },
+  {
+   "uf": "MG",
+   "office": "governor",
+   "p": "Quaest",
+   "cand": "Kalil",
+   "party": "PDT",
+   "side": "esquerda",
+   "e": 7.71,
+   "abs": 5.89
+  },
+  {
+   "uf": "MG",
+   "office": "governor",
+   "p": "Quaest",
+   "cand": "Mateus Simões",
+   "party": "PSD",
+   "side": "direita",
+   "e": 2.85,
+   "abs": 5.89
+  },
+  {
+   "uf": "MG",
+   "office": "senate",
+   "p": "Datafolha",
+   "cand": "Marília Campos",
+   "party": "PT",
+   "side": "esquerda",
+   "e": 0.55,
+   "abs": 6.07
+  },
+  {
+   "uf": "MG",
+   "office": "senate",
+   "p": "Datafolha",
+   "cand": "Carlos Viana",
+   "party": "PSD",
+   "side": "direita",
+   "e": -0.54,
+   "abs": 6.07
+  },
+  {
+   "uf": "MG",
+   "office": "senate",
+   "p": "Datafolha",
+   "cand": "Domingos Sávio",
+   "party": "PL",
+   "side": "direita",
+   "e": -10.36,
+   "abs": 6.07
+  },
+  {
+   "uf": "MG",
+   "office": "senate",
+   "p": "Datafolha",
+   "cand": "Aécio Neves",
+   "party": "PSDB",
+   "side": "direita",
+   "e": 12.84,
+   "abs": 6.07
+  },
+  {
+   "uf": "MG",
+   "office": "senate",
+   "p": "Real Time Big Data",
+   "cand": "Marília Campos",
+   "party": "PT",
+   "side": "esquerda",
+   "e": 0.98,
+   "abs": 3.33
+  },
+  {
+   "uf": "MG",
+   "office": "senate",
+   "p": "Real Time Big Data",
+   "cand": "Carlos Viana",
+   "party": "PSD",
+   "side": "direita",
+   "e": 4.05,
+   "abs": 3.33
+  },
+  {
+   "uf": "MG",
+   "office": "senate",
+   "p": "Real Time Big Data",
+   "cand": "Domingos Sávio",
+   "party": "PL",
+   "side": "direita",
+   "e": -2.7,
+   "abs": 3.33
+  },
+  {
+   "uf": "MG",
+   "office": "senate",
+   "p": "Real Time Big Data",
+   "cand": "Aécio Neves",
+   "party": "PSDB",
+   "side": "direita",
+   "e": 5.6,
+   "abs": 3.33
+  },
+  {
+   "uf": "MG",
+   "office": "senate",
+   "p": "Quaest",
+   "cand": "Marília Campos",
+   "party": "PT",
+   "side": "esquerda",
+   "e": 0.55,
+   "abs": 4.65
+  },
+  {
+   "uf": "MG",
+   "office": "senate",
+   "p": "Quaest",
+   "cand": "Carlos Viana",
+   "party": "PSD",
+   "side": "direita",
+   "e": 1.0,
+   "abs": 4.65
+  },
+  {
+   "uf": "MG",
+   "office": "senate",
+   "p": "Quaest",
+   "cand": "Domingos Sávio",
+   "party": "PL",
+   "side": "direita",
+   "e": -2.67,
+   "abs": 4.65
+  },
+  {
+   "uf": "MG",
+   "office": "senate",
+   "p": "Quaest",
+   "cand": "Aécio Neves",
+   "party": "PSDB",
+   "side": "direita",
+   "e": 14.38,
+   "abs": 4.65
+  },
+  {
+   "uf": "MS",
+   "office": "governor",
+   "p": "Quaest",
+   "cand": "Riedel",
+   "party": "PP",
+   "side": "direita",
+   "e": 0.04,
+   "abs": 4.51
+  },
+  {
+   "uf": "MS",
+   "office": "governor",
+   "p": "Quaest",
+   "cand": "Fábio Trad",
+   "party": "PT",
+   "side": "esquerda",
+   "e": -7.89,
+   "abs": 4.51
+  },
+  {
+   "uf": "MS",
+   "office": "governor",
+   "p": "Quaest",
+   "cand": "Catan",
+   "party": "NOVO",
+   "side": "direita",
+   "e": -3.29,
+   "abs": 4.51
+  },
+  {
+   "uf": "MS",
+   "office": "governor",
+   "p": "Quaest",
+   "cand": "Delcídio",
+   "party": "PRD",
+   "side": "direita",
+   "e": 6.83,
+   "abs": 4.51
+  },
+  {
+   "uf": "MS",
+   "office": "governor",
+   "p": "Ranking Brasil",
+   "cand": "Riedel",
+   "party": "PP",
+   "side": "direita",
+   "e": -9.27,
+   "abs": 6.31
+  },
+  {
+   "uf": "MS",
+   "office": "governor",
+   "p": "Ranking Brasil",
+   "cand": "Fábio Trad",
+   "party": "PT",
+   "side": "esquerda",
+   "e": -2.87,
+   "abs": 6.31
+  },
+  {
+   "uf": "MS",
+   "office": "governor",
+   "p": "Ranking Brasil",
+   "cand": "Catan",
+   "party": "NOVO",
+   "side": "direita",
+   "e": -3.77,
+   "abs": 6.31
+  },
+  {
+   "uf": "MS",
+   "office": "governor",
+   "p": "Ranking Brasil",
+   "cand": "Delcídio",
+   "party": "PRD",
+   "side": "direita",
+   "e": 9.34,
+   "abs": 6.31
+  },
+  {
+   "uf": "MS",
+   "office": "senate",
+   "p": "Quaest",
+   "cand": "Azambuja",
+   "party": "PL",
+   "side": "direita",
+   "e": -3.21,
+   "abs": 1.73
+  },
+  {
+   "uf": "MS",
+   "office": "senate",
+   "p": "Quaest",
+   "cand": "Capitão Contar",
+   "party": "PL",
+   "side": "direita",
+   "e": 0.04,
+   "abs": 1.73
+  },
+  {
+   "uf": "MS",
+   "office": "senate",
+   "p": "Quaest",
+   "cand": "Soraya",
+   "party": "PSB",
+   "side": "esquerda",
+   "e": 1.22,
+   "abs": 1.73
+  },
+  {
+   "uf": "MS",
+   "office": "senate",
+   "p": "Quaest",
+   "cand": "Vander Loubet",
+   "party": "PT",
+   "side": "esquerda",
+   "e": -2.45,
+   "abs": 1.73
+  },
+  {
+   "uf": "MT",
+   "office": "governor",
+   "p": "Veritá",
+   "cand": "Pivetta",
+   "party": "REPUBLICANOS",
+   "side": "direita",
+   "e": -16.79,
+   "abs": 7.97
+  },
+  {
+   "uf": "MT",
+   "office": "governor",
+   "p": "Veritá",
+   "cand": "Wellington Fagundes",
+   "party": "PL",
+   "side": "direita",
+   "e": 13.14,
+   "abs": 7.97
+  },
+  {
+   "uf": "MT",
+   "office": "governor",
+   "p": "Veritá",
+   "cand": "Natasha",
+   "party": "PSD",
+   "side": "direita",
+   "e": 1.7,
+   "abs": 7.97
+  },
+  {
+   "uf": "MT",
+   "office": "governor",
+   "p": "Veritá",
+   "cand": "Rafaell Millas",
+   "party": "MISSÃO",
+   "side": "sem classificação",
+   "e": 0.24,
+   "abs": 7.97
+  },
+  {
+   "uf": "MT",
+   "office": "governor",
+   "p": "Quaest",
+   "cand": "Pivetta",
+   "party": "REPUBLICANOS",
+   "side": "direita",
+   "e": -20.49,
+   "abs": 8.94
+  },
+  {
+   "uf": "MT",
+   "office": "governor",
+   "p": "Quaest",
+   "cand": "Wellington Fagundes",
+   "party": "PL",
+   "side": "direita",
+   "e": 14.31,
+   "abs": 8.94
+  },
+  {
+   "uf": "MT",
+   "office": "governor",
+   "p": "Quaest",
+   "cand": "Natasha",
+   "party": "PSD",
+   "side": "direita",
+   "e": 0.11,
+   "abs": 8.94
+  },
+  {
+   "uf": "MT",
+   "office": "governor",
+   "p": "Quaest",
+   "cand": "Rafaell Millas",
+   "party": "MISSÃO",
+   "side": "sem classificação",
+   "e": 0.84,
+   "abs": 8.94
+  },
+  {
+   "uf": "MT",
+   "office": "governor",
+   "p": "Paraná Pesquisas",
+   "cand": "Pivetta",
+   "party": "REPUBLICANOS",
+   "side": "direita",
+   "e": -9.27,
+   "abs": 6.06
+  },
+  {
+   "uf": "MT",
+   "office": "governor",
+   "p": "Paraná Pesquisas",
+   "cand": "Wellington Fagundes",
+   "party": "PL",
+   "side": "direita",
+   "e": 6.89,
+   "abs": 6.06
+  },
+  {
+   "uf": "MT",
+   "office": "governor",
+   "p": "Paraná Pesquisas",
+   "cand": "Natasha",
+   "party": "PSD",
+   "side": "direita",
+   "e": 2.03,
+   "abs": 6.06
+  },
+  {
+   "uf": "MT",
+   "office": "senate",
+   "p": "Quaest",
+   "cand": "Mauro Mendes",
+   "party": "UNIÃO",
+   "side": "direita",
+   "e": 1.85,
+   "abs": 7.19
+  },
+  {
+   "uf": "MT",
+   "office": "senate",
+   "p": "Quaest",
+   "cand": "Janaina Riva",
+   "party": "MDB",
+   "side": "centro",
+   "e": 10.15,
+   "abs": 7.19
+  },
+  {
+   "uf": "MT",
+   "office": "senate",
+   "p": "Quaest",
+   "cand": "Zé Medeiros",
+   "party": "PL",
+   "side": "direita",
+   "e": -15.66,
+   "abs": 7.19
+  },
+  {
+   "uf": "MT",
+   "office": "senate",
+   "p": "Quaest",
+   "cand": "Fávaro",
+   "party": "PSD",
+   "side": "direita",
+   "e": -1.11,
+   "abs": 7.19
+  },
+  {
+   "uf": "PA",
+   "office": "governor",
+   "p": "Quaest",
+   "cand": "Dr. Daniel",
+   "party": "PODE",
+   "side": "direita",
+   "e": 5.02,
+   "abs": 4.17
+  },
+  {
+   "uf": "PA",
+   "office": "governor",
+   "p": "Quaest",
+   "cand": "Hana Ghassan",
+   "party": "MDB",
+   "side": "centro",
+   "e": -6.81,
+   "abs": 4.17
+  },
+  {
+   "uf": "PA",
+   "office": "governor",
+   "p": "Quaest",
+   "cand": "Araceli",
+   "party": "PSOL",
+   "side": "esquerda",
+   "e": 0.68,
+   "abs": 4.17
+  },
+  {
+   "uf": "PA",
+   "office": "governor",
+   "p": "Real Time Big Data",
+   "cand": "Dr. Daniel",
+   "party": "PODE",
+   "side": "direita",
+   "e": -7.34,
+   "abs": 4.56
+  },
+  {
+   "uf": "PA",
+   "office": "governor",
+   "p": "Real Time Big Data",
+   "cand": "Hana Ghassan",
+   "party": "MDB",
+   "side": "centro",
+   "e": 5.83,
+   "abs": 4.56
+  },
+  {
+   "uf": "PA",
+   "office": "governor",
+   "p": "Real Time Big Data",
+   "cand": "Araceli",
+   "party": "PSOL",
+   "side": "esquerda",
+   "e": 0.5,
+   "abs": 4.56
+  },
+  {
+   "uf": "PA",
+   "office": "governor",
+   "p": "AtlasIntel",
+   "cand": "Dr. Daniel",
+   "party": "PODE",
+   "side": "direita",
+   "e": -5.09,
+   "abs": 4.05
+  },
+  {
+   "uf": "PA",
+   "office": "governor",
+   "p": "AtlasIntel",
+   "cand": "Hana Ghassan",
+   "party": "MDB",
+   "side": "centro",
+   "e": 6.0,
+   "abs": 4.05
+  },
+  {
+   "uf": "PA",
+   "office": "governor",
+   "p": "AtlasIntel",
+   "cand": "Araceli",
+   "party": "PSOL",
+   "side": "esquerda",
+   "e": -1.05,
+   "abs": 4.05
+  },
+  {
+   "uf": "PA",
+   "office": "senate",
+   "p": "Quaest",
+   "cand": "Helder Barbalho",
+   "party": "MDB",
+   "side": "centro",
+   "e": 2.84,
+   "abs": 3.13
+  },
+  {
+   "uf": "PA",
+   "office": "senate",
+   "p": "Quaest",
+   "cand": "Éder Mauro",
+   "party": "PL",
+   "side": "direita",
+   "e": 0.89,
+   "abs": 3.13
+  },
+  {
+   "uf": "PA",
+   "office": "senate",
+   "p": "Quaest",
+   "cand": "Chicão",
+   "party": "UNIÃO",
+   "side": "direita",
+   "e": -3.65,
+   "abs": 3.13
+  },
+  {
+   "uf": "PA",
+   "office": "senate",
+   "p": "Quaest",
+   "cand": "Zequinha Marinho",
+   "party": "PODE",
+   "side": "direita",
+   "e": -5.16,
+   "abs": 3.13
+  },
+  {
+   "uf": "PA",
+   "office": "senate",
+   "p": "Real Time Big Data",
+   "cand": "Helder Barbalho",
+   "party": "MDB",
+   "side": "centro",
+   "e": 11.74,
+   "abs": 7.57
+  },
+  {
+   "uf": "PA",
+   "office": "senate",
+   "p": "Real Time Big Data",
+   "cand": "Éder Mauro",
+   "party": "PL",
+   "side": "direita",
+   "e": -5.46,
+   "abs": 7.57
+  },
+  {
+   "uf": "PA",
+   "office": "senate",
+   "p": "Real Time Big Data",
+   "cand": "Chicão",
+   "party": "UNIÃO",
+   "side": "direita",
+   "e": -5.65,
+   "abs": 7.57
+  },
+  {
+   "uf": "PA",
+   "office": "senate",
+   "p": "Real Time Big Data",
+   "cand": "Zequinha Marinho",
+   "party": "PODE",
+   "side": "direita",
+   "e": -7.42,
+   "abs": 7.57
+  },
+  {
+   "uf": "PB",
+   "office": "governor",
+   "p": "Real Time Big Data",
+   "cand": "Lucas Ribeiro",
+   "party": "PP",
+   "side": "direita",
+   "e": -12.58,
+   "abs": 8.54
+  },
+  {
+   "uf": "PB",
+   "office": "governor",
+   "p": "Real Time Big Data",
+   "cand": "Efraim Filho",
+   "party": "PL",
+   "side": "direita",
+   "e": 3.41,
+   "abs": 8.54
+  },
+  {
+   "uf": "PB",
+   "office": "governor",
+   "p": "Real Time Big Data",
+   "cand": "Cícero Lucena",
+   "party": "MDB",
+   "side": "centro",
+   "e": 9.63,
+   "abs": 8.54
+  },
+  {
+   "uf": "PB",
+   "office": "senate",
+   "p": "Real Time Big Data",
+   "cand": "João Azevêdo",
+   "party": "PSB",
+   "side": "esquerda",
+   "e": 0.83,
+   "abs": 3.08
+  },
+  {
+   "uf": "PB",
+   "office": "senate",
+   "p": "Real Time Big Data",
+   "cand": "Veneziano",
+   "party": "MDB",
+   "side": "centro",
+   "e": 3.05,
+   "abs": 3.08
+  },
+  {
+   "uf": "PB",
+   "office": "senate",
+   "p": "Real Time Big Data",
+   "cand": "Nabor Wanderley",
+   "party": "REPUBLICANOS",
+   "side": "direita",
+   "e": -3.71,
+   "abs": 3.08
+  },
+  {
+   "uf": "PB",
+   "office": "senate",
+   "p": "Real Time Big Data",
+   "cand": "Marcelo Queiroga",
+   "party": "PL",
+   "side": "direita",
+   "e": 4.74,
+   "abs": 3.08
+  },
+  {
+   "uf": "PE",
+   "office": "governor",
+   "p": "Datafolha",
+   "cand": "Raquel Lyra",
+   "party": "PSD",
+   "side": "direita",
+   "e": -3.81,
+   "abs": 3.15
+  },
+  {
+   "uf": "PE",
+   "office": "governor",
+   "p": "Datafolha",
+   "cand": "João Campos",
+   "party": "PSB",
+   "side": "esquerda",
+   "e": 2.49,
+   "abs": 3.15
+  },
+  {
+   "uf": "PE",
+   "office": "governor",
+   "p": "Quaest",
+   "cand": "Raquel Lyra",
+   "party": "PSD",
+   "side": "direita",
+   "e": -3.86,
+   "abs": 4.22
+  },
+  {
+   "uf": "PE",
+   "office": "governor",
+   "p": "Quaest",
+   "cand": "João Campos",
+   "party": "PSB",
+   "side": "esquerda",
+   "e": 4.59,
+   "abs": 4.22
+  },
+  {
+   "uf": "PE",
+   "office": "governor",
+   "p": "Real Time Big Data",
+   "cand": "Raquel Lyra",
+   "party": "PSD",
+   "side": "direita",
+   "e": -7.03,
+   "abs": 3.27
+  },
+  {
+   "uf": "PE",
+   "office": "governor",
+   "p": "Real Time Big Data",
+   "cand": "João Campos",
+   "party": "PSB",
+   "side": "esquerda",
+   "e": 3.57,
+   "abs": 3.27
+  },
+  {
+   "uf": "PE",
+   "office": "governor",
+   "p": "Real Time Big Data",
+   "cand": "Renan Hallais",
+   "party": "MISSÃO",
+   "side": "sem classificação",
+   "e": 1.8,
+   "abs": 3.27
+  },
+  {
+   "uf": "PE",
+   "office": "governor",
+   "p": "Real Time Big Data",
+   "cand": "Ivan Moraes",
+   "party": "PSOL",
+   "side": "esquerda",
+   "e": 0.67,
+   "abs": 3.27
+  },
+  {
+   "uf": "PE",
+   "office": "governor",
+   "p": "Paraná Pesquisas",
+   "cand": "Raquel Lyra",
+   "party": "PSD",
+   "side": "direita",
+   "e": -4.63,
+   "abs": 4.5
+  },
+  {
+   "uf": "PE",
+   "office": "governor",
+   "p": "Paraná Pesquisas",
+   "cand": "João Campos",
+   "party": "PSB",
+   "side": "esquerda",
+   "e": 4.37,
+   "abs": 4.5
+  },
+  {
+   "uf": "PE",
+   "office": "senate",
+   "p": "Datafolha",
+   "cand": "Marília Arraes",
+   "party": "PDT",
+   "side": "esquerda",
+   "e": 1.74,
+   "abs": 1.39
+  },
+  {
+   "uf": "PE",
+   "office": "senate",
+   "p": "Datafolha",
+   "cand": "Humberto Costa",
+   "party": "PT",
+   "side": "esquerda",
+   "e": -3.3,
+   "abs": 1.39
+  },
+  {
+   "uf": "PE",
+   "office": "senate",
+   "p": "Datafolha",
+   "cand": "Mendonça Filho",
+   "party": "PL",
+   "side": "direita",
+   "e": -0.29,
+   "abs": 1.39
+  },
+  {
+   "uf": "PE",
+   "office": "senate",
+   "p": "Datafolha",
+   "cand": "Eduardo da Fonte",
+   "party": "PP",
+   "side": "direita",
+   "e": 0.21,
+   "abs": 1.39
+  },
+  {
+   "uf": "PE",
+   "office": "senate",
+   "p": "Quaest",
+   "cand": "Marília Arraes",
+   "party": "PDT",
+   "side": "esquerda",
+   "e": 6.01,
+   "abs": 2.64
+  },
+  {
+   "uf": "PE",
+   "office": "senate",
+   "p": "Quaest",
+   "cand": "Humberto Costa",
+   "party": "PT",
+   "side": "esquerda",
+   "e": -3.1,
+   "abs": 2.64
+  },
+  {
+   "uf": "PE",
+   "office": "senate",
+   "p": "Quaest",
+   "cand": "Mendonça Filho",
+   "party": "PL",
+   "side": "direita",
+   "e": -1.36,
+   "abs": 2.64
+  },
+  {
+   "uf": "PE",
+   "office": "senate",
+   "p": "Quaest",
+   "cand": "Eduardo da Fonte",
+   "party": "PP",
+   "side": "direita",
+   "e": -0.08,
+   "abs": 2.64
+  },
+  {
+   "uf": "PE",
+   "office": "senate",
+   "p": "Real Time Big Data",
+   "cand": "Marília Arraes",
+   "party": "PDT",
+   "side": "esquerda",
+   "e": 1.3,
+   "abs": 2.97
+  },
+  {
+   "uf": "PE",
+   "office": "senate",
+   "p": "Real Time Big Data",
+   "cand": "Humberto Costa",
+   "party": "PT",
+   "side": "esquerda",
+   "e": -6.19,
+   "abs": 2.97
+  },
+  {
+   "uf": "PE",
+   "office": "senate",
+   "p": "Real Time Big Data",
+   "cand": "Mendonça Filho",
+   "party": "PL",
+   "side": "direita",
+   "e": 2.45,
+   "abs": 2.97
+  },
+  {
+   "uf": "PE",
+   "office": "senate",
+   "p": "Real Time Big Data",
+   "cand": "Eduardo da Fonte",
+   "party": "PP",
+   "side": "direita",
+   "e": 1.92,
+   "abs": 2.97
+  },
+  {
+   "uf": "PI",
+   "office": "governor",
+   "p": "Vetor3",
+   "cand": "Rafael Fonteles",
+   "party": "PT",
+   "side": "esquerda",
+   "e": -3.52,
+   "abs": 2.97
+  },
+  {
+   "uf": "PI",
+   "office": "governor",
+   "p": "Vetor3",
+   "cand": "Joel Rodrigues",
+   "party": "PP",
+   "side": "direita",
+   "e": 2.42,
+   "abs": 2.97
+  },
+  {
+   "uf": "PI",
+   "office": "governor",
+   "p": "Amostragem",
+   "cand": "Rafael Fonteles",
+   "party": "PT",
+   "side": "esquerda",
+   "e": -0.79,
+   "abs": 1.91
+  },
+  {
+   "uf": "PI",
+   "office": "governor",
+   "p": "Amostragem",
+   "cand": "Joel Rodrigues",
+   "party": "PP",
+   "side": "direita",
+   "e": -3.97,
+   "abs": 1.91
+  },
+  {
+   "uf": "PI",
+   "office": "governor",
+   "p": "Amostragem",
+   "cand": "Lúcia Santos",
+   "party": "PSDB",
+   "side": "direita",
+   "e": 0.98,
+   "abs": 1.91
+  },
+  {
+   "uf": "PI",
+   "office": "governor",
+   "p": "AtlasIntel",
+   "cand": "Rafael Fonteles",
+   "party": "PT",
+   "side": "esquerda",
+   "e": -0.97,
+   "abs": 1.03
+  },
+  {
+   "uf": "PI",
+   "office": "governor",
+   "p": "AtlasIntel",
+   "cand": "Joel Rodrigues",
+   "party": "PP",
+   "side": "direita",
+   "e": -1.09,
+   "abs": 1.03
+  },
+  {
+   "uf": "PI",
+   "office": "senate",
+   "p": "Amostragem",
+   "cand": "Marcelo Castro",
+   "party": "MDB",
+   "side": "centro",
+   "e": -4.51,
+   "abs": 3.55
+  },
+  {
+   "uf": "PI",
+   "office": "senate",
+   "p": "Amostragem",
+   "cand": "Júlio César",
+   "party": "PSD",
+   "side": "direita",
+   "e": -3.12,
+   "abs": 3.55
+  },
+  {
+   "uf": "PI",
+   "office": "senate",
+   "p": "Amostragem",
+   "cand": "Ciro Nogueira",
+   "party": "PP",
+   "side": "direita",
+   "e": 3.34,
+   "abs": 3.55
+  },
+  {
+   "uf": "PI",
+   "office": "senate",
+   "p": "Amostragem",
+   "cand": "Tiago Junqueira",
+   "party": "PL",
+   "side": "direita",
+   "e": -3.23,
+   "abs": 3.55
+  },
+  {
+   "uf": "PI",
+   "office": "senate",
+   "p": "AtlasIntel",
+   "cand": "Marcelo Castro",
+   "party": "MDB",
+   "side": "centro",
+   "e": -5.16,
+   "abs": 4.91
+  },
+  {
+   "uf": "PI",
+   "office": "senate",
+   "p": "AtlasIntel",
+   "cand": "Júlio César",
+   "party": "PSD",
+   "side": "direita",
+   "e": 3.48,
+   "abs": 4.91
+  },
+  {
+   "uf": "PI",
+   "office": "senate",
+   "p": "AtlasIntel",
+   "cand": "Ciro Nogueira",
+   "party": "PP",
+   "side": "direita",
+   "e": -6.89,
+   "abs": 4.91
+  },
+  {
+   "uf": "PI",
+   "office": "senate",
+   "p": "AtlasIntel",
+   "cand": "Tiago Junqueira",
+   "party": "PL",
+   "side": "direita",
+   "e": 4.11,
+   "abs": 4.91
+  },
+  {
+   "uf": "PR",
+   "office": "governor",
+   "p": "Real Time Big Data",
+   "cand": "Moro",
+   "party": "PL",
+   "side": "direita",
+   "e": -9.89,
+   "abs": 4.76
+  },
+  {
+   "uf": "PR",
+   "office": "governor",
+   "p": "Real Time Big Data",
+   "cand": "Sandro Alex",
+   "party": "PSD",
+   "side": "direita",
+   "e": 6.15,
+   "abs": 4.76
+  },
+  {
+   "uf": "PR",
+   "office": "governor",
+   "p": "Real Time Big Data",
+   "cand": "Requião Filho",
+   "party": "PDT",
+   "side": "esquerda",
+   "e": 2.61,
+   "abs": 4.76
+  },
+  {
+   "uf": "PR",
+   "office": "governor",
+   "p": "Real Time Big Data",
+   "cand": "Luiz França",
+   "party": "MISSÃO",
+   "side": "sem classificação",
+   "e": 0.38,
+   "abs": 4.76
+  },
+  {
+   "uf": "PR",
+   "office": "governor",
+   "p": "Neokemp",
+   "cand": "Moro",
+   "party": "PL",
+   "side": "direita",
+   "e": -1.29,
+   "abs": 1.59
+  },
+  {
+   "uf": "PR",
+   "office": "governor",
+   "p": "Neokemp",
+   "cand": "Sandro Alex",
+   "party": "PSD",
+   "side": "direita",
+   "e": -1.83,
+   "abs": 1.59
+  },
+  {
+   "uf": "PR",
+   "office": "governor",
+   "p": "Neokemp",
+   "cand": "Requião Filho",
+   "party": "PDT",
+   "side": "esquerda",
+   "e": 3.13,
+   "abs": 1.59
+  },
+  {
+   "uf": "PR",
+   "office": "governor",
+   "p": "Neokemp",
+   "cand": "Luiz França",
+   "party": "MISSÃO",
+   "side": "sem classificação",
+   "e": -0.1,
+   "abs": 1.59
+  },
+  {
+   "uf": "PR",
+   "office": "senate",
+   "p": "Real Time Big Data",
+   "cand": "Deltan",
+   "party": "NOVO",
+   "side": "direita",
+   "e": -3.05,
+   "abs": 4.24
+  },
+  {
+   "uf": "PR",
+   "office": "senate",
+   "p": "Real Time Big Data",
+   "cand": "Filipe Barros",
+   "party": "PL",
+   "side": "direita",
+   "e": -7.28,
+   "abs": 4.24
+  },
+  {
+   "uf": "PR",
+   "office": "senate",
+   "p": "Real Time Big Data",
+   "cand": "Alexandre Curi",
+   "party": "REPUBLICANOS",
+   "side": "direita",
+   "e": 3.13,
+   "abs": 4.24
+  },
+  {
+   "uf": "PR",
+   "office": "senate",
+   "p": "Real Time Big Data",
+   "cand": "Gleisi",
+   "party": "PT",
+   "side": "esquerda",
+   "e": 3.48,
+   "abs": 4.24
+  },
+  {
+   "uf": "PR",
+   "office": "senate",
+   "p": "Neokemp",
+   "cand": "Deltan",
+   "party": "NOVO",
+   "side": "direita",
+   "e": 0.91,
+   "abs": 2.85
+  },
+  {
+   "uf": "PR",
+   "office": "senate",
+   "p": "Neokemp",
+   "cand": "Filipe Barros",
+   "party": "PL",
+   "side": "direita",
+   "e": -3.2,
+   "abs": 2.85
+  },
+  {
+   "uf": "PR",
+   "office": "senate",
+   "p": "Neokemp",
+   "cand": "Alexandre Curi",
+   "party": "REPUBLICANOS",
+   "side": "direita",
+   "e": -4.2,
+   "abs": 2.85
+  },
+  {
+   "uf": "PR",
+   "office": "senate",
+   "p": "Neokemp",
+   "cand": "Gleisi",
+   "party": "PT",
+   "side": "esquerda",
+   "e": 3.08,
+   "abs": 2.85
+  },
+  {
+   "uf": "RJ",
+   "office": "governor",
+   "p": "Datafolha",
+   "cand": "Eduardo Paes",
+   "party": "PSD",
+   "side": "direita",
+   "e": 3.62,
+   "abs": 7.0
+  },
+  {
+   "uf": "RJ",
+   "office": "governor",
+   "p": "Datafolha",
+   "cand": "Douglas Ruas",
+   "party": "PL",
+   "side": "direita",
+   "e": -17.55,
+   "abs": 7.0
+  },
+  {
+   "uf": "RJ",
+   "office": "governor",
+   "p": "Datafolha",
+   "cand": "Garotinho",
+   "party": "REPUBLICANOS",
+   "side": "direita",
+   "e": 5.62,
+   "abs": 7.0
+  },
+  {
+   "uf": "RJ",
+   "office": "governor",
+   "p": "Datafolha",
+   "cand": "Coronel Busnello",
+   "party": "MISSÃO",
+   "side": "sem classificação",
+   "e": 1.21,
+   "abs": 7.0
+  },
+  {
+   "uf": "RJ",
+   "office": "senate",
+   "p": "Datafolha",
+   "cand": "Benedita",
+   "party": "PT",
+   "side": "esquerda",
+   "e": 5.1,
+   "abs": 7.6
+  },
+  {
+   "uf": "RJ",
+   "office": "senate",
+   "p": "Datafolha",
+   "cand": "Carlos Jordy",
+   "party": "PL",
+   "side": "direita",
+   "e": -8.57,
+   "abs": 7.6
+  },
+  {
+   "uf": "RJ",
+   "office": "senate",
+   "p": "Datafolha",
+   "cand": "Carlos Portinho",
+   "party": "PL",
+   "side": "direita",
+   "e": -10.78,
+   "abs": 7.6
+  },
+  {
+   "uf": "RJ",
+   "office": "senate",
+   "p": "Datafolha",
+   "cand": "Crivella",
+   "party": "REPUBLICANOS",
+   "side": "direita",
+   "e": 5.94,
+   "abs": 7.6
+  },
+  {
+   "uf": "RN",
+   "office": "governor",
+   "p": "Quaest",
+   "cand": "Allyson",
+   "party": "UNIÃO",
+   "side": "direita",
+   "e": 12.43,
+   "abs": 6.8
+  },
+  {
+   "uf": "RN",
+   "office": "governor",
+   "p": "Quaest",
+   "cand": "Cadu Xavier",
+   "party": "PT",
+   "side": "esquerda",
+   "e": -9.58,
+   "abs": 6.8
+  },
+  {
+   "uf": "RN",
+   "office": "governor",
+   "p": "Quaest",
+   "cand": "Álvaro Dias",
+   "party": "PL",
+   "side": "direita",
+   "e": -3.93,
+   "abs": 6.8
+  },
+  {
+   "uf": "RN",
+   "office": "governor",
+   "p": "Quaest",
+   "cand": "Rodrigo Bolsonaro",
+   "party": "AGIR",
+   "side": "sem classificação",
+   "e": 1.25,
+   "abs": 6.8
+  },
+  {
+   "uf": "RN",
+   "office": "governor",
+   "p": "Qualittá",
+   "cand": "Allyson",
+   "party": "UNIÃO",
+   "side": "direita",
+   "e": 16.73,
+   "abs": 8.43
+  },
+  {
+   "uf": "RN",
+   "office": "governor",
+   "p": "Qualittá",
+   "cand": "Cadu Xavier",
+   "party": "PT",
+   "side": "esquerda",
+   "e": -10.73,
+   "abs": 8.43
+  },
+  {
+   "uf": "RN",
+   "office": "governor",
+   "p": "Qualittá",
+   "cand": "Álvaro Dias",
+   "party": "PL",
+   "side": "direita",
+   "e": -6.05,
+   "abs": 8.43
+  },
+  {
+   "uf": "RN",
+   "office": "governor",
+   "p": "Qualittá",
+   "cand": "Rodrigo Bolsonaro",
+   "party": "AGIR",
+   "side": "sem classificação",
+   "e": 0.22,
+   "abs": 8.43
+  },
+  {
+   "uf": "RN",
+   "office": "governor",
+   "p": "AtlasIntel",
+   "cand": "Allyson",
+   "party": "UNIÃO",
+   "side": "direita",
+   "e": -8.11,
+   "abs": 4.58
+  },
+  {
+   "uf": "RN",
+   "office": "governor",
+   "p": "AtlasIntel",
+   "cand": "Cadu Xavier",
+   "party": "PT",
+   "side": "esquerda",
+   "e": 3.31,
+   "abs": 4.58
+  },
+  {
+   "uf": "RN",
+   "office": "governor",
+   "p": "AtlasIntel",
+   "cand": "Álvaro Dias",
+   "party": "PL",
+   "side": "direita",
+   "e": 2.33,
+   "abs": 4.58
+  },
+  {
+   "uf": "RN",
+   "office": "senate",
+   "p": "Quaest",
+   "cand": "Styvenson Valentim",
+   "party": "PODE",
+   "side": "direita",
+   "e": 2.42,
+   "abs": 2.52
+  },
+  {
+   "uf": "RN",
+   "office": "senate",
+   "p": "Quaest",
+   "cand": "Zenaide Maia",
+   "party": "PSD",
+   "side": "direita",
+   "e": 2.53,
+   "abs": 2.52
+  },
+  {
+   "uf": "RN",
+   "office": "senate",
+   "p": "Quaest",
+   "cand": "Samanda Alves",
+   "party": "PT",
+   "side": "esquerda",
+   "e": -2.63,
+   "abs": 2.52
+  },
+  {
+   "uf": "RN",
+   "office": "senate",
+   "p": "Quaest",
+   "cand": "Rafael Motta",
+   "party": "PDT",
+   "side": "esquerda",
+   "e": -2.49,
+   "abs": 2.52
+  },
+  {
+   "uf": "RR",
+   "office": "governor",
+   "p": "Quaest",
+   "cand": "Arthur Henrique",
+   "party": "PL",
+   "side": "direita",
+   "e": -6.51,
+   "abs": 4.36
+  },
+  {
+   "uf": "RR",
+   "office": "governor",
+   "p": "Quaest",
+   "cand": "Soldado Sampaio",
+   "party": "REPUBLICANOS",
+   "side": "direita",
+   "e": 5.9,
+   "abs": 4.36
+  },
+  {
+   "uf": "RR",
+   "office": "governor",
+   "p": "Quaest",
+   "cand": "Rosi Aires",
+   "party": "PSOL",
+   "side": "esquerda",
+   "e": 0.67,
+   "abs": 4.36
+  },
+  {
+   "uf": "RR",
+   "office": "senate",
+   "p": "Quaest",
+   "cand": "Teresa Surita",
+   "party": "MDB",
+   "side": "centro",
+   "e": 6.44,
+   "abs": 3.06
+  },
+  {
+   "uf": "RR",
+   "office": "senate",
+   "p": "Quaest",
+   "cand": "Nicoletti",
+   "party": "PL",
+   "side": "direita",
+   "e": -0.57,
+   "abs": 3.06
+  },
+  {
+   "uf": "RR",
+   "office": "senate",
+   "p": "Quaest",
+   "cand": "Helena da Asatur",
+   "party": "PSD",
+   "side": "direita",
+   "e": 2.32,
+   "abs": 3.06
+  },
+  {
+   "uf": "RR",
+   "office": "senate",
+   "p": "Quaest",
+   "cand": "Chico Rodrigues",
+   "party": "PSB",
+   "side": "esquerda",
+   "e": 2.91,
+   "abs": 3.06
+  },
+  {
+   "uf": "RS",
+   "office": "governor",
+   "p": "Neokemp",
+   "cand": "Zucco",
+   "party": "PL",
+   "side": "direita",
+   "e": -9.11,
+   "abs": 4.64
+  },
+  {
+   "uf": "RS",
+   "office": "governor",
+   "p": "Neokemp",
+   "cand": "Juliana Brizola",
+   "party": "PDT",
+   "side": "esquerda",
+   "e": -0.25,
+   "abs": 4.64
+  },
+  {
+   "uf": "RS",
+   "office": "governor",
+   "p": "Neokemp",
+   "cand": "Gabriel Souza",
+   "party": "MDB",
+   "side": "centro",
+   "e": 8.69,
+   "abs": 4.64
+  },
+  {
+   "uf": "RS",
+   "office": "governor",
+   "p": "Neokemp",
+   "cand": "Maranata",
+   "party": "PSDB",
+   "side": "direita",
+   "e": 0.5,
+   "abs": 4.64
+  },
+  {
+   "uf": "RS",
+   "office": "governor",
+   "p": "Real Time Big Data",
+   "cand": "Zucco",
+   "party": "PL",
+   "side": "direita",
+   "e": -16.83,
+   "abs": 8.2
+  },
+  {
+   "uf": "RS",
+   "office": "governor",
+   "p": "Real Time Big Data",
+   "cand": "Juliana Brizola",
+   "party": "PDT",
+   "side": "esquerda",
+   "e": 4.42,
+   "abs": 8.2
+  },
+  {
+   "uf": "RS",
+   "office": "governor",
+   "p": "Real Time Big Data",
+   "cand": "Gabriel Souza",
+   "party": "MDB",
+   "side": "centro",
+   "e": 11.16,
+   "abs": 8.2
+  },
+  {
+   "uf": "RS",
+   "office": "governor",
+   "p": "Real Time Big Data",
+   "cand": "Maranata",
+   "party": "PSDB",
+   "side": "direita",
+   "e": 0.38,
+   "abs": 8.2
+  },
+  {
+   "uf": "RS",
+   "office": "governor",
+   "p": "Quaest",
+   "cand": "Zucco",
+   "party": "PL",
+   "side": "direita",
+   "e": -6.75,
+   "abs": 3.08
+  },
+  {
+   "uf": "RS",
+   "office": "governor",
+   "p": "Quaest",
+   "cand": "Juliana Brizola",
+   "party": "PDT",
+   "side": "esquerda",
+   "e": 1.23,
+   "abs": 3.08
+  },
+  {
+   "uf": "RS",
+   "office": "governor",
+   "p": "Quaest",
+   "cand": "Gabriel Souza",
+   "party": "MDB",
+   "side": "centro",
+   "e": 3.41,
+   "abs": 3.08
+  },
+  {
+   "uf": "RS",
+   "office": "governor",
+   "p": "Quaest",
+   "cand": "Maranata",
+   "party": "PSDB",
+   "side": "direita",
+   "e": 0.95,
+   "abs": 3.08
+  },
+  {
+   "uf": "RS",
+   "office": "senate",
+   "p": "Neokemp",
+   "cand": "Marcel van Hattem",
+   "party": "NOVO",
+   "side": "direita",
+   "e": -2.97,
+   "abs": 2.69
+  },
+  {
+   "uf": "RS",
+   "office": "senate",
+   "p": "Neokemp",
+   "cand": "Sanderson",
+   "party": "PL",
+   "side": "direita",
+   "e": -3.11,
+   "abs": 2.69
+  },
+  {
+   "uf": "RS",
+   "office": "senate",
+   "p": "Neokemp",
+   "cand": "Manuela d'Ávila",
+   "party": "PSOL",
+   "side": "esquerda",
+   "e": 1.8,
+   "abs": 2.69
+  },
+  {
+   "uf": "RS",
+   "office": "senate",
+   "p": "Neokemp",
+   "cand": "Paulo Pimenta",
+   "party": "PT",
+   "side": "esquerda",
+   "e": 2.87,
+   "abs": 2.69
+  },
+  {
+   "uf": "RS",
+   "office": "senate",
+   "p": "Real Time Big Data",
+   "cand": "Marcel van Hattem",
+   "party": "NOVO",
+   "side": "direita",
+   "e": -5.87,
+   "abs": 4.6
+  },
+  {
+   "uf": "RS",
+   "office": "senate",
+   "p": "Real Time Big Data",
+   "cand": "Sanderson",
+   "party": "PL",
+   "side": "direita",
+   "e": -10.12,
+   "abs": 4.6
+  },
+  {
+   "uf": "RS",
+   "office": "senate",
+   "p": "Real Time Big Data",
+   "cand": "Manuela d'Ávila",
+   "party": "PSOL",
+   "side": "esquerda",
+   "e": 1.88,
+   "abs": 4.6
+  },
+  {
+   "uf": "RS",
+   "office": "senate",
+   "p": "Real Time Big Data",
+   "cand": "Paulo Pimenta",
+   "party": "PT",
+   "side": "esquerda",
+   "e": 0.53,
+   "abs": 4.6
+  },
+  {
+   "uf": "RS",
+   "office": "senate",
+   "p": "Quaest",
+   "cand": "Marcel van Hattem",
+   "party": "NOVO",
+   "side": "direita",
+   "e": -8.54,
+   "abs": 5.17
+  },
+  {
+   "uf": "RS",
+   "office": "senate",
+   "p": "Quaest",
+   "cand": "Sanderson",
+   "party": "PL",
+   "side": "direita",
+   "e": -7.04,
+   "abs": 5.17
+  },
+  {
+   "uf": "RS",
+   "office": "senate",
+   "p": "Quaest",
+   "cand": "Manuela d'Ávila",
+   "party": "PSOL",
+   "side": "esquerda",
+   "e": 2.93,
+   "abs": 5.17
+  },
+  {
+   "uf": "RS",
+   "office": "senate",
+   "p": "Quaest",
+   "cand": "Paulo Pimenta",
+   "party": "PT",
+   "side": "esquerda",
+   "e": 2.15,
+   "abs": 5.17
+  },
+  {
+   "uf": "SC",
+   "office": "governor",
+   "p": "Neokemp",
+   "cand": "Jorginho Mello",
+   "party": "PL",
+   "side": "direita",
+   "e": -8.35,
+   "abs": 3.99
+  },
+  {
+   "uf": "SC",
+   "office": "governor",
+   "p": "Neokemp",
+   "cand": "João Rodrigues",
+   "party": "PSD",
+   "side": "direita",
+   "e": 4.05,
+   "abs": 3.99
+  },
+  {
+   "uf": "SC",
+   "office": "governor",
+   "p": "Neokemp",
+   "cand": "Gelson Merísio",
+   "party": "PSB",
+   "side": "esquerda",
+   "e": 3.4,
+   "abs": 3.99
+  },
+  {
+   "uf": "SC",
+   "office": "governor",
+   "p": "Neokemp",
+   "cand": "Marcelo Brigadeiro",
+   "party": "MISSÃO",
+   "side": "sem classificação",
+   "e": 0.16,
+   "abs": 3.99
+  },
+  {
+   "uf": "SP",
+   "office": "governor",
+   "p": "AtlasIntel",
+   "cand": "Tarcísio",
+   "party": "REPUBLICANOS",
+   "side": "direita",
+   "e": -5.21,
+   "abs": 5.21
+  },
+  {
+   "uf": "SP",
+   "office": "governor",
+   "p": "AtlasIntel",
+   "cand": "Haddad",
+   "party": "PT",
+   "side": "esquerda",
+   "e": 5.21,
+   "abs": 5.21
+  },
+  {
+   "uf": "SP",
+   "office": "governor",
+   "p": "Quaest",
+   "cand": "Tarcísio",
+   "party": "REPUBLICANOS",
+   "side": "direita",
+   "e": -2.38,
+   "abs": 1.59
+  },
+  {
+   "uf": "SP",
+   "office": "governor",
+   "p": "Quaest",
+   "cand": "Haddad",
+   "party": "PT",
+   "side": "esquerda",
+   "e": -0.8,
+   "abs": 1.59
+  },
+  {
+   "uf": "SP",
+   "office": "governor",
+   "p": "Vox Brasil",
+   "cand": "Tarcísio",
+   "party": "REPUBLICANOS",
+   "side": "direita",
+   "e": -1.9,
+   "abs": 1.53
+  },
+  {
+   "uf": "SP",
+   "office": "governor",
+   "p": "Vox Brasil",
+   "cand": "Haddad",
+   "party": "PT",
+   "side": "esquerda",
+   "e": 1.17,
+   "abs": 1.53
+  },
+  {
+   "uf": "SP",
+   "office": "governor",
+   "p": "Datafolha",
+   "cand": "Tarcísio",
+   "party": "REPUBLICANOS",
+   "side": "direita",
+   "e": -2.21,
+   "abs": 1.73
+  },
+  {
+   "uf": "SP",
+   "office": "governor",
+   "p": "Datafolha",
+   "cand": "Haddad",
+   "party": "PT",
+   "side": "esquerda",
+   "e": -1.26,
+   "abs": 1.73
+  },
+  {
+   "uf": "SP",
+   "office": "governor",
+   "p": "Gerp",
+   "cand": "Tarcísio",
+   "party": "REPUBLICANOS",
+   "side": "direita",
+   "e": -7.61,
+   "abs": 4.88
+  },
+  {
+   "uf": "SP",
+   "office": "governor",
+   "p": "Gerp",
+   "cand": "Haddad",
+   "party": "PT",
+   "side": "esquerda",
+   "e": -2.15,
+   "abs": 4.88
+  },
+  {
+   "uf": "SP",
+   "office": "senate",
+   "p": "Real Time Big Data",
+   "cand": "Derrite",
+   "party": "PP",
+   "side": "direita",
+   "e": -5.88,
+   "abs": 3.74
+  },
+  {
+   "uf": "SP",
+   "office": "senate",
+   "p": "Real Time Big Data",
+   "cand": "Tebet",
+   "party": "PSB",
+   "side": "esquerda",
+   "e": 0.99,
+   "abs": 3.74
+  },
+  {
+   "uf": "SP",
+   "office": "senate",
+   "p": "Real Time Big Data",
+   "cand": "André do Prado",
+   "party": "PL",
+   "side": "direita",
+   "e": -6.81,
+   "abs": 3.74
+  },
+  {
+   "uf": "SP",
+   "office": "senate",
+   "p": "Real Time Big Data",
+   "cand": "Marina Silva",
+   "party": "REDE",
+   "side": "esquerda",
+   "e": -1.28,
+   "abs": 3.74
+  },
+  {
+   "uf": "SP",
+   "office": "senate",
+   "p": "Datafolha",
+   "cand": "Derrite",
+   "party": "PP",
+   "side": "direita",
+   "e": -8.68,
+   "abs": 4.63
+  },
+  {
+   "uf": "SP",
+   "office": "senate",
+   "p": "Datafolha",
+   "cand": "Tebet",
+   "party": "PSB",
+   "side": "esquerda",
+   "e": -0.05,
+   "abs": 4.63
+  },
+  {
+   "uf": "SP",
+   "office": "senate",
+   "p": "Datafolha",
+   "cand": "André do Prado",
+   "party": "PL",
+   "side": "direita",
+   "e": -7.36,
+   "abs": 4.63
+  },
+  {
+   "uf": "SP",
+   "office": "senate",
+   "p": "Datafolha",
+   "cand": "Marina Silva",
+   "party": "REDE",
+   "side": "esquerda",
+   "e": 2.42,
+   "abs": 4.63
+  },
+  {
+   "uf": "SP",
+   "office": "senate",
+   "p": "AtlasIntel",
+   "cand": "Derrite",
+   "party": "PP",
+   "side": "direita",
+   "e": -3.7,
+   "abs": 3.97
+  },
+  {
+   "uf": "SP",
+   "office": "senate",
+   "p": "AtlasIntel",
+   "cand": "Tebet",
+   "party": "PSB",
+   "side": "esquerda",
+   "e": 3.82,
+   "abs": 3.97
+  },
+  {
+   "uf": "SP",
+   "office": "senate",
+   "p": "AtlasIntel",
+   "cand": "André do Prado",
+   "party": "PL",
+   "side": "direita",
+   "e": -4.15,
+   "abs": 3.97
+  },
+  {
+   "uf": "SP",
+   "office": "senate",
+   "p": "AtlasIntel",
+   "cand": "Marina Silva",
+   "party": "REDE",
+   "side": "esquerda",
+   "e": 4.2,
+   "abs": 3.97
+  },
+  {
+   "uf": "SP",
+   "office": "senate",
+   "p": "Quaest",
+   "cand": "Derrite",
+   "party": "PP",
+   "side": "direita",
+   "e": -5.28,
+   "abs": 4.37
+  },
+  {
+   "uf": "SP",
+   "office": "senate",
+   "p": "Quaest",
+   "cand": "Tebet",
+   "party": "PSB",
+   "side": "esquerda",
+   "e": 2.29,
+   "abs": 4.37
+  },
+  {
+   "uf": "SP",
+   "office": "senate",
+   "p": "Quaest",
+   "cand": "André do Prado",
+   "party": "PL",
+   "side": "direita",
+   "e": -6.5,
+   "abs": 4.37
+  },
+  {
+   "uf": "SP",
+   "office": "senate",
+   "p": "Quaest",
+   "cand": "Marina Silva",
+   "party": "REDE",
+   "side": "esquerda",
+   "e": 3.39,
+   "abs": 4.37
+  },
+  {
+   "uf": "TO",
+   "office": "senate",
+   "p": "Real Time Big Data",
+   "cand": "Eduardo Gomes",
+   "party": "PL",
+   "side": "direita",
+   "e": -2.28,
+   "abs": 2.4
+  },
+  {
+   "uf": "TO",
+   "office": "senate",
+   "p": "Real Time Big Data",
+   "cand": "Gaguim",
+   "party": "UNIÃO",
+   "side": "direita",
+   "e": 2.23,
+   "abs": 2.4
+  },
+  {
+   "uf": "TO",
+   "office": "senate",
+   "p": "Real Time Big Data",
+   "cand": "Alexandre Guimarães",
+   "party": "MDB",
+   "side": "centro",
+   "e": -1.48,
+   "abs": 2.4
+  },
+  {
+   "uf": "TO",
+   "office": "senate",
+   "p": "Real Time Big Data",
+   "cand": "Paulo Mourão",
+   "party": "PT",
+   "side": "esquerda",
+   "e": 3.59,
+   "abs": 2.4
+  }
+ ],
+ "ranking": [
+  {
+   "p": "Vox Brasil",
+   "races": 2,
+   "presRounds": 1,
+   "absError": 1.25,
+   "method": "in_person"
+  },
+  {
+   "p": "Palver",
+   "races": 1,
+   "presRounds": 1,
+   "absError": 1.36,
+   "method": null
+  },
+  {
+   "p": "MDA",
+   "races": 6,
+   "presRounds": 6,
+   "absError": 1.69,
+   "method": "in_person"
+  },
+  {
+   "p": "Futura",
+   "races": 2,
+   "presRounds": 2,
+   "absError": 1.96,
+   "method": "phone"
+  },
+  {
+   "p": "Vox Populi",
+   "races": 3,
+   "presRounds": 3,
+   "absError": 2.45,
+   "method": "in_person"
+  },
+  {
+   "p": "Ibope",
+   "races": 6,
+   "presRounds": 6,
+   "absError": 2.7,
+   "method": "in_person"
+  },
+  {
+   "p": "Amostragem",
+   "races": 2,
+   "presRounds": 0,
+   "absError": 2.73,
+   "method": null
+  },
+  {
+   "p": "Vetor3",
+   "races": 1,
+   "presRounds": 0,
+   "absError": 2.97,
+   "method": null
+  },
+  {
+   "p": "Ipec",
+   "races": 2,
+   "presRounds": 2,
+   "absError": 3.04,
+   "method": "in_person"
+  },
+  {
+   "p": "Ipespe",
+   "races": 4,
+   "presRounds": 4,
+   "absError": 3.05,
+   "method": "phone"
+  },
+  {
+   "p": "Neokemp",
+   "races": 5,
+   "presRounds": 0,
+   "absError": 3.15,
+   "method": null
+  },
+  {
+   "p": "Indexa",
+   "races": 1,
+   "presRounds": 1,
+   "absError": 3.19,
+   "method": null
+  },
+  {
+   "p": "Datafolha",
+   "races": 20,
+   "presRounds": 9,
+   "absError": 3.23,
+   "method": "in_person"
+  },
+  {
+   "p": "AtlasIntel",
+   "races": 12,
+   "presRounds": 3,
+   "absError": 3.39,
+   "method": "online"
+  },
+  {
+   "p": "Sensus",
+   "races": 2,
+   "presRounds": 2,
+   "absError": 3.45,
+   "method": "in_person"
+  },
+  {
+   "p": "Ideia",
+   "races": 2,
+   "presRounds": 2,
+   "absError": 3.84,
+   "method": "phone"
+  },
+  {
+   "p": "Quaest",
+   "races": 30,
+   "presRounds": 3,
+   "absError": 3.96,
+   "method": "in_person"
+  },
+  {
+   "p": "Gerp",
+   "races": 2,
+   "presRounds": 1,
+   "absError": 3.99,
+   "method": null
+  },
+  {
+   "p": "Real Time Big Data",
+   "races": 30,
+   "presRounds": 3,
+   "absError": 4.03,
+   "method": "phone"
+  },
+  {
+   "p": "FSB",
+   "races": 3,
+   "presRounds": 3,
+   "absError": 4.15,
+   "method": "phone"
+  },
+  {
+   "p": "Paraná Pesquisas",
+   "races": 9,
+   "presRounds": 3,
+   "absError": 4.21,
+   "method": "in_person"
+  },
+  {
+   "p": "PoderData",
+   "races": 4,
+   "presRounds": 4,
+   "absError": 4.26,
+   "method": "phone"
+  },
+  {
+   "p": "Goiás Pesquisas",
+   "races": 1,
+   "presRounds": 0,
+   "absError": 4.51,
+   "method": null
+  },
+  {
+   "p": "Ranking Brasil",
+   "races": 2,
+   "presRounds": 0,
+   "absError": 4.72,
+   "method": null
+  },
+  {
+   "p": "Veritá",
+   "races": 3,
+   "presRounds": 1,
+   "absError": 5.76,
+   "method": null
+  },
+  {
+   "p": "Qualittá",
+   "races": 1,
+   "presRounds": 0,
+   "absError": 8.43,
+   "method": null
+  }
+ ],
+ "rankingPresident": [
+  {
+   "p": "MDA",
+   "rounds": 6,
+   "absError": 1.69,
+   "method": "in_person"
+  },
+  {
+   "p": "Quaest",
+   "rounds": 3,
+   "absError": 1.99,
+   "method": "in_person"
+  },
+  {
+   "p": "Datafolha",
+   "rounds": 9,
+   "absError": 2.0,
+   "method": "in_person"
+  },
+  {
+   "p": "AtlasIntel",
+   "rounds": 3,
+   "absError": 2.01,
+   "method": "online"
+  },
+  {
+   "p": "Real Time Big Data",
+   "rounds": 3,
+   "absError": 2.19,
+   "method": "phone"
+  },
+  {
+   "p": "Vox Populi",
+   "rounds": 3,
+   "absError": 2.45,
+   "method": "in_person"
+  },
+  {
+   "p": "Ibope",
+   "rounds": 6,
+   "absError": 2.7,
+   "method": "in_person"
+  },
+  {
+   "p": "Paraná Pesquisas",
+   "rounds": 3,
+   "absError": 2.9,
+   "method": "in_person"
+  },
+  {
+   "p": "Ipespe",
+   "rounds": 4,
+   "absError": 3.05,
+   "method": "phone"
+  },
+  {
+   "p": "FSB",
+   "rounds": 3,
+   "absError": 4.15,
+   "method": "phone"
+  },
+  {
+   "p": "PoderData",
+   "rounds": 4,
+   "absError": 4.26,
+   "method": "phone"
+  }
+ ],
+ "byMethod": {
+  "in_person": {
+   "n": 35,
+   "mean": 3.33,
+   "abs": 4.47
+  },
+  "phone": {
+   "n": 18,
+   "mean": 1.48,
+   "abs": 5.84
+  },
+  "online": {
+   "n": 3,
+   "mean": 4.65,
+   "abs": 4.65
+  }
+ }
+}

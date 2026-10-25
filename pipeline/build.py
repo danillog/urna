@@ -41,7 +41,7 @@ def build_dataset() -> dict:
             DATA / "raw" / "states",
             round_dates,
             pollsters,
-            results.load(states_config["year"], "r1"),
+            {r: results.load(states_config["year"], r) for r in ("r1", "r2")},
         ),
     }
 

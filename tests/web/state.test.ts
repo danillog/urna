@@ -22,8 +22,23 @@ describe("URL state", () => {
     expect(toSearch(data, fromSearch(data, "?year=2022&round=r2"))).toBe("?year=2022&round=r2");
   });
 
+  it("round-trips the chart's zoom and keeps it across races", () => {
+    const s = fromSearch(data, "?dias=30");
+    expect(s.zoomDays).toBe(30);
+    expect(toSearch(data, s)).toBe("?dias=30");
+    expect(withRace(data, s, { round: "r2" }).zoomDays).toBe(30);
+  });
+
+  it("round-trips the record-weighted average and keeps it across races", () => {
+    const s = fromSearch(data, "?peso=historico");
+    expect(s.weighByRecord).toBe(true);
+    expect(toSearch(data, s)).toBe("?peso=historico");
+    expect(withRace(data, s, { round: "r2" }).weighByRecord).toBe(true);
+    expect(fromSearch(data, "?peso=qualquer").weighByRecord).toBe(false);
+  });
+
   it("ignores invalid values", () => {
-    expect(fromSearch(data, "?office=mayor&year=1989&uf=XX&round=r9")).toEqual(defaultState(data));
+    expect(fromSearch(data, "?office=mayor&year=1989&uf=XX&round=r9&dias=7")).toEqual(defaultState(data));
   });
 
   it("falls back to the first round when the runoff does not exist", () => {

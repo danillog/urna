@@ -2,6 +2,7 @@ import { escapeHtml } from "../format";
 import { t } from "../i18n/pt-BR";
 import { hasRound, methodOf, raceFor, withRace, type AppState, type MethodFilter } from "../state";
 import type { Dataset, Office, RoundId } from "../types";
+import { zoomStart } from "../model/view";
 import { button, byId } from "./dom";
 
 export type Update = (next: AppState) => void;
@@ -30,6 +31,20 @@ export function setupControls(data: Dataset, getState: () => AppState, update: U
       b.addEventListener("click", () => {
         if (!b.disabled) update(withRace(data, getState(), { round: b.dataset.round as RoundId }));
       }),
+    );
+
+  byId("zooms")
+    .querySelectorAll<HTMLButtonElement>("button")
+    .forEach((b) =>
+      b.addEventListener("click", () => {
+        if (!b.disabled) update({ ...getState(), zoomDays: Number(b.dataset.days) || null });
+      }),
+    );
+
+  byId("weighs")
+    .querySelectorAll<HTMLButtonElement>("button")
+    .forEach((b) =>
+      b.addEventListener("click", () => update({ ...getState(), weighByRecord: Boolean(b.dataset.record) })),
     );
 
   const years = byId("years");
@@ -67,8 +82,30 @@ export function renderControls(data: Dataset, s: AppState, update: Update): void
       b.disabled = !hasRound(data, s, round);
       b.title = b.disabled ? (s.office === "senate" ? t.noRunoffSenate : t.noRunoffPolls) : "";
     });
+  // A period no shorter than the whole race changes nothing: off, and "Tudo" shows as chosen.
+  const race = raceFor(data, s);
+  const zooms = (days: number | null) => race !== undefined && zoomStart(race, days) !== null;
+  const active = zooms(s.zoomDays) ? s.zoomDays : null;
+  byId("zooms")
+    .querySelectorAll<HTMLButtonElement>("button")
+    .forEach((b) => {
+      const days = Number(b.dataset.days) || null;
+      b.disabled = days !== null && !zooms(days);
+      b.setAttribute("aria-pressed", String(days === active));
+    });
+  byId("weighs")
+    .querySelectorAll<HTMLButtonElement>("button")
+    .forEach((b) => b.setAttribute("aria-pressed", String(Boolean(b.dataset.record) === s.weighByRecord)));
   renderMethodChips(data, s, update);
   renderPollsterChips(data, s, update);
+  // A folded option that is on (a link with pollsters left out, say) shows itself.
+  if (s.excludedPollsters.size || s.excludedMethods.size || s.weighByRecord) {
+    const controls = byId("weighs").closest(".controls")!;
+    controls.classList.add("open");
+    const toggle = controls.querySelector(".more-toggle");
+    toggle?.setAttribute("aria-expanded", "true");
+    if (toggle) toggle.textContent = "Menos opções";
+  }
 }
 
 const racePolls = (data: Dataset, s: AppState) => raceFor(data, s)?.polls ?? [];

@@ -34,10 +34,48 @@ const TSE = "https://resultados.tse.jus.br/oficial";
 const CACHE_SECONDS = 30;
 
 /** TSE election codes for 2026: the federal one (president) and the state one. */
-const ELECTIONS = {
+export type ElectionCodes = Record<"federal" | "state", Record<"r1" | "r2", string>>;
+
+/**
+ * Used until the TSE's configuration says otherwise: the 1st round's are confirmed; the
+ * runoff's follow 2022's pattern (544/546 → 545/547) and are replaced by the listed ones.
+ */
+export const DEFAULT_ELECTIONS: ElectionCodes = {
   federal: { r1: "6257", r2: "6258" },
   state: { r1: "6259", r2: "6260" },
-} as const;
+};
+
+/** The 2026 codes in the TSE's configuration (comum/config/ele-c.json), over the defaults. */
+export function electionCodes(config: unknown, year = 2026): ElectionCodes {
+  const out: ElectionCodes = {
+    federal: { ...DEFAULT_ELECTIONS.federal },
+    state: { ...DEFAULT_ELECTIONS.state },
+  };
+  const pleitos = (config as { pl?: { dt?: string; e?: { cd?: string; t?: string; nm?: string }[] }[] })?.pl;
+  for (const p of pleitos ?? []) {
+    if (!String(p.dt ?? "").endsWith(String(year))) continue;
+    for (const e of p.e ?? []) {
+      const m = /^Eleição Ordinária (Federal|Estadual)\b/.exec(String(e.nm ?? ""));
+      const round = e.t === "1" ? "r1" : e.t === "2" ? "r2" : null;
+      if (m && round && e.cd) out[m[1] === "Federal" ? "federal" : "state"][round] = String(e.cd);
+    }
+  }
+  return out;
+}
+
+let codes: { value: ElectionCodes; at: number } | null = null;
+
+/** The codes, read from the TSE at most every 10 minutes; the defaults if it fails. */
+async function currentCodes(now = Date.now()): Promise<ElectionCodes> {
+  if (codes && now - codes.at < 600_000) return codes.value;
+  try {
+    const res = await fetch(`${TSE}/comum/config/ele-c.json`, { cf: { cacheTtl: 300 } } as RequestInit);
+    codes = { value: res.ok ? electionCodes(await res.json()) : DEFAULT_ELECTIONS, at: now };
+  } catch {
+    codes = { value: DEFAULT_ELECTIONS, at: now };
+  }
+  return codes.value;
+}
 
 /** TSE codes of each state capital, for the 2024 test source. */
 const CAPITALS_2024: Record<string, string> = {
@@ -69,7 +107,7 @@ export function fileUrl(ciclo: string, election: string, office: number, uf: str
 }
 
 /** Reads a path into a plan; null when it names nothing. */
-export function plan(pathname: string): Plan | null {
+export function plan(pathname: string, elections: ElectionCodes = DEFAULT_ELECTIONS): Plan | null {
   let parts = pathname.split("/").filter(Boolean);
   const test = parts[0] === "teste";
   if (test) parts = parts.slice(1);
@@ -80,7 +118,8 @@ export function plan(pathname: string): Plan | null {
   const info = OFFICES[office];
   if (round === "r2" && !info.runoff) return null;
   const uf = ufParam?.toUpperCase();
-  if (info.proportional ? !uf || !(UFS as readonly string[]).includes(uf) : ufParam !== undefined) return null;
+  if (info.proportional ? !uf || !(UFS as readonly string[]).includes(uf) : ufParam !== undefined)
+    return null;
   const states = info.proportional ? [uf!] : [...UFS];
 
   if (test) {
@@ -98,7 +137,7 @@ export function plan(pathname: string): Plan | null {
         })),
     };
   }
-  const election = ELECTIONS[info.election][round];
+  const election = elections[info.election][round];
   return {
     office,
     round,
@@ -142,7 +181,8 @@ export async function collect(p: Plan, now = new Date()): Promise<Apuracao | nul
   let br: Tally;
   if (national) br = national;
   else if (proportional) br = tallies[0]!;
-  else if (p.office === "presidente") br = sumTallies(tallies); // test mode: no national file
+  else if (p.office === "presidente")
+    br = sumTallies(tallies); // test mode: no national file
   // Governors and senators differ by state: the total only carries the progress.
   else br = { ...sumTallies(tallies), candidates: [] };
   return { office: p.office, round: p.round, fetchedAt: now.toISOString(), br, uf };
@@ -169,7 +209,7 @@ export default {
     if (request.method === "OPTIONS") return new Response(null, { status: 204, headers: CORS });
     if (request.method !== "GET") return json({ error: "method" }, 405, 0);
     const url = new URL(request.url);
-    const p = plan(url.pathname.toLowerCase());
+    const p = plan(url.pathname.toLowerCase(), await currentCodes());
     if (!p) return json({ error: "not found", offices: Object.keys(OFFICES) }, 404, 300);
 
     // One cache entry per path; query strings are ignored so they cannot bypass it.

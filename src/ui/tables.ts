@@ -1,5 +1,6 @@
 import {
   dayToDate,
+  decimal,
   escapeHtml,
   formatDate,
   formatDayMonth,
@@ -10,7 +11,7 @@ import {
   signedPoints,
 } from "../format";
 import { t } from "../i18n/pt-BR";
-import { finalPoint, trackRecord, type View } from "../model/view";
+import { errorScenarios, finalPoint, recordWeights, trackRecord, type View } from "../model/view";
 import { methodOf, type AppState } from "../state";
 import { UNDECIDED, type Dataset } from "../types";
 import type { Update } from "./controls";
@@ -52,6 +53,37 @@ export function renderComparison(view: View, year: number): void {
   byId("cmp-note").textContent = note;
 }
 
+/** Today's margin moved by the size of each past miss of the polls, toward each finalist. */
+export function renderErrorScenarios(data: Dataset, view: View, s: AppState): void {
+  const scenarios = errorScenarios(data, view, s);
+  byId("errors-card").hidden = !scenarios;
+  if (!scenarios) return;
+  const { leader, runnerUp, margin, errors } = scenarios;
+  const outcome = (lead: number) =>
+    Math.abs(lead) < 0.05
+      ? t.errorsTie
+      : t.errorsWins(label(lead > 0 ? leader : runnerUp), points(Math.abs(lead)));
+  byId("errors-note").textContent = t.errorsNote(label(leader), points(margin));
+  byId("errors").innerHTML =
+    head(t.errorsHead(label(leader), label(runnerUp))) +
+    `<tbody>${errors
+      .map((e) =>
+        [
+          t.errorsRound(e.round, e.year),
+          points(e.size),
+          label(e.underestimated),
+          outcome(margin + e.size),
+          `<b>${outcome(margin - e.size)}</b>`,
+        ]
+          .map((c) => `<td>${c}</td>`)
+          .join(""),
+      )
+      .map((cells) => `<tr>${cells}</tr>`)
+      .join("")}</tbody>`;
+  const bigger = errors.filter((e) => e.size > margin).length;
+  byId("errors-summary").textContent = t.errorsSummary(bigger, errors.length, label(runnerUp));
+}
+
 /** Ranks pollsters by their final poll, or by their past record while there is no result yet. */
 export function renderAccuracy(data: Dataset, view: View, s: AppState, year: number, update: Update): void {
   const active = new Set(view.polls.map((p) => p.p));
@@ -80,7 +112,8 @@ export function renderAccuracy(data: Dataset, view: View, s: AppState, year: num
       Object.values(data.presidential[y]!.rounds).some((r) => r.result),
     );
     byId("acc-note").textContent = t.historyNote(String(year), past[0]!, past.at(-1)!);
-    byId("acc").innerHTML = head(t.historyHead);
+    const weights = s.weighByRecord ? recordWeights(data, view.race) : null;
+    byId("acc").innerHTML = head(weights ? [...t.historyHead, t.historyWeightHead] : t.historyHead);
     rows = trackRecord(data, active).map((r, i) => ({
       pollster: r.pollster,
       cells: [
@@ -90,6 +123,7 @@ export function renderAccuracy(data: Dataset, view: View, s: AppState, year: num
         r.rounds || "—",
         `<b>${r.meanError === null ? "—" : points(r.meanError)}</b>`,
         r.marginError === null ? "—" : points(r.marginError),
+        ...(weights ? [`×${decimal(weights.get(r.pollster) ?? 1)}`] : []),
       ],
     }));
   }

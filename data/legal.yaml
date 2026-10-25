@@ -1,0 +1,17 @@
+# Criminal cases of the people elected in 2026, checked by hand (see pipeline/legal.py).
+#
+# Only from the court's own page, one case per entry, every field filled:
+#
+#   - person: id from profiles.json (the `p=` in the profile's address)
+#     grade: investigado | reu | condenado-recorrivel | condenado-definitivo | arquivado | absolvido
+#     crime: as the court names it ("corrupção passiva", "peculato")
+#     court: STF, STJ, TRF-1…
+#     case: "Inq 4781", "AP 1044" or the CNJ's 20-digit number
+#     since: 2023-05-10        # when the grade began: inquiry opened, indictment received, sentence
+#     url: https://…jus.br/…   # the official page of the case
+#     checked: 2026-10-05      # the day someone looked at that page
+#     checkedBy: initials      # never published
+#     note: optional, one sentence
+#
+# Nothing written from memory, from the news or from a search engine: open the case page.
+cases: []

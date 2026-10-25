@@ -1,11 +1,17 @@
 import { escapeHtml, integer, percent } from "../format";
 import { t } from "../i18n/pt-BR";
+import { houseOf, rightOf } from "../model/ideology";
+import { allowanceMedian, share, type MandateData, type MandateEntry } from "../model/mandate";
 import {
   KINDS,
   PROFILE_OFFICES,
   articleUrl,
   byKind,
   filterPeople,
+  feminineTitle,
+  legalMark,
+  renewal,
+  type RenewalRow,
   newsUrl,
   partyPath,
   type Kind,
@@ -36,12 +42,24 @@ const KIND_COLORS: Record<Kind, string> = {
 const fromSlug = <T extends string>(all: readonly T[], s: string | null): T | null =>
   s && (all as readonly string[]).includes(s) ? (s as T) : null;
 
+/** "Republicanos" or "PCdoB" (as Congress writes them) → the TSE's "REPUBLICANOS", "PCDOB". */
+const plainParty = (s: string) =>
+  s
+    .normalize("NFD")
+    .replace(/[^A-Za-z0-9]/g, "")
+    .toUpperCase();
+
+export function partyIn(data: ProfilesData, asked: string | null): string | null {
+  if (!asked) return null;
+  return data.people.find((p) => plainParty(p.party) === plainParty(asked))?.party ?? null;
+}
+
 export function peopleFromSearch(data: ProfilesData, params: URLSearchParams): PeopleState {
   const person = params.get("p");
   return {
     office: fromSlug(PROFILE_OFFICES, params.get("cargo")),
     uf: params.get("uf")?.toUpperCase() ?? null,
-    party: params.get("partido"),
+    party: partyIn(data, params.get("partido")),
     kind: fromSlug(KINDS, params.get("trajetoria")),
     query: params.get("q") ?? "",
     person: data.people.some((p) => p.id === person) ? person : null,
@@ -57,14 +75,28 @@ export function peopleToSearch(s: PeopleState, params: URLSearchParams): void {
   if (s.person) params.set("p", s.person);
 }
 
+const capitalize = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
+
+/** An office as the person holds it: "Governadora" for a woman (the TSE's declared gender). */
+function officeOf(p: Person, office: string): string {
+  return (p.feminine ? t.people.officeFeminine[office] : t.people.office[office]) ?? office;
+}
+
 /** The "Eleitos 2026" tab: renewal at a glance, a searchable list and one profile at a time. */
 export class PeopleView {
   private shown = PAGE;
+  /** States whose news are already in `data.people`. */
+  private readonly newsIn = new Set<string>();
+  /** The current term in Congress, downloaded with the first profile opened. */
+  private mandate: MandateData | null = null;
+  private mandateAsked = false;
 
   constructor(
     private readonly data: ProfilesData,
     private state: PeopleState,
     private readonly onChange: () => void,
+    private readonly loadNews?: (uf: string) => Promise<Record<string, Person["news"]>>,
+    private readonly loadMandate?: () => Promise<MandateData>,
   ) {
     const uf = byId<HTMLSelectElement>("pp-uf");
     uf.add(new Option(t.people.allUfs, ""));
@@ -128,6 +160,8 @@ export class PeopleView {
     byId("pp-title").textContent = t.people.title(pool.length);
     byId("pp-meta").textContent = t.people.meta(this.data.officialDeputies);
     this.renderRenewal(pool);
+    this.renderRenew();
+    this.renderDefeated();
     byId("pp-warning").textContent = t.people.warning;
     this.renderProfile();
     this.renderList();
@@ -169,12 +203,17 @@ export class PeopleView {
           .map((p) => {
             const status =
               p.status !== "elected" ? `<span class="pp-tag">${t.people.status[p.status]}</span>` : "";
+            const mark = legalMark(p);
+            const legal = mark
+              ? `<span class="pp-tag pp-legal g-${mark}" title="${escapeHtml(t.people.legal.gradeLong[mark]!)}">${t.people.legal.grade[mark]}</span>`
+              : "";
             return (
               `<li><button type="button" class="pp-card${p.id === this.state.person ? " on" : ""}" data-person="${p.id}">` +
               `<i class="map-key c-${KIND_COLORS[p.kind]}" title="${escapeHtml(t.people.kind[p.kind]!)}"></i>` +
               `<b>${escapeHtml(p.name)}</b>` +
-              `<span class="pp-card-meta">${escapeHtml(t.people.office[p.office]!)} · ${escapeHtml(p.party)} · ${p.uf}</span>` +
+              `<span class="pp-card-meta">${escapeHtml(officeOf(p, p.office))} · ${escapeHtml(p.party)} · ${p.uf}</span>` +
               status +
+              legal +
               `</button></li>`
             );
           })
@@ -193,7 +232,28 @@ export class PeopleView {
       box.replaceChildren();
       return;
     }
-    const office = t.people.office[p.office]!;
+    if (this.loadMandate && !this.mandateAsked) {
+      this.mandateAsked = true;
+      void this.loadMandate().then(
+        (m) => {
+          this.mandate = m;
+          if (this.state.person) this.renderProfile();
+        },
+        () => {}, // the profile stays useful without it
+      );
+    }
+    if (this.loadNews && this.data.newsStates?.includes(p.uf) && !this.newsIn.has(p.uf)) {
+      const uf = p.uf;
+      void this.loadNews(uf).then(
+        (news) => {
+          this.newsIn.add(uf);
+          for (const x of this.data.people) if (x.uf === uf && news[x.id]) x.news = news[x.id];
+          if (this.state.person === p.id) this.renderProfile();
+        },
+        () => this.newsIn.add(uf), // the profile stays useful without them
+      );
+    }
+    const office = officeOf(p, p.office);
     const fact = (label: string, v: string | null) =>
       v ? `<div><dt>${escapeHtml(label)}</dt><dd>${escapeHtml(v)}</dd></div>` : "";
     const c = p.contact;
@@ -205,7 +265,7 @@ export class PeopleView {
       ? `<ol class="pp-career">${p.history
           .map(
             (h) =>
-              `<li><span class="pp-year">${h.year}</span><span>${escapeHtml(t.people.office[h.office] ?? h.office)} · ${escapeHtml(h.place)}</span>` +
+              `<li><span class="pp-year">${h.year}</span><span>${escapeHtml(officeOf(p, h.office))} · ${escapeHtml(h.place)}</span>` +
               `<span class="pp-party">${escapeHtml(h.party)}</span><span class="pp-result r-${h.result}">${t.people.result[h.result]}</span></li>`,
           )
           .join("")}</ol>`
@@ -246,10 +306,34 @@ export class PeopleView {
         p.positions
           .map(
             (x) =>
-              `<li><span>${escapeHtml(x.title.charAt(0).toUpperCase() + x.title.slice(1))}</span><span class="pp-years">${t.people.years(x.from, x.to)}</span></li>`,
+              `<li><span>${escapeHtml(capitalize(p.feminine ? feminineTitle(x.title) : x.title))}</span><span class="pp-years">${t.people.years(x.from, x.to)}</span></li>`,
           )
           .join("") +
         `</ul>`
+      : "";
+
+    const day = (iso: string) => iso.split("-").reverse().join("/");
+    const term = this.mandate?.people[p.id];
+    const mandate = term ? this.mandateHtml(p, term) : "";
+    const legal = p.legal?.length
+      ? `<section class="pp-legal-box" aria-labelledby="pp-legal-title"><h3 class="ap-h" id="pp-legal-title">${t.people.legal.title}</h3>` +
+        `<ul class="pp-legal-list">${p.legal
+          .map(
+            (x) =>
+              `<li><span class="pp-tag pp-legal g-${x.grade}">${t.people.legal.grade[x.grade]}</span> ` +
+              `<b>${escapeHtml(x.crime)}</b> · ${escapeHtml(x.court)}, ${escapeHtml(x.case)} · ${t.people.legal.since(day(x.since))}` +
+              `<span class="meta">${escapeHtml(t.people.legal.gradeLong[x.grade]!)}${x.note ? ` ${escapeHtml(x.note)}` : ""} ` +
+              `<a href="${escapeHtml(x.url)}" target="_blank" rel="noopener">${t.people.legal.link}</a> · ${t.people.legal.checked(day(x.checked))}` +
+              `${x.stale ? ` · <b>${t.people.legal.stale}</b>` : ""}</span></li>`,
+          )
+          .join("")}</ul>` +
+        (p.legal.some((x) => x.grade !== "condenado-definitivo")
+          ? `<p class="meta pp-innocence">${t.people.legal.innocence}</p>`
+          : "") +
+        (this.data.legalChecked
+          ? `<p class="meta">${t.people.legal.method(day(this.data.legalChecked))}</p>`
+          : "") +
+        `</section>`
       : "";
 
     const news = p.news
@@ -270,10 +354,11 @@ export class PeopleView {
 
     box.innerHTML =
       `<div class="pp-head">${photo}<div>` +
-      `<h2 class="panel-title">${escapeHtml(p.name)}</h2>` +
-      `<p class="pp-sub">${escapeHtml(p.fullName)} · ${escapeHtml(office)} · ${escapeHtml(p.party)} · ${p.uf} ${status}</p>` +
+      `<h2 class="panel-title" id="pp-name">${escapeHtml(p.name)}</h2>` +
+      `<p class="pp-sub" id="pp-sub">${escapeHtml(p.fullName)} · ${escapeHtml(office)} · ${escapeHtml(p.party)} · ${p.uf} ${status}</p>` +
       `<p><span class="pp-tag pp-kind"><i class="map-key c-${KIND_COLORS[p.kind]}"></i>${t.people.kind[p.kind]}</span></p>` +
-      `</div><button type="button" class="chip pp-close" data-close>${t.people.close}</button></div>` +
+      `</div><div class="pm-actions"><button type="button" class="share-btn" data-share="profile" aria-label="${escapeHtml(t.share.aria(p.name))}">${t.share.button}</button>` +
+      `<button type="button" class="chip pp-close" data-close>${t.people.close}</button></div></div>` +
       `<dl class="pp-facts">` +
       fact(t.people.facts.age, p.age ? t.people.age(p.age) : null) +
       fact(t.people.facts.from, p.birthplace) +
@@ -287,7 +372,9 @@ export class PeopleView {
       `<h3 class="ap-h">${t.people.career}</h3>` +
       (path.length > 1 ? `<p class="meta">${escapeHtml(t.people.partyPath(path.join(" → ")))}</p>` : "") +
       career +
+      mandate +
       positions +
+      legal +
       contact +
       web +
       news +
@@ -299,5 +386,164 @@ export class PeopleView {
         ? ` <a class="pp-link pp-page" href="${escapeHtml(c.page)}" target="_blank" rel="noopener">${t.people.page(c.house)}</a>`
         : "") +
       `</p>`;
+  }
+
+  /** "No mandato atual": votes, the government, bills and the allowance, with what to read them against. */
+  private mandateHtml(p: Person, m: MandateEntry): string {
+    const M = t.people.mandate;
+    const money = (v: number) => `R$ ${integer(v)}`;
+    const items: string[] = [];
+    if (m.votes) {
+      const pct = percent(share(m.votes.cast, m.votes.held));
+      items.push(
+        `<li>${M.votes(integer(m.votes.cast), integer(m.votes.held), pct)}` +
+          (m.votes.from
+            ? `<span class="meta">${M.votesFrom(m.votes.from.split("-").reverse().join("/"))}</span>`
+            : "") +
+          (m.votes.justified ? `<span class="meta">${M.justified(integer(m.votes.justified))}</span>` : "") +
+          `</li>`,
+      );
+    }
+    const placed = this.mandate?.ideology?.[houseOf(m.house)];
+    const position = placed?.members[m.id];
+    if (placed && position) {
+      items.push(
+        `<li>${M.position(position.score.toFixed(2).replace(".", ","), percent(rightOf(placed, position.score)), m.house)}` +
+          `<span class="meta">${M.positionNote}</span></li>`,
+      );
+    }
+    if (m.government) {
+      items.push(
+        `<li>${M.government(percent(share(m.government.with, m.government.of)), integer(m.government.of))}` +
+          `<span class="meta">${M.governmentNote}</span></li>`,
+      );
+    }
+    if (m.activity) {
+      const a = m.activity;
+      const lead = a.committees.filter((c) => !["Titular", "Suplente"].includes(c.role));
+      const titular = a.committees.filter((c) => c.role === "Titular").length;
+      const substitute = a.committees.filter((c) => c.role === "Suplente").length;
+      items.push(
+        `<li>${M.committees(titular, substitute)}` +
+          (lead.length
+            ? `<span class="meta">${lead.map((c) => `${escapeHtml(c.role)}: ${escapeHtml(c.name)}`).join(" · ")}</span>`
+            : "") +
+          `</li>`,
+        `<li>${M.rapporteur(integer(a.rapporteur), m.house)}</li>`,
+        `<li>${a.speeches === null ? M.speechesUnknown : M.speeches(integer(a.speeches))}</li>`,
+      );
+    }
+    items.push(
+      `<li>${M.bills(integer(m.bills.first), integer(m.bills.passed), integer(m.bills.law), m.house)}</li>`,
+    );
+    if (m.allowance) {
+      const a = m.allowance;
+      const median = allowanceMedian(this.mandate!, p.id);
+      items.push(
+        `<li>${M.allowance(money(a.perMonth), money(a.total), integer(a.months))}` +
+          (median ? `<span class="meta">${M.median(money(median), M.medianWho(m.house, p.uf))}</span>` : "") +
+          `<span class="meta">${M.topCategories}: ${a.categories.map((c) => `${escapeHtml(c.name)} (${money(c.value)})`).join(" · ")}</span></li>`,
+      );
+    }
+    const key = this.mandate?.keyVotes?.[m.house === "senado" ? "senate" : "chamber"];
+    const mine = key?.votes[m.id];
+    const keyList =
+      key && mine
+        ? `<details class="pp-key"><summary>${escapeHtml(M.keyTitle(key.rolls.length))}</summary>` +
+          `<p class="meta">${M.keyNote}</p><div class="scroll"><table><thead><tr><th>${M.keyDate}</th><th>${M.keyBill}</th><th>${M.keyVote}</th><th>${M.keyGov}</th></tr></thead><tbody>` +
+          key.rolls
+            .map((r, i) => {
+              const v = mine[i] ?? "-";
+              return (
+                `<tr><td>${r.date.split("-").reverse().join("/")}</td>` +
+                `<td title="${escapeHtml(r.summary)}">${escapeHtml(r.bill)}<span class="meta">${escapeHtml(r.what)}</span></td>` +
+                `<td><b>${M.letters[v] ?? v}</b></td><td>${r.government ? M.letters[r.government] : "—"}</td></tr>`
+              );
+            })
+            .join("") +
+          `</tbody></table></div></details>`
+        : "";
+    const sources =
+      m.house === "senado" ? [t.sources.senateMandate, t.sources.ceaps] : [t.sources.camaraMandate];
+    return (
+      `<h3 class="ap-h">${M.title(M.house[m.house]!)}</h3>` +
+      `<ul class="pp-mandate">${items.join("")}</ul>` +
+      `<p class="pp-links"><a class="pp-link" data-go href="?view=watch${m.house === "senado" ? "&amp;casa=senado" : ""}&amp;id=${encodeURIComponent(m.id)}">${M.watch}</a></p>` +
+      keyList +
+      `<p class="meta">${M.note}</p>` +
+      `<p class="map-note sources">${sourcesHtml(sources)}</p>`
+    );
+  }
+
+  /** Renewal by office, then by party and by state for the office picked (deputies by default). */
+  private renderRenew(): void {
+    const R = t.people.renew;
+    const people = this.data.people.filter(
+      (p) =>
+        (!this.state.uf || p.uf === this.state.uf) && (!this.state.party || p.party === this.state.party),
+    );
+    const office = this.state.office ?? "deputado-federal";
+    const table = (head: string, rows: RenewalRow[], label: (k: string) => string) =>
+      `<table><thead><tr><th>${escapeHtml(head)}</th><th>${R.elected}</th><th>${R.reelected}</th><th>${R.rate}</th></tr></thead><tbody>` +
+      rows
+        .map(
+          (r) =>
+            `<tr><td>${escapeHtml(label(r.key))}</td><td>${integer(r.elected)}</td><td>${integer(r.reelected)}</td><td><b>${percent(r.renewal)}</b></td></tr>`,
+        )
+        .join("") +
+      `</tbody></table>`;
+    const officeName = t.people.office[office]!;
+    byId("pp-renew-title").textContent = R.title;
+    byId("pp-renew-note").textContent = R.note;
+    byId("pp-renew").innerHTML =
+      table(
+        R.office,
+        renewal(people, (p) => p.office),
+        (k) => t.people.office[k] ?? k,
+      ) +
+      `<details><summary>${escapeHtml(R.partyFor(officeName))}</summary>` +
+      table(
+        R.byParty,
+        renewal(
+          people.filter((p) => p.office === office),
+          (p) => p.party,
+        ),
+        (k) => k,
+      ) +
+      `</details><details><summary>${escapeHtml(R.stateFor(officeName))}</summary>` +
+      table(
+        R.byState,
+        renewal(
+          people.filter((p) => p.office === office),
+          (p) => p.uf,
+        ),
+        (k) => k,
+      ) +
+      `</details>`;
+  }
+
+  /** Those in Congress now who ran in 2026 and lost, with the tab's state and party filters. */
+  private renderDefeated(): void {
+    const D = t.people.defeated;
+    const all = this.data.defeated ?? [];
+    const rows = all.filter(
+      (d) =>
+        (!this.state.uf || d.uf === this.state.uf) && (!this.state.party || d.party === this.state.party),
+    );
+    byId("pp-defeated-title").textContent = D.title(rows.length);
+    byId("pp-defeated-note").textContent = D.note;
+    byId("pp-defeated").innerHTML = rows.length
+      ? `<table><thead><tr><th>${D.who}</th><th>${D.now}</th><th>${D.ranFor}</th><th>${D.votes}</th><th>${D.result}</th></tr></thead><tbody>` +
+        rows
+          .map(
+            (d) =>
+              `<tr><td>${escapeHtml(d.name)} <span class="meta">${escapeHtml(d.party)} · ${d.uf}</span></td>` +
+              `<td>${D.house[d.house]}</td><td>${escapeHtml(t.people.office[d.ranFor] ?? d.ranFor)}</td>` +
+              `<td>${integer(d.votes)}${d.share !== null ? ` <span class="meta">(${percent(d.share)})</span>` : ""}</td>` +
+              `<td>${escapeHtml(d.status)}</td></tr>`,
+          )
+          .join("") +
+        `</tbody></table>`
+      : `<p class="meta">${D.none}</p>`;
   }
 }

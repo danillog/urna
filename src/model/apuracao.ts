@@ -75,6 +75,9 @@ export interface Tally {
   blank: number;
   /** Null votes, including those for annulled candidates. */
   nulls: number;
+  /** Voters of the stations counted who did not vote (absent from Worker answers made before
+   * October 2026: then worked out from the turnout). */
+  absent?: number;
   /** Seats in dispute: 1 (president, governor), 2 (Senate in 2026), or a delegation. */
   seats: number;
   /** Most votes first. Proportional races only carry the top ones. */
@@ -157,10 +160,39 @@ export function parseTse(json: any): Tally {
     valid,
     blank: num(v.vb),
     nulls: num(v.tvn) + num(v.van),
+    absent: num(e.a),
     seats,
     candidates,
     lists,
   };
+}
+
+/** Who chose no one, in people: blank and null votes among the votes cast, and the
+ * electorate of the stations counted that did not vote. */
+export interface NoChoice {
+  cast: number;
+  blank: number;
+  nulls: number;
+  absent: number;
+  /** Electorate of the stations counted (the turnout's base). */
+  electorate: number;
+}
+
+export function noChoice(t: Tally): NoChoice {
+  const cast = t.valid + t.blank + t.nulls;
+  // The TSE's own count of abstentions; else from the turnout, a share of the stations
+  // counted (rounded to hundredths, so a few people off in a big state).
+  const absent = t.absent ?? (t.turnout > 0 ? Math.max(0, Math.round(cast / (t.turnout / 100)) - cast) : 0);
+  return { cast, blank: t.blank, nulls: t.nulls, absent, electorate: cast + absent };
+}
+
+/** What the map can be painted by, besides who leads: null votes, blank votes, abstention. */
+export type NoChoiceKind = "nulls" | "blank" | "absent";
+
+/** A share of a NoChoice: null and blank votes of the votes cast, abstention of the electorate. */
+export function noChoiceShare(n: NoChoice, kind: NoChoiceKind): number | null {
+  const base = kind === "absent" ? n.electorate : n.cast;
+  return base ? (n[kind] / base) * 100 : null;
 }
 
 /**
@@ -246,6 +278,7 @@ export function sumTallies(tallies: Tally[]): Tally {
   let valid = 0;
   let blank = 0;
   let nulls = 0;
+  let absent = 0;
   let totalizedAt: string | null = null;
   for (const t of tallies) {
     electorate += t.electorate;
@@ -254,6 +287,7 @@ export function sumTallies(tallies: Tally[]): Tally {
     valid += t.valid;
     blank += t.blank;
     nulls += t.nulls;
+    absent += noChoice(t).absent;
     if (t.totalizedAt && (!totalizedAt || sortableTime(t.totalizedAt) > sortableTime(totalizedAt)))
       totalizedAt = t.totalizedAt;
     for (const c of t.candidates) {
@@ -274,6 +308,7 @@ export function sumTallies(tallies: Tally[]): Tally {
     valid,
     blank,
     nulls,
+    absent,
     seats: Math.max(1, ...tallies.map((t) => t.seats)),
     candidates,
     lists: [],

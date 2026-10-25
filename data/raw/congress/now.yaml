@@ -1,0 +1,1179 @@
+# Written by `uv run python -m pipeline.congress --refresh-now`: Congress by party today.
+date: '2026-10-06'
+chamber:
+  PL: 98
+  PT: 65
+  UNIÃO: 52
+  PSD: 48
+  PP: 46
+  Republicanos: 42
+  MDB: 38
+  PODE: 27
+  PSDB: 17
+  PSB: 17
+  PSOL: 13
+  PCdoB: 11
+  PDT: 10
+  PV: 6
+  NOVO: 5
+  Avante: 5
+  SD: 4
+  REDE: 3
+  PRD: 3
+  Cidadania: 2
+  MISSÃO: 1
+senate:
+  PL: 15
+  PSD: 14
+  MDB: 9
+  PT: 9
+  PP: 8
+  Republicanos: 6
+  PSB: 6
+  PSDB: 4
+  UNIÃO: 3
+  PODE: 3
+  PDT: 2
+  Avante: 1
+  S/Partido: 1
+switches:
+- name: Antônia Lúcia
+  house: chamber
+  uf: AC
+  from: Republicanos
+  to: MDB
+  extinct: false
+- name: Eduardo Velloso
+  house: chamber
+  uf: AC
+  from: UNIÃO
+  to: SD
+  extinct: false
+- name: Alfredo Gaspar
+  house: chamber
+  uf: AL
+  from: UNIÃO
+  to: PL
+  extinct: false
+- name: Luciano Amaral
+  house: chamber
+  uf: AL
+  from: PV
+  to: PSD
+  extinct: false
+- name: Marx Beltrão
+  house: chamber
+  uf: AL
+  from: PP
+  to: UNIÃO
+  extinct: false
+- name: Adail Filho
+  house: chamber
+  uf: AM
+  from: Republicanos
+  to: MDB
+  extinct: false
+- name: Amom Mandel
+  house: chamber
+  uf: AM
+  from: Cidadania
+  to: Republicanos
+  extinct: false
+- name: Saullo Vianna
+  house: chamber
+  uf: AM
+  from: UNIÃO
+  to: MDB
+  extinct: false
+- name: Aline Gurgel
+  house: chamber
+  uf: AP
+  from: Republicanos
+  to: UNIÃO
+  extinct: false
+- name: Paulo Lemos
+  house: chamber
+  uf: AP
+  from: PSOL
+  to: PT
+  extinct: false
+- name: Diego Coronel
+  house: chamber
+  uf: BA
+  from: PSD
+  to: Republicanos
+  extinct: false
+- name: Leo Prates
+  house: chamber
+  uf: BA
+  from: PDT
+  to: Republicanos
+  extinct: false
+- name: Mário Negromonte Jr.
+  house: chamber
+  uf: BA
+  from: PP
+  to: PSB
+  extinct: false
+- name: Neto Carletto
+  house: chamber
+  uf: BA
+  from: PP
+  to: Avante
+  extinct: false
+- name: Raimundo Costa
+  house: chamber
+  uf: BA
+  from: PODE
+  to: PSD
+  extinct: false
+- name: Danilo Forte
+  house: chamber
+  uf: CE
+  from: UNIÃO
+  to: PP
+  extinct: false
+- name: Eduardo Bismarck
+  house: chamber
+  uf: CE
+  from: PDT
+  to: PV
+  extinct: false
+- name: Fernanda Pessoa
+  house: chamber
+  uf: CE
+  from: UNIÃO
+  to: PSD
+  extinct: false
+- name: Idilvan Alencar
+  house: chamber
+  uf: CE
+  from: PDT
+  to: PSB
+  extinct: false
+- name: Júnior Mano
+  house: chamber
+  uf: CE
+  from: PL
+  to: PSB
+  extinct: false
+- name: Luizianne Lins
+  house: chamber
+  uf: CE
+  from: PT
+  to: REDE
+  extinct: false
+- name: Mauro Benevides Filho
+  house: chamber
+  uf: CE
+  from: PDT
+  to: UNIÃO
+  extinct: false
+- name: Robério Monteiro
+  house: chamber
+  uf: CE
+  from: PDT
+  to: PSB
+  extinct: false
+- name: Yury do Paredão
+  house: chamber
+  uf: CE
+  from: PL
+  to: MDB
+  extinct: false
+- name: Amaro Neto
+  house: chamber
+  uf: ES
+  from: Republicanos
+  to: PP
+  extinct: false
+- name: Dr. Victor Linhalis
+  house: chamber
+  uf: ES
+  from: PODE
+  to: PSB
+  extinct: false
+- name: Evair Vieira de Melo
+  house: chamber
+  uf: ES
+  from: PP
+  to: Republicanos
+  extinct: false
+- name: Messias Donato
+  house: chamber
+  uf: ES
+  from: Republicanos
+  to: UNIÃO
+  extinct: false
+- name: Daniel Agrobom
+  house: chamber
+  uf: GO
+  from: PL
+  to: PSD
+  extinct: false
+- name: Dr. Zacharias Calil
+  house: chamber
+  uf: GO
+  from: UNIÃO
+  to: MDB
+  extinct: false
+- name: Flávia Morais
+  house: chamber
+  uf: GO
+  from: PDT
+  to: MDB
+  extinct: false
+- name: Glaustin da Fokus
+  house: chamber
+  uf: GO
+  from: PSC
+  to: PODE
+  extinct: true
+- name: Jeferson Rodrigues
+  house: chamber
+  uf: GO
+  from: Republicanos
+  to: PSDB
+  extinct: false
+- name: José Nelto
+  house: chamber
+  uf: GO
+  from: PP
+  to: UNIÃO
+  extinct: false
+- name: Lêda Borges
+  house: chamber
+  uf: GO
+  from: PSDB
+  to: Republicanos
+  extinct: false
+- name: Marussa Boldrin
+  house: chamber
+  uf: GO
+  from: MDB
+  to: Republicanos
+  extinct: false
+- name: Professor Alcides
+  house: chamber
+  uf: GO
+  from: PL
+  to: PSDB
+  extinct: false
+- name: Aluisio Mendes
+  house: chamber
+  uf: MA
+  from: PSC
+  to: Republicanos
+  extinct: true
+- name: Cleber Verde
+  house: chamber
+  uf: MA
+  from: Republicanos
+  to: MDB
+  extinct: false
+- name: Duarte Jr.
+  house: chamber
+  uf: MA
+  from: PSB
+  to: Avante
+  extinct: false
+- name: Josivaldo JP
+  house: chamber
+  uf: MA
+  from: PSD
+  to: UNIÃO
+  extinct: false
+- name: Junior Lourenço
+  house: chamber
+  uf: MA
+  from: PL
+  to: MDB
+  extinct: false
+- name: Juscelino Filho
+  house: chamber
+  uf: MA
+  from: UNIÃO
+  to: PSDB
+  extinct: false
+- name: Marreca Filho
+  house: chamber
+  uf: MA
+  from: Patriota
+  to: PRD
+  extinct: true
+- name: Márcio Honaiser
+  house: chamber
+  uf: MA
+  from: PDT
+  to: SD
+  extinct: false
+- name: André Janones
+  house: chamber
+  uf: MG
+  from: Avante
+  to: REDE
+  extinct: false
+- name: Bruno Farias
+  house: chamber
+  uf: MG
+  from: Avante
+  to: Republicanos
+  extinct: false
+- name: Delegada Ione
+  house: chamber
+  uf: MG
+  from: Avante
+  to: PL
+  extinct: false
+- name: Dr. Frederico
+  house: chamber
+  uf: MG
+  from: Patriota
+  to: PL
+  extinct: true
+- name: Duda Salabert
+  house: chamber
+  uf: MG
+  from: PDT
+  to: PSOL
+  extinct: false
+- name: Euclydes Pettersen
+  house: chamber
+  uf: MG
+  from: PSC
+  to: Republicanos
+  extinct: true
+- name: Fred Costa
+  house: chamber
+  uf: MG
+  from: Patriota
+  to: PRD
+  extinct: true
+- name: Greyce Elias
+  house: chamber
+  uf: MG
+  from: Avante
+  to: PL
+  extinct: false
+- name: Igor Timo
+  house: chamber
+  uf: MG
+  from: PODE
+  to: UNIÃO
+  extinct: false
+- name: Lafayette de Andrada
+  house: chamber
+  uf: MG
+  from: Republicanos
+  to: PL
+  extinct: false
+- name: Luiz Fernando Faria
+  house: chamber
+  uf: MG
+  from: PSD
+  to: UNIÃO
+  extinct: false
+- name: Pedro Aihara
+  house: chamber
+  uf: MG
+  from: Patriota
+  to: PP
+  extinct: true
+- name: Samuel Viana
+  house: chamber
+  uf: MG
+  from: PL
+  to: UNIÃO
+  extinct: false
+- name: Weliton Prado
+  house: chamber
+  uf: MG
+  from: PROS
+  to: PSD
+  extinct: true
+- name: Zé Silva
+  house: chamber
+  uf: MG
+  from: SD
+  to: UNIÃO
+  extinct: false
+- name: Beto Pereira
+  house: chamber
+  uf: MS
+  from: PSDB
+  to: Republicanos
+  extinct: false
+- name: Dagoberto Nogueira
+  house: chamber
+  uf: MS
+  from: PSDB
+  to: PP
+  extinct: false
+- name: Geraldo Resende
+  house: chamber
+  uf: MS
+  from: PSDB
+  to: UNIÃO
+  extinct: false
+- name: Coronel Assis
+  house: chamber
+  uf: MT
+  from: UNIÃO
+  to: PL
+  extinct: false
+- name: Emanuel Pinheiro Neto
+  house: chamber
+  uf: MT
+  from: MDB
+  to: PSD
+  extinct: false
+- name: Juarez Costa
+  house: chamber
+  uf: MT
+  from: MDB
+  to: Republicanos
+  extinct: false
+- name: Andreia Siqueira
+  house: chamber
+  uf: PA
+  from: MDB
+  to: PSB
+  extinct: false
+- name: Celso Sabino
+  house: chamber
+  uf: PA
+  from: UNIÃO
+  to: PDT
+  extinct: false
+- name: Dra. Alessandra Haber
+  house: chamber
+  uf: PA
+  from: MDB
+  to: PODE
+  extinct: false
+- name: Henderson Pinto
+  house: chamber
+  uf: PA
+  from: MDB
+  to: UNIÃO
+  extinct: false
+- name: Olival Marques
+  house: chamber
+  uf: PA
+  from: MDB
+  to: PODE
+  extinct: false
+- name: Gervásio Maia
+  house: chamber
+  uf: PB
+  from: PSB
+  to: PCdoB
+  extinct: false
+- name: Mersinho Lucena
+  house: chamber
+  uf: PB
+  from: PP
+  to: PSD
+  extinct: false
+- name: Romero Rodrigues
+  house: chamber
+  uf: PB
+  from: PSC
+  to: PODE
+  extinct: true
+- name: Ruy Carneiro
+  house: chamber
+  uf: PB
+  from: PSC
+  to: PODE
+  extinct: true
+- name: Wellington Roberto
+  house: chamber
+  uf: PB
+  from: PL
+  to: PSD
+  extinct: false
+- name: Fernando Monteiro
+  house: chamber
+  uf: PE
+  from: PP
+  to: PSD
+  extinct: false
+- name: Fernando Rodolfo
+  house: chamber
+  uf: PE
+  from: PL
+  to: PRD
+  extinct: false
+- name: Guilherme Uchoa
+  house: chamber
+  uf: PE
+  from: PSB
+  to: PSD
+  extinct: false
+- name: Luciano Bivar
+  house: chamber
+  uf: PE
+  from: UNIÃO
+  to: MDB
+  extinct: false
+- name: Maria Arraes
+  house: chamber
+  uf: PE
+  from: SD
+  to: PSB
+  extinct: false
+- name: Mendonça Filho
+  house: chamber
+  uf: PE
+  from: UNIÃO
+  to: PL
+  extinct: false
+- name: Pastor Eurico
+  house: chamber
+  uf: PE
+  from: PL
+  to: PSDB
+  extinct: false
+- name: Túlio Gadêlha
+  house: chamber
+  uf: PE
+  from: REDE
+  to: PSD
+  extinct: false
+- name: Castro Neto
+  house: chamber
+  uf: PI
+  from: PSD
+  to: MDB
+  extinct: false
+- name: Jadyel Alencar
+  house: chamber
+  uf: PI
+  from: PV
+  to: Republicanos
+  extinct: false
+- name: Marcos Aurélio Sampaio
+  house: chamber
+  uf: PI
+  from: PSD
+  to: MDB
+  extinct: false
+- name: Diego Garcia
+  house: chamber
+  uf: PR
+  from: Republicanos
+  to: UNIÃO
+  extinct: false
+- name: Felipe Francischini
+  house: chamber
+  uf: PR
+  from: UNIÃO
+  to: PODE
+  extinct: false
+- name: Giacobo
+  house: chamber
+  uf: PR
+  from: PL
+  to: PSD
+  extinct: false
+- name: Luisa Canziani
+  house: chamber
+  uf: PR
+  from: PSD
+  to: UNIÃO
+  extinct: false
+- name: Padovani
+  house: chamber
+  uf: PR
+  from: UNIÃO
+  to: PP
+  extinct: false
+- name: Paulo Litro
+  house: chamber
+  uf: PR
+  from: PSD
+  to: UNIÃO
+  extinct: false
+- name: Pedro Lupion
+  house: chamber
+  uf: PR
+  from: PP
+  to: Republicanos
+  extinct: false
+- name: Sargento Fahur
+  house: chamber
+  uf: PR
+  from: PSD
+  to: PL
+  extinct: false
+- name: Toninho Wandscheer
+  house: chamber
+  uf: PR
+  from: PROS
+  to: PP
+  extinct: true
+- name: Bandeira de Mello
+  house: chamber
+  uf: RJ
+  from: PSB
+  to: PV
+  extinct: false
+- name: Bebeto
+  house: chamber
+  uf: RJ
+  from: PTB
+  to: PP
+  extinct: true
+- name: Dani Cunha
+  house: chamber
+  uf: RJ
+  from: UNIÃO
+  to: PL
+  extinct: false
+- name: Daniela do Waguinho
+  house: chamber
+  uf: RJ
+  from: UNIÃO
+  to: Republicanos
+  extinct: false
+- name: Juninho do Pneu
+  house: chamber
+  uf: RJ
+  from: UNIÃO
+  to: PSDB
+  extinct: false
+- name: Luciano Vieira
+  house: chamber
+  uf: RJ
+  from: PL
+  to: PSDB
+  extinct: false
+- name: Luiz Lima
+  house: chamber
+  uf: RJ
+  from: PL
+  to: NOVO
+  extinct: false
+- name: Marcelo Queiroz
+  house: chamber
+  uf: RJ
+  from: PP
+  to: PSDB
+  extinct: false
+- name: Marcos Soares
+  house: chamber
+  uf: RJ
+  from: UNIÃO
+  to: PSDB
+  extinct: false
+- name: Max Lemos
+  house: chamber
+  uf: RJ
+  from: PROS
+  to: UNIÃO
+  extinct: true
+- name: Murillo Gouvea
+  house: chamber
+  uf: RJ
+  from: UNIÃO
+  to: PSDB
+  extinct: false
+- name: Otoni de Paula
+  house: chamber
+  uf: RJ
+  from: MDB
+  to: PSD
+  extinct: false
+- name: João Maia
+  house: chamber
+  uf: RN
+  from: PL
+  to: PP
+  extinct: false
+- name: Robinson Faria
+  house: chamber
+  uf: RN
+  from: PL
+  to: PP
+  extinct: false
+- name: Cristiane Lopes
+  house: chamber
+  uf: RO
+  from: UNIÃO
+  to: PODE
+  extinct: false
+- name: Dr. Fernando Máximo
+  house: chamber
+  uf: RO
+  from: UNIÃO
+  to: PL
+  extinct: false
+- name: Lucio Mosquini
+  house: chamber
+  uf: RO
+  from: MDB
+  to: PL
+  extinct: false
+- name: Silvia Cristina
+  house: chamber
+  uf: RO
+  from: PL
+  to: PP
+  extinct: false
+- name: Thiago Flores
+  house: chamber
+  uf: RO
+  from: MDB
+  to: UNIÃO
+  extinct: false
+- name: Defensor Stélio Dener
+  house: chamber
+  uf: RR
+  from: Republicanos
+  to: UNIÃO
+  extinct: false
+- name: Duda Ramos
+  house: chamber
+  uf: RR
+  from: MDB
+  to: PODE
+  extinct: false
+- name: Helena Lima
+  house: chamber
+  uf: RR
+  from: MDB
+  to: PSD
+  extinct: false
+- name: Nicoletti
+  house: chamber
+  uf: RR
+  from: UNIÃO
+  to: PL
+  extinct: false
+- name: Zé Haroldo Cathedral
+  house: chamber
+  uf: RR
+  from: PSD
+  to: UNIÃO
+  extinct: false
+- name: Any Ortiz
+  house: chamber
+  uf: RS
+  from: Cidadania
+  to: PP
+  extinct: false
+- name: Heitor Schuch
+  house: chamber
+  uf: RS
+  from: PSB
+  to: PSD
+  extinct: false
+- name: Lucas Redecker
+  house: chamber
+  uf: RS
+  from: PSDB
+  to: PSD
+  extinct: false
+- name: Mauricio Marcon
+  house: chamber
+  uf: RS
+  from: PODE
+  to: PL
+  extinct: false
+- name: Osmar Terra
+  house: chamber
+  uf: RS
+  from: MDB
+  to: PL
+  extinct: false
+- name: Zucco
+  house: chamber
+  uf: RS
+  from: Republicanos
+  to: PL
+  extinct: false
+- name: Ismael
+  house: chamber
+  uf: SC
+  from: PSD
+  to: PL
+  extinct: false
+- name: Jorge Goetten
+  house: chamber
+  uf: SC
+  from: PL
+  to: Republicanos
+  extinct: false
+- name: Ricardo Guidi
+  house: chamber
+  uf: SC
+  from: PSD
+  to: PL
+  extinct: false
+- name: Gustinho Ribeiro
+  house: chamber
+  uf: SE
+  from: Republicanos
+  to: PP
+  extinct: false
+- name: Icaro de Valmir
+  house: chamber
+  uf: SE
+  from: PL
+  to: Republicanos
+  extinct: false
+- name: Rodrigo Valadares
+  house: chamber
+  uf: SE
+  from: UNIÃO
+  to: PL
+  extinct: false
+- name: Thiago de Joaldo
+  house: chamber
+  uf: SE
+  from: PP
+  to: Republicanos
+  extinct: false
+- name: Antonio Carlos Rodrigues
+  house: chamber
+  uf: SP
+  from: PL
+  to: PODE
+  extinct: false
+- name: Carlos Sampaio
+  house: chamber
+  uf: SP
+  from: PSDB
+  to: PSD
+  extinct: false
+- name: Cezinha de Madureira
+  house: chamber
+  uf: SP
+  from: PSD
+  to: PL
+  extinct: false
+- name: David Soares
+  house: chamber
+  uf: SP
+  from: UNIÃO
+  to: PODE
+  extinct: false
+- name: Delegado Bruno Lima
+  house: chamber
+  uf: SP
+  from: PP
+  to: PODE
+  extinct: false
+- name: Delegado Palumbo
+  house: chamber
+  uf: SP
+  from: MDB
+  to: PODE
+  extinct: false
+- name: Delegado da Cunha
+  house: chamber
+  uf: SP
+  from: PP
+  to: UNIÃO
+  extinct: false
+- name: Fausto Pinato
+  house: chamber
+  uf: SP
+  from: PP
+  to: UNIÃO
+  extinct: false
+- name: Felipe Becari
+  house: chamber
+  uf: SP
+  from: UNIÃO
+  to: PODE
+  extinct: false
+- name: Gilberto Nascimento
+  house: chamber
+  uf: SP
+  from: PSC
+  to: PODE
+  extinct: true
+- name: Guilherme Derrite
+  house: chamber
+  uf: SP
+  from: PL
+  to: PP
+  extinct: false
+- name: Kim Kataguiri
+  house: chamber
+  uf: SP
+  from: UNIÃO
+  to: MISSÃO
+  extinct: false
+- name: Marangoni
+  house: chamber
+  uf: SP
+  from: UNIÃO
+  to: PODE
+  extinct: false
+- name: Paulo Alexandre Barbosa
+  house: chamber
+  uf: SP
+  from: PSDB
+  to: PSD
+  extinct: false
+- name: Ricardo Salles
+  house: chamber
+  uf: SP
+  from: PL
+  to: NOVO
+  extinct: false
+- name: Rosangela Moro
+  house: chamber
+  uf: SP
+  from: UNIÃO
+  to: PL
+  extinct: false
+- name: Simone Marquetto
+  house: chamber
+  uf: SP
+  from: MDB
+  to: PP
+  extinct: false
+- name: Tiririca
+  house: chamber
+  uf: SP
+  from: PL
+  to: PSD
+  extinct: false
+- name: Vinicius Carvalho
+  house: chamber
+  uf: SP
+  from: Republicanos
+  to: PL
+  extinct: false
+- name: Vitor Lippi
+  house: chamber
+  uf: SP
+  from: PSDB
+  to: PSD
+  extinct: false
+- name: Alexandre Guimarães
+  house: chamber
+  uf: TO
+  from: Republicanos
+  to: MDB
+  extinct: false
+- name: Antonio Andrade
+  house: chamber
+  uf: TO
+  from: Republicanos
+  to: PSDB
+  extinct: false
+- name: Eli Borges
+  house: chamber
+  uf: TO
+  from: PL
+  to: Republicanos
+  extinct: false
+- name: Vicentinho Júnior
+  house: chamber
+  uf: TO
+  from: PP
+  to: PSDB
+  extinct: false
+- name: Alan Rick
+  house: senate
+  uf: AC
+  from: UNIÃO
+  to: Republicanos
+  extinct: false
+- name: Marcio Bittar
+  house: senate
+  uf: AC
+  from: MDB
+  to: PL
+  extinct: false
+- name: Lucas Barreto
+  house: senate
+  uf: AP
+  from: PTB
+  to: PSD
+  extinct: true
+- name: Randolfe Rodrigues
+  house: senate
+  uf: AP
+  from: REDE
+  to: PT
+  extinct: false
+- name: Angelo Coronel
+  house: senate
+  uf: BA
+  from: PSD
+  to: Republicanos
+  extinct: false
+- name: Cid Gomes
+  house: senate
+  uf: CE
+  from: PDT
+  to: PSB
+  extinct: false
+- name: Izalci Lucas
+  house: senate
+  uf: DF
+  from: PSDB
+  to: PL
+  extinct: false
+- name: Leila Barros
+  house: senate
+  uf: DF
+  from: PSB
+  to: PDT
+  extinct: false
+- name: Fabiano Contarato
+  house: senate
+  uf: ES
+  from: REDE
+  to: PT
+  extinct: false
+- name: Marcos do Val
+  house: senate
+  uf: ES
+  from: PPS
+  to: Avante
+  extinct: true
+- name: Jorge Kajuru
+  house: senate
+  uf: GO
+  from: PRP
+  to: PSB
+  extinct: true
+- name: Vanderlan Cardoso
+  house: senate
+  uf: GO
+  from: PP
+  to: PSD
+  extinct: false
+- name: Eliziane Gama
+  house: senate
+  uf: MA
+  from: PPS
+  to: PSD
+  extinct: true
+- name: Carlos Viana
+  house: senate
+  uf: MG
+  from: PHS
+  to: PSD
+  extinct: true
+- name: Cleitinho
+  house: senate
+  uf: MG
+  from: PSC
+  to: Republicanos
+  extinct: true
+- name: Nelsinho Trad
+  house: senate
+  uf: MS
+  from: PTB
+  to: PSD
+  extinct: true
+- name: Soraya Thronicke
+  house: senate
+  uf: MS
+  from: PSL
+  to: PSB
+  extinct: true
+- name: Jayme Campos
+  house: senate
+  uf: MT
+  from: DEM
+  to: UNIÃO
+  extinct: true
+- name: Zequinha Marinho
+  house: senate
+  uf: PA
+  from: PSC
+  to: PODE
+  extinct: true
+- name: Efraim Filho
+  house: senate
+  uf: PB
+  from: UNIÃO
+  to: PL
+  extinct: false
+- name: Veneziano Vital do Rêgo
+  house: senate
+  uf: PB
+  from: PSB
+  to: MDB
+  extinct: false
+- name: Flávio Arns
+  house: senate
+  uf: PR
+  from: REDE
+  to: PSB
+  extinct: false
+- name: Oriovisto Guimarães
+  house: senate
+  uf: PR
+  from: PODE
+  to: PSDB
+  extinct: false
+- name: Sergio Moro
+  house: senate
+  uf: PR
+  from: UNIÃO
+  to: PL
+  extinct: false
+- name: Flávio Bolsonaro
+  house: senate
+  uf: RJ
+  from: PSL
+  to: PL
+  extinct: true
+- name: Romário
+  house: senate
+  uf: RJ
+  from: PL
+  to: S/Partido
+  extinct: false
+- name: Styvenson Valentim
+  house: senate
+  uf: RN
+  from: REDE
+  to: PODE
+  extinct: false
+- name: Zenaide Maia
+  house: senate
+  uf: RN
+  from: PHS
+  to: PSD
+  extinct: true
+- name: Marcos Rogério
+  house: senate
+  uf: RO
+  from: DEM
+  to: PL
+  extinct: true
+- name: Chico Rodrigues
+  house: senate
+  uf: RR
+  from: DEM
+  to: PSB
+  extinct: true
+- name: Alessandro Vieira
+  house: senate
+  uf: SE
+  from: REDE
+  to: MDB
+  extinct: false
+- name: Mara Gabrilli
+  house: senate
+  uf: SP
+  from: PSDB
+  to: PSD
+  extinct: false
+- name: Eduardo Gomes
+  house: senate
+  uf: TO
+  from: SD
+  to: PL
+  extinct: false

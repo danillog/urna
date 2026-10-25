@@ -1,8 +1,9 @@
 import { geoMercator } from "d3-geo";
 import { scaleLinear } from "d3-scale";
 
-import { escapeHtml, percent } from "../format";
+import { escapeHtml, integer, percent } from "../format";
 import { t } from "../i18n/pt-BR";
+import { jointFit } from "../model/joint";
 import {
   CENSUS_VARS,
   REGION_OF,
@@ -22,7 +23,15 @@ import {
   type CensusVote,
   type Election,
 } from "../model/census-vote";
-import type { CapitalsData } from "../model/capitals";
+import {
+  AREA_VARS,
+  CAPITAL_LEVELS,
+  CAPITAL_SLUGS,
+  type Capital,
+  type CapitalLevel,
+  type CapitalRound,
+  type CapitalsData,
+} from "../model/capitals";
 import type { ColorName, MunicipalMap } from "../types";
 import { button, byId } from "./dom";
 import { CapitalsPanel, defaultCapital, type Paint } from "./capitals-panel";
@@ -30,8 +39,9 @@ import { ChoroplethMap } from "./map";
 import { Scatter, decileLegend } from "./scatter";
 import { sourcesHtml } from "./sources";
 
-export type Region = "all" | "N" | "NE" | "CO" | "SE" | "S";
-const REGIONS: Region[] = ["all", "N", "NE", "CO", "SE", "S"];
+/** A region, or the 27 capitals against the rest of the country. */
+export type Region = "all" | "N" | "NE" | "CO" | "SE" | "S" | "CAP" | "INT";
+const REGIONS: Region[] = ["all", "N", "NE", "CO", "SE", "S", "CAP", "INT"];
 type Side = "pt" | "rival";
 
 export interface CensusState {
@@ -45,11 +55,20 @@ export interface CensusState {
   /** "Dentro das capitais": which capital, and whether its map shows the vote or the census. */
   capital: string;
   paint: Paint;
+  /** Which round inside the capitals (the runoff once read). */
+  capRound: CapitalRound;
+  /** The round: the runoff where there was one (2002 on), else the 1st round is shown. */
+  round: "r1" | "r2";
+  /** Inside the capitals: areas, neighbourhoods, or São Paulo's districts or subprefeituras. */
+  capLevel: CapitalLevel;
+  /** Inside the capitals: a variable of its own (colour or race, couples…); null follows `v`. */
+  capVar: CensusVar | null;
 }
 
 /** Variables in the address: ?var=renda&cruzar=evangelicos. */
 const SLUGS: Record<CensusVar, string> = {
   income: "renda",
+  incomeMedian: "renda-mediana",
   evangelical: "evangelicos",
   catholic: "catolicos",
   noReligion: "sem-religiao",
@@ -61,12 +80,30 @@ const SLUGS: Record<CensusVar, string> = {
   illiterate: "analfabetismo",
   population: "populacao",
   urban: "urbanizacao",
+  white: "brancos",
+  black: "pretos",
+  brown: "pardos",
+  asian: "amarelos",
+  indigenous: "indigenas",
+  negro: "negros",
+  elderly: "idosos",
+  sameSex: "casais-mesmo-sexo",
+  gini: "gini",
+  ...CAPITAL_SLUGS,
+};
+const LEVEL_SLUGS: Record<CapitalLevel, string> = {
+  areas: "areas",
+  bairros: "bairros",
+  regions: "regioes",
+  districts: "distritos",
+  subprefeituras: "subprefeituras",
 };
 const fromSlug = (s: string | null): CensusVar | undefined => CENSUS_VARS.find((v) => SLUGS[v] === s);
 
 /** One fixed color per variable in the gap chart; never by rank. */
 const VAR_COLORS: Record<CensusVar, ColorName> = {
   income: "gold",
+  incomeMedian: "gold",
   evangelical: "violet",
   catholic: "sky",
   noReligion: "teal",
@@ -78,6 +115,33 @@ const VAR_COLORS: Record<CensusVar, ColorName> = {
   illiterate: "gray",
   population: "green",
   urban: "brown",
+  // Capitals only; never in the gap chart.
+  white: "gray",
+  black: "brown",
+  brown: "orange",
+  asian: "pink",
+  indigenous: "green",
+  negro: "brown",
+  elderly: "gray",
+  sameSex: "violet",
+  gini: "red",
+  incomeRatio: "gold",
+  schoolYears: "blue",
+  spiritist: "sky",
+  afro: "pink",
+  unemployed: "red",
+  commuteLong: "gray",
+  commuteWalk: "green",
+  commuteMoto: "orange",
+  commuteCar: "gray",
+  commuteTransit: "blue",
+  renting: "teal",
+  poorWalls: "brown",
+  noInternet: "gray",
+  migrant: "cyan",
+  flat: "violet",
+  bathrooms: "gold",
+  sewer: "teal",
 };
 
 /** Schooling is ordered: a sequential ramp (viridis steps), lowest level darkest. Religion is not: categorical colors. */
@@ -94,7 +158,9 @@ const STEP_MS = 1600;
 const GAP_LANDMARKS: CensusVar[] = ["income", "catholic", "evangelical", "eduBasic", "degree"];
 
 /** Whether the census paired with an election has a variable (2022 has no urban share yet). */
-const hasVar = (_data: CensusVote, census: number, v: CensusVar) => v !== "urban" || census !== 2022;
+/** Urban share and Gini by municipality exist up to 2010: the 2022 census has neither yet. */
+const hasVar = (_data: CensusVote, census: number, v: CensusVar) =>
+  (v !== "urban" && v !== "gini") || census !== 2022;
 
 /** Round ticks for the log axes, kept to the ones inside the domain. */
 const LOG_TICKS: Partial<Record<CensusVar, number[]>> = {
@@ -124,6 +190,10 @@ export function censusFromSearch(
     region: region && REGIONS.includes(region) ? region : "all",
     capital: defaultCapital(capitals, params.get("capital")),
     paint: params.get("pintar") === "censo" ? "census" : "vote",
+    round: params.get("turno") === "2" ? "r2" : "r1",
+    capRound: params.get("turno-capital") === "2" ? "r2" : "r1",
+    capLevel: CAPITAL_LEVELS.find((l) => LEVEL_SLUGS[l] === params.get("nivel")) ?? "areas",
+    capVar: AREA_VARS.find((v) => SLUGS[v] === params.get("var-capital")) ?? null,
   });
 }
 
@@ -140,6 +210,10 @@ export function censusToSearch(
   if (s.region !== "all") params.set("regiao", s.region.toLowerCase());
   if (s.capital !== defaultCapital(capitals, null)) params.set("capital", s.capital);
   if (s.paint === "census") params.set("pintar", "censo");
+  if (s.round === "r2") params.set("turno", "2");
+  if (s.capRound === "r2") params.set("turno-capital", "2");
+  if (s.capLevel !== "areas") params.set("nivel", LEVEL_SLUGS[s.capLevel]);
+  if (s.capVar) params.set("var-capital", SLUGS[s.capVar]);
 }
 
 /** The Voto e Censo tab: scatter, map, quadrants and the gap over time. */
@@ -152,9 +226,11 @@ export class CensusView {
   constructor(
     private readonly data: CensusVote,
     private readonly map: MunicipalMap,
-    capitals: CapitalsData,
+    private readonly capitalsList: CapitalsData,
+    capital: { load: (code: string) => Promise<Capital>; peek: (code: string) => Capital | undefined },
     private state: CensusState,
     private readonly onChange: () => void,
+    private readonly loadRunoffs?: () => Promise<Election[]>,
   ) {
     // Religion and schooling as the categories they are: grouped, each level on its own.
     const fill = (select: HTMLSelectElement) =>
@@ -185,6 +261,9 @@ export class CensusView {
     byId("cv-sides")
       .querySelectorAll<HTMLButtonElement>("button")
       .forEach((b) => b.addEventListener("click", () => this.set({ side: b.dataset.side as Side })));
+    byId("cv-rounds")
+      .querySelectorAll<HTMLButtonElement>("button")
+      .forEach((b) => b.addEventListener("click", () => this.set({ round: b.dataset.round as "r1" | "r2" })));
     const slider = byId<HTMLInputElement>("cv-slider");
     slider.addEventListener("input", () =>
       this.set({ year: this.data.elections[Number(slider.value)]!.year }, true),
@@ -204,15 +283,39 @@ export class CensusView {
     byId("cv-zoom-reset").addEventListener("click", () => this.drawing?.fit(null));
 
     this.scatter = new Scatter(byId("cv-scatter"));
-    this.capitals = new CapitalsPanel(capitals, (patch) => this.set(patch));
+    this.capitals = new CapitalsPanel(capitalsList, capital.load, capital.peek, (patch) => this.set(patch));
   }
 
   get current(): CensusState {
     return this.state;
   }
 
+  /** Downloads the runoffs the first time the 2nd round is asked for, then draws again. */
+  private wantRunoffs(): void {
+    if (this.state.round !== "r2" || this.data.runoffs.length || !this.loadRunoffs || this.runoffsAsked)
+      return;
+    this.runoffsAsked = true;
+    void this.loadRunoffs().then(
+      (runoffs) => {
+        this.data.runoffs = runoffs;
+        this.onChange();
+      },
+      () => (this.runoffsAsked = false),
+    );
+  }
+
+  private runoffsAsked = false;
+
+  /** The election on screen: the runoff when asked and there was one, else the 1st round. */
   private get election(): Election {
-    return this.data.elections.find((e) => e.year === this.state.year)!;
+    const first = this.data.elections.find((e) => e.year === this.state.year)!;
+    if (this.state.round !== "r2") return first;
+    return this.data.runoffs.find((e) => e.year === this.state.year) ?? first;
+  }
+
+  /** The elections of the round on screen, for the gap over time. */
+  private get series(): Election[] {
+    return this.state.round === "r2" && this.data.runoffs.length ? this.data.runoffs : this.data.elections;
   }
 
   private set(patch: Partial<CensusState>, stop = false): void {
@@ -245,8 +348,21 @@ export class CensusView {
     b.setAttribute("aria-label", this.timer ? t.census.pause : t.census.play);
   }
 
-  private inRegion = (i: number): boolean =>
-    this.state.region === "all" || REGION_OF[this.map.municipalities.uf[i]!] === this.state.region;
+  /** The 27 capitals, by name and state (the census arrays follow the map's order). */
+  private capitalSet: Set<string> | null = null;
+  private get capitalPlaces(): Set<string> {
+    this.capitalSet ??= new Set(this.capitalsList.capitals.map((c) => `${c.name}|${c.uf}`));
+    return this.capitalSet;
+  }
+
+  private inRegion = (i: number): boolean => {
+    const r = this.state.region;
+    if (r === "all") return true;
+    const m = this.map.municipalities;
+    if (r === "CAP" || r === "INT")
+      return this.capitalPlaces.has(`${m.names[i]}|${m.uf[i]}`) === (r === "CAP");
+    return REGION_OF[m.uf[i]!] === r;
+  };
 
   private who(side: Side = this.state.side): string {
     const e = this.election;
@@ -277,7 +393,22 @@ export class CensusView {
     this.renderTimeline();
 
     const places = placesWith(this.data, e, s.v, this.inRegion);
-    byId("cv-title").textContent = t.census.title(e.pt, e.rival, e.year, t.census.regions[s.region]!);
+    this.wantRunoffs();
+    byId("cv-title").textContent = t.census.title(
+      e.pt,
+      e.rival,
+      e.year,
+      t.census.regions[s.region]!,
+      t.round[e.round],
+    );
+    const hasRunoff = this.data.runoffYears.includes(e.year);
+    byId("cv-rounds")
+      .querySelectorAll<HTMLButtonElement>("button")
+      .forEach((b) => {
+        b.setAttribute("aria-pressed", String(b.dataset.round === e.round));
+        b.disabled = b.dataset.round === "r2" && !hasRunoff;
+        b.title = b.disabled ? t.census.noRunoff : "";
+      });
     byId("cv-meta").textContent = t.census.meta(e.census, places.length);
     byId("cv-warning").textContent = t.census.warning;
     this.renderScatter(e, places);
@@ -286,6 +417,9 @@ export class CensusView {
     this.capitals.render({
       capital: s.capital,
       paint: s.paint,
+      round: s.capRound,
+      level: s.capLevel,
+      capVar: s.capVar,
       v: s.v,
       other: s.other,
       side: s.side,
@@ -294,6 +428,7 @@ export class CensusView {
     });
     this.renderQuadrants(e);
     this.renderComposition(e);
+    this.renderJoint(e);
     this.renderGap();
     byId("cv-note").textContent = t.census.note;
     byId("cv-sources").innerHTML = sourcesHtml([
@@ -492,7 +627,7 @@ export class CensusView {
   /** The PT gap per variable over every election; the chosen two stand out and carry labels. */
   private renderGap(): void {
     const s = this.state;
-    const elections = this.data.elections;
+    const elections = this.series;
     // Twelve lines would be unreadable: the chosen two, and a few landmarks in grey.
     const shown = [...new Set<CensusVar>([s.v, s.other, ...GAP_LANDMARKS])];
     const series = shown.map((v) => ({
@@ -572,5 +707,34 @@ export class CensusView {
         return b;
       }),
     );
+  }
+
+  /** Each variable alone and with the others held, nationally: what is left of each pattern. */
+  private renderJoint(e: Election): void {
+    const who = this.who();
+    const fit = jointFit(this.data, e, this.state.side, (i) => this.map.municipalities.uf[i]!);
+    byId("cv-joint-title").textContent = t.census.joint.title(who, e.year);
+    if (!fit) {
+      byId("cv-joint-note").textContent = "";
+      byId("cv-joint").innerHTML = "";
+      return;
+    }
+    byId("cv-joint-note").textContent = t.census.joint.note(integer(fit.places), percent(fit.r2 * 100));
+    const pts = (x: number) => (Number.isFinite(x) ? t.census.joint.points(x) : "—");
+    byId("cv-joint").innerHTML =
+      `<table><thead><tr><th>${t.census.joint.variable}</th><th>${t.census.joint.alone}</th><th>${t.census.joint.together}</th></tr></thead><tbody>` +
+      fit.terms
+        .map(
+          (r) =>
+            `<tr><td>${escapeHtml(t.census.joint.unit[r.term]!)}</td><td>${pts(r.alone)}</td><td><b>${pts(r.joint)}</b></td></tr>`,
+        )
+        .join("") +
+      fit.regions
+        .map(
+          (r) =>
+            `<tr><td>${escapeHtml(t.census.joint.region(t.census.regions[r.region]!))}</td><td>—</td><td><b>${pts(r.joint)}</b></td></tr>`,
+        )
+        .join("") +
+      `</tbody></table>`;
   }
 }

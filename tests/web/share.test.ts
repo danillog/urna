@@ -4,6 +4,11 @@ import { resolve } from "node:path";
 
 import { describe, expect, it } from "vitest";
 
+import congress from "../../data/generated/congress.json";
+import governismo from "../../data/generated/governismo.json";
+import type { CongressData } from "../../src/model/congress";
+import type { GovernismoData } from "../../src/model/governismo";
+import { partyModalHtml } from "../../src/ui/party-modal";
 import { SHARES, shortUrl, shownSvg, standalone } from "../../src/ui/share";
 
 const html = readFileSync(resolve(__dirname, "../../index.html"), "utf8");
@@ -11,8 +16,16 @@ const html = readFileSync(resolve(__dirname, "../../index.html"), "utf8");
 describe("share", () => {
   it("has a card spec for every button, and every part it names exists", () => {
     const buttons = [...html.matchAll(/data-share="([^"]+)"/g)].map((m) => m[1]!);
-    expect(new Set(buttons)).toEqual(new Set(Object.keys(SHARES)));
-    for (const spec of Object.values(SHARES)) {
+    const inPage = Object.entries(SHARES).filter(([, s]) => !s.dynamic);
+    expect(new Set(buttons)).toEqual(new Set(inPage.map(([k]) => k)));
+    // The party modal's parts, drawn by script: checked against what it draws.
+    const modal = partyModalHtml(congress as CongressData, governismo as GovernismoData, "PT");
+    for (const id of [SHARES.party!.meta, SHARES.party!.sources, ...SHARES.party!.figures])
+      expect(modal, id).toContain(`id="${id}"`);
+    expect(modal).toContain('data-share="party"');
+    // The profile card reads the profile drawn on screen (checked in the app test).
+    expect(SHARES.profile!.dynamic).toBe(true);
+    for (const [, spec] of inPage) {
       for (const id of [spec.title, spec.meta, spec.sources, ...spec.figures, ...spec.legends].filter(
         Boolean,
       ))

@@ -1,6 +1,7 @@
-"""Official 1st-round results of 2026 from the TSE, matched to the polls' candidates.
+"""Official 2026 results from the TSE, matched to the polls' candidates.
 
-    uv run python -m pipeline.results     # writes data/raw/results/2026-r1.json
+    uv run python -m pipeline.results      # 1st round → data/raw/results/2026-r1.json
+    uv run python -m pipeline.results r2   # runoff: president, and governor where there is one
 
 The TSE's files are final once the count ends; this keeps a copy so the build
 does not depend on their site. pipeline.presidential and pipeline.states read it
@@ -17,15 +18,17 @@ import json
 import re
 import sys
 import unicodedata
+import urllib.error
 from datetime import UTC, datetime
 from pathlib import Path
 
+from .sources import tse_results
 from .sources.http import get
 
 # Not imported from .build: build reads this module.
 DATA = Path(__file__).resolve().parent.parent / "data"
 RAW = DATA / "raw" / "results"
-BASE = "https://resultados.tse.jus.br/oficial/ele2026"
+YEAR = 2026
 UFS = [
     "AC", "AL", "AM", "AP", "BA", "CE", "DF", "ES", "GO", "MA", "MG", "MS", "MT", "PA",
     "PB", "PE", "PI", "PR", "RJ", "RN", "RO", "RR", "RS", "SC", "SE", "SP", "TO",
@@ -80,22 +83,36 @@ def parse(raw: dict) -> dict:
     }
 
 
-def fetch(election: str, office: int, place: str) -> dict:
-    uf = "br" if place == "br" else place.lower()
-    url = f"{BASE}/{election}/dados/{uf}/{place.lower()}-c{office:04d}-e{election.zfill(6)}-u.json"
-    return parse(json.loads(get(url)))
+def fetch(election: str, office: int, place: str, year: int = YEAR) -> dict:
+    return parse(json.loads(get(tse_results.file_url(year, election, office, place.lower()))))
 
 
-def refresh() -> dict:
-    out = {
-        "source": BASE,
+def fetch_runoff(election: str, office: int, uf: str) -> dict | None:
+    """A state's runoff, or None where it had none (the TSE has no file for it)."""
+    try:
+        return fetch(election, office, uf)
+    except urllib.error.HTTPError as e:
+        if e.code in (403, 404):
+            return None
+        raise
+
+
+def refresh(round_id: str = "r1") -> dict:
+    federal = tse_results.election(YEAR, round_id, "federal")
+    state = tse_results.election(YEAR, round_id, "state")
+    out: dict = {
+        "source": tse_results.base(YEAR),
         "fetchedAt": datetime.now(UTC).isoformat(timespec="seconds"),
-        "president": fetch("6257", 1, "br"),
-        "governor": {uf: fetch("6259", 3, uf) for uf in UFS},
-        "senate": {uf: fetch("6259", 5, uf) for uf in UFS},
+        "president": fetch(federal, 1, "br"),
     }
+    if round_id == "r1":
+        out["governor"] = {uf: fetch(state, 3, uf) for uf in UFS}
+        out["senate"] = {uf: fetch(state, 5, uf) for uf in UFS}
+    else:
+        runoffs = {uf: fetch_runoff(state, 3, uf) for uf in UFS}
+        out["governor"] = {uf: r for uf, r in runoffs.items() if r}
     RAW.mkdir(parents=True, exist_ok=True)
-    path().write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding="utf-8")
+    path(YEAR, round_id).write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding="utf-8")
     return out
 
 
@@ -135,11 +152,19 @@ def match(candidates: dict[str, str], tse: list[dict]) -> tuple[dict[str, float]
 
 
 def main() -> int:
-    data = refresh()
+    round_id = sys.argv[1] if len(sys.argv) > 1 else "r1"
+    if round_id not in ("r1", "r2"):
+        print("usage: python -m pipeline.results [r1|r2]", file=sys.stderr)
+        return 1
+    try:
+        data = refresh(round_id)
+    except tse_results.NotPublished as e:
+        print(f"error: {e}", file=sys.stderr)
+        return 1
     races = [("president", "BR", data["president"])]
-    races += [(office, uf, data[office][uf]) for office in ("governor", "senate") for uf in UFS]
+    races += [(office, uf, r) for office in ("governor", "senate") for uf, r in data.get(office, {}).items()]
     incomplete = [f"{o} {uf} ({r['counted']}%)" for o, uf, r in races if r["counted"] < 100]
-    print(f"wrote {path().relative_to(DATA.parent)}: {len(races)} races")
+    print(f"wrote {path(YEAR, round_id).relative_to(DATA.parent)}: {len(races)} races")
     if incomplete:
         print("  not fully counted yet:", ", ".join(incomplete))
     return 0

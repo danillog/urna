@@ -24,6 +24,8 @@ export interface ChartOptions {
   title: string;
   events: TimelineEvent[];
   highlight: string | null;
+  /** On a runoff's chart: the 1st round's day and the finalists' shares of the valid votes. */
+  firstRound?: { day: number; result: Record<string, number> } | null;
 }
 
 interface Dot {
@@ -52,9 +54,10 @@ const EVENT_ROW_HEIGHT = 13;
 
 const seriesLabel = (series: string) => t.series[series] ?? series;
 
-export function renderChart(host: HTMLElement, view: View, opts: ChartOptions): void {
+export function renderChart(host: HTMLElement, fullView: View, opts: ChartOptions): void {
   host.innerHTML = "";
-  if (!view.polls.length) {
+  const view = zoomed(fullView);
+  if (!fullView.polls.length) {
     host.innerHTML = `<div class="empty">${t.noPolls}</div>`;
     return;
   }
@@ -215,7 +218,7 @@ export function renderChart(host: HTMLElement, view: View, opts: ChartOptions): 
   for (const series of order.filter((c) => c !== UNDECIDED)) {
     bands
       .append("path")
-      .attr("d", band(view.trends[series]!))
+      .attr("d", runs(view.trends[series]!, view.breakDay).map(band).join(""))
       .attr("fill", color(series))
       .attr("fill-opacity", cssVar("--band-opacity"));
   }
@@ -251,7 +254,7 @@ export function renderChart(host: HTMLElement, view: View, opts: ChartOptions): 
   const lines = g.append("g");
   for (const series of order) {
     const undecided = series === UNDECIDED;
-    const d = trendLine(view.trends[series]!);
+    const d = runs(view.trends[series]!, view.breakDay).map(trendLine).join("");
     lines
       .append("path")
       .attr("d", d)
@@ -286,11 +289,94 @@ export function renderChart(host: HTMLElement, view: View, opts: ChartOptions): 
       .attr("stroke-width", 2.2);
   }
 
+  if (opts.firstRound && opts.firstRound.day >= view.firstDay)
+    drawFirstRound(g, opts.firstRound, { x: x(toDate(opts.firstRound.day)), y, ih, narrow, color });
+
   drawEndLabels(g, view, { y, endX, ih, narrow, result, toX: (d) => x(toDate(d)) });
   attachTooltip(host, g, view, { x, y, iw, ih, m, dots, toDate, color, year: opts.year });
 }
 
 type Group = ReturnType<typeof select<SVGGElement, unknown>>;
+
+/** Only what falls inside the zoomed range: polls and lines from its first day on. The lines
+ * were fitted on every poll, so their left edge is the same as on the full chart. */
+function zoomed(view: View): View {
+  const from = view.zoomFrom;
+  if (from == null) return view;
+  const trends = Object.fromEntries(
+    Object.entries(view.trends)
+      .map(([series, trend]) => [series, trend.filter((p) => p.d >= from)] as const)
+      .filter(([, trend]) => trend.length),
+  );
+  const order = view.order.filter((series) => trends[series]);
+  return { ...view, firstDay: from, polls: view.polls.filter((p) => p.d >= from), trends, order };
+}
+
+/** A trend split where it was fitted in two parts, so no line joins them. */
+function runs(trend: TrendPoint[], breakDay: number | null): TrendPoint[][] {
+  if (breakDay == null) return [trend];
+  return [trend.filter((p) => p.d < breakDay), trend.filter((p) => p.d >= breakDay)].filter((r) => r.length);
+}
+
+/** The 1st round on a runoff's chart: a dotted day line and each finalist's share as a solid
+ * diamond (the runoff's own result stays the hollow one, on its election day). */
+function drawFirstRound(
+  g: Group,
+  first: { day: number; result: Record<string, number> },
+  o: { x: number; y: (v: number) => number; ih: number; narrow: boolean; color: (series: string) => string },
+): void {
+  const layer = g.append("g").attr("class", "first-round");
+  layer
+    .append("line")
+    .attr("x1", o.x)
+    .attr("x2", o.x)
+    .attr("y1", -4)
+    .attr("y2", o.ih)
+    .attr("stroke", cssVar("--axis"))
+    .attr("stroke-dasharray", "2 3");
+  // The label at the foot of the line: the top is where the campaign events sit.
+  layer
+    .append("text")
+    .attr("x", o.x - 4)
+    .attr("y", o.ih - 6)
+    .attr("text-anchor", "end")
+    .attr("fill", cssVar("--muted"))
+    .attr("font-size", o.narrow ? 10 : 11)
+    .text(t.firstRoundMark);
+  const marks = Object.entries(first.result)
+    .map(([series, v]) => ({ series, v, cy: o.y(v), ly: o.y(v) }))
+    .sort((a, b) => a.cy - b.cy);
+  // Values to the left of the diamonds, pushed apart when the two finished close.
+  const GAP = o.narrow ? 12 : 14;
+  marks.forEach((m, i) => {
+    if (i > 0) m.ly = Math.max(m.ly, marks[i - 1]!.ly + GAP);
+  });
+  for (const m of marks) {
+    layer
+      .append("rect")
+      .attr("x", o.x - 4.5)
+      .attr("y", m.cy - 4.5)
+      .attr("width", 9)
+      .attr("height", 9)
+      .attr("transform", `rotate(45 ${o.x} ${m.cy})`)
+      .attr("fill", o.color(m.series))
+      .attr("stroke", cssVar("--surface"))
+      .attr("stroke-width", 1.5);
+    layer
+      .append("text")
+      .attr("x", o.x - 9)
+      .attr("y", m.ly)
+      .attr("dy", "0.32em")
+      .attr("text-anchor", "end")
+      .attr("fill", o.color(m.series))
+      .attr("stroke", cssVar("--surface"))
+      .attr("stroke-width", 3)
+      .attr("paint-order", "stroke")
+      .attr("font-size", o.narrow ? 10 : 11)
+      .attr("font-weight", 600)
+      .text(percent(m.v));
+  }
+}
 
 /** Name and latest value at the right edge, pushed apart so they never overlap. */
 function drawEndLabels(

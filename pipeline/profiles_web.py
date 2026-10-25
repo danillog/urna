@@ -3,6 +3,7 @@ social networks, the Wikipedia article and recent news.
 
     uv run python -m pipeline.profiles_web            # after pipeline.profiles
     uv run python -m pipeline.profiles_web --no-news  # Wikidata only
+    uv run python -m pipeline.profiles_web --news-only  # headlines only (no private files needed)
 
 Wikidata (query.wikidata.org): each person is looked up by name (ballot name or full
 name, labels and aliases in Portuguese), among Brazilians, and accepted only when the
@@ -27,6 +28,9 @@ import urllib.parse
 import xml.etree.ElementTree as ET
 from datetime import UTC, date, datetime
 from email.utils import parsedate_to_datetime
+from pathlib import Path
+
+import yaml
 
 from .profiles import OUTPUT, PRIVATE, plain
 from .sources.http import get
@@ -273,15 +277,102 @@ def elected_before(p: dict) -> str | None:
     return "other-office" if past else None
 
 
+def refresh_news(data: dict) -> None:
+    people = data["people"]
+    print("news…", flush=True)
+    for k, p in enumerate(people):
+        p["news"] = news(p)
+        time.sleep(0.4)
+        if k % 100 == 99:
+            print(f"  {k + 1} people", flush=True)
+    data["newsUpdated"] = datetime.now(UTC).date().isoformat()
+
+
+def merged_socials(p: dict, wikidata: list[dict]) -> list[dict]:
+    """The Congress's own list first, then what they declared to the TSE, then Wikidata's;
+    one account per network."""
+    out: list[dict] = []
+    own = (p.get("contact") or {}).get("socials") or []
+    for s in [*own, *(p.get("declaredSocials") or []), *wikidata]:
+        new_network = s["network"] == "Site" or all(s["network"] != o["network"] for o in out)
+        if new_network and all(s["url"] != o["url"] for o in out):
+            out.append(s)
+    return out
+
+
+FIXED = Path(__file__).resolve().parent.parent / "data" / "profiles_wikidata.yaml"
+CHECKLIST = Path(__file__).resolve().parent.parent / "data" / "raw" / "profiles" / "wikidata_checklist.md"
+
+
+def fixed_items() -> dict[str, str | None]:
+    """Profile id → Wikidata item checked by hand (None blocks an automatic match)."""
+    if not FIXED.exists():
+        return {}
+    return yaml.safe_load(FIXED.read_text(encoding="utf-8")).get("items") or {}
+
+
+def suggestions(name: str) -> list[dict]:
+    """Wikidata's text search for a name: the first three Brazilian people, for a person to check."""
+    q = urllib.parse.urlencode({"action": "wbsearchentities", "search": name, "language": "pt", "limit": 10,
+                                "format": "json"})  # fmt: skip
+    try:
+        hits = json.loads(get(f"{API}?{q}")).get("search", [])
+    except Exception:
+        return []
+    return [
+        {"id": h["id"], "label": h.get("label", ""), "description": h.get("description", "")}
+        for h in hits[:3]
+    ]
+
+
+def checklist(people: list[dict], items: dict[str, str]) -> str:
+    lines = [
+        "# Perfis sem item no Wikidata (privado, fora do git)",
+        "",
+        "Para cada pessoa: abrir as sugestões, conferir data de nascimento, cargos e foto na página",
+        "do item e, se for a pessoa, anotar em data/profiles_wikidata.yaml (id do perfil: Qxxx).",
+        "",
+    ]
+    for p in sorted(people, key=lambda p: (p["office"], p["uf"], p["name"])):
+        if p["id"] in items:
+            continue
+        found = suggestions(p["name"])
+        time.sleep(0.2)
+        hints = " · ".join(
+            f"[{s['id']}](https://www.wikidata.org/wiki/{s['id']}) {s['label']} "
+            f"({s['description'] or 'sem descrição'})"
+            for s in found
+        )
+        who = f"{p['name']} ({p['party']}, {p['uf']}, {p['office']}) · `{p['id']}`"
+        lines.append(f"- [ ] {who} · {hints or 'nenhuma sugestão'}")
+    return "\n".join(lines) + "\n"
+
+
 def main() -> int:
     data = json.loads(OUTPUT.read_text(encoding="utf-8"))
+    if "--news-only" in sys.argv:
+        # What a scheduled run can do: no Wikidata matching, which needs the private index.
+        refresh_news(data)
+        OUTPUT.write_text(json.dumps(data, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+        print(f"wrote {OUTPUT.relative_to(OUTPUT.parents[2])} ({OUTPUT.stat().st_size / 1e3:,.0f} kB)")
+        return 0
     private = json.loads(PRIVATE.read_text(encoding="utf-8"))
     people = data["people"]
     print("Wikidata: finding people…", flush=True)
     items = find_items(people, private)
     print(f"  {len(items)} of {len(people)} found by name; searching the rest…", flush=True)
     items |= search_items(people, private, items)
-    print(f"  {len(items)} of {len(people)} found", flush=True)
+    fixed = fixed_items()
+    for pid, item in fixed.items():  # checked by hand: wins over the automatic match
+        if item:
+            items[pid] = item
+        else:
+            items.pop(pid, None)
+    print(f"  {len(items)} of {len(people)} found ({len(fixed)} fixed by hand)", flush=True)
+    if "--checklist" in sys.argv:
+        CHECKLIST.write_text(checklist(people, items), encoding="utf-8")
+        print(f"wrote {CHECKLIST} (private)")
+        return 0
     info = details(sorted(set(items.values())))
     for p in people:
         w = info.get(items.get(p["id"], ""), None)
@@ -291,22 +382,15 @@ def main() -> int:
         if w:
             contact = p.get("contact")
             # The Congress's own list comes first; Wikidata fills what it lacks.
-            own = contact["socials"] if contact else []
-            p["socials"] = own + [s for s in w["socials"] if all(s["network"] != o["network"] for o in own)]
+            p["socials"] = merged_socials(p, w["socials"])
             p["site"] = (contact or {}).get("site") or w["site"]
         else:
-            p["socials"] = (p.get("contact") or {}).get("socials", [])
+            p["socials"] = merged_socials(p, [])
             p["site"] = (p.get("contact") or {}).get("site")
         if p["kind"] in ("new", "tried"):
             p["kind"] = elected_before(p) or ("appointed" if appointed(p) else p["kind"])
     if "--no-news" not in sys.argv:
-        print("news…", flush=True)
-        for k, p in enumerate(people):
-            p["news"] = news(p)
-            time.sleep(0.4)
-            if k % 100 == 99:
-                print(f"  {k + 1} people", flush=True)
-        data["newsUpdated"] = datetime.now(UTC).date().isoformat()
+        refresh_news(data)
     data["webSources"] = date.today().isoformat()
     OUTPUT.write_text(json.dumps(data, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     with_positions = sum(1 for p in people if p["positions"])

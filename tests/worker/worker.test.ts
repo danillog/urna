@@ -5,7 +5,7 @@ import { resolve } from "node:path";
 import { afterEach, describe, expect, it, vi } from "vitest";
 
 import type { Apuracao } from "../../src/model/apuracao";
-import worker, { plan } from "../../worker/src/index";
+import worker, { DEFAULT_ELECTIONS, electionCodes, plan } from "../../worker/src/index";
 
 const fixture = (name: string) => readFileSync(resolve(__dirname, "../fixtures/tse", name), "utf8");
 
@@ -79,7 +79,9 @@ describe("apuração worker", () => {
     expect(body).toMatchObject({ office: "presidente", round: "r1" });
     expect(body.br.candidates.length).toBe(12);
     expect(body.uf).toEqual({}); // every state file was a 404
-    expect(calls.length).toBe(28); // the country plus 27 states
+    // The country plus 27 states, after the election codes from the TSE's configuration.
+    expect(calls.filter((c) => c.endsWith("/comum/config/ele-c.json")).length).toBe(1);
+    expect(calls.filter((c) => !c.endsWith("ele-c.json")).length).toBe(28);
   });
 
   it("keeps only the progress in the total for offices that differ by state", async () => {
@@ -115,5 +117,27 @@ describe("apuração worker", () => {
       throw new TypeError("network");
     });
     expect((await get("/r1")).status).toBe(502);
+  });
+});
+
+describe("electionCodes", () => {
+  it("takes the runoff's codes from the TSE's configuration once listed", () => {
+    const config = {
+      pl: [
+        { dt: "06/10/2024", e: [{ cd: "619", t: "1", nm: "Eleição Ordinária Municipal - 2024" }] },
+        {
+          dt: "25/10/2026",
+          e: [
+            { cd: "6300", t: "2", nm: "Eleição Ordinária Federal - 2026 2º Turno" },
+            { cd: "6301", t: "2", nm: "Eleição Ordinária Estadual - 2026 2º Turno" },
+          ],
+        },
+      ],
+    };
+    const codes = electionCodes(config);
+    expect(codes.federal).toEqual({ r1: "6257", r2: "6300" });
+    expect(codes.state.r2).toBe("6301");
+    expect(plan("/governador/r2", codes)!.states[0]!.url).toContain("-e006301-u.json");
+    expect(electionCodes(null)).toEqual(DEFAULT_ELECTIONS);
   });
 });

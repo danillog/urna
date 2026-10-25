@@ -19,6 +19,11 @@ export interface EncodedCityCount {
   secondShare: string;
   votes: string; // Uint32 valid votes
   counted: string; // Uint16, tenths of a percent of polling stations
+  /** Snapshots from October 2026 on: blank and null votes (tenths of a percent of the votes
+   * cast) and abstention (tenths of a percent of the electorate counted). */
+  blank?: string;
+  nulls?: string;
+  absent?: string;
 }
 
 export const NO_CITY_RESULT = 0xffff;
@@ -33,6 +38,9 @@ export interface CityCount {
   secondShare: Uint16Array;
   votes: Uint32Array;
   counted: Uint16Array;
+  blank?: Uint16Array;
+  nulls?: Uint16Array;
+  absent?: Uint16Array;
 }
 
 function bytes(b64: string): ArrayBuffer {
@@ -53,5 +61,12 @@ export function decodeCityCount(e: EncodedCityCount): CityCount {
     secondShare: new Uint16Array(bytes(e.secondShare)),
     votes: new Uint32Array(bytes(e.votes)),
     counted: new Uint16Array(bytes(e.counted)),
+    ...(e.blank && e.nulls && e.absent
+      ? {
+          blank: new Uint16Array(bytes(e.blank)),
+          nulls: new Uint16Array(bytes(e.nulls)),
+          absent: new Uint16Array(bytes(e.absent)),
+        }
+      : {}),
   };
 }

@@ -33,6 +33,11 @@ describe("pollWeights", () => {
     expect(w[3]).toBe(1);
     expect(w[1]).toBeCloseTo(1 / Math.sqrt(3));
   });
+
+  it("multiplies each pollster's weight by its own factor, 1 when missing", () => {
+    const w = pollWeights([poll("A", 0, 1), poll("B", 30, 1)], new Map([["A", 2]]));
+    expect(w).toEqual([2, 1]);
+  });
 });
 
 describe("smoothSeries", () => {

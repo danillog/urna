@@ -6,10 +6,13 @@
 <!-- The page has its own light and dark themes; this keeps browsers from force-darkening it. -->
 <meta name="color-scheme" content="light dark">
 <title>Pesquisas eleitorais 2026 e o mapa do voto | Urna</title>
-<meta name="description" content="Média das pesquisas eleitorais de 2026 para presidente, governador e senador, o voto em cada município desde 1994 e a política das Américas.">
+<meta name="description" content="Eleições e política no Brasil explicadas com dados oficiais: pesquisas de 2026, apuração, quem foi eleito, gastos e presença de deputados, senadores e vereadores de SP, o Congresso desde 1990 e o voto em cada município.">
 <meta name="author" content="Danillo Gomes">
 <meta name="robots" content="index, follow, max-image-preview:large">
-<meta name="theme-color" content="#14171c">
+<meta name="theme-color" content="#f6f7f8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f1113" media="(prefers-color-scheme: dark)">
+<!-- The reader's light/dark choice (src/ui/theme.ts), applied before the first paint. -->
+<script>try{var m=localStorage.getItem("urna-theme");if(m==="light"||m==="dark")document.documentElement.dataset.theme=m}catch(e){}</script>
 <link rel="canonical" href="https://danillogomes.com/urna/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="pt_BR">
@@ -48,7 +51,7 @@
     {
       "@type": "Dataset",
       "name": "Pesquisas eleitorais e resultados por município e por estado no Brasil e nas Américas",
-      "description": "Pesquisas de intenção de voto para presidente (2010–2026), governador e senador (2026) no Brasil, com média suavizada e erro histórico por instituto; resultados de presidente (1994–2022) e prefeito (1996–2024) em cada município, do TSE; IDHM por estado e município; e, para os países das Américas desde 2000, o vencedor de cada eleição nacional por família ideológica, IDH, renda mediana e democracia eleitoral.",
+      "description": "Pesquisas de intenção de voto para presidente (2010–2026), governador e senador (2026) no Brasil, com média suavizada e erro histórico por instituto; resultados de presidente (1994–2026) e prefeito (1996–2024) em cada município, do TSE; IDHM por estado e município; e, para os países das Américas desde 2000, o vencedor de cada eleição nacional por família ideológica, IDH, renda mediana e democracia eleitoral.",
       "url": "https://danillogomes.com/urna/",
       "inLanguage": "pt-BR",
       "creator": {
@@ -109,22 +112,88 @@
 <body>
 <div class="wrap">
   <header>
-    <p class="eyebrow" id="eyebrow">Eleições no Brasil · pesquisas agregadas</p>
-    <h1 id="headline">Evolução das intenções de voto</h1>
-    <p class="sub" id="lede">Cada ponto é uma pesquisa publicada. A linha é a média suavizada de todas elas e a faixa mostra a dispersão típica entre institutos. O losango na data da eleição marca o resultado oficial.</p>
+    <div class="topline">
+      <p class="eyebrow" id="eyebrow">Urna · eleições e política no Brasil</p>
+      <button type="button" class="chip theme-toggle" id="theme-toggle">Tema</button>
+    </div>
+    <h1 id="headline">Eleições e política, explicadas com dados</h1>
+    <p class="sub" id="lede">Pesquisas, resultados, o Congresso, os gastos dos parlamentares e o perfil das cidades, com os dados oficiais do TSE, da Câmara, do Senado e do IBGE. Escolha uma pergunta para começar.</p>
   </header>
 
-  <nav class="tabs" role="tablist" aria-label="Seções">
-    <button type="button" role="tab" id="tab-polls" data-view="polls" aria-selected="true" aria-controls="polls-view">Pesquisas</button>
-    <button type="button" role="tab" id="tab-apuracao" data-view="apuracao" aria-selected="false" aria-controls="apuracao-view">Apuração</button>
-    <button type="button" role="tab" id="tab-congress" data-view="congress" aria-selected="false" aria-controls="congress-view">Congresso</button>
-    <button type="button" role="tab" id="tab-people" data-view="people" aria-selected="false" aria-controls="people-view">Eleitos 2026</button>
-    <button type="button" role="tab" id="tab-map" data-view="map" aria-selected="false" aria-controls="map-view">Mapa por município</button>
-    <button type="button" role="tab" id="tab-census" data-view="census" aria-selected="false" aria-controls="census-view">Voto e Censo</button>
-    <button type="button" role="tab" id="tab-americas" data-view="americas" aria-selected="false" aria-controls="americas-view">Américas</button>
+  <nav class="nav" aria-label="Seções">
+    <div class="sections" id="sections">
+      <button type="button" class="section" id="sec-home" data-section="home">Início</button>
+      <button type="button" class="section" id="sec-2026" data-section="2026">Eleição 2026</button>
+      <button type="button" class="section" id="sec-politicos" data-section="politicos">Políticos</button>
+      <button type="button" class="section" id="sec-dados" data-section="dados">Mapas e dados</button>
+    </div>
+    <!-- Only the tabs of the section in view are shown (src/main.ts). -->
+    <div class="tabs" id="tabs" role="tablist" aria-label="Páginas da seção">
+      <button type="button" role="tab" id="tab-home" data-view="home" data-section="home" aria-selected="true" aria-controls="home-view" hidden>Início</button>
+      <button type="button" role="tab" id="tab-polls" data-view="polls" data-section="2026" aria-selected="false" aria-controls="polls-view">Pesquisas</button>
+      <button type="button" role="tab" id="tab-programs" data-view="programs" data-section="2026" aria-selected="false" aria-controls="programs-view">Programas</button>
+      <button type="button" role="tab" id="tab-apuracao" data-view="apuracao" data-section="2026" aria-selected="false" aria-controls="apuracao-view">Apuração</button>
+      <button type="button" role="tab" id="tab-people" data-view="people" data-section="2026" aria-selected="false" aria-controls="people-view">Eleitos</button>
+      <button type="button" role="tab" id="tab-watch" data-view="watch" data-section="politicos" aria-selected="false" aria-controls="watch-view">De olho</button>
+      <button type="button" role="tab" id="tab-congress" data-view="congress" data-section="politicos" aria-selected="false" aria-controls="congress-view">Congresso</button>
+      <button type="button" role="tab" id="tab-map" data-view="map" data-section="dados" aria-selected="false" aria-controls="map-view">Mapa</button>
+      <button type="button" role="tab" id="tab-census" data-view="census" data-section="dados" aria-selected="false" aria-controls="census-view">Voto e Censo</button>
+      <button type="button" role="tab" id="tab-where" data-view="where" data-section="dados" aria-selected="false" aria-controls="where-view">Quem mora onde</button>
+      <button type="button" role="tab" id="tab-americas" data-view="americas" data-section="dados" aria-selected="false" aria-controls="americas-view">Américas</button>
+    </div>
   </nav>
+  <p class="view-status" id="view-status" role="status" hidden></p>
 
-  <div class="view" id="polls-view" role="tabpanel" aria-labelledby="tab-polls">
+  <div class="view home" id="home-view" role="tabpanel" aria-labelledby="tab-home">
+    <section class="home-group" aria-labelledby="hg-2026">
+      <h2 class="home-title" id="hg-2026">Eleição 2026</h2>
+      <div class="home-cards">
+        <a class="home-card" data-go href="?view=programs"><b>Com qual programa de governo eu concordo mais?</b><span>Propostas do Lula e do Flávio, sem dizer de quem é cada uma: concorde ou discorde e veja no fim. Tudo com a página do programa registrado no TSE.</span></a>
+        <a class="home-card" data-go href="?view=polls"><b>O que dizem as pesquisas?</b><span>Todas as pesquisas para presidente, governador e senador, numa média, e o quanto cada instituto acertou.</span></a>
+        <a class="home-card" data-go href="?view=apuracao"><b>Como foi a contagem dos votos?</b><span>Os números do TSE para cada cargo, estado e cidade.</span></a>
+        <a class="home-card" data-go href="?view=people"><b>Quem foi eleito no meu estado?</b><span>Governadores, senadores e deputados federais: quem é estreante, de onde vem e como falar com o gabinete.</span></a>
+      </div>
+    </section>
+    <section class="home-group" aria-labelledby="hg-pol">
+      <h2 class="home-title" id="hg-pol">Políticos</h2>
+      <div class="home-cards">
+        <a class="home-card" data-go href="?view=watch"><b>Quem mais gasta a verba do gabinete? Quem mais falta?</b><span>Os 10 primeiros e os 10 últimos na Câmara, no Senado, na Assembleia de SP e na Câmara Municipal de SP.</span></a>
+        <a class="home-card" data-go href="?view=congress"><b>Como está dividido o Congresso?</b><span>Esquerda, centro e direita desde 1990, quem é do Centrão e quem vota com o governo.</span></a>
+        <a class="home-card" data-go href="?view=congress&amp;bancada=hoje"><b>Quem trocou de partido depois de eleito?</b><span>Cada partido como saiu das urnas e como está hoje.</span></a>
+      </div>
+    </section>
+    <section class="home-group" aria-labelledby="hg-maps">
+      <h2 class="home-title" id="hg-maps">Mapas e dados</h2>
+      <div class="home-cards">
+        <a class="home-card" data-go href="?view=map"><b>Em quem cada cidade votou?</b><span>Os 5.570 municípios em cada eleição para presidente desde 1994 e para prefeito desde 1996.</span></a>
+        <a class="home-card" data-go href="?view=census"><b>Cidades mais ricas votam diferente?</b><span>O voto ao lado do Censo: renda, religião, escolaridade, cor ou raça; e dentro das 27 capitais.</span></a>
+        <a class="home-card" data-go href="?view=where"><b>Onde moram mais idosos, negros ou ricos?</b><span>Bairro a bairro, dentro das 27 capitais, pelo Censo 2022, sobre o mapa das ruas.</span></a>
+        <a class="home-card" data-go href="?view=americas"><b>E o resto das Américas?</b><span>Quem governa cada país desde 2000, da esquerda à direita.</span></a>
+      </div>
+    </section>
+    <section class="home-group" aria-labelledby="hg-words">
+      <h2 class="home-title" id="hg-words">Palavras que aparecem no site</h2>
+      <div class="glossary">
+        <details><summary>Votos válidos</summary><p>Os votos dados a candidatos ou partidos. Brancos e nulos não entram: é sobre os válidos que se calcula quem tem mais da metade e quem vence.</p></details>
+        <details><summary>1º e 2º turno</summary><p>Presidente, governador e prefeito de cidade com mais de 200 mil eleitores precisam de mais da metade dos votos válidos. Se ninguém chega lá no 1º turno, os dois mais votados disputam o 2º.</p></details>
+        <details><summary>Quociente eleitoral</summary><p>Deputados e vereadores não são eleitos só pelos próprios votos. As cadeiras são divididas primeiro entre os partidos (ou federações), pela soma dos votos de todos os seus candidatos e da legenda; depois vão para os mais votados de cada um. Por isso um candidato muito votado ajuda a eleger colegas de partido.</p></details>
+        <details><summary>Suplente</summary><p>Quem assume a cadeira quando o titular sai, por exemplo para ser ministro ou secretário. No Senado, cada senador é eleito com dois suplentes; na Câmara, o suplente é o próximo mais votado do partido ou federação.</p></details>
+        <details><summary>Cota parlamentar (verba do gabinete)</summary><p>Dinheiro público que a casa reembolsa para despesas do mandato: passagens, combustível, aluguel de escritório, divulgação, consultorias. Não é o salário. Cada casa tem um limite por mês; gastar até ele é permitido, e as notas são públicas.</p></details>
+        <details><summary>Centrão</summary><p>Grupo de partidos sem lado fixo na esquerda ou na direita, que costuma apoiar o governo, seja qual for, em troca de cargos e verbas. Não tem registro oficial; o site mostra uma lista com fonte e também mede quem votou com governos de lados opostos.</p></details>
+        <details><summary>Base do governo e oposição</summary><p>A base são os parlamentares que costumam votar como o governo pede; a oposição, os que costumam votar contra. O site mede pelos votos: quantas vezes cada um seguiu a orientação do líder do governo.</p></details>
+        <details><summary>Média das pesquisas</summary><p>Uma pesquisa sozinha pode errar para cima ou para baixo. A média de várias, de institutos e métodos diferentes, costuma ficar mais perto do resultado. A faixa em volta da linha mostra o quanto as pesquisas discordam entre si.</p></details>
+      </div>
+    </section>
+  </div>
+
+  <div class="view" id="polls-view" role="tabpanel" aria-labelledby="tab-polls" hidden>
+    <nav class="quick" aria-label="Perguntas prontas">
+      <span class="quick-label">Comece por</span>
+      <a class="chip" data-go href="?view=polls">Presidente 2026</a>
+      <a class="chip" data-go href="?view=polls&amp;office=governor&amp;uf=SP">Governador de SP</a>
+      <a class="chip" data-go href="?view=polls&amp;office=senate&amp;uf=RJ">Senado no RJ</a>
+      <a class="chip" data-go href="?view=polls&amp;year=2022">Quem acertou em 2022?</a>
+    </nav>
     <div class="controls">
       <div class="group">
         <span class="group-label" id="lbl-office">Cargo</span>
@@ -150,10 +219,26 @@
         </div>
       </div>
       <div class="group">
+        <span class="group-label" id="lbl-zoom">Período</span>
+        <div class="seg" role="group" aria-labelledby="lbl-zoom" id="zooms">
+          <button type="button" id="zoom-all" data-days="" aria-pressed="true">Tudo</button>
+          <button type="button" id="zoom-90" data-days="90" aria-pressed="false">90 dias</button>
+          <button type="button" id="zoom-30" data-days="30" aria-pressed="false">30 dias</button>
+        </div>
+      </div>
+      <button type="button" class="chip more-toggle" aria-expanded="false">Mais opções</button>
+      <div class="group more">
+        <span class="group-label" id="lbl-weigh">Média</span>
+        <div class="seg" role="group" aria-labelledby="lbl-weigh" id="weighs">
+          <button type="button" id="weigh-default" data-record="" aria-pressed="true" title="Peso pela amostra e pela data de cada pesquisa">Padrão</button>
+          <button type="button" id="weigh-record" data-record="1" aria-pressed="false" title="Também pesa cada instituto pelo quanto errou a margem nas eleições anteriores">Pelo histórico</button>
+        </div>
+      </div>
+      <div class="group more">
         <span class="group-label" id="lbl-method">Como a pesquisa foi feita</span>
         <div class="chips" role="group" aria-labelledby="lbl-method" id="methods"></div>
       </div>
-      <div class="group group-wide">
+      <div class="group group-wide more">
         <span class="group-label" id="lbl-inst">Institutos (clique para excluir)</span>
         <div class="chips" role="group" aria-labelledby="lbl-inst" id="chips"></div>
       </div>
@@ -165,6 +250,7 @@
         <span class="meta" id="chart-meta"></span>
         <button type="button" class="share-btn" data-share="polls" aria-label="Compartilhar como imagem">Compartilhar</button>
       </div>
+      <details class="howto"><summary>Como ler</summary><p>Cada bolinha é uma pesquisa; a altura é a porcentagem do candidato. A linha é a média das pesquisas em cada momento e a faixa em volta mostra o quanto elas discordam entre si: linha subindo é candidato crescendo. O losango na data da eleição é o resultado oficial em votos válidos (sem brancos e nulos), por isso costuma ficar um pouco acima da linha, que conta também os indecisos.</p></details>
       <div class="legend" id="legend"></div>
       <div class="highlight-bar" id="hl-bar" hidden></div>
       <div class="chart" id="chart"></div>
@@ -182,6 +268,13 @@
       </section>
     </div>
 
+    <section class="card" id="errors-card" aria-labelledby="errors-title" hidden>
+      <h2 id="errors-title">E se as pesquisas errarem como antes?</h2>
+      <p id="errors-note"></p>
+      <div class="scroll"><table id="errors"></table></div>
+      <p id="errors-summary"></p>
+    </section>
+
     <section class="card" aria-labelledby="acc-title">
       <h2 id="acc-title">Quem chegou mais perto</h2>
       <p id="acc-note"></p>
@@ -195,6 +288,7 @@
 
     <section class="notes" aria-label="Metodologia e fontes">
       <p><b>Como a linha é calculada.</b> Para cada dia, uma regressão linear local pondera as pesquisas próximas com um núcleo gaussiano (desvio de 14 dias no ano eleitoral e de 4 dias nos segundos turnos curtos). Pesquisas maiores pesam um pouco mais (raiz do tamanho da amostra) e institutos que publicam em sequência, como os trackings diários, têm o peso dividido para não dominarem a média. A faixa é ±1 desvio-padrão ponderado das pesquisas em torno da linha. Ao excluir institutos, tudo é recalculado.</p>
+      <p><b>Média pelo histórico.</b> Com o botão “Pelo histórico”, cada instituto também pesa pelo erro na margem que teve na última pesquisa antes das eleições presidenciais anteriores à mostrada (nunca a própria nem as seguintes). O peso é o erro médio de todos os institutos dividido pelo do instituto, que antes é puxado para a média como se tivesse mais dois turnos nela: um acerto isolado muda pouco, e quem nunca foi medido fica com peso 1. O peso vai de 0,5 a 2.</p>
       <p><b>Votos totais × votos válidos.</b> As pesquisas medem votos totais, que incluem brancos, nulos e indecisos (BNI). O resultado do TSE é em votos válidos, por isso o losango costuma ficar acima da linha. Onde há BNI, a tabela converte a média final para votos válidos (média ÷ (100 − BNI)). No 2º turno de 2014 a fonte só traz votos válidos.</p>
       <p><b>Quem chegou mais perto.</b> Para cada instituto, vale a última pesquisa com campo encerrado até 10 dias antes da eleição. Os números da pesquisa e do resultado são recalculados como fatia só entre os candidatos da tabela, o que coloca votos totais e válidos na mesma base. O erro médio é a diferença média, em pontos percentuais, entre pesquisa e urna para esses candidatos. O erro na margem compara a distância entre os dois primeiros. Em 2026, a tabela mostra o histórico dos institutos que estão pesquisando agora.</p>
       <p><b>Método.</b> A classificação usa o método habitual de cada instituto: presencial (Datafolha, Ibope, Ipec, Quaest, Vox Populi, MDA, Sensus, Paraná Pesquisas, Vox Brasil), telefone (Ipespe, PoderData, FSB, Futura, Real Time Big Data, Ideia, Nexus) e online (AtlasIntel). Institutos sem método confirmado ficam em "não classificado". Um instituto pode ter mudado de método em alguma rodada específica.</p>
@@ -202,7 +296,50 @@
     </section>
   </div>
 
+  <div class="view" id="programs-view" role="tabpanel" aria-labelledby="tab-programs" hidden>
+    <section class="pg-quiz" aria-labelledby="pg-quiz-title">
+      <h2 id="pg-quiz-title" class="pg-title">Com qual programa você concorda mais?</h2>
+      <div id="pg-stage" aria-live="polite"></div>
+    </section>
+
+    <details class="pg-fold" id="pg-all-card" hidden>
+      <summary id="pg-all-title">De quem é cada proposta</summary>
+      <p id="pg-all-note"></p>
+      <div id="pg-all" class="pg-all"></div>
+    </details>
+
+    <details class="pg-fold pg-debates" id="pg-debates-card">
+      <summary id="pg-debates-title">Prometido nos debates</summary>
+      <p id="pg-debates-note"></p>
+      <div id="pg-debates"></div>
+    </details>
+
+    <details class="pg-fold">
+      <summary id="pg-agree-title">Onde os dois programas concordam</summary>
+      <p id="pg-agree-note"></p>
+      <ul id="pg-agree" class="pg-agree"></ul>
+    </details>
+
+    <details class="pg-fold">
+      <summary id="pg-who-title">As candidaturas</summary>
+      <div id="pg-who" class="pg-who"></div>
+    </details>
+
+    <details class="pg-fold">
+      <summary id="pg-method-title">Como os cartões foram feitos</summary>
+      <ul id="pg-method" class="pg-method"></ul>
+    </details>
+  </div>
+
   <div class="view" id="apuracao-view" role="tabpanel" aria-labelledby="tab-apuracao" hidden>
+    <nav class="quick" aria-label="Perguntas prontas">
+      <span class="quick-label">Comece por</span>
+      <a class="chip" data-go href="?view=apuracao">Presidente no Brasil</a>
+      <a class="chip" data-go href="?view=apuracao&amp;cargo=governador&amp;uf=SP">Governador de SP</a>
+      <a class="chip" data-go href="?view=apuracao&amp;cargo=senador&amp;uf=MG">Senado em MG</a>
+      <a class="chip" data-go href="?view=apuracao&amp;mapa=estados">O mapa por estado</a>
+      <a class="chip" data-go href="?view=apuracao&amp;pintar=nulos">Onde mais anularam</a>
+    </nav>
     <div class="controls">
       <div class="group">
         <span class="group-label" id="lbl-ap-office">Cargo</span>
@@ -225,6 +362,15 @@
         <label class="group-label" for="ap-uf">Estado</label>
         <select id="ap-uf" class="select"></select>
       </div>
+      <div class="group" id="ap-paint-group">
+        <span class="group-label" id="lbl-ap-paint">Pintar o mapa por</span>
+        <div class="seg seg-wrap" role="group" aria-labelledby="lbl-ap-paint" id="ap-paint">
+          <button type="button" data-paint="lead" aria-pressed="true">Quem lidera</button>
+          <button type="button" data-paint="nulls" aria-pressed="false">Nulos</button>
+          <button type="button" data-paint="blank" aria-pressed="false">Brancos</button>
+          <button type="button" data-paint="absent" aria-pressed="false">Abstenção</button>
+        </div>
+      </div>
       <div class="group">
         <span class="group-label" id="lbl-ap-level">Mapa por</span>
         <div class="seg" role="group" aria-labelledby="lbl-ap-level" id="ap-levels">
@@ -240,6 +386,7 @@
         <button type="button" class="share-btn" data-share="apuracao" aria-label="Compartilhar como imagem">Compartilhar</button>
         <span class="ap-badge" id="ap-badge" data-status="loading" role="status"></span>
       </div>
+      <details class="howto"><summary>Como ler</summary><p>Cada cidade tem a cor de quem está na frente nela; quanto mais forte a cor, maior a vantagem. O tamanho no mapa não é o número de eleitores: cidades enormes do Norte e do Centro-Oeste têm poucos moradores. Para saber quem está ganhando no total, olhe a lista com as barras.</p></details>
       <div class="ap-status">
         <div class="ap-progress" id="ap-progress" role="progressbar" aria-labelledby="ap-counted" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="ap-progress-bar"></span></div>
         <div class="ap-status-text"><b id="ap-counted"></b> <span class="meta" id="ap-updated" aria-live="polite"></span></div>
@@ -257,7 +404,7 @@
         </div>
         <div class="ap-bars-col">
           <div class="ap-results" id="ap-results"></div>
-          <p class="meta" id="ap-totals"></p>
+          <div class="ap-nochoice" id="ap-totals"></div>
         </div>
       </div>
       <p class="map-note" id="ap-note"></p>
@@ -266,12 +413,28 @@
   </div>
 
   <div class="view" id="congress-view" role="tabpanel" aria-labelledby="tab-congress" hidden>
+    <nav class="quick" aria-label="Perguntas prontas">
+      <span class="quick-label">Comece por</span>
+      <a class="chip" data-go href="?view=congress&amp;ano=1990">Como mudou desde 1990</a>
+      <a class="chip" data-go href="?view=congress&amp;destaque=centrao">Onde fica o Centrão</a>
+      <a class="chip" data-go href="?view=congress&amp;bancada=hoje">Quem trocou de partido</a>
+      <a class="chip" data-go href="?view=congress&amp;casa=alesp">Assembleia de SP</a>
+    </nav>
     <div class="controls">
       <div class="group">
         <span class="group-label" id="lbl-cg-house">Casa</span>
         <div class="seg" role="group" aria-labelledby="lbl-cg-house" id="cg-houses">
           <button type="button" data-house="chamber" aria-pressed="true">Câmara</button>
           <button type="button" data-house="senate" aria-pressed="false">Senado</button>
+          <button type="button" data-house="alesp" aria-pressed="false">Alesp</button>
+          <button type="button" data-house="cmsp" aria-pressed="false">Câmara de SP</button>
+        </div>
+      </div>
+      <div class="group" id="cg-moment-group" hidden>
+        <span class="group-label" id="lbl-cg-moment">Bancada</span>
+        <div class="seg" role="group" aria-labelledby="lbl-cg-moment" id="cg-moment">
+          <button type="button" data-moment="elected" aria-pressed="true">Eleita</button>
+          <button type="button" data-moment="now" aria-pressed="false">Hoje</button>
         </div>
       </div>
     </div>
@@ -290,16 +453,54 @@
         <span class="meta" id="cg-meta"></span>
         <button type="button" class="share-btn" data-share="congress" aria-label="Compartilhar como imagem">Compartilhar</button>
       </div>
+      <details class="howto"><summary>Como ler</summary><p>Cada bolinha é uma cadeira, com a cor da posição do partido na legenda, da esquerda à direita. A maioria absoluta, metade mais uma das cadeiras, é o número que conta em várias votações; mudar a Constituição exige três quintos, em dois turnos, na Câmara e no Senado. Clique num item da legenda para destacar só aquele grupo.</p></details>
       <div class="legend map-legend" id="cg-legend"></div>
       <div class="cg-chart" id="cg-chart"></div>
       <div class="scroll"><table id="cg-table" class="cg-table"></table></div>
+      <details class="cg-switches" id="cg-switches" hidden></details>
+      <div class="cg-ideo" id="cg-ideo" hidden></div>
       <dialog class="pm-modal" id="cg-modal" aria-labelledby="cg-modal-title"></dialog>
       <p class="map-note" id="cg-note"></p>
       <p class="map-note sources" id="cg-sources"></p>
     </section>
   </div>
 
+  <div class="view" id="watch-view" role="tabpanel" aria-labelledby="tab-watch" hidden>
+    <div class="controls">
+      <div class="group">
+        <span class="group-label" id="lbl-wt-house">Casa</span>
+        <div class="seg seg-wrap" role="group" aria-labelledby="lbl-wt-house" id="wt-houses">
+          <button type="button" data-house="camara" aria-pressed="true">Câmara dos Deputados</button>
+          <button type="button" data-house="senado" aria-pressed="false">Senado</button>
+          <button type="button" data-house="alesp" aria-pressed="false">Assembleia de SP</button>
+          <button type="button" data-house="cmsp" aria-pressed="false">Câmara Municipal de SP</button>
+        </div>
+      </div>
+      <div class="group" id="wt-uf-group">
+        <label class="group-label" for="wt-uf">Estado</label>
+        <select id="wt-uf" class="select"><option value="">Todos</option></select>
+      </div>
+      <div class="group pp-search-group wt-search-group">
+        <label class="group-label" for="wt-search">Procure pelo nome</label>
+        <input type="search" id="wt-search" class="select pp-search" placeholder="Ex.: nome do seu deputado" autocomplete="off">
+        <ul class="wt-results" id="wt-results" hidden></ul>
+      </div>
+    </div>
+
+    <p class="wt-intro" id="wt-intro"></p>
+    <details class="howto"><summary>Como ler</summary><p>Cada lista mostra 10 nomes, e a barra compara cada um com o primeiro da lista. Na Câmara, o gasto aparece em porcentagem do limite do estado, porque o limite muda de estado para estado (inclui as passagens até Brasília). Gastar a cota é permitido, e faltar pode ter motivo: use os números como ponto de partida para perguntar, não como veredito. Clique num nome para ver os detalhes e o link oficial.</p></details>
+    <section class="panel wt-person" id="wt-person" aria-live="polite" hidden></section>
+    <div class="wt-boards" id="wt-boards"></div>
+    <p class="map-note" id="wt-method"></p>
+  </div>
+
   <div class="view" id="people-view" role="tabpanel" aria-labelledby="tab-people" hidden>
+    <nav class="quick" aria-label="Perguntas prontas">
+      <span class="quick-label">Comece por</span>
+      <a class="chip" data-go href="?view=people&amp;trajetoria=new">Os estreantes</a>
+      <a class="chip" data-go href="?view=people&amp;cargo=senador">Só os senadores</a>
+      <a class="chip" data-go href="?view=people&amp;cargo=governador">Governadores</a>
+    </nav>
     <div class="controls">
       <div class="group pp-search-group">
         <label class="group-label" for="pp-search">Buscar</label>
@@ -334,6 +535,22 @@
       <p class="cv-warning" id="pp-warning"></p>
     </section>
 
+    <section class="panel" aria-labelledby="pp-renew-title">
+      <div class="panel-head">
+        <h2 class="panel-title" id="pp-renew-title"></h2>
+      </div>
+      <p class="meta" id="pp-renew-note"></p>
+      <div class="pp-renew" id="pp-renew"></div>
+    </section>
+
+    <section class="panel" aria-labelledby="pp-defeated-title">
+      <div class="panel-head">
+        <h2 class="panel-title" id="pp-defeated-title"></h2>
+      </div>
+      <p class="meta" id="pp-defeated-note"></p>
+      <div class="table-wrap pp-defeated" id="pp-defeated"></div>
+    </section>
+
     <section class="panel pp-profile" id="pp-profile" aria-live="polite" hidden></section>
 
     <section class="panel" aria-labelledby="pp-list-title">
@@ -348,6 +565,12 @@
   </div>
 
   <div class="view" id="map-view" role="tabpanel" aria-labelledby="tab-map" hidden>
+    <nav class="quick" aria-label="Perguntas prontas">
+      <span class="quick-label">Comece por</span>
+      <a class="chip" data-go href="?view=map&amp;office=mayor&amp;year=2024&amp;focus=PT">Onde o PT ganhou prefeituras em 2024</a>
+      <a class="chip" data-go href="?view=map&amp;office=president&amp;year=2022&amp;round=r2">O 2º turno de 2022</a>
+      <a class="chip" data-go href="?view=map&amp;office=president&amp;year=1994">O primeiro mapa, 1994</a>
+    </nav>
     <div class="controls">
       <div class="group">
         <span class="group-label" id="lbl-map-office">Mostrar</span>
@@ -384,6 +607,7 @@
         <span class="meta" id="map-meta"></span>
         <button type="button" class="share-btn" data-share="map" aria-label="Compartilhar como imagem">Compartilhar</button>
       </div>
+      <details class="howto"><summary>Como ler</summary><p>Cada cidade tem a cor de quem venceu nela; quanto mais forte, maior a vantagem sobre o segundo colocado. A área no mapa não é o número de eleitores: municípios enormes do Norte e do Centro-Oeste têm poucos moradores, e a cidade de São Paulo, um ponto pequeno no mapa, tem mais eleitores do que muitos estados.</p></details>
       <div class="legend map-legend" id="map-legend"></div>
       <div class="map" id="map">
         <div class="map-zoom" role="group" aria-label="Zoom">
@@ -393,18 +617,30 @@
         </div>
         <div class="map-hint" id="map-hint" hidden></div>
       </div>
+      <details class="map-table" id="map-table-box">
+        <summary>Ver em tabela</summary>
+        <div class="table-wrap" id="map-table"></div>
+      </details>
       <p class="map-note" id="map-note"></p>
       <p class="map-note sources" id="map-sources"></p>
     </section>
   </div>
 
   <div class="view" id="census-view" role="tabpanel" aria-labelledby="tab-census" hidden>
+    <nav class="quick" aria-label="Perguntas prontas">
+      <span class="quick-label">Comece por</span>
+      <a class="chip" data-go href="?view=census">Renda</a>
+      <a class="chip" data-go href="?view=census&amp;var=evangelicos">Evangélicos</a>
+      <a class="chip" data-go href="?view=census&amp;var=superior">Ensino superior</a>
+      <a class="chip" data-go href="?view=census&amp;capital=3550308&amp;nivel=distritos">São Paulo por distrito</a>
+    </nav>
     <div class="controls">
       <div class="group">
         <label class="group-label" for="cv-var">Variável do Censo</label>
         <select id="cv-var" class="select"></select>
       </div>
-      <div class="group">
+      <button type="button" class="chip more-toggle" aria-expanded="false">Mais opções</button>
+      <div class="group more">
         <label class="group-label" for="cv-other">Cruzar com</label>
         <select id="cv-other" class="select"></select>
       </div>
@@ -415,7 +651,14 @@
           <button type="button" data-side="rival" aria-pressed="false"></button>
         </div>
       </div>
-      <div class="group">
+      <div class="group more">
+        <span class="group-label" id="lbl-cv-round">Turno</span>
+        <div class="seg" role="group" aria-labelledby="lbl-cv-round" id="cv-rounds">
+          <button type="button" data-round="r1" aria-pressed="true">1º turno</button>
+          <button type="button" data-round="r2" aria-pressed="false">2º turno</button>
+        </div>
+      </div>
+      <div class="group more">
         <label class="group-label" for="cv-region">Região</label>
         <select id="cv-region" class="select"></select>
       </div>
@@ -435,6 +678,7 @@
         <span class="meta" id="cv-meta"></span>
         <button type="button" class="share-btn" data-share="census" aria-label="Compartilhar como imagem">Compartilhar</button>
       </div>
+      <details class="howto"><summary>Como ler</summary><p>No gráfico, cada ponto é uma cidade: quanto mais à direita, maior o valor da característica escolhida (por exemplo, a renda); quanto mais alto, mais votos no candidato. Se os pontos sobem da esquerda para a direita, as cidades com mais daquilo votaram mais nele. A linha resume a nuvem: é o voto em cada décimo da população. Tudo isso fala de cidades, não de pessoas.</p></details>
       <p class="cv-warning" id="cv-warning"></p>
       <div class="cv-grid">
         <figure class="cv-fig">
@@ -462,16 +706,38 @@
         <span class="meta" id="cp-meta"></span>
         <button type="button" class="share-btn" data-share="capital" aria-label="Compartilhar como imagem">Compartilhar</button>
       </div>
+      <details class="howto"><summary>Como ler</summary><p>A mesma leitura do gráfico de cidades, mas dentro de uma capital: cada ponto é uma área da cidade. No mapa, escolha pintar pelo voto ou pela característica do Censo e compare os dois.</p></details>
       <div class="controls cp-controls">
         <div class="group">
           <label class="group-label" for="cp-capital">Capital</label>
           <select id="cp-capital" class="select"></select>
         </div>
         <div class="group">
+          <label class="group-label" for="cp-var">Variável</label>
+          <select id="cp-var" class="select"></select>
+        </div>
+        <div class="group" id="cp-level-group" hidden>
+          <span class="group-label" id="lbl-cp-level">Dividir a cidade em</span>
+          <div class="seg seg-wrap" role="group" aria-labelledby="lbl-cp-level" id="cp-level">
+            <button type="button" data-level="areas" aria-pressed="true">Áreas do IBGE</button>
+            <button type="button" data-level="bairros" aria-pressed="false">Bairros</button>
+            <button type="button" data-level="regions" aria-pressed="false">Regiões</button>
+            <button type="button" data-level="districts" aria-pressed="false">Distritos</button>
+            <button type="button" data-level="subprefeituras" aria-pressed="false">Subprefeituras</button>
+          </div>
+        </div>
+        <div class="group">
           <span class="group-label" id="lbl-cp-paint">Pintar o mapa por</span>
           <div class="seg" role="group" aria-labelledby="lbl-cp-paint" id="cp-paint">
             <button type="button" data-paint="vote" aria-pressed="true">Voto</button>
             <button type="button" data-paint="census" aria-pressed="false"></button>
+          </div>
+        </div>
+        <div class="group" id="cp-round-group" hidden>
+          <span class="group-label" id="lbl-cp-round">Turno</span>
+          <div class="seg" role="group" aria-labelledby="lbl-cp-round" id="cp-round">
+            <button type="button" data-round="r1" aria-pressed="true">1º turno</button>
+            <button type="button" data-round="r2" aria-pressed="false">2º turno</button>
           </div>
         </div>
       </div>
@@ -514,6 +780,14 @@
       <div class="cv-comp" id="cv-comp"></div>
     </section>
 
+    <section class="panel" aria-labelledby="cv-joint-title">
+      <div class="panel-head">
+        <h2 class="panel-title" id="cv-joint-title"></h2>
+      </div>
+      <p class="meta" id="cv-joint-note"></p>
+      <div class="table-wrap" id="cv-joint"></div>
+    </section>
+
     <section class="panel" aria-labelledby="cv-gap-title">
       <div class="panel-head">
         <h2 class="panel-title" id="cv-gap-title"></h2>
@@ -527,7 +801,82 @@
     </section>
   </div>
 
+  <div class="view" id="where-view" role="tabpanel" aria-labelledby="tab-where" hidden>
+    <nav class="quick" aria-label="Perguntas prontas">
+      <span class="quick-label">Comece por</span>
+      <a class="chip" data-go href="?view=where">Idosos em São Paulo</a>
+      <a class="chip" data-go href="?view=where&amp;var=negros&amp;nivel=bairros">Negros, bairro a bairro</a>
+      <a class="chip" data-go href="?view=where&amp;var=renda-mediana">Renda</a>
+      <a class="chip" data-go href="?view=where&amp;var=evangelicos&amp;capital=3304557">Evangélicos no Rio</a>
+      <a class="chip" data-go href="?view=where&amp;capital=5300108&amp;var=negros">Brasília por região</a>
+    </nav>
+
+    <section class="panel" aria-labelledby="wh-title">
+      <div class="panel-head">
+        <h2 class="panel-title" id="wh-title"></h2>
+        <span class="meta" id="wh-meta"></span>
+        <button type="button" class="share-btn" data-share="where" aria-label="Compartilhar como imagem">Compartilhar</button>
+      </div>
+      <details class="howto"><summary>Como ler</summary><p>Escolha uma característica e veja onde, dentro da capital, mora mais e menos gente com ela. O mapa pinta cada lugar em dez faixas com a mesma população; os nomes dos cinco com mais e dos cinco com menos ficam sempre escritos, e os outros aparecem ao aproximar. A lista ao lado põe tudo em ordem. Passe o mouse num nome para achá-lo no mapa e clique (na lista ou no mapa) para ver todos os números do lugar ao lado dos da cidade e do Brasil. Em “Só os lugares” dá para ficar com uma parte da cidade por outra característica (a metade com menos renda, por exemplo) e ver, dentro dela, onde mora mais gente com a primeira.</p></details>
+      <div class="controls wh-controls">
+        <div class="group">
+          <label class="group-label" for="wh-capital">Capital</label>
+          <select id="wh-capital" class="select"></select>
+        </div>
+        <div class="group" id="wh-level-group" hidden>
+          <span class="group-label" id="lbl-wh-level">Dividir a cidade em</span>
+          <div class="seg seg-wrap" role="group" aria-labelledby="lbl-wh-level" id="wh-level">
+            <button type="button" data-level="districts" aria-pressed="false">Distritos</button>
+            <button type="button" data-level="subprefeituras" aria-pressed="false">Subprefeituras</button>
+            <button type="button" data-level="bairros" aria-pressed="false">Bairros</button>
+            <button type="button" data-level="regions" aria-pressed="false">Regiões</button>
+            <button type="button" data-level="areas" aria-pressed="false">Áreas do IBGE</button>
+          </div>
+        </div>
+        <div class="group">
+          <label class="group-label" for="wh-band">Só os lugares</label>
+          <div class="wh-filter">
+            <select id="wh-band" class="select"></select>
+            <select id="wh-filter-var" class="select" aria-label="pela variável"></select>
+          </div>
+        </div>
+      </div>
+      <div class="wh-vars" id="wh-vars" role="group" aria-label="Onde mora mais…"></div>
+      <div class="wh-grid">
+        <figure class="cv-fig wh-fig">
+          <figcaption class="cv-cap" id="wh-map-cap"></figcaption>
+          <div class="map cv-map" id="wh-map">
+            <div class="map-zoom" role="group" aria-label="Zoom">
+              <button type="button" id="wh-zoom-in" aria-label="Aproximar" title="Aproximar">+</button>
+              <button type="button" id="wh-zoom-out" aria-label="Afastar" title="Afastar">−</button>
+              <button type="button" id="wh-zoom-reset" aria-label="Ver a cidade inteira" title="Ver a cidade inteira">⟲</button>
+            </div>
+          </div>
+          <div class="legend map-legend" id="wh-legend"></div>
+        </figure>
+        <div class="wh-side">
+          <p class="cv-cap" id="wh-rank-cap"></p>
+          <div class="wh-rank" id="wh-rank"></div>
+        </div>
+        <div class="wh-card" id="wh-card" aria-live="polite" hidden></div>
+      </div>
+      <p class="map-note" id="wh-note"></p>
+      <p class="map-note sources" id="wh-sources"></p>
+    </section>
+
+  </div>
+
   <div class="view" id="americas-view" role="tabpanel" aria-labelledby="tab-americas" hidden>
+    <nav class="quick" aria-label="Perguntas prontas">
+      <span class="quick-label">Comece por</span>
+      <a class="chip" data-go href="?view=americas">As Américas hoje</a>
+      <a class="chip" data-go href="?view=americas&amp;year=2006">A onda de esquerda dos anos 2000</a>
+      <a class="chip" data-go href="?view=americas&amp;layer=hdi">Desenvolvimento humano (IDH)</a>
+      <a class="chip" data-go href="?view=americas&amp;layer=poverty">Pobreza</a>
+      <a class="chip" data-go href="?view=americas&amp;layer=food">Insegurança alimentar</a>
+      <a class="chip" data-go href="?view=americas&amp;layer=democracy">Democracia</a>
+      <a class="chip" data-go href="?view=americas&amp;layer=food&amp;comparar=BRA,USA,MEX">Compare Brasil, EUA e México</a>
+    </nav>
     <div class="controls">
       <div class="group">
         <span class="group-label" id="lbl-am-layer">Mostrar</span>
@@ -535,6 +884,8 @@
           <button type="button" data-layer="politics" aria-pressed="true">Política</button>
           <button type="button" data-layer="hdi" aria-pressed="false">IDH</button>
           <button type="button" data-layer="income" aria-pressed="false">Poder de compra</button>
+          <button type="button" data-layer="poverty" aria-pressed="false">Pobreza</button>
+          <button type="button" data-layer="food" aria-pressed="false">Insegurança alimentar</button>
           <button type="button" data-layer="democracy" aria-pressed="false">Democracia</button>
         </div>
       </div>
@@ -551,12 +902,14 @@
         <div class="timeline-years" id="am-years"></div>
       </div>
     </div>
+    <p class="map-note timeline-note" id="am-span-note" hidden></p>
 
     <section class="panel" aria-labelledby="am-title">
       <div class="panel-head">
         <h2 class="panel-title" id="am-title"></h2>
         <button type="button" class="share-btn" data-share="americas" aria-label="Compartilhar como imagem">Compartilhar</button>
       </div>
+      <details class="howto"><summary>Como ler</summary><p>Cada país tem a cor da família política de quem venceu a última eleição nacional até aquele ano. Aperte ▶ para ver ano a ano: quando vários países mudam de cor juntos, é o que se chama de onda de esquerda ou de direita. Nas camadas de dados, a cor mais clara é sempre o lado melhor: mais desenvolvimento, mais renda, mais democracia ou menos pobreza. A pobreza conta quem vive com menos de US$ 8,30 por dia, a linha do Banco Mundial para países de renda média-alta, já corrigida pelo custo de vida de cada país; onde a pesquisa é antiga demais (mais de 4 anos), o país fica sem cor. Clique nos países para compará-los em barras, logo abaixo do mapa.</p></details>
       <div class="legend map-legend" id="am-legend"></div>
       <div class="map americas-map" id="am-map">
         <div class="map-zoom" role="group" aria-label="Zoom">
@@ -565,13 +918,26 @@
           <button type="button" id="am-zoom-reset" aria-label="Ver as Américas inteiras" title="Ver as Américas inteiras">⟲</button>
         </div>
       </div>
+      <p class="map-note sources" id="am-sources"></p>
+    </section>
+
+    <section class="panel am-compare" id="am-compare" aria-labelledby="am-compare-title">
+      <div class="panel-head">
+        <h2 class="panel-title" id="am-compare-title">Comparar países <span class="am-compare-year" id="am-compare-year"></span></h2>
+        <button type="button" class="chip" id="am-compare-clear" hidden>Limpar</button>
+      </div>
+      <p class="map-note" id="am-compare-hint">Clique nos países do mapa (ou escolha no menu País) para comparar até 6 lado a lado. Aperte ▶ para ver os números andarem ano a ano.</p>
+      <div class="am-compare-chips" id="am-compare-chips"></div>
+      <div class="am-bars" id="am-compare-bars" role="list" aria-label="Valores dos países escolhidos no ano"></div>
+      <div class="am-lines" id="am-compare-lines"></div>
+      <div class="am-strips" id="am-compare-strips"></div>
     </section>
 
     <section class="notes" aria-label="Metodologia das Américas">
       <p><b>O que o mapa mostra.</b> Para cada ano, cada país aparece com a cor de quem venceu sua eleição nacional mais recente até aquele ano: o presidente eleito ou, nos países parlamentaristas (Canadá e boa parte do Caribe), o partido que formou o governo. Quando há resultados por estado ou província, cada um aparece com a cor de quem venceu ali (no 2º turno, onde houve); o tooltip mostra também o vencedor nacional. Países sem esses dados aparecem inteiros com a cor do resultado nacional. A contagem da legenda é de países, pelo resultado nacional.</p>
       <p><b>Família ideológica.</b> Usamos a escala econômica de esquerda a direita (0 a 10) do <a href="https://www.globalpartysurvey.org/" target="_blank" rel="noopener">Global Party Survey 2019</a> (Pippa Norris, Harvard), em quatro faixas: esquerda (abaixo de 2,5), centro-esquerda (2,5 a 4,9), centro-direita (5 a 7,4) e direita (7,5 ou mais). A pesquisa só é usada quando ao menos 5 especialistas avaliaram o país. Para partidos que ela não cobre, ou cobre com poucos especialistas, usamos a posição política informada no artigo do partido na Wikipédia, convertida para as mesmas faixas. Cinco casos ambíguos foram decididos à mão, com a justificativa registrada. A fonte de cada classificação aparece ao passar o mouse.</p>
       <p><b>IDH, poder de compra e democracia.</b> Dados por país e por ano, numa escala de dez faixas finas, para que mudanças reais apareçam. IDH: <a href="https://hdr.undp.org/data-center/documentation-and-downloads" target="_blank" rel="noopener">PNUD</a> (Relatório de Desenvolvimento Humano 2025), com as faixas oficiais de desenvolvimento baixo, médio, alto e muito alto. Poder de compra: renda mediana por pessoa nas pesquisas domiciliares de cada país (no Brasil, a PNAD), em dólares de paridade de poder de compra de 2021, por mês, da <a href="https://pip.worldbank.org/" target="_blank" rel="noopener">Poverty and Inequality Platform</a> do Banco Mundial. Usamos a mediana, que mostra a renda de uma pessoa típica, e só pesquisas de renda (não de consumo). As pesquisas não são anuais em todo lugar: dados com mais de 4 anos não são mostrados. A da Argentina cobre só as áreas urbanas; boa parte do Caribe e Cuba não têm dados. No Brasil, o IDH aparece por estado: é o IDHM do <a href="http://www.atlasbrasil.org.br/" target="_blank" rel="noopener">Atlas do Desenvolvimento Humano no Brasil</a> (PNUD, Ipea, FJP), via Ipeadata, com metodologia própria, próxima mas não idêntica à do IDH dos países. Democracia: índice de democracia eleitoral do <a href="https://v-dem.net/" target="_blank" rel="noopener">V-Dem</a> (0 a 1), via <a href="https://ourworldindata.org/grapher/electoral-democracy-index" target="_blank" rel="noopener">Our World in Data</a>; o V-Dem não cobre as ilhas menores do Caribe. Quando o ano escolhido passa do último dado publicado, o mapa mostra o mais recente e o tooltip avisa.</p>
-      <p><b>Fontes.</b> Vencedores e datas: artigos de cada eleição na Wikipédia em inglês, conferidos e corrigidos à mão onde necessário. Resultados por estado e província: tabelas desses artigos (ou da versão em espanhol), aceitas só quando, somadas, apontam o mesmo vencedor nacional; os do Brasil vêm do TSE. Contornos: Natural Earth (domínio público). Cuba aparece sem cor por não ter eleições presidenciais competitivas; eleições anuladas (Bolívia 2019, Haiti 2015) e territórios dependentes também ficam em cinza. A eleição de 2024 na Venezuela é mostrada pelo resultado oficial e marcada como contestada.</p>
+      <p><b>Fontes.</b> Vencedores e datas: artigos de cada eleição na Wikipédia em inglês, conferidos e corrigidos à mão onde necessário. Resultados por estado e província: tabelas desses artigos (ou da versão em espanhol), aceitas só quando, somadas, apontam o mesmo vencedor nacional; os do Brasil vêm do <a href="https://dadosabertos.tse.jus.br/" target="_blank" rel="noopener">TSE</a>. Contornos: <a href="https://www.naturalearthdata.com/" target="_blank" rel="noopener">Natural Earth</a> (domínio público). Cuba aparece sem cor por não ter eleições presidenciais competitivas; eleições anuladas (Bolívia 2019, Haiti 2015) e territórios dependentes também ficam em cinza. A eleição de 2024 na Venezuela é mostrada pelo resultado oficial e marcada como contestada.</p>
     </section>
   </div>
 

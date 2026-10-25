@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Urna em movimento</title>
+    <style>
+      :root {
+        --bg: #0f1113;
+        --surface: #15171a;
+        --ink: #f2f3f5;
+        --ink-2: #c1c6ce;
+        --muted: #8b919b;
+        --rule: #2a2e34;
+        --accent: #4f86d6;
+        color-scheme: dark;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font: 16px/1.5 "IBM Plex Sans", system-ui, sans-serif;
+      }
+      #app { max-width: 1240px; margin: 0 auto; padding: 32px 16px 64px; }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="./main.tsx"></script>
+  </body>
+</html>

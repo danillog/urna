@@ -1,0 +1,69 @@
+name: Refresh data
+
+# Re-reads the sources that change on their own (official results, the count per
+# municipality, the 2026 delegations, the profiles' news) and rebuilds the site.
+# Heavy pipelines (map, profiles, census, capitals) need caches that live only on the
+# maintainer's machine: `npm run refresh -- --all` there.
+#
+# The refreshed data and site are kept as artifacts. Nothing is committed unless the
+# repository variable AUTO_COMMIT is set to "true" (Settings → Variables → Actions).
+
+on:
+  schedule:
+    - cron: "17 */6 * * *" # every 6 hours
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync --locked
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+
+      - name: Refresh
+        run: uv run python -m pipeline.refresh
+
+      - name: Check
+        run: |
+          uv run pytest -q
+          uv run python -m pipeline.build --check
+          npm test
+          npm run build
+
+      - name: What changed
+        id: diff
+        run: |
+          git status --short data/
+          if git diff --quiet -- data/; then echo "changed=false" >> "$GITHUB_OUTPUT"; else echo "changed=true" >> "$GITHUB_OUTPUT"; fi
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: refreshed
+          path: |
+            data/generated/
+            data/raw/results/
+            data/raw/congress/2026.yaml
+            dist/
+
+      - name: Commit (only with AUTO_COMMIT=true)
+        if: steps.diff.outputs.changed == 'true' && vars.AUTO_COMMIT == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/
+          git commit -m "Data: scheduled refresh"
+          git push

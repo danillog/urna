@@ -11,7 +11,7 @@ export const dayToDate = (year: number, day: number) => new Date(year, 0, 1 + da
 /** "2026-10-04" → "04/10/2026" without going through time zones. */
 export const formatIsoDate = (iso: string) => iso.split("-").reverse().join("/");
 
-const decimal = (v: number) => v.toFixed(1).replace(".", ",");
+export const decimal = (v: number) => v.toFixed(1).replace(".", ",");
 
 export const percent = (v: number | null | undefined) =>
   v == null || Number.isNaN(v) ? "—" : `${decimal(v)}%`;

@@ -7,20 +7,21 @@ For every municipality, in the order of the map's topology:
 - Census, 1991, 2000, 2010 and 2022: income per person, share of adults with a degree,
   shares of Catholics, Evangelicals and people with no religion, population and (up to
   2010) the urban share.
-- Presidential elections, 1st round, 1994–2026: the share of valid votes of the PT's
-  candidate and of the strongest rival nationally (FHC, Serra, Alckmin, Aécio,
-  Bolsonaro, Flávio).
+- Presidential elections, 1994–2026, both rounds where there was a runoff: the share of
+  valid votes of the PT's candidate and of the strongest rival nationally (FHC, Serra,
+  Alckmin, Aécio, Bolsonaro, Flávio).
 
 Sources:
 - Atlas of Human Development in Brazil (PNUD, Ipea, FJP) via Ipeadata, for 1991–2010:
   ADH_RDPC (income per person, reais of August 2010), ADH_T_SUPER25M (25+ with a
-  degree), ADH_PESOTOT and ADH_PESOURB (population, urban population).
+  degree), ADH_PESOTOT and ADH_PESOURB (population, urban population), ADH_PIA18M (adults,
+  the nearest the Atlas has to the 25+ that schooling is of).
 - IBGE census tables (SIDRA): religion, table 137 (1991–2010, whole population) and 9537
   (2022, people aged 10+, the only 2022 table by municipality); 2022 income per person,
   10295, deflated to August 2010 by the INPC like the Atlas; 2022 degrees among 25+,
   10061; 2022 population, 9514.
-- TSE: votes by municipality, data/raw/tse/results_<year>.csv (pipeline.fetch_tse_results),
-  and for 2026 the TSE's results files, read once and cached in data/raw/tse/.
+- TSE: votes by municipality, data/raw/tse/results_<year>.csv (pipeline.fetch_tse_results;
+  2026 included); the old cache of the counting site's files only where that file lacks 2026.
 """
 
 from __future__ import annotations
@@ -111,6 +112,8 @@ def religion(year: int) -> dict[str, dict[str, float]]:
             "catholic": catholic / total * 100,
             "evangelical": evangelical / total * 100,
             "noReligion": (get(row, NO_RELIGION) or 0) / total * 100,
+            # The people the shares are of: everyone up to 2010, those aged 10+ in 2022.
+            "_religionBase": total,
         }
     return out
 
@@ -126,6 +129,11 @@ def census(year: int) -> dict[str, dict[str, float]]:
             ("illiterate", "ADH_T_ANALF15M"),
             ("_fund", "ADH_T_FUND25M"),
             ("_mid", "ADH_T_MED25M"),
+            # Schooling is of adults 25+; the Atlas publishes 18+ as its nearest count.
+            ("_schoolingBase", "ADH_PIA18M"),
+            # Inequality of household income per person; no 2022 figure by municipality yet
+            # (the census's table 10301 stops at the states).
+            ("gini", "ADH_GINI"),
         ):
             for m, by_year in by_territory(code, "Municípios").items():
                 if year in by_year:
@@ -154,6 +162,7 @@ def census(year: int) -> dict[str, dict[str, float]]:
         for m, row in school.items():
             total = row.get((120704, 108866))
             if total:
+                out[m]["_schoolingBase"] = total
                 for key, cat in levels.items():
                     out[m][key] = row.get((cat, 108866), 0) / total * 100
         # Literacy rate of people 15+; the Atlas gives the illiteracy rate for the same group.
@@ -197,8 +206,8 @@ def live_2026() -> dict[str, dict[str, int]]:
     return out
 
 
-def election_votes(order: list[str]) -> dict[int, dict[str, dict[str, int]]]:
-    """Year → IBGE code → party → valid votes, 1st round."""
+def election_votes(order: list[str]) -> dict[tuple[int, str], dict[str, dict[str, int]]]:
+    """(year, round) → IBGE code → party → valid votes; the runoff where there was one."""
     paths = sorted(TSE_DIR.glob("results_*.csv"))
     races, places, _ = read_results(paths)
     overrides = (
@@ -212,21 +221,22 @@ def election_votes(order: list[str]) -> dict[int, dict[str, dict[str, int]]]:
     tse_by_ibge: dict[str, list[str]] = defaultdict(list)
     for tse_code, ibge_code in mapping.items():
         tse_by_ibge[ibge_code].append(tse_code)
-    out: dict[int, dict[str, dict[str, int]]] = {}
+    out: dict[tuple[int, str], dict[str, dict[str, int]]] = {}
     for year in ELECTIONS:
-        if year == 2026:
-            out[year] = live_2026()
-            continue
-        votes = races.get(("president", str(year), "r1"))
-        if not votes:
-            continue
-        by_place = {}
-        for code in order:
-            merged: dict[str, int] = defaultdict(int)
-            for (_, party), v in votes_at(votes, tse_by_ibge.get(code, [])).items():
-                merged[party] += v
-            by_place[code] = dict(merged)
-        out[year] = by_place
+        for round_id in ("r1", "r2"):
+            votes = races.get(("president", str(year), round_id))
+            if not votes:
+                # 2026 before results_2026.csv existed: the counting site's files, cached.
+                if (year, round_id) == (2026, "r1"):
+                    out[(year, round_id)] = live_2026()
+                continue
+            by_place = {}
+            for code in order:
+                merged: dict[str, int] = defaultdict(int)
+                for (_, party), v in votes_at(votes, tse_by_ibge.get(code, [])).items():
+                    merged[party] += v
+                by_place[code] = dict(merged)
+            out[(year, round_id)] = by_place
     return out
 
 
@@ -250,7 +260,9 @@ def main() -> int:
         "censusYears": CENSUS_YEARS,
         "incomeTo2022": round(INPC_2022_07 / INPC_2010_08, 4),
         "census": {},
+        "bases": {},
         "elections": [],
+        "runoffs": [],
     }
     for year in CENSUS_YEARS:
         data = census(year)
@@ -270,11 +282,20 @@ def main() -> int:
             "evangelical": pack("H", [tenths(get(m, "evangelical")) for m in order]),
             "noReligion": pack("H", [tenths(get(m, "noReligion")) for m in order]),
             "urban": pack("H", [tenths(get(m, "urban")) for m in order]),
+            # Gini × 100 in tenths (0.552 → 552), so it rides the same Uint16 as the shares.
+            "gini": pack(
+                "H", [tenths(gini * 100 if (gini := get(m, "gini")) is not None else None) for m in order]
+            ),
             "population": pack("I", [round(get(m, "population") or 0) for m in order]),
+        }
+        # Who each distribution is of, to weigh places by the right people.
+        out["bases"][str(year)] = {
+            "religion": pack("I", [round(get(m, "_religionBase") or 0) for m in order]),
+            "schooling": pack("I", [round(get(m, "_schoolingBase") or 0) for m in order]),
         }
         n = sum(1 for m in order if get(m, "income") is not None and get(m, "evangelical") is not None)
         print(f"  census {year}: {n} municipalities with income and religion")
-    for year, by_place in election_votes(order).items():
+    for (year, round_id), by_place in sorted(election_votes(order).items()):
         rival = rival_of(by_place)
         names = {
             meta["party"]: name
@@ -287,9 +308,11 @@ def main() -> int:
             pt.append(tenths(parties.get(PT, 0) / total * 100) if total else NONE)
             other.append(tenths(parties.get(rival, 0) / total * 100) if total else NONE)
             valid.append(total)
-        out["elections"].append(
+        # The timeline is the 1st round; the runoffs ride along, picked by round.
+        out["elections" if round_id == "r1" else "runoffs"].append(
             {
                 "year": year,
+                "round": round_id,
                 "census": ELECTIONS[year],
                 "pt": names.get(PT, PT),
                 "rival": names.get(rival, rival),
@@ -299,7 +322,7 @@ def main() -> int:
                 "valid": pack("I", valid),
             }
         )
-        print(f"  {year}: {names.get(PT, PT)} × {names.get(rival, rival)} ({rival})")
+        print(f"  {year} {round_id}: {names.get(PT, PT)} × {names.get(rival, rival)} ({rival})")
     OUTPUT.write_text(json.dumps(out, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     print(f"wrote {OUTPUT.relative_to(DATA.parent)} ({OUTPUT.stat().st_size / 1e3:,.0f} kB)")
     return 0

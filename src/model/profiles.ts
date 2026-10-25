@@ -66,6 +66,37 @@ export interface Person {
   site?: string | null;
   /** Latest headlines from an automatic search, newest first. */
   news?: { title: string; source: string; date: string; id: string }[];
+  /** The TSE's declared gender is female: offices are written in the feminine. */
+  feminine?: boolean;
+  /** Criminal cases, checked by hand on the court's page (data/legal.yaml); newest first. */
+  legal?: LegalCase[];
+}
+
+export type LegalGrade =
+  "investigado" | "reu" | "condenado-recorrivel" | "condenado-definitivo" | "arquivado" | "absolvido";
+
+export interface LegalCase {
+  grade: LegalGrade;
+  crime: string;
+  court: string;
+  case: string;
+  /** When the grade began (yyyy-mm-dd). */
+  since: string;
+  url: string;
+  /** The last time someone looked at the case page (yyyy-mm-dd). */
+  checked: string;
+  /** Not looked at again for six months: may be out of date. */
+  stale: boolean;
+  note?: string;
+}
+
+/** Most serious first; closed inquiries and acquittals are history, not a mark. */
+const SEVERITY: LegalGrade[] = ["condenado-definitivo", "condenado-recorrivel", "reu", "investigado"];
+
+/** The mark on the card: the most serious open grade, or null. */
+export function legalMark(p: Person): LegalGrade | null {
+  const open = new Set((p.legal ?? []).map((c) => c.grade));
+  return SEVERITY.find((g) => open.has(g)) ?? null;
 }
 
 export interface ProfilesData {
@@ -74,6 +105,12 @@ export interface ProfilesData {
   /** When the headlines were fetched (yyyy-mm-dd). */
   newsUpdated?: string;
   people: Person[];
+  /** Last time a criminal case was checked (yyyy-mm-dd), if any. */
+  legalChecked?: string | null;
+  /** Deputies and senators in office now who ran in 2026 and were not elected. */
+  defeated?: Defeated[];
+  /** States whose news come apart, downloaded when one of their profiles opens. */
+  newsStates?: string[];
 }
 
 export interface PeopleFilter {
@@ -103,6 +140,55 @@ export function filterPeople(people: Person[], f: PeopleFilter): Person[] {
   );
 }
 
+export interface Defeated {
+  name: string;
+  /** The house they sit in now. */
+  house: "camara" | "senado";
+  party: string;
+  uf: string;
+  /** What they ran for in 2026. */
+  ranFor: string;
+  votes: number;
+  share: number | null;
+  /** The TSE's word: "Não eleito", "Suplente"… */
+  status: string;
+}
+
+/** The election before for each office: a deputy or governor of 2022, a senator of 2018. */
+const PREVIOUS: Record<ProfileOffice, number> = { "deputado-federal": 2022, governador: 2022, senador: 2018 };
+
+/** Re-elected: elected to the same office, in the same state, at the office's previous election. */
+export function reelected(p: Person): boolean {
+  const before = PREVIOUS[p.office];
+  return p.history.some(
+    (h) => h.year === before && h.office === p.office && h.uf === p.uf && h.result === "elected",
+  );
+}
+
+export interface RenewalRow {
+  key: string;
+  elected: number;
+  reelected: number;
+  /** Percent of the seats that changed hands. */
+  renewal: number;
+}
+
+/** Renewal among those elected in 2026 (runoffs and the senators of 2022 left out), by a key. */
+export function renewal(people: Person[], key: (p: Person) => string): RenewalRow[] {
+  const by = new Map<string, { elected: number; reelected: number }>();
+  for (const p of people) {
+    if (p.status !== "elected" && p.status !== "projected") continue;
+    const k = key(p);
+    const row = by.get(k) ?? { elected: 0, reelected: 0 };
+    row.elected++;
+    if (reelected(p)) row.reelected++;
+    by.set(k, row);
+  }
+  return [...by]
+    .map(([k, r]) => ({ key: k, ...r, renewal: r.elected ? (1 - r.reelected / r.elected) * 100 : 0 }))
+    .sort((a, b) => b.elected - a.elected || a.key.localeCompare(b.key));
+}
+
 /** How many of each kind, for the renewal bar. */
 export function byKind(people: Person[]): Record<Kind, number> {
   const out: Record<Kind, number> = { new: 0, tried: 0, appointed: 0, "other-office": 0, returning: 0 };
@@ -125,4 +211,35 @@ export const articleUrl = (id: string) => `https://news.google.com/rss/articles/
 export function newsUrl(p: Person, officeLabel: string): string {
   const q = `"${p.name}" ${officeLabel} ${p.uf}`;
   return `https://news.google.com/search?q=${encodeURIComponent(q)}&hl=pt-BR&gl=BR&ceid=BR:pt-419`;
+}
+
+/** Office words Wikidata gives in the masculine → the feminine, whole words only. */
+const FEMININE: Record<string, string> = {
+  ministro: "ministra",
+  secretário: "secretária",
+  deputado: "deputada",
+  senador: "senadora",
+  governador: "governadora",
+  prefeito: "prefeita",
+  vereador: "vereadora",
+  subprefeito: "subprefeita",
+  diretor: "diretora",
+  conselheiro: "conselheira",
+  embaixador: "embaixadora",
+  procurador: "procuradora",
+  juiz: "juíza",
+  desembargador: "desembargadora",
+  administrador: "administradora",
+  coordenador: "coordenadora",
+  superintendente: "superintendente",
+  líder: "líder",
+};
+
+/** A Wikidata office title as a woman holds it ("ministro da Igualdade Racial" → "ministra…"). */
+export function feminineTitle(title: string): string {
+  return title.replace(/[A-Za-zÀ-ÿ]+/g, (word) => {
+    const f = FEMININE[word.toLowerCase()];
+    if (!f) return word;
+    return word[0] === word[0]!.toUpperCase() ? f[0]!.toUpperCase() + f.slice(1) : f;
+  });
 }

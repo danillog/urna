@@ -18,8 +18,11 @@ from __future__ import annotations
 
 import csv
 import json
+import re
 import sys
+import unicodedata
 from collections import Counter, defaultdict
+from datetime import UTC, datetime
 from pathlib import Path
 
 import yaml
@@ -211,9 +214,10 @@ def project_seats(lists: list[dict], cands: list[dict], seats: int, valid: int) 
     leftovers(lists, 0)
 
 
-def deputies(uf: str) -> tuple[Counter, bool]:
-    """Seats per party in a state's delegation, and whether they are the TSE's (not ours)."""
-    raw = json.loads(get(f"{TSE}/{uf.lower()}/{uf.lower()}-c0006-e006259-u.json"))
+def deputies(uf: str, office_code: int = 6) -> tuple[Counter, bool]:
+    """Seats per party in a state's delegation (6: federal deputies, 7: the state assembly),
+    and whether they are the TSE's (not ours)."""
+    raw = json.loads(get(f"{TSE}/{uf.lower()}/{uf.lower()}-c{office_code:04d}-e006259-u.json"))
     office = raw["carg"][0]
     lists, cands = [], []
     for group in office["agr"]:
@@ -261,13 +265,9 @@ def refresh_2026() -> None:
         chamber += seats
         official &= is_official
         senate += senators(uf)
-    members = get_json(SENATE_API)["ListaParlamentarEmExercicio"]["Parlamentares"]["Parlamentar"]
-    staying = [
-        m
-        for m in members
-        if m["Mandato"]["PrimeiraLegislaturaDoMandato"]["NumeroLegislatura"] == TERM_FROM_2022
-    ]
-    senate += Counter(acronym(m["IdentificacaoParlamentar"]["SiglaPartidoParlamentar"]) for m in staying)
+    # The 27 senators elected in 2022 stay until 2031: counted by the party they were elected
+    # for, like every other seat (their party today is in the "today" view).
+    senate += Counter(acronym(r["SG_PARTIDO"]) for r in elected_rows(2022, "SENADOR"))
     out = {
         "provisional": not official,
         "chamber": dict(chamber.most_common()),
@@ -282,13 +282,156 @@ def refresh_2026() -> None:
     print(f"  2026: {sum(chamber.values())} deputies, {sum(senate.values())} senators -> {RAW_2026.name}")
 
 
+# --- São Paulo: the state assembly (Alesp) and the city council ------------------------------
+
+RAW_SP = DATA / "raw" / "congress" / "sp.yaml"
+SAO_PAULO_TSE = "71072"  # the city's code at the TSE
+ALESP_YEARS = (2010, 2014, 2018, 2022)
+CMSP_YEARS = (2012, 2016, 2020, 2024)
+# "MÉDIA" alone is how the 2010 file writes "elected by the highest averages".
+ELECTED_ANY = (*("ELEITO", "ELEITO POR QP", "ELEITO POR MÉDIA", "ELEITO POR MEDIA"), "MÉDIA")
+
+
+def refresh_sp() -> None:
+    """Writes data/raw/congress/sp.yaml: seats per party in the Alesp after each election since
+    2010 (2026 from the count, like the Chamber) and in São Paulo's city council since 2012,
+    from the TSE's candidate files (pipeline.profiles' cache)."""
+    from .profiles import candidate_rows
+
+    def seats(year: int, office: str, keep) -> dict[str, int]:
+        rows = [
+            r for r in candidate_rows(year)
+            if r["DS_CARGO"].upper() == office and keep(r)
+            and r.get("DS_SIT_TOT_TURNO", "").upper() in ELECTED_ANY
+        ]  # fmt: skip
+        return dict(Counter(acronym(r["SG_PARTIDO"]) for r in rows).most_common())
+
+    alesp = {y: seats(y, "DEPUTADO ESTADUAL", lambda r: r["SG_UF"] == "SP") for y in ALESP_YEARS}
+    now, official = deputies("SP", 7)
+    alesp[2026] = dict(now.most_common())
+    cmsp = {y: seats(y, "VEREADOR", lambda r: r.get("SG_UE") == SAO_PAULO_TSE) for y in CMSP_YEARS}
+    out = {"provisional2026": not official, "alesp": alesp, "cmsp": cmsp}
+    header = (
+        "# Written by `uv run python -m pipeline.congress --refresh-sp`: Alesp and São Paulo's council.\n"
+    )
+    RAW_SP.write_text(header + yaml.safe_dump(out, allow_unicode=True, sort_keys=False), encoding="utf-8")
+    for name, h in (("alesp", alesp), ("cmsp", cmsp)):
+        print(f"  {name}: " + ", ".join(f"{y} ({sum(s.values())})" for y, s in h.items()))
+
+
+# --- Today: the seats by party now, and who changed party since elected --------------
+
+RAW_NOW = DATA / "raw" / "congress" / "now.yaml"
+ELECTED = ("ELEITO", "ELEITO POR QP", "ELEITO POR MÉDIA", "ELEITO POR MEDIA")
+CAMARA_FILE = DATA / "raw" / "profiles" / "camara_deputados.json"
+
+
+def elected_rows(year: int, office: str) -> list[dict]:
+    """The TSE's candidate rows of those elected to an office in a year (pipeline.profiles' cache)."""
+    from .profiles import candidate_rows  # profiles imports this module
+
+    return [
+        r
+        for r in candidate_rows(year)
+        if r["DS_CARGO"].upper() == office and r.get("DS_SIT_TOT_TURNO", "").upper() in ELECTED
+    ]
+
+
+def plain_name(name: str) -> str:
+    text = unicodedata.normalize("NFKD", name).encode("ascii", "ignore").decode().upper()
+    return " ".join(re.sub(r"[^A-Z ]", " ", text).split())
+
+
+def refresh_now() -> None:
+    """Writes data/raw/congress/now.yaml: each house by party today, and each member whose
+    party today differs from the one elected for. Deputies are matched to their 2022
+    candidacy by CPF (never written out), senators by name and state. A party that ran no
+    candidate in 2026 no longer exists (merged or folded): its members are flagged so, not
+    counted as switching."""
+    from .profiles import candidate_rows
+
+    alive = {acronym(r["SG_PARTIDO"]) for r in candidate_rows(2026)}
+    camara = json.loads(CAMARA_FILE.read_text(encoding="utf-8"))
+    sitting = {
+        cpf: d["ultimoStatus"]
+        for cpf, d in camara.items()
+        if (d.get("ultimoStatus") or {}).get("idLegislatura") == 57
+        and d["ultimoStatus"].get("situacao") in ("Exercício", "Licença")
+    }
+    chamber = Counter(
+        acronym(s["siglaPartido"]) for s in sitting.values() if s.get("situacao") == "Exercício"
+    )
+    switches = []
+    for r in elected_rows(2022, "DEPUTADO FEDERAL"):
+        now = sitting.get(r.get("NR_CPF_CANDIDATO", ""))
+        if not now:
+            continue  # left the seat (minister's substitute in, died, lost the mandate)
+        before, after = acronym(r["SG_PARTIDO"]), acronym(now["siglaPartido"])
+        if before != after:
+            switches.append({"name": now.get("nome") or r["NM_URNA_CANDIDATO"], "house": "chamber",
+                             "uf": r["SG_UF"], "from": before, "to": after,
+                             "extinct": before not in alive})  # fmt: skip
+    members = get_json(SENATE_API)["ListaParlamentarEmExercicio"]["Parlamentares"]["Parlamentar"]
+    senate = Counter(acronym(m["IdentificacaoParlamentar"]["SiglaPartidoParlamentar"]) for m in members)
+    rows = {(plain_name(r["NM_CANDIDATO"]), r["SG_UF"]): r
+            for y in (2018, 2022) for r in elected_rows(y, "SENADOR")}  # fmt: skip
+    for m in members:
+        ident = m["IdentificacaoParlamentar"]
+        r = rows.get((plain_name(ident["NomeCompletoParlamentar"]), ident["UfParlamentar"]))
+        if not r:
+            continue  # a substitute in the seat
+        before, after = acronym(r["SG_PARTIDO"]), acronym(ident["SiglaPartidoParlamentar"])
+        if before != after:
+            switches.append({"name": ident["NomeParlamentar"], "house": "senate",
+                             "uf": ident["UfParlamentar"], "from": before, "to": after,
+                             "extinct": before not in alive})  # fmt: skip
+    out = {
+        "date": datetime.now(UTC).date().isoformat(),
+        "chamber": dict(chamber.most_common()),
+        "senate": dict(senate.most_common()),
+        "switches": sorted(switches, key=lambda s: (s["house"], s["uf"], s["name"])),
+    }
+    header = "# Written by `uv run python -m pipeline.congress --refresh-now`: Congress by party today.\n"
+    RAW_NOW.write_text(header + yaml.safe_dump(out, allow_unicode=True, sort_keys=False), encoding="utf-8")
+    moved = sum(1 for s in switches if not s["extinct"])
+    print(f"  today: {sum(chamber.values())} deputies, {sum(senate.values())} senators; "
+          f"{moved} changed party, {len(switches) - moved} whose party folded")  # fmt: skip
+
+
 # --- Build ----------------------------------------------------------------------------
 
 
-def build(config: dict, bls: dict[str, dict[int, float]], extra: dict | None) -> dict:
+def build(
+    config: dict,
+    bls: dict[str, dict[int, float]],
+    extra: dict | None,
+    now: dict | None = None,
+    sp: dict | None = None,
+) -> dict:
     placer = Placer(config, bls)
     centrao = config["centrao"]
     houses: dict[str, list] = {"chamber": [], "senate": []}
+
+    def composition(seats: dict[str, int], year: int) -> dict:
+        parties = []
+        for party, n in seats.items():
+            score, source = placer.score(party, year)
+            parties.append(
+                {
+                    "party": party,
+                    "lineage": placer.lineage(party, year),
+                    "name": config["names"].get(party, party),
+                    "seats": n,
+                    "score": None if score is None else round(score, 3),
+                    "group": placer.group(score),
+                    "source": source,
+                    "centrao": year >= centrao["since"] and party in centrao["parties"],
+                }
+            )
+        # Left to right; unplaced parties last, largest first.
+        parties.sort(key=lambda p: (p["score"] is None, p["score"] or 0, -p["seats"]))
+        return {"year": year, "total": sum(seats.values()), "parties": parties}
+
     for house in houses:
         elections = {int(y): seats for y, seats in config[house].items()}
         provisional = set()
@@ -297,28 +440,11 @@ def build(config: dict, bls: dict[str, dict[int, float]], extra: dict | None) ->
             if extra.get("provisional"):
                 provisional.add(2026)
         for year, seats in sorted(elections.items()):
-            parties = []
-            for party, n in seats.items():
-                score, source = placer.score(party, year)
-                parties.append(
-                    {
-                        "party": party,
-                        "lineage": placer.lineage(party, year),
-                        "name": config["names"].get(party, party),
-                        "seats": n,
-                        "score": None if score is None else round(score, 3),
-                        "group": placer.group(score),
-                        "source": source,
-                        "centrao": year >= centrao["since"] and party in centrao["parties"],
-                    }
-                )
-            # Left to right; unplaced parties last, largest first.
-            parties.sort(key=lambda p: (p["score"] is None, p["score"] or 0, -p["seats"]))
-            entry = {"year": year, "total": sum(seats.values()), "parties": parties}
+            entry = composition(seats, year)
             if year in provisional:
                 entry["provisional"] = True
             houses[house].append(entry)
-    return {
+    out = {
         "cuts": config["groups"],
         "bolognesiLine": [round(placer.a, 4), round(placer.b, 4)],
         "centrao": {
@@ -327,14 +453,74 @@ def build(config: dict, bls: dict[str, dict[int, float]], extra: dict | None) ->
         },
         "houses": houses,
     }
+    if sp:
+        # São Paulo's state assembly and city council: the same placement as Congress (the
+        # parties' national scores), seat counts from the TSE.
+        for house in ("alesp", "cmsp"):
+            houses[house] = []
+            for year, seats in sorted((int(y), s) for y, s in sp[house].items()):
+                entry = composition(seats, year)
+                if house == "alesp" and year == 2026 and sp.get("provisional2026"):
+                    entry["provisional"] = True
+                houses[house].append(entry)
+    if now:
+        # Today: the legislature in office (elected in 2022) by the party each member has now.
+        year = int(str(now["date"])[:4])
+        out["now"] = {
+            "date": str(now["date"]),
+            "chamber": composition(now["chamber"], year),
+            "senate": composition(now["senate"], year),
+            "switches": now.get("switches", []),
+        }
+    return out
+
+
+PROFILES = DATA / "generated" / "profiles.json"
+# Never elected to anything before (pipeline.profiles kinds): first-timers, those who ran
+# and lost, those who only held appointed offices.
+NEWCOMER_KINDS = {"new", "tried", "appointed"}
+HOUSE_OFFICE = {"chamber": "deputado-federal", "senate": "senador"}
+
+
+def party_key(name: str) -> str:
+    """'Republicanos', 'REPUBLICANOS'; 'SD', 'SOLIDARIEDADE': one key."""
+    key = re.sub(
+        r"[^A-Z0-9]", "", unicodedata.normalize("NFKD", name).encode("ascii", "ignore").decode().upper()
+    )
+    return {"SOLIDARIEDADE": "SD"}.get(key, key)
+
+
+def mark_newcomers(out: dict, profiles: dict) -> None:
+    """2026: how many of each party's seats went to someone never elected before."""
+    for house, office in HOUSE_OFFICE.items():
+        entry = next((e for e in out["houses"][house] if e["year"] == 2026), None)
+        if not entry:
+            continue
+        counts: Counter = Counter(
+            party_key(p["party"])
+            for p in profiles["people"]
+            if p["office"] == office
+            and p["status"] in ("elected", "projected")
+            and p["kind"] in NEWCOMER_KINDS
+        )
+        for p in entry["parties"]:
+            p["newcomers"] = min(p["seats"], counts.get(party_key(p["party"]), 0))
 
 
 def main() -> int:
     if "--refresh-2026" in sys.argv[1:]:
         refresh_2026()
+    if "--refresh-now" in sys.argv[1:]:
+        refresh_now()
+    if "--refresh-sp" in sys.argv[1:]:
+        refresh_sp()
     config = yaml.safe_load(CONFIG.read_text(encoding="utf-8"))
     extra = yaml.safe_load(RAW_2026.read_text(encoding="utf-8")) if RAW_2026.exists() else None
-    out = build(config, read_bls(), extra)
+    now = yaml.safe_load(RAW_NOW.read_text(encoding="utf-8")) if RAW_NOW.exists() else None
+    sp = yaml.safe_load(RAW_SP.read_text(encoding="utf-8")) if RAW_SP.exists() else None
+    out = build(config, read_bls(), extra, now, sp)
+    if PROFILES.exists():
+        mark_newcomers(out, json.loads(PROFILES.read_text(encoding="utf-8")))
     unplaced = sorted(
         {p["party"] for h in out["houses"].values() for e in h for p in e["parties"] if p["score"] is None}
     )

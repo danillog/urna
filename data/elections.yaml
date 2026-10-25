@@ -177,5 +177,7 @@
           (Novo) e os demais candidatos. Até o fim de agosto, também inclui Cury.
     r2:
       date: 2026-10-25
+      skip_polls:
+        - [PoderData, 2026-10-18, published only as valid votes]
       notes:
         - Antes do 1º turno, os pontos são cenários hipotéticos de 2º turno testados ao longo do ano.

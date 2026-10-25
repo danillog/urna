@@ -29,6 +29,8 @@ export interface MapRace {
   secondShare: Uint16Array;
   votes: Uint32Array;
   mayors: string[] | null;
+  /** Read from the TSE's results site rather than the open-data archive. */
+  fromResultsSite: boolean;
 }
 
 function bytes(b64: string): Uint8Array<ArrayBuffer> {
@@ -68,6 +70,7 @@ export function decodeRace(map: MunicipalMap, key: string, encoded: EncodedMapRa
     secondShare: new Uint16Array(bytes(encoded.secondShare).buffer),
     votes: new Uint32Array(bytes(encoded.votes).buffer),
     mayors: encoded.mayors?.split("\n") ?? null,
+    fromResultsSite: encoded.source === "results",
   };
 }
 
@@ -75,10 +78,17 @@ export function decodeRace(map: MunicipalMap, key: string, encoded: EncodedMapRa
 export class MapData {
   private cache = new Map<string, MapRace>();
 
-  constructor(readonly map: MunicipalMap) {}
+  /**
+   * `fetchRace` downloads one election when the map arrives without them (the page loads
+   * each on demand); without it, every race must already be in `map.races`.
+   */
+  constructor(
+    readonly map: MunicipalMap,
+    private readonly fetchRace?: (key: string) => Promise<EncodedMapRace>,
+  ) {}
 
   keys(office: MapOffice): string[] {
-    return Object.keys(this.map.races)
+    return (this.map.raceKeys ?? Object.keys(this.map.races))
       .filter((k) => parseKey(k).office === office)
       .sort();
   }
@@ -106,6 +116,17 @@ export class MapData {
       .map(parseKey)
       .filter((k) => k.year === year)
       .map((k) => k.round!);
+  }
+
+  /** Whether an election can be drawn now, without downloading it. */
+  ready(key: string): boolean {
+    return key in this.map.races;
+  }
+
+  /** Downloads an election (once); resolves when `race(key)` can read it. */
+  async load(key: string): Promise<void> {
+    if (this.ready(key) || !this.fetchRace) return;
+    this.map.races[key] = await this.fetchRace(key);
   }
 
   race(key: string): MapRace | undefined {
@@ -146,6 +167,53 @@ export interface GroupWins {
 }
 
 /** Municipalities won per color group, most wins first; "others" always last. */
+/** One row of the table that stands in for the map: a municipality's result. */
+export interface PlaceRow {
+  name: string;
+  uf: string;
+  winner: string;
+  winnerShare: number;
+  second: string | null;
+  secondShare: number | null;
+  votes: number;
+}
+
+/** The municipalities of a state with a result, by name: the map as a table. */
+export function placeRows(map: MunicipalMap, race: MapRace, uf: string): PlaceRow[] {
+  const out: PlaceRow[] = [];
+  map.municipalities.uf.forEach((u, i) => {
+    const w = race.winner[i]!;
+    if (u !== uf || w === NONE) return;
+    const s = race.second[i]!;
+    out.push({
+      name: map.municipalities.names[i]!,
+      uf: u,
+      winner: race.labels[w]!,
+      winnerShare: race.winnerShare[i]! / 10,
+      second: s === NONE ? null : race.labels[s]!,
+      secondShare: s === NONE ? null : race.secondShare[i]! / 10,
+      votes: race.votes[i]!,
+    });
+  });
+  return out.sort((a, b) => a.name.localeCompare(b.name, "pt-BR"));
+}
+
+/** Municipalities each label won, per state: the whole-country map as a table. */
+export function winsByState(
+  map: MunicipalMap,
+  race: MapRace,
+): { uf: string; wins: Record<string, number> }[] {
+  const by = new Map<string, Record<string, number>>();
+  map.municipalities.uf.forEach((uf, i) => {
+    const w = race.winner[i]!;
+    if (w === NONE) return;
+    const row = by.get(uf) ?? {};
+    row[race.labels[w]!] = (row[race.labels[w]!] ?? 0) + 1;
+    by.set(uf, row);
+  });
+  return [...by].map(([uf, wins]) => ({ uf, wins })).sort((a, b) => a.uf.localeCompare(b.uf));
+}
+
 export function winsByGroup(race: MapRace): GroupWins[] {
   const wins = new Map<string, number>();
   const labels = new Map<string, Set<string>>();

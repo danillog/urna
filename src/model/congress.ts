@@ -3,7 +3,10 @@
  * hemicycle they are drawn in. Data from pipeline/congress.py.
  */
 
-export type House = "chamber" | "senate";
+/** Congress, and São Paulo's state assembly (Alesp) and city council (Câmara Municipal). */
+export type House = "chamber" | "senate" | "alesp" | "cmsp";
+/** The two houses of Congress: the only ones with roll-call measures, today's view, positions. */
+export const isCongress = (h: House): h is "chamber" | "senate" => h === "chamber" || h === "senate";
 export type IdeologyGroup = "left" | "centre-left" | "centre" | "centre-right" | "right";
 export const GROUPS: IdeologyGroup[] = ["left", "centre-left", "centre", "centre-right", "right"];
 
@@ -21,6 +24,8 @@ export interface CongressParty {
   source: string | null;
   /** In the Centrão's core, per the source in CongressData.centrao (marked from its year on). */
   centrao: boolean;
+  /** 2026: how many of its seats went to someone never elected before (pipeline.congress). */
+  newcomers?: number;
 }
 
 export interface CongressElection {
@@ -41,6 +46,32 @@ export interface CongressData {
     source: { title: string; outlet: string; date: string; url: string };
   };
   houses: Record<House, CongressElection[]>;
+  /** The legislature in office by the party each member has today (pipeline.congress --refresh-now). */
+  now?: {
+    date: string;
+    chamber: CongressElection;
+    senate: CongressElection;
+    /** Members whose party today differs from the one elected for. */
+    switches: PartySwitch[];
+  };
+}
+
+export interface PartySwitch {
+  name: string;
+  house: House;
+  uf: string;
+  from: string;
+  to: string;
+  /** The party elected for ran no candidate in 2026: it folded or merged, not a switch. */
+  extinct: boolean;
+}
+
+/** The year of the composition in office today: the latest election before today's year. */
+export function inOfficeYear(data: CongressData, house: House): number | null {
+  if (!data.now || !isCongress(house)) return null;
+  const today = Number(data.now.date.slice(0, 4));
+  const years = data.houses[house].map((e) => e.year).filter((y) => y < today);
+  return years.length ? Math.max(...years) : null;
 }
 
 /** One seat in the hemicycle: centre in a 2 × 1 box (origin at the bottom middle), and its party. */
@@ -118,16 +149,37 @@ export function history(elections: CongressElection[], lineage: string): (Congre
   return elections.map((e) => e.parties.find((p) => p.lineage === lineage) ?? null);
 }
 
-/** What the legend can select: a left–right group, the unplaced parties, or the Centrão. */
-export type FocusKey = IdeologyGroup | "none" | "centrao";
-export const FOCUS_KEYS: FocusKey[] = [...GROUPS, "none", "centrao"];
+/**
+ * What the legend can select: a left–right group, the unplaced parties, the Centrão (a
+ * cited list), or the government's base as measured by votes (src/model/governismo.ts).
+ */
+export type FocusKey = IdeologyGroup | "none" | "centrao" | "base" | "centraoMeasured" | "newcomers";
+export const FOCUS_KEYS: FocusKey[] = [...GROUPS, "none", "centrao", "base", "centraoMeasured", "newcomers"];
 
-/** Whether a party is among the selected ones: any selected group, or the Centrão when it is selected. */
-export function inFocus(p: CongressParty, focus: readonly FocusKey[]): boolean {
-  return focus.includes(p.group ?? "none") || (p.centrao && focus.includes("centrao"));
+/** Party lines picked by measure, not by list: the government's base, the Centrão. */
+export interface Measured {
+  base?: ReadonlySet<string>;
+  centrao?: ReadonlySet<string>;
 }
 
-/** Seats the selected parties hold together (each party counted once). */
-export function focusSeats(e: CongressElection, focus: readonly FocusKey[]): number {
-  return e.parties.filter((p) => inFocus(p, focus)).reduce((sum, p) => sum + p.seats, 0);
+/** Whether a party is among the selected ones; `base` holds the party lines of the measured base. */
+export function inFocus(p: CongressParty, focus: readonly FocusKey[], measured: Measured = {}): boolean {
+  return (
+    focus.includes(p.group ?? "none") ||
+    (p.centrao && focus.includes("centrao")) ||
+    (focus.includes("base") && Boolean(measured.base?.has(p.lineage))) ||
+    (focus.includes("centraoMeasured") && Boolean(measured.centrao?.has(p.lineage)))
+  );
+}
+
+/** How many of a party's seats are selected: all of them when the party is, else its
+ * newcomers when those are (seats, not parties: a party is never all new). */
+export function selectedSeats(p: CongressParty, focus: readonly FocusKey[], measured: Measured = {}): number {
+  if (inFocus(p, focus, measured)) return p.seats;
+  return focus.includes("newcomers") ? (p.newcomers ?? 0) : 0;
+}
+
+/** Seats selected together (each seat counted once). */
+export function focusSeats(e: CongressElection, focus: readonly FocusKey[], measured: Measured = {}): number {
+  return e.parties.reduce((sum, p) => sum + selectedSeats(p, focus, measured), 0);
 }

@@ -1,0 +1,559 @@
+{
+ "then": 1990,
+ "now": 2023,
+ "countries": [
+  {
+   "iso": "CAN",
+   "name": "Canadá",
+   "then": 0.865,
+   "now": 0.939,
+   "food": 10.5,
+   "foodYear": 2024
+  },
+  {
+   "iso": "USA",
+   "name": "Estados Unidos",
+   "then": 0.878,
+   "now": 0.938,
+   "food": 10.7,
+   "foodYear": 2024
+  },
+  {
+   "iso": "CHL",
+   "name": "Chile",
+   "then": 0.718,
+   "now": 0.878,
+   "food": 16.0,
+   "foodYear": 2024
+  },
+  {
+   "iso": "ARG",
+   "name": "Argentina",
+   "then": 0.733,
+   "now": 0.865,
+   "food": 31.7,
+   "foodYear": 2024
+  },
+  {
+   "iso": "URY",
+   "name": "Uruguai",
+   "then": 0.713,
+   "now": 0.862,
+   "food": 15.5,
+   "foodYear": 2024
+  },
+  {
+   "iso": "PAN",
+   "name": "Panamá",
+   "then": 0.672,
+   "now": 0.839,
+   "food": null,
+   "foodYear": null
+  },
+  {
+   "iso": "CRI",
+   "name": "Costa Rica",
+   "then": 0.677,
+   "now": 0.833,
+   "food": 13.9,
+   "foodYear": 2024
+  },
+  {
+   "iso": "BHS",
+   "name": "Bahamas",
+   "then": 0.762,
+   "now": 0.82,
+   "food": 17.2,
+   "foodYear": 2022
+  },
+  {
+   "iso": "BRB",
+   "name": "Barbados",
+   "then": 0.73,
+   "now": 0.811,
+   "food": 31.1,
+   "foodYear": 2022
+  },
+  {
+   "iso": "TTO",
+   "name": "Trinidad e Tobago",
+   "then": 0.661,
+   "now": 0.807,
+   "food": 27.6,
+   "foodYear": 2024
+  },
+  {
+   "iso": "PER",
+   "name": "Peru",
+   "then": 0.625,
+   "now": 0.794,
+   "food": 33.6,
+   "foodYear": 2024
+  },
+  {
+   "iso": "MEX",
+   "name": "México",
+   "then": 0.668,
+   "now": 0.789,
+   "food": 16.5,
+   "foodYear": 2024
+  },
+  {
+   "iso": "COL",
+   "name": "Colômbia",
+   "then": 0.623,
+   "now": 0.788,
+   "food": 28.0,
+   "foodYear": 2024
+  },
+  {
+   "iso": "BRA",
+   "name": "Brasil",
+   "then": 0.641,
+   "now": 0.786,
+   "food": 9.6,
+   "foodYear": 2024
+  },
+  {
+   "iso": "ECU",
+   "name": "Equador",
+   "then": 0.646,
+   "now": 0.777,
+   "food": 31.1,
+   "foodYear": 2024
+  },
+  {
+   "iso": "DOM",
+   "name": "República Dominicana",
+   "then": 0.589,
+   "now": 0.776,
+   "food": 41.3,
+   "foodYear": 2024
+  },
+  {
+   "iso": "GUY",
+   "name": "Guiana",
+   "then": 0.494,
+   "now": 0.776,
+   "food": 25.5,
+   "foodYear": 2024
+  },
+  {
+   "iso": "CUB",
+   "name": "Cuba",
+   "then": 0.687,
+   "now": 0.762,
+   "food": null,
+   "foodYear": null
+  },
+  {
+   "iso": "PRY",
+   "name": "Paraguai",
+   "then": 0.607,
+   "now": 0.756,
+   "food": 25.8,
+   "foodYear": 2024
+  },
+  {
+   "iso": "LCA",
+   "name": "Santa Lúcia",
+   "then": 0.683,
+   "now": 0.748,
+   "food": 22.2,
+   "foodYear": 2017
+  },
+  {
+   "iso": "BOL",
+   "name": "Bolívia",
+   "then": 0.552,
+   "now": 0.733,
+   "food": 29.6,
+   "foodYear": 2024
+  },
+  {
+   "iso": "BLZ",
+   "name": "Belize",
+   "then": 0.617,
+   "now": 0.721,
+   "food": 12.8,
+   "foodYear": 2024
+  },
+  {
+   "iso": "JAM",
+   "name": "Jamaica",
+   "then": 0.662,
+   "now": 0.72,
+   "food": 55.8,
+   "foodYear": 2024
+  },
+  {
+   "iso": "VEN",
+   "name": "Venezuela",
+   "then": 0.658,
+   "now": 0.709,
+   "food": null,
+   "foodYear": null
+  },
+  {
+   "iso": "NIC",
+   "name": "Nicarágua",
+   "then": 0.515,
+   "now": 0.706,
+   "food": null,
+   "foodYear": null
+  },
+  {
+   "iso": "SLV",
+   "name": "El Salvador",
+   "then": 0.523,
+   "now": 0.678,
+   "food": 41.7,
+   "foodYear": 2024
+  },
+  {
+   "iso": "GTM",
+   "name": "Guatemala",
+   "then": 0.499,
+   "now": 0.662,
+   "food": 49.0,
+   "foodYear": 2024
+  },
+  {
+   "iso": "HND",
+   "name": "Honduras",
+   "then": 0.516,
+   "now": 0.645,
+   "food": 39.3,
+   "foodYear": 2024
+  },
+  {
+   "iso": "HTI",
+   "name": "Haiti",
+   "then": 0.461,
+   "now": 0.554,
+   "food": 83.5,
+   "foodYear": 2024
+  }
+ ],
+ "twins": [
+  {
+   "iso": "GUY",
+   "name": "Guiana",
+   "then": 0.494,
+   "now": 0.776,
+   "gain": 0.282,
+   "twin": "HTI",
+   "twinName": "Haiti",
+   "twinNow": 0.554
+  },
+  {
+   "iso": "NIC",
+   "name": "Nicarágua",
+   "then": 0.515,
+   "now": 0.706,
+   "gain": 0.191,
+   "twin": "HTI",
+   "twinName": "Haiti",
+   "twinNow": 0.554
+  },
+  {
+   "iso": "DOM",
+   "name": "República Dominicana",
+   "then": 0.589,
+   "now": 0.776,
+   "gain": 0.187,
+   "twin": "HTI",
+   "twinName": "Haiti",
+   "twinNow": 0.554
+  },
+  {
+   "iso": "BOL",
+   "name": "Bolívia",
+   "then": 0.552,
+   "now": 0.733,
+   "gain": 0.181,
+   "twin": "HTI",
+   "twinName": "Haiti",
+   "twinNow": 0.554
+  },
+  {
+   "iso": "PER",
+   "name": "Peru",
+   "then": 0.625,
+   "now": 0.794,
+   "gain": 0.169,
+   "twin": "HND",
+   "twinName": "Honduras",
+   "twinNow": 0.645
+  },
+  {
+   "iso": "PAN",
+   "name": "Panamá",
+   "then": 0.672,
+   "now": 0.839,
+   "gain": 0.167,
+   "twin": "SLV",
+   "twinName": "El Salvador",
+   "twinNow": 0.678
+  },
+  {
+   "iso": "COL",
+   "name": "Colômbia",
+   "then": 0.623,
+   "now": 0.788,
+   "gain": 0.165,
+   "twin": "HND",
+   "twinName": "Honduras",
+   "twinNow": 0.645
+  },
+  {
+   "iso": "GTM",
+   "name": "Guatemala",
+   "then": 0.499,
+   "now": 0.662,
+   "gain": 0.163,
+   "twin": "HTI",
+   "twinName": "Haiti",
+   "twinNow": 0.554
+  },
+  {
+   "iso": "CHL",
+   "name": "Chile",
+   "then": 0.718,
+   "now": 0.878,
+   "gain": 0.16,
+   "twin": "JAM",
+   "twinName": "Jamaica",
+   "twinNow": 0.72
+  },
+  {
+   "iso": "CRI",
+   "name": "Costa Rica",
+   "then": 0.677,
+   "now": 0.833,
+   "gain": 0.156,
+   "twin": "SLV",
+   "twinName": "El Salvador",
+   "twinNow": 0.678
+  },
+  {
+   "iso": "SLV",
+   "name": "El Salvador",
+   "then": 0.523,
+   "now": 0.678,
+   "gain": 0.155,
+   "twin": "HTI",
+   "twinName": "Haiti",
+   "twinNow": 0.554
+  },
+  {
+   "iso": "URY",
+   "name": "Uruguai",
+   "then": 0.713,
+   "now": 0.862,
+   "gain": 0.149,
+   "twin": "VEN",
+   "twinName": "Venezuela",
+   "twinNow": 0.709
+  },
+  {
+   "iso": "PRY",
+   "name": "Paraguai",
+   "then": 0.607,
+   "now": 0.756,
+   "gain": 0.149,
+   "twin": "HND",
+   "twinName": "Honduras",
+   "twinNow": 0.645
+  },
+  {
+   "iso": "TTO",
+   "name": "Trinidad e Tobago",
+   "then": 0.661,
+   "now": 0.807,
+   "gain": 0.146,
+   "twin": "GTM",
+   "twinName": "Guatemala",
+   "twinNow": 0.662
+  },
+  {
+   "iso": "BRA",
+   "name": "Brasil",
+   "then": 0.641,
+   "now": 0.786,
+   "gain": 0.145,
+   "twin": "HND",
+   "twinName": "Honduras",
+   "twinNow": 0.645
+  },
+  {
+   "iso": "ARG",
+   "name": "Argentina",
+   "then": 0.733,
+   "now": 0.865,
+   "gain": 0.132,
+   "twin": "BOL",
+   "twinName": "Bolívia",
+   "twinNow": 0.733
+  },
+  {
+   "iso": "ECU",
+   "name": "Equador",
+   "then": 0.646,
+   "now": 0.777,
+   "gain": 0.131,
+   "twin": "HND",
+   "twinName": "Honduras",
+   "twinNow": 0.645
+  },
+  {
+   "iso": "HND",
+   "name": "Honduras",
+   "then": 0.516,
+   "now": 0.645,
+   "gain": 0.129,
+   "twin": "HTI",
+   "twinName": "Haiti",
+   "twinNow": 0.554
+  },
+  {
+   "iso": "MEX",
+   "name": "México",
+   "then": 0.668,
+   "now": 0.789,
+   "gain": 0.121,
+   "twin": "GTM",
+   "twinName": "Guatemala",
+   "twinNow": 0.662
+  },
+  {
+   "iso": "BLZ",
+   "name": "Belize",
+   "then": 0.617,
+   "now": 0.721,
+   "gain": 0.104,
+   "twin": "HND",
+   "twinName": "Honduras",
+   "twinNow": 0.645
+  },
+  {
+   "iso": "HTI",
+   "name": "Haiti",
+   "then": 0.461,
+   "now": 0.554,
+   "gain": 0.093,
+   "twin": "HND",
+   "twinName": "Honduras",
+   "twinNow": 0.645
+  },
+  {
+   "iso": "BRB",
+   "name": "Barbados",
+   "then": 0.73,
+   "now": 0.811,
+   "gain": 0.081,
+   "twin": "BOL",
+   "twinName": "Bolívia",
+   "twinNow": 0.733
+  },
+  {
+   "iso": "CUB",
+   "name": "Cuba",
+   "then": 0.687,
+   "now": 0.762,
+   "gain": 0.075,
+   "twin": "SLV",
+   "twinName": "El Salvador",
+   "twinNow": 0.678
+  },
+  {
+   "iso": "LCA",
+   "name": "Santa Lúcia",
+   "then": 0.683,
+   "now": 0.748,
+   "gain": 0.065,
+   "twin": "SLV",
+   "twinName": "El Salvador",
+   "twinNow": 0.678
+  },
+  {
+   "iso": "BHS",
+   "name": "Bahamas",
+   "then": 0.762,
+   "now": 0.82,
+   "gain": 0.058,
+   "twin": "CUB",
+   "twinName": "Cuba",
+   "twinNow": 0.762
+  },
+  {
+   "iso": "JAM",
+   "name": "Jamaica",
+   "then": 0.662,
+   "now": 0.72,
+   "gain": 0.058,
+   "twin": "GTM",
+   "twinName": "Guatemala",
+   "twinNow": 0.662
+  },
+  {
+   "iso": "VEN",
+   "name": "Venezuela",
+   "then": 0.658,
+   "now": 0.709,
+   "gain": 0.051,
+   "twin": "GTM",
+   "twinName": "Guatemala",
+   "twinNow": 0.662
+  }
+ ],
+ "picks": [
+  "BRA",
+  "BOL",
+  "PAN",
+  "CHL"
+ ],
+ "pairs": [
+  {
+   "low": "BLZ",
+   "high": "JAM",
+   "gap": 43.0
+  },
+  {
+   "low": "BRA",
+   "high": "DOM",
+   "gap": 31.7
+  },
+  {
+   "low": "MEX",
+   "high": "PER",
+   "gap": 17.1
+  },
+  {
+   "low": "URY",
+   "high": "ARG",
+   "gap": 16.2
+  },
+  {
+   "low": "BHS",
+   "high": "BRB",
+   "gap": 13.9
+  },
+  {
+   "low": "GUY",
+   "high": "ECU",
+   "gap": 5.6
+  },
+  {
+   "low": "LCA",
+   "high": "PRY",
+   "gap": 3.6
+  },
+  {
+   "low": "CAN",
+   "high": "USA",
+   "gap": 0.2
+  }
+ ],
+ "correlation": -0.77
+}

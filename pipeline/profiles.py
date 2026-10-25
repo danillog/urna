@@ -33,6 +33,7 @@ from concurrent.futures import ThreadPoolExecutor
 
 from .build import DATA
 from .congress import project_seats
+from .sources import tse_results
 from .sources.http import get
 
 RAW = DATA / "raw" / "profiles"
@@ -130,10 +131,12 @@ def retrying(url: str, tries: int = 5) -> bytes:
 # --- Who was elected -------------------------------------------------------------------
 
 
-def elected_2026() -> tuple[list[dict], bool]:
+def elected_2026() -> tuple[list[dict], bool, dict[str, dict]]:
     """Everyone elected (or going to the runoff) in 2026, by TSE candidate sequence number;
-    and whether the deputies are the TSE's word (False: our projection)."""
+    whether the deputies are the TSE's word (False: our projection); and every candidate's
+    votes and status, by sequence number."""
     out: list[dict] = []
+    results: dict[str, dict] = {}
     official_deputies = True
     for uf in UFS:
         for code, office in OFFICES.items():
@@ -162,6 +165,11 @@ def elected_2026() -> tuple[list[dict], bool]:
                 project_seats(lists, cands, int(num(o["nv"])), int(valid))
             for c in cands:
                 runoff = c["status"] == "2º turno"
+                results[c["sq"]] = {
+                    "votes": c["votes"],
+                    "share": round(c["votes"] / valid * 100, 2) if valid else None,
+                    "status": c["status"],
+                }
                 if c["elected"] or runoff:
                     out.append(
                         {
@@ -173,7 +181,52 @@ def elected_2026() -> tuple[list[dict], bool]:
                             "status": "runoff" if runoff else "elected",
                         }
                     )
-    return out, official_deputies
+    return settle_runoffs(out), official_deputies, results
+
+
+def runoff_result(uf: str) -> list[dict] | None:
+    """A state's governor runoff, candidates with votes and share; None before the TSE has
+    it or where there is none."""
+    try:
+        election = tse_results.election(2026, "r2", "state")
+    except tse_results.NotPublished:
+        return None
+    try:
+        raw = json.loads(get(tse_results.file_url(2026, election, 3, uf.lower())))
+    except urllib.error.HTTPError as e:
+        if e.code in (403, 404):
+            return None
+        raise
+    if num(raw.get("s", {}).get("pst")) < 100:
+        return None  # still counting: the pair stays "going to the runoff"
+    valid = num(raw["v"]["vv"])
+    return [
+        {
+            "sq": str(c.get("sqcand")),
+            "votes": int(num(c.get("vap"))),
+            "share": round(num(c.get("vap")) / valid * 100, 2) if valid else None,
+            "elected": str(c.get("st", "")).startswith("Eleito"),
+        }
+        for g in raw["carg"][0]["agr"]
+        for p in g["par"]
+        for c in p["cand"]
+    ]
+
+
+def settle_runoffs(people: list[dict], read=runoff_result) -> list[dict]:
+    """Governors going to the runoff: once it is counted, the winner is elected (with the
+    runoff's votes) and the other leaves the list."""
+    results = {e["uf"]: read(e["uf"]) for e in people if e["status"] == "runoff"}
+    out = []
+    for e in people:
+        result = results.get(e["uf"]) if e["status"] == "runoff" else None
+        if result is None:
+            out.append(e)
+            continue
+        mine = next((c for c in result if c["sq"] == e["sq"]), None)
+        if mine and mine["elected"]:
+            out.append({**e, "status": "elected", "votes": mine["votes"], "share": mine["share"]})
+    return out
 
 
 # --- Candidacies ----------------------------------------------------------------------
@@ -242,6 +295,56 @@ def history(titles: set[str]) -> dict[str, list[dict]]:
             n += 1
         print(f"  {year}: {n} candidacies of the people elected in 2026")
     return {t: sorted(v.values(), key=lambda e: e["year"]) for t, v in out.items()}
+
+
+RAN_FOR = {"DEPUTADO FEDERAL": "deputado-federal", "SENADOR": "senador", "GOVERNADOR": "governador",
+           "DEPUTADO ESTADUAL": "deputado-estadual", "DEPUTADO DISTRITAL": "deputado-distrital"}  # fmt: skip
+
+
+def defeated(camara: dict, senate: list[dict], results: dict[str, dict], winners: set[str]) -> list[dict]:
+    """Deputies and senators in office now who ran in 2026 and were not elected (nor are in
+    a runoff): their 2026 candidacy found by CPF (deputies) or by full name and birth date
+    (senators), the office they ran for and their votes. Senators elected in 2022 do not
+    face the voters until 2030 and are left out."""
+    rows = [r for r in candidate_rows(2026) if r["DS_CARGO"].upper() in RAN_FOR]
+    by_cpf = {value(r.get("NR_CPF_CANDIDATO")): r for r in rows}
+    by_birth = {(plain(r["NM_CANDIDATO"]), birth(r)): r for r in rows}
+    sitting: list[tuple[str, dict | None]] = []
+    for cpf, d in camara.items():
+        status = d.get("ultimoStatus") or {}
+        # Holders now: in office or on leave (a minister keeps the seat); not substitutes gone back.
+        if status.get("idLegislatura") == CAMARA_LEGISLATURE and status.get("situacao") in (
+            "Exercício",
+            "Licença",
+        ):
+            sitting.append(("camara", by_cpf.get(cpf)))
+    for s in senate:
+        ident = s["IdentificacaoParlamentar"]
+        if s["Mandato"]["PrimeiraLegislaturaDoMandato"]["NumeroLegislatura"] == TERM_FROM_2022:
+            continue
+        key = (plain(ident["NomeCompletoParlamentar"]), s["DadosBasicosParlamentar"].get("DataNascimento"))
+        sitting.append(("senado", by_birth.get(key)))
+    out = []
+    for house, row in sitting:
+        if row is None:
+            continue  # did not run in 2026
+        sq = row["SQ_CANDIDATO"]
+        if sq in winners or sq not in results:
+            continue  # elected, in a runoff, or a candidacy the count never had (withdrawn)
+        r = results[sq]
+        out.append(
+            {
+                "name": title(row["NM_URNA_CANDIDATO"].strip()),
+                "house": house,
+                "party": row["SG_PARTIDO"],
+                "uf": row["SG_UF"],
+                "ranFor": RAN_FOR[row["DS_CARGO"].upper()],
+                "votes": r["votes"],
+                "share": r["share"],
+                "status": r["status"],
+            }
+        )
+    return sorted(out, key=lambda x: (x["house"], x["uf"], -x["votes"]))
 
 
 def kind_of(office: str, past: list[dict]) -> str:
@@ -334,6 +437,45 @@ def socials(urls: list[str]) -> list[dict]:
     return out
 
 
+# Handles there are not case-sensitive: the TSE's file often writes the whole address in capitals.
+CASELESS = (
+    "instagram.com",
+    "tiktok.com",
+    "x.com",
+    "twitter.com",
+    "facebook.com",
+    "youtube.com",
+    "threads.net",
+)
+
+
+def declared_socials() -> dict[str, list[dict]]:
+    """Candidate sequence number → social networks they declared to the TSE in 2026 (every
+    candidate, not only those in Congress: governors and first-timers too)."""
+    url = "https://cdn.tse.jus.br/estatistica/sead/odsele/consulta_cand/rede_social_candidato_2026.zip"
+    by_sq: dict[str, list[str]] = defaultdict(list)
+    with zipfile.ZipFile(io.BytesIO(cached("rede_social_candidato_2026.zip", url))) as z:
+        for name in z.namelist():
+            if not name.endswith(".csv"):
+                continue
+            with z.open(name) as raw:
+                for r in csv.DictReader(io.TextIOWrapper(raw, encoding="latin-1"), delimiter=";"):
+                    u = r["DS_URL"].strip()
+                    if not u or " " in u or "." not in u:
+                        continue  # "@handle" alone, or not an address
+                    if not u.lower().startswith("http"):
+                        u = "https://" + u
+                    if any(host in u.lower() for host in CASELESS):
+                        u = u.lower()
+                    else:  # keep the path as written; the scheme and host are caseless anyway
+                        scheme, _, rest = u.partition("://")
+                        host, _, path = rest.partition("/")
+                        u = f"{scheme.lower()}://{host.lower()}" + (f"/{path}" if path else "")
+                    if u not in by_sq[r["SQ_CANDIDATO"]]:
+                        by_sq[r["SQ_CANDIDATO"]].append(u)
+    return {sq: socials(urls) for sq, urls in by_sq.items()}
+
+
 def camara_contact(d: dict) -> dict:
     s = d.get("ultimoStatus") or {}
     g = s.get("gabinete") or {}
@@ -394,7 +536,7 @@ def slug(name: str, uf: str, office: str) -> str:
 
 def main() -> int:
     print("who was elected…", flush=True)
-    elected, official = elected_2026()
+    elected, official, results = elected_2026()
     by_sq = {e["sq"]: e for e in elected}
     rows_2026: dict[str, dict] = {}
     for row in candidate_rows(2026):
@@ -432,6 +574,7 @@ def main() -> int:
     past = history(titles)  # type: ignore[arg-type]
 
     print("contacts…", flush=True)
+    declared = declared_socials()
     camara = camara_deputies()
     senate = senators()
     senate_by_birth = {
@@ -484,6 +627,10 @@ def main() -> int:
             "kind": kind_of(office, before),
             "history": before,
             "contact": contact(row),
+            # What they declared to the TSE: the only list for governors and first-timers.
+            **({"declaredSocials": declared[row["SQ_CANDIDATO"]]} if row["SQ_CANDIDATO"] in declared else {}),
+            # Only to write the office as she holds it ("Governadora"); TSE's declared gender.
+            **({"feminine": True} if value(row.get("DS_GENERO")) == "FEMININO" else {}),
         }
 
     # Kept out of the site and out of git: what pipeline.profiles_web needs to find each
@@ -504,7 +651,23 @@ def main() -> int:
         people.append(p)
 
     people.sort(key=lambda p: (p["office"], p["uf"], -(p["votes"] or 0)))
-    out = {"officialDeputies": official, "historySince": YEARS[0], "people": people}
+    lost = defeated(camara, senate, results, {e["sq"] for e in elected})
+    print(f"  {len(lost)} deputies and senators ran in 2026 and were not elected")
+    out = {
+        "officialDeputies": official,
+        "historySince": YEARS[0],
+        "people": people,
+        "defeated": lost,
+    }
+    # Headlines already fetched stay until pipeline.profiles_web fetches them again.
+    if OUTPUT.exists():
+        before = json.loads(OUTPUT.read_text(encoding="utf-8"))
+        news = {p["id"]: p["news"] for p in before.get("people", []) if "news" in p}
+        for p in people:
+            if p["id"] in news:
+                p["news"] = news[p["id"]]
+        if before.get("newsUpdated"):
+            out["newsUpdated"] = before["newsUpdated"]
     OUTPUT.write_text(json.dumps(out, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     PRIVATE.write_text(json.dumps(private, ensure_ascii=False), encoding="utf-8")
     counts = defaultdict(int)

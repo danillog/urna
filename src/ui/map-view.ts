@@ -9,7 +9,9 @@ import {
   margin,
   raceKey,
   shade,
+  placeRows,
   winsByGroup,
+  winsByState,
   type MapData,
   type MapOffice,
   type GroupWins,
@@ -106,6 +108,7 @@ export class MapView {
   private shown: { key: string; groups: Set<string>; groupOf: (i: number) => string | null } | null = null;
   private timelineOffice: MapOffice | null = null;
   private highlighted: string | null = null;
+  private tableKey: string | null = null;
 
   constructor(
     private readonly data: MapData,
@@ -158,6 +161,10 @@ export class MapView {
 
   play(): void {
     const years = this.data.years(this.state.office);
+    // Download the elections ahead, so each step is ready when its turn comes.
+    if (this.state.office !== "idhm")
+      for (const y of years)
+        void this.data.load(raceKey(this.state.office, y, this.state.round)).catch(() => {});
     if (this.state.year === years.at(-1)) this.set({ year: years[0]! });
     this.timer = window.setInterval(() => {
       const ys = this.data.years(this.state.office);
@@ -199,10 +206,25 @@ export class MapView {
     );
     if (this.shown?.key !== key) {
       if (s.office === "idhm") this.renderIdhm(map, key);
-      else this.renderElection(map, key);
+      else if (!this.data.ready(key)) {
+        // Downloaded on demand: draw when it arrives, if it is still the one asked for.
+        byId("map-meta").textContent = t.loading;
+        void this.data.load(key).then(
+          () => raceKey(this.state.office, this.state.year, this.state.round) === key && this.render(map),
+          () => (byId("map-meta").textContent = t.loadFailed),
+        );
+        if (!this.shown) return; // nothing drawn yet to frame or highlight
+      } else this.renderElection(map, key);
     }
     this.renderCamera();
     this.renderFocus();
+    // The table follows the election and the state picked.
+    const tableKey = `${key}|${s.uf ?? ""}`;
+    if (s.office !== "idhm" && this.data.ready(key) && this.tableKey !== tableKey) {
+      this.renderTable(map, this.data.race(key)!);
+      this.tableKey = tableKey;
+    }
+    byId("map-table-box").hidden = s.office === "idhm";
   }
 
   /** Everything that depends on the election itself. */
@@ -236,8 +258,13 @@ export class MapView {
     };
     this.highlighted = null; // the base map changes under it
     byId("map-meta").textContent = t.mapMunicipalities(integer(wins.reduce((n, w) => n + w.wins, 0)));
-    byId("map-note").textContent = president ? t.mapNotePresident : t.mapNoteMayor;
-    byId("map-sources").innerHTML = sourcesHtml([t.sources.tseOpenData, t.sources.ibgeMesh]);
+    byId("map-note").textContent = president
+      ? t.mapNotePresident + (race.fromResultsSite ? ` ${t.mapNoteResultsSite}` : "")
+      : t.mapNoteMayor;
+    byId("map-sources").innerHTML = sourcesHtml([
+      race.fromResultsSite ? t.sources.tseResults : t.sources.tseOpenData,
+      t.sources.ibgeMesh,
+    ]);
     this.renderLegend(race, wins);
 
     this.drawing!.paint(
@@ -413,5 +440,41 @@ export class MapView {
       note.textContent = t.mapMargin(steps.join(" · "));
       el.appendChild(note);
     }
+  }
+
+  /** The election as a table: the state's municipalities, or each state's count of wins. */
+  private renderTable(map: MunicipalMap, race: MapRace): void {
+    const uf = this.state.uf;
+    const box = byId("map-table");
+    if (uf) {
+      const rows = placeRows(map, race, uf);
+      box.innerHTML =
+        `<table class="data"><caption>${escapeHtml(t.mapTable.caption(rows.length, uf))}</caption>` +
+        `<thead><tr><th>${t.mapTable.place}</th><th>${t.mapTable.winner}</th><th class="num">%</th>` +
+        `<th>${t.mapTable.second}</th><th class="num">%</th><th class="num">${t.mapTable.votes}</th></tr></thead><tbody>` +
+        rows
+          .map(
+            (r) =>
+              `<tr><td>${escapeHtml(r.name)}</td><td>${escapeHtml(r.winner)}</td><td class="num">${percent(r.winnerShare)}</td>` +
+              `<td>${escapeHtml(r.second ?? "—")}</td><td class="num">${r.secondShare === null ? "—" : percent(r.secondShare)}</td>` +
+              `<td class="num">${integer(r.votes)}</td></tr>`,
+          )
+          .join("") +
+        `</tbody></table>`;
+      return;
+    }
+    const states = winsByState(map, race);
+    const labels = winsByGroup(race).flatMap((w) => w.label.split("/"));
+    const names = [...new Set(labels)];
+    box.innerHTML =
+      `<table class="data"><caption>${escapeHtml(t.mapTable.byState)}</caption>` +
+      `<thead><tr><th>UF</th>${names.map((n) => `<th class="num">${escapeHtml(n)}</th>`).join("")}</tr></thead><tbody>` +
+      states
+        .map(
+          (s) =>
+            `<tr><td>${s.uf}</td>${names.map((n) => `<td class="num">${s.wins[n] ? integer(s.wins[n]) : "—"}</td>`).join("")}</tr>`,
+        )
+        .join("") +
+      `</tbody></table>`;
   }
 }

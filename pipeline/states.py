@@ -141,7 +141,7 @@ def build_states(
     raw_dir: Path,
     round_dates: dict[str, date],
     pollsters: PollsterRegistry,
-    results: dict | None = None,
+    results: dict[str, dict | None] | None = None,
 ) -> dict:
     out = {}
     for path in sorted(raw_dir.glob("*.json")):
@@ -158,8 +158,10 @@ def build_states(
         }
         for race, (office, round_id) in RACES.items():
             if source.get(race):
-                # Official results so far: the 1st round, governor and Senate.
-                official = results[office][uf]["candidates"] if results and round_id == "r1" else None
+                # Official results, per round (pipeline.results); a runoff only where there is one.
+                round_results = (results or {}).get(round_id) or {}
+                race_result = round_results.get(office, {}).get(uf)
+                official = race_result["candidates"] if race_result else None
                 built = build_race(uf, race, source[race], config, round_dates[round_id], pollsters, official)
                 if built:
                     entry[office][round_id] = built

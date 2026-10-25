@@ -107,6 +107,8 @@ export interface EncodedMapRace {
   lineages?: string[];
   /** Mayor: elected mayor per municipality, newline-separated. */
   mayors?: string;
+  /** "results": read from the TSE's results site, before the open-data archive had it. */
+  source?: "results";
 }
 
 export interface MunicipalMap {
@@ -115,6 +117,8 @@ export interface MunicipalMap {
   topology: Topology<{ municipalities: GeometryCollection }>;
   /** Keyed "president-2022-r2" or "mayor-2020". */
   races: Record<string, EncodedMapRace>;
+  /** Every election's key when `races` arrives empty and each is downloaded on demand. */
+  raceKeys?: string[];
   /** Municipal HDI by census year: base64 Uint16 in thousandths, 0 = no data. */
   idhm?: Record<string, string>;
   /** Years in `idhm` that are our own estimate from census tables, not the Atlas's figure;

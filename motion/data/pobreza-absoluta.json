@@ -1,0 +1,537 @@
+{
+ "year": 2024,
+ "line": "US$ 8,30 por dia (PPC 2021)",
+ "countries": [
+  {
+   "iso": "BRA",
+   "name": "Brasil",
+   "year": 2024,
+   "rate": 20.6,
+   "population": 211998573,
+   "poor": 43777705,
+   "urbanOnly": false
+  },
+  {
+   "iso": "MEX",
+   "name": "México",
+   "year": 2024,
+   "rate": 21.4,
+   "population": 130861007,
+   "poor": 28004255,
+   "urbanOnly": false
+  },
+  {
+   "iso": "COL",
+   "name": "Colômbia",
+   "year": 2024,
+   "rate": 37.0,
+   "population": 52886363,
+   "poor": 19573243,
+   "urbanOnly": false
+  },
+  {
+   "iso": "PER",
+   "name": "Peru",
+   "year": 2024,
+   "rate": 36.2,
+   "population": 34217848,
+   "poor": 12386861,
+   "urbanOnly": false
+  },
+  {
+   "iso": "GTM",
+   "name": "Guatemala",
+   "year": 2023,
+   "rate": 47.3,
+   "population": 18124838,
+   "poor": 8576673,
+   "urbanOnly": false
+  },
+  {
+   "iso": "ARG",
+   "name": "Argentina",
+   "year": 2024,
+   "rate": 15.2,
+   "population": 42165780,
+   "poor": 6400765,
+   "urbanOnly": true
+  },
+  {
+   "iso": "USA",
+   "name": "Estados Unidos",
+   "year": 2024,
+   "rate": 1.8,
+   "population": 340110988,
+   "poor": 6121998,
+   "urbanOnly": false
+  },
+  {
+   "iso": "ECU",
+   "name": "Equador",
+   "year": 2024,
+   "rate": 32.6,
+   "population": 18135478,
+   "poor": 5915793,
+   "urbanOnly": false
+  },
+  {
+   "iso": "HND",
+   "name": "Honduras",
+   "year": 2024,
+   "rate": 49.8,
+   "population": 10825703,
+   "poor": 5387952,
+   "urbanOnly": false
+  },
+  {
+   "iso": "BOL",
+   "name": "Bolívia",
+   "year": 2024,
+   "rate": 17.4,
+   "population": 12413315,
+   "poor": 2154951,
+   "urbanOnly": false
+  },
+  {
+   "iso": "SLV",
+   "name": "El Salvador",
+   "year": 2023,
+   "rate": 29.9,
+   "population": 6309624,
+   "poor": 1889101,
+   "urbanOnly": false
+  },
+  {
+   "iso": "DOM",
+   "name": "República Dominicana",
+   "year": 2024,
+   "rate": 14.0,
+   "population": 11427557,
+   "poor": 1595287,
+   "urbanOnly": false
+  },
+  {
+   "iso": "PRY",
+   "name": "Paraguai",
+   "year": 2024,
+   "rate": 20.5,
+   "population": 6929153,
+   "poor": 1418398,
+   "urbanOnly": false
+  },
+  {
+   "iso": "PAN",
+   "name": "Panamá",
+   "year": 2024,
+   "rate": 19.8,
+   "population": 4515577,
+   "poor": 894084,
+   "urbanOnly": false
+  },
+  {
+   "iso": "CHL",
+   "name": "Chile",
+   "year": 2024,
+   "rate": 4.5,
+   "population": 19764771,
+   "poor": 891391,
+   "urbanOnly": false
+  },
+  {
+   "iso": "CRI",
+   "name": "Costa Rica",
+   "year": 2024,
+   "rate": 12.6,
+   "population": 5129910,
+   "poor": 644830,
+   "urbanOnly": false
+  },
+  {
+   "iso": "CAN",
+   "name": "Canadá",
+   "year": 2022,
+   "rate": 0.6,
+   "population": 38935934,
+   "poor": 233616,
+   "urbanOnly": false
+  },
+  {
+   "iso": "URY",
+   "name": "Uruguai",
+   "year": 2024,
+   "rate": 5.9,
+   "population": 3386588,
+   "poor": 198115,
+   "urbanOnly": false
+  }
+ ],
+ "usOfficial": {
+  "poor": 40354267,
+  "rate": 12.1,
+  "name": "United States",
+  "series": {
+   "2004": {
+    "poor": 37039804,
+    "rate": 12.7,
+    "name": "United States"
+   },
+   "2005": {
+    "poor": 38231474,
+    "rate": 13.3,
+    "name": "United States"
+   },
+   "2006": {
+    "poor": 38757253,
+    "rate": 13.3,
+    "name": "United States"
+   },
+   "2007": {
+    "poor": 38052247,
+    "rate": 13.0,
+    "name": "United States"
+   },
+   "2008": {
+    "poor": 39108422,
+    "rate": 13.2,
+    "name": "United States"
+   },
+   "2009": {
+    "poor": 42868163,
+    "rate": 14.3,
+    "name": "United States"
+   },
+   "2010": {
+    "poor": 46215956,
+    "rate": 15.3,
+    "name": "United States"
+   },
+   "2011": {
+    "poor": 48452035,
+    "rate": 15.9,
+    "name": "United States"
+   },
+   "2012": {
+    "poor": 48760123,
+    "rate": 15.9,
+    "name": "United States"
+   },
+   "2013": {
+    "poor": 48810868,
+    "rate": 15.8,
+    "name": "United States"
+   },
+   "2014": {
+    "poor": 48208387,
+    "rate": 15.5,
+    "name": "United States"
+   },
+   "2015": {
+    "poor": 46153077,
+    "rate": 14.7,
+    "name": "United States"
+   },
+   "2016": {
+    "poor": 44268996,
+    "rate": 14.0,
+    "name": "United States"
+   },
+   "2017": {
+    "poor": 42583651,
+    "rate": 13.4,
+    "name": "United States"
+   },
+   "2018": {
+    "poor": 41852315,
+    "rate": 13.1,
+    "name": "United States"
+   },
+   "2019": {
+    "poor": 39490096,
+    "rate": 12.3,
+    "name": "United States"
+   },
+   "2020": {
+    "poor": 38371394,
+    "rate": 11.9,
+    "name": "United States"
+   },
+   "2021": {
+    "poor": 41393176,
+    "rate": 12.8,
+    "name": "United States"
+   },
+   "2022": {
+    "poor": 40951625,
+    "rate": 12.6,
+    "name": "United States"
+   },
+   "2023": {
+    "poor": 40763043,
+    "rate": 12.5,
+    "name": "United States"
+   },
+   "2024": {
+    "poor": 40354267,
+    "rate": 12.1,
+    "name": "United States"
+   }
+  }
+ },
+ "states": [
+  {
+   "poor": 4579429,
+   "rate": 11.8,
+   "name": "California"
+  },
+  {
+   "poor": 4111828,
+   "rate": 13.4,
+   "name": "Texas"
+  },
+  {
+   "poor": 2772367,
+   "rate": 12.1,
+   "name": "Florida"
+  },
+  {
+   "poor": 2702081,
+   "rate": 14.0,
+   "name": "New York"
+  },
+  {
+   "poor": 1463705,
+   "rate": 12.6,
+   "name": "Ohio"
+  },
+  {
+   "poor": 1463161,
+   "rate": 11.6,
+   "name": "Pennsylvania"
+  },
+  {
+   "poor": 1434871,
+   "rate": 11.5,
+   "name": "Illinois"
+  },
+  {
+   "poor": 1393391,
+   "rate": 12.8,
+   "name": "Georgia"
+  },
+  {
+   "poor": 1353622,
+   "rate": 12.6,
+   "name": "North Carolina"
+  },
+  {
+   "poor": 1326356,
+   "rate": 13.4,
+   "name": "Michigan"
+  },
+  {
+   "poor": 942730,
+   "rate": 13.3,
+   "name": "Tennessee"
+  },
+  {
+   "poor": 881642,
+   "rate": 11.9,
+   "name": "Arizona"
+  },
+  {
+   "poor": 864015,
+   "rate": 9.2,
+   "name": "New Jersey"
+  },
+  {
+   "poor": 839669,
+   "rate": 9.8,
+   "name": "Virginia"
+  },
+  {
+   "poor": 829482,
+   "rate": 18.6,
+   "name": "Louisiana"
+  },
+  {
+   "poor": 813329,
+   "rate": 12.1,
+   "name": "Indiana"
+  },
+  {
+   "poor": 779086,
+   "rate": 10.0,
+   "name": "Washington"
+  },
+  {
+   "poor": 763679,
+   "rate": 15.2,
+   "name": "Alabama"
+  },
+  {
+   "poor": 740873,
+   "rate": 12.2,
+   "name": "Missouri"
+  },
+  {
+   "poor": 708371,
+   "rate": 13.3,
+   "name": "South Carolina"
+  },
+  {
+   "poor": 688530,
+   "rate": 15.4,
+   "name": "Kentucky"
+  },
+  {
+   "poor": 675676,
+   "rate": 9.8,
+   "name": "Massachusetts"
+  },
+  {
+   "poor": 599615,
+   "rate": 10.3,
+   "name": "Wisconsin"
+  },
+  {
+   "poor": 588757,
+   "rate": 14.8,
+   "name": "Oklahoma"
+  },
+  {
+   "poor": 566300,
+   "rate": 9.2,
+   "name": "Maryland"
+  },
+  {
+   "poor": 557895,
+   "rate": 9.6,
+   "name": "Colorado"
+  },
+  {
+   "poor": 528907,
+   "rate": 9.3,
+   "name": "Minnesota"
+  },
+  {
+   "poor": 508188,
+   "rate": 17.8,
+   "name": "Mississippi"
+  },
+  {
+   "poor": 489364,
+   "rate": 11.7,
+   "name": "Oregon"
+  },
+  {
+   "poor": 460261,
+   "rate": 15.3,
+   "name": "Arkansas"
+  },
+  {
+   "poor": 382609,
+   "rate": 11.8,
+   "name": "Nevada"
+  },
+  {
+   "poor": 361291,
+   "rate": 10.1,
+   "name": "Connecticut"
+  },
+  {
+   "poor": 352136,
+   "rate": 11.2,
+   "name": "Iowa"
+  },
+  {
+   "poor": 330455,
+   "rate": 15.8,
+   "name": "New Mexico"
+  },
+  {
+   "poor": 313926,
+   "rate": 10.9,
+   "name": "Kansas"
+  },
+  {
+   "poor": 288630,
+   "rate": 8.4,
+   "name": "Utah"
+  },
+  {
+   "poor": 277324,
+   "rate": 16.2,
+   "name": "West Virginia"
+  },
+  {
+   "poor": 207151,
+   "rate": 10.6,
+   "name": "Nebraska"
+  },
+  {
+   "poor": 203557,
+   "rate": 10.4,
+   "name": "Idaho"
+  },
+  {
+   "poor": 144234,
+   "rate": 10.6,
+   "name": "Maine"
+  },
+  {
+   "poor": 140891,
+   "rate": 10.0,
+   "name": "Hawaii"
+  },
+  {
+   "poor": 128454,
+   "rate": 12.0,
+   "name": "Rhode Island"
+  },
+  {
+   "poor": 116104,
+   "rate": 10.4,
+   "name": "Montana"
+  },
+  {
+   "poor": 110233,
+   "rate": 16.4,
+   "name": "District of Columbia"
+  },
+  {
+   "poor": 103364,
+   "rate": 10.1,
+   "name": "Delaware"
+  },
+  {
+   "poor": 100256,
+   "rate": 7.3,
+   "name": "New Hampshire"
+  },
+  {
+   "poor": 94450,
+   "rate": 10.5,
+   "name": "South Dakota"
+  },
+  {
+   "poor": 82590,
+   "rate": 10.8,
+   "name": "North Dakota"
+  },
+  {
+   "poor": 74226,
+   "rate": 10.3,
+   "name": "Alaska"
+  },
+  {
+   "poor": 57876,
+   "rate": 9.3,
+   "name": "Vermont"
+  },
+  {
+   "poor": 57331,
+   "rate": 10.0,
+   "name": "Wyoming"
+  }
+ ]
+}

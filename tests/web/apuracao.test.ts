@@ -3,6 +3,7 @@ import { resolve } from "node:path";
 
 import { describe, expect, it } from "vitest";
 
+import { apuracaoFromSearch, apuracaoToSearch, defaultRound } from "../../src/ui/apuracao-view";
 import {
   OFFICES,
   UFS,
@@ -10,6 +11,8 @@ import {
   displayName,
   holdsSeat,
   lead,
+  noChoice,
+  noChoiceShare,
   num,
   parseTse,
   partyColor,
@@ -176,4 +179,45 @@ describe("simulated count, every office", () => {
       }
     });
   }
+});
+
+describe("who chose no one", () => {
+  it("counts null and blank votes and abstention, as the TSE does", () => {
+    // São Paulo, mayor, 2024: 6,773,587 voted of 9,322,444; 241,734 blank, 422,802 null and 833
+    // for annulled candidates.
+    const n = noChoice(sp2024);
+    expect(n).toEqual({ cast: 6773587, blank: 241734, nulls: 423635, absent: 2548857, electorate: 9322444 });
+    expect(noChoiceShare(n, "nulls")).toBeCloseTo(6.254, 3);
+    expect(noChoiceShare(n, "absent")).toBeCloseTo(27.34, 2);
+    // A Worker answer without the abstention count: worked out from the turnout.
+    const old = noChoice({ ...sp2024, absent: undefined });
+    expect(Math.abs(old.absent - 2548857)).toBeLessThan(500);
+    // Before the count starts there is nothing to share.
+    expect(noChoiceShare(noChoice(br2026), "nulls")).toBeNull();
+  });
+});
+
+describe("the round the tab opens on", () => {
+  it("is the runoff from the day after the 1st round, by Brasília's calendar", () => {
+    // 4 Oct, 23:30 in Brasília is already 5 Oct in UTC: still the 1st round's night.
+    expect(defaultRound("2026-10-04", new Date("2026-10-05T02:30:00Z"))).toBe("r1");
+    expect(defaultRound("2026-10-04", new Date("2026-10-05T03:30:00Z"))).toBe("r2");
+    expect(defaultRound("2026-10-04", new Date("2026-09-30T12:00:00Z"))).toBe("r1");
+    expect(defaultRound(undefined)).toBe("r1");
+  });
+
+  it("gives way to the round a link names, and always writes it back", () => {
+    const named = apuracaoFromSearch(new URLSearchParams("round=r1"), "r2").state;
+    expect(named.round).toBe("r1");
+    expect(apuracaoFromSearch(new URLSearchParams(), "r2").state.round).toBe("r2");
+    const params = new URLSearchParams();
+    apuracaoToSearch(named, "live", params);
+    expect(params.get("round")).toBe("r1");
+    // Senators have no runoff: the round is neither read nor written.
+    const senate = apuracaoFromSearch(new URLSearchParams("cargo=senador"), "r2").state;
+    expect(senate.round).toBe("r1");
+    const none = new URLSearchParams();
+    apuracaoToSearch(senate, "live", none);
+    expect(none.has("round")).toBe(false);
+  });
 });

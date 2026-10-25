@@ -1,4 +1,4 @@
-from pipeline.profiles import kind_of, plain, result_of, socials, title
+from pipeline.profiles import kind_of, plain, result_of, settle_runoffs, socials, title
 
 
 def test_results_read_as_the_tse_writes_them():
@@ -38,3 +38,25 @@ def test_place_names_keep_their_small_words():
     assert title("SANTA BÁRBARA D'OESTE") == "Santa Bárbara d'Oeste"
     assert title("JHC") == "JHC"
     assert title("NIKOLAS FERREIRA") == "Nikolas Ferreira"
+
+
+def test_a_counted_runoff_keeps_the_winner_with_its_votes_and_drops_the_other():
+    people = [
+        {"sq": "1", "uf": "SP", "status": "runoff", "votes": 10, "share": 40.0, "office": "governador"},
+        {"sq": "2", "uf": "SP", "status": "runoff", "votes": 9, "share": 36.0, "office": "governador"},
+        {"sq": "3", "uf": "RJ", "status": "runoff", "votes": 8, "share": 45.0, "office": "governador"},
+        {"sq": "4", "uf": "MG", "status": "elected", "votes": 7, "share": 55.0, "office": "governador"},
+    ]
+    results = {
+        "SP": [
+            {"sq": "1", "votes": 20, "share": 48.0, "elected": False},
+            {"sq": "2", "votes": 22, "share": 52.0, "elected": True},
+        ],
+        "RJ": None,  # not counted yet
+    }
+    out = settle_runoffs(people, read=lambda uf: results.get(uf))
+    assert [(p["sq"], p["status"], p["votes"]) for p in out] == [
+        ("2", "elected", 22),
+        ("3", "runoff", 8),
+        ("4", "elected", 7),
+    ]

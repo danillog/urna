@@ -1,0 +1,76 @@
+{
+ "year": 2023,
+ "firstYear": 1990,
+ "count": 193,
+ "anchors": [
+  {
+   "iso": "TCD",
+   "name": "Chade",
+   "hdi": 0.416,
+   "le": 55.1,
+   "mys": 2.3,
+   "gnipc": 1748
+  },
+  {
+   "iso": "ETH",
+   "name": "Etiópia",
+   "hdi": 0.497,
+   "le": 67.3,
+   "mys": 2.4,
+   "gnipc": 2796
+  },
+  {
+   "iso": "KHM",
+   "name": "Camboja",
+   "hdi": 0.606,
+   "le": 70.7,
+   "mys": 5.2,
+   "gnipc": 4931
+  },
+  {
+   "iso": "IRQ",
+   "name": "Iraque",
+   "hdi": 0.695,
+   "le": 72.3,
+   "mys": 6.8,
+   "gnipc": 12654
+  },
+  {
+   "iso": "BRA",
+   "name": "Brasil",
+   "hdi": 0.786,
+   "le": 75.8,
+   "mys": 8.4,
+   "gnipc": 18011
+  },
+  {
+   "iso": "POL",
+   "name": "Polônia",
+   "hdi": 0.906,
+   "le": 78.6,
+   "mys": 13.2,
+   "gnipc": 42218
+  }
+ ],
+ "top": {
+  "iso": "ISL",
+  "name": "Islândia",
+  "hdi": 0.972,
+  "le": 82.7,
+  "mys": 13.9,
+  "gnipc": 69117
+ },
+ "bottom": {
+  "iso": "SSD",
+  "name": "Sudão do Sul",
+  "hdi": 0.388,
+  "le": 57.6,
+  "mys": 5.7,
+  "gnipc": 688
+ },
+ "world": {
+  "first": 0.608,
+  "last": 0.756
+ },
+ "brazilRank": 84
+}

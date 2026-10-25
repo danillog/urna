@@ -1,0 +1,225 @@
+# Bancadas temáticas da Câmara medidas pelo voto: bala, boi e bíblia. RASCUNHO para revisão.
+#
+# Cada entrada é uma votação nominal de plenário (id do arquivo votacoesVotos da Câmara) e o
+# lado da bancada nela. A bancada de fato de um tema, numa legislatura, é quem vota com esse
+# lado na maioria das votações do tema em que esteve presente.
+#
+#   - id: "14493-442"         # idVotacao da Câmara (dadosabertos.camara.leg.br/api/v2/votacoes/<id>)
+#     date: 2015-06-30
+#     bill: PEC 171/1993      # a proposição votada
+#     what: o que se votou, numa frase
+#     side: Sim | Não         # o voto da bancada
+#     evidence: placar e orientações que sustentam o lado (do arquivo votacoesOrientacoes)
+#     review: true            # ainda não conferido por uma pessoa: o lado ou o conteúdo
+#
+# Critérios do rascunho:
+# - só votações disputadas: o lado perdedor com pelo menos 15% dos votos sim/não (quase
+#   unanimidade não separa ninguém);
+# - mérito (texto-base, PEC, emendas e destaques de conteúdo) e urgências; requerimentos de
+#   adiamento, retirada de pauta e outros de obstrução ficam de fora;
+# - o lado vem do conteúdo, conferido com a orientação dos partidos e, na bíblia, com o voto
+#   dos deputados do PRB/Republicanos e do PSC.
+#
+# Limite dos anos antigos: até 2010 o plenário votava quase tudo de forma simbólica (2003 tem 61
+# votações nominais; 2015, 313). Votações marcantes sem registro nominal no plenário:
+# Estatuto do Desarmamento (2003; o voto nominal achado é o da comissão de Segurança Pública) e
+# a urgência do PL 1904/2024 (aborto após 22 semanas como homicídio, simbólica em 2024).
+
+bala:
+  - id: "14493-442"
+    date: 2015-06-30
+    bill: PEC 171/1993
+    what: substitutivo da comissão especial que reduzia a maioridade penal para 16 anos em crimes graves (rejeitado por não alcançar 308 votos)
+    side: Sim
+    evidence: 303 × 184; DEM, PSDB, PMDB e o bloco do PRB orientaram Sim; PT, PSOL e governo, Não
+
+  - id: "14493-503"
+    date: 2015-07-01
+    bill: PEC 171/1993
+    what: emenda aglutinativa que reduz a maioridade penal para 16 anos em crimes hediondos, homicídio doloso e lesão corporal seguida de morte (1º turno)
+    side: Sim
+    evidence: 323 × 155; DEM, PSDB, PMDB Sim; PT e governo Não
+
+  - id: "14493-536"
+    date: 2015-08-19
+    bill: PEC 171/1993
+    what: redução da maioridade penal, 2º turno
+    side: Sim
+    evidence: 320 × 152; DEM, PSDB, PMDB Sim; PT, PSOL e governo Não
+
+  - id: "2210523-70"
+    date: 2019-08-21
+    bill: PL 3715/2019
+    what: posse de arma em área rural vale em toda a extensão do imóvel (texto-base)
+    side: Sim
+    evidence: 320 × 61; PSL, PL, DEM, PSDB Sim; PSOL Não; PT em obstrução
+
+  - id: "2209381-100"
+    date: 2019-11-05
+    bill: PL 3723/2019
+    what: mudanças no Estatuto do Desarmamento para atiradores, caçadores e colecionadores (texto-base)
+    side: Sim
+    evidence: 283 × 140; PSL, PL, DEM Sim; PT e PSOL Não
+
+  - id: "2287777-8"
+    date: 2021-06-22
+    bill: PL 2213/2021
+    what: urgência para exigir exame criminológico na progressão ao regime aberto e na saída temporária
+    side: Sim
+    evidence: 372 × 75; PSL, PL, DEM, MDB, PSDB Sim; PT e PSOL Não
+
+  - id: "596844-116"
+    date: 2022-08-03
+    bill: PL 6579/2013 (PL 583/2011)
+    what: restringe a saída temporária de presos (substitutivo da CCJ)
+    side: Sim
+    evidence: 311 × 98; PL, União, MDB, PSDB Sim; PT e PSOL Não
+
+  - id: "2357898-11"
+    date: 2023-12-06
+    bill: PDL 3/2023
+    what: urgência para sustar o decreto de Lula que limitou registro e compra de armas (rejeitada por não alcançar 257 votos)
+    side: Sim
+    evidence: 254 × 156; PL Sim; governo Não
+
+  - id: "2421056-8"
+    date: 2024-03-19
+    bill: PL 3874/2023
+    what: urgência para proibir posse e porte de arma a quem tem registro de agressão contra mulher
+    side: Não
+    evidence: 302 × 82; governo Sim; PL Não
+
+  - id: "2166877-73"
+    date: 2022-02-17
+    bill: PL 9432/2017
+    what: mudanças no Código Penal Militar (destaque, mantido o texto)
+    side: Sim
+    evidence: 291 × 134; PL, PSL, DEM, MDB Sim; PT e PSDB Não
+    review: true # conferir o que o destaque mudava antes de contar como pauta da bala
+
+boi:
+  - id: "17338-321"
+    date: 2011-05-24
+    bill: PL 1876/1999 (Código Florestal)
+    what: emenda 164, que consolida ocupações agropecuárias em áreas de preservação permanente
+    side: Sim
+    evidence: 273 × 182; PSDB, PMDB, DEM Sim; PT, PSOL e governo Não
+
+  - id: "17338-382"
+    date: 2012-04-25
+    bill: PL 1876/1999 (Código Florestal)
+    what: dispositivos do substitutivo do Senado que o relator propôs rejeitar
+    side: Não
+    evidence: 184 × 274; PT, PSOL e governo Sim; PMDB, PSDB, DEM Não
+    review: true # o sentido do Sim nesta votação é confuso; lado tirado das orientações
+
+  - id: "17338-414"
+    date: 2012-04-25
+    bill: PL 1876/1999 (Código Florestal)
+    what: destaque de dispositivo do texto do Senado (rejeitado)
+    side: Não
+    evidence: 184 × 228; PT, PSOL, PRB e governo Sim; PMDB, PSDB, DEM Não
+    review: true # conferir qual dispositivo
+
+  - id: "257161-337"
+    date: 2021-05-12
+    bill: PL 3729/2004 (PL 2159/2021, licenciamento ambiental)
+    what: nova lei geral do licenciamento ambiental (texto-base)
+    side: Sim
+    evidence: 300 × 122; PL, PSL, DEM, MDB, PSDB e governo Sim; PT e PSOL Não
+
+  - id: "257161-483"
+    date: 2025-07-16
+    bill: PL 2159/2021 (licenciamento ambiental)
+    what: aprovação final do licenciamento ambiental com as emendas do Senado (redação final)
+    side: Sim
+    evidence: 231 × 87; governo Não
+    review: true # é a redação final; ver se vale trocar pela votação das emendas do Senado (257161-454)
+
+  - id: "2252589-59"
+    date: 2021-08-03
+    bill: PL 2633/2020
+    what: regularização fundiária de terras da União (texto-base)
+    side: Sim
+    evidence: 296 × 136; PSL, PL, MDB, PSDB Sim; PT e PSOL Não
+
+  - id: "2199215-85"
+    date: 2021-08-25
+    bill: PL 2510/2019
+    what: municípios definem as áreas de preservação permanente às margens de rios urbanos (substitutivo)
+    side: Sim
+    evidence: 314 × 140; PSL, PL, MDB, PSDB, DEM Sim; PT e PSOL Não
+
+  - id: "46249-297"
+    date: 2022-02-09
+    bill: PL 6299/2002
+    what: nova lei dos agrotóxicos (texto-base)
+    side: Sim
+    evidence: 301 × 150; PL, PSL, MDB, DEM, PSDB e governo Sim; PT e PSOL Não
+
+  - id: "2317406-8"
+    date: 2022-03-09
+    bill: PL 191/2020
+    what: urgência para mineração e outras atividades em terras indígenas
+    side: Sim
+    evidence: 279 × 180; PL, União, PSDB e governo Sim; PT e PSOL Não
+
+  - id: "345311-270"
+    date: 2023-05-30
+    bill: PL 490/2007
+    what: marco temporal para demarcação de terras indígenas (texto-base)
+    side: Sim
+    evidence: 283 × 155; PL Sim; governo Não
+
+  - id: "2633410-8"
+    date: 2026-06-17
+    bill: PDL 717/2024
+    what: urgência para sustar normas do procedimento de demarcação de terras indígenas
+    side: Sim
+    evidence: 273 × 160; PL Sim; governo Não
+
+  - id: "335039-55"
+    date: 2006-12-20
+    bill: MPV 327/2006
+    what: plantio de transgênicos no entorno de unidades de conservação
+    side: Sim
+    evidence: 247 × 103; PMDB, PSDB, PTB, PL e governo Sim; PT e PSOL Não
+    review: true # governo e PT em lados opostos; conferir se cabe na pauta do boi
+
+biblia:
+  - id: "140375-143"
+    date: 2005-03-02
+    bill: PL 2401/2003 (Lei de Biossegurança)
+    what: substitutivo do Senado, que permite pesquisa com células-tronco embrionárias
+    side: Não
+    evidence: 352 × 60; os arquivos de 2005 não trazem o partido de cada deputado
+    review: true # o placar mal passa do corte de 15%; conferir a orientação das bancadas religiosas
+
+  - id: "153275-100"
+    date: 2010-12-14
+    bill: PL 2944/2004
+    what: subemenda que regulamentava os bingos (rejeitada)
+    side: Não
+    evidence: 144 × 212; DEM, PSDB, PSOL Não; PTB e PMDB Sim; PRB e PSC votaram 9 Não × 5 Sim
+
+  - id: "483808-165"
+    date: 2013-05-22
+    bill: PL 7663/2010 (política sobre drogas)
+    what: destaque mantido no projeto de Osmar Terra sobre drogas
+    side: Sim
+    evidence: 186 × 95; PMDB Sim; PT e PSOL Não; PRB e PSC votaram 16 Sim × 0 Não
+    review: true # conferir qual dispositivo (internação involuntária?)
+
+  - id: "15460-165"
+    date: 2022-02-23
+    bill: PL 442/1991
+    what: legalização de cassinos, bingos e jogo do bicho (texto-base)
+    side: Não
+    evidence: 246 × 202; Republicanos, PSC, PT e PSOL Não; União, MDB, PP, PSD Sim; Republicanos e PSC votaram 26 Não × 13 Sim
+
+  - id: "534328-167"
+    date: 2022-05-18
+    bill: PL 3179/2012
+    what: regulamenta a educação domiciliar (texto-base)
+    side: Sim
+    evidence: 264 × 144; PL, Republicanos, PSC, PP, União e governo Sim; PT, PSOL e PSB Não; Republicanos e PSC votaram 43 Sim × 1 Não

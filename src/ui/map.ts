@@ -1,17 +1,53 @@
 import { geoPath, type GeoProjection } from "d3-geo";
 import { select } from "d3-selection";
 import "d3-transition";
-import { zoom, zoomIdentity, type D3ZoomEvent, type ZoomBehavior } from "d3-zoom";
+import { zoom, zoomIdentity, type D3ZoomEvent, type ZoomBehavior, type ZoomTransform } from "d3-zoom";
 import { feature, mesh } from "topojson-client";
 import type { GeometryCollection, GeometryObject, Topology } from "topojson-specification";
 
+import { t } from "../i18n/pt-BR";
+
 const SVG_NS = "http://www.w3.org/2000/svg";
+/** Map units an arrow key moves at zoom 1. */
+const PAN_STEP = 60;
 const ZOOM_STEP = 2;
 const ZOOM_MS = 600;
 /** Share of the map a group (state, country) fills when it is selected. */
 const GROUP_FILL = 0.9;
 
 type Bounds = [[number, number], [number, number]];
+
+/** Street map under a city's areas: OpenStreetMap's own tiles (no key needed; greyed in CSS so
+ * the areas' colours lead, inverted in the dark theme). Tiles of 256 px. */
+const TILES = "https://tile.openstreetmap.org/{z}/{x}/{y}.png";
+const TILE_PX = 256;
+const MAX_TILE_ZOOM = 19;
+/** Never more tiles than this at once (a very wide screen at a low zoom). */
+const MAX_TILES = 64;
+
+/** The tiles covering a box of the map, at the zoom whose tiles are about their own size on
+ * screen. The map is a d3 Mercator projection fitted to the box: `scale` is pixels per radian
+ * at zoom 1 and [tx, ty] the projected (0°, 0°), so the world spans 2π·scale map units.
+ * `view` is the visible box in map units; `px` how many screen pixels one map unit takes. */
+export function tilesFor(
+  scale: number,
+  [tx, ty]: [number, number],
+  view: Bounds,
+  px: number,
+): { z: number; x: number; y: number; at: [number, number]; size: number }[] {
+  const world = 2 * Math.PI * scale;
+  const z = Math.max(0, Math.min(MAX_TILE_ZOOM, Math.round(Math.log2((world * px) / TILE_PX))));
+  const n = 2 ** z;
+  const size = world / n;
+  const [ox, oy] = [tx - world / 2, ty - world / 2];
+  const clamp = (v: number) => Math.max(0, Math.min(n - 1, v));
+  const [[x0, y0], [x1, y1]] = view;
+  const out = [];
+  for (let y = clamp(Math.floor((y0 - oy) / size)); y <= clamp(Math.floor((y1 - oy) / size)); y++)
+    for (let x = clamp(Math.floor((x0 - ox) / size)); x <= clamp(Math.floor((x1 - ox) / size)); x++)
+      out.push({ z, x, y, at: [ox + x * size, oy + y * size] as [number, number], size });
+  return out.slice(0, MAX_TILES);
+}
 
 /** Animate camera moves unless the user asked for less motion (or nobody can see them). */
 const animated = () => !document.hidden && !window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
@@ -39,6 +75,8 @@ export interface MapGeometry {
   width: number;
   height: number;
   maxZoom: number;
+  /** A street map under the areas (a city's: its areas then drawn see-through). */
+  basemap?: boolean;
 }
 
 /**
@@ -67,6 +105,13 @@ export class ChoroplethMap {
   private active: SVGPathElement | null = null;
   private tooltipFor: (i: number) => string = () => "";
   private scale = 1;
+  private transform: ZoomTransform = zoomIdentity;
+  /** The street map's tiles on screen, by "z/x/y"; null without a street map. */
+  private readonly tileLayer: SVGGElement | null = null;
+  private readonly tiles = new Map<string, SVGImageElement>();
+  private readonly fitted: GeoProjection;
+  private tilesQueued = false;
+  private tileGeneration = 0;
 
   constructor(
     private readonly host: HTMLElement,
@@ -78,7 +123,8 @@ export class ChoroplethMap {
     this.width = WIDTH;
     this.height = HEIGHT;
     const collection = feature(topology, object);
-    const path = geoPath(geometry.projection.fitSize([WIDTH, HEIGHT], collection));
+    this.fitted = geometry.projection.fitSize([WIDTH, HEIGHT], collection);
+    const path = geoPath(this.fitted);
 
     this.svg = document.createElementNS(SVG_NS, "svg");
     this.svg.setAttribute("viewBox", `0 0 ${WIDTH} ${HEIGHT}`);
@@ -107,6 +153,17 @@ export class ChoroplethMap {
     this.focusLayer = document.createElementNS(SVG_NS, "g");
     this.focusLayer.setAttribute("class", "focus-layer");
     viewport.append(group, this.focusLayer, borders);
+    if (geometry.basemap) {
+      this.tileLayer = document.createElementNS(SVG_NS, "g");
+      this.tileLayer.setAttribute("class", "map-tiles");
+      this.tileLayer.setAttribute("aria-hidden", "true");
+      viewport.prepend(this.tileLayer);
+      host.classList.add("with-basemap");
+      const credit = document.createElement("div");
+      credit.className = "map-credit";
+      credit.innerHTML = t.mapCredit;
+      host.append(credit);
+    }
     this.svg.appendChild(viewport);
 
     this.behavior = zoom<SVGSVGElement, unknown>()
@@ -132,12 +189,32 @@ export class ChoroplethMap {
       .on("zoom", (event: D3ZoomEvent<SVGSVGElement, unknown>) => {
         viewport.setAttribute("transform", event.transform.toString());
         this.scale = event.transform.k;
+        this.transform = event.transform;
+        this.queueTiles();
         this.host.classList.toggle("zoomed", this.scale > 1);
         // Zoomed out, one finger scrolls the page; zoomed in, it pans the map.
         this.svg.style.touchAction = this.scale > 1 ? "none" : "pan-x pan-y";
       });
     select(this.svg).call(this.behavior);
     this.svg.style.touchAction = "pan-x pan-y";
+    // Keyboard: + and − zoom, arrows pan once zoomed in, 0 shows everything again.
+    this.svg.setAttribute("tabindex", "0");
+    this.svg.addEventListener("keydown", (e) => {
+      if (e.ctrlKey || e.metaKey || e.altKey) return;
+      const step = PAN_STEP / this.scale;
+      const pan: Record<string, [number, number]> = {
+        ArrowLeft: [step, 0],
+        ArrowRight: [-step, 0],
+        ArrowUp: [0, step],
+        ArrowDown: [0, -step],
+      };
+      if (e.key === "+" || e.key === "=") this.zoomIn();
+      else if (e.key === "-" || e.key === "_") this.zoomOut();
+      else if (e.key === "0") this.fit(null);
+      else if (pan[e.key] && this.scale > 1) select(this.svg).call(this.behavior.translateBy, ...pan[e.key]!);
+      else return;
+      e.preventDefault();
+    });
     this.svg.addEventListener("wheel", (e) => {
       if (!e.ctrlKey && !e.metaKey) this.onWheelWithoutModifier();
     });
@@ -148,6 +225,10 @@ export class ChoroplethMap {
     host.append(this.svg, this.tip);
     host.addEventListener("pointerleave", () => this.hideTooltip());
     host.addEventListener("pointermove", (e) => this.onPointer(e));
+    // Tiles follow the map's size on screen: asked again when its box changes width (a hidden
+    // map has none, and gets them once shown).
+    if (this.tileLayer && typeof ResizeObserver !== "undefined")
+      new ResizeObserver(() => this.queueTiles()).observe(this.svg);
   }
 
   private extendGroupBounds(group: string, [[x0, y0], [x1, y1]]: Bounds): void {
@@ -169,7 +250,7 @@ export class ChoroplethMap {
   /** Sets every municipality's class and the text shown on hover. */
   paint(label: string, classFor: (i: number) => string, tooltipFor: (i: number) => string): void {
     this.hideTooltip(); // its numbers belong to the previous election
-    this.svg.setAttribute("aria-label", label);
+    this.svg.setAttribute("aria-label", `${label}. ${t.mapKeys}`);
     this.paths.forEach((p, i) => {
       const c = classFor(i);
       if (this.classes[i] !== c) {
@@ -180,12 +261,71 @@ export class ChoroplethMap {
     this.tooltipFor = tooltipFor;
   }
 
+  /** Draws the street map once per frame at most, whatever the number of zoom events. */
+  private queueTiles(): void {
+    if (!this.tileLayer || this.tilesQueued) return;
+    this.tilesQueued = true;
+    requestAnimationFrame(() => {
+      this.tilesQueued = false;
+      this.drawTiles();
+    });
+  }
+
+  /** The tiles covering what is on screen, kept while still wanted, the rest removed. */
+  private drawTiles(): void {
+    const shown = this.svg.getBoundingClientRect().width;
+    if (!this.tileLayer || !shown) return;
+    const k = this.transform;
+    const view: Bounds = [
+      [k.invertX(0), k.invertY(0)],
+      [k.invertX(this.width), k.invertY(this.height)],
+    ];
+    const wanted = tilesFor(this.fitted.scale(), this.fitted.translate(), view, (shown / this.width) * k.k);
+    const keep = new Set<string>();
+    const loading: Promise<unknown>[] = [];
+    for (const tile of wanted) {
+      const key = `${tile.z}/${tile.x}/${tile.y}`;
+      keep.add(key);
+      if (this.tiles.has(key)) continue;
+      const img = document.createElementNS(SVG_NS, "image");
+      img.setAttribute(
+        "href",
+        TILES.replace("{z}", String(tile.z)).replace("{x}", String(tile.x)).replace("{y}", String(tile.y)),
+      );
+      img.setAttribute("x", String(tile.at[0]));
+      img.setAttribute("y", String(tile.at[1]));
+      // A hair wider, so no seam shows between neighbours.
+      img.setAttribute("width", String(tile.size * 1.002));
+      img.setAttribute("height", String(tile.size * 1.002));
+      img.setAttribute("preserveAspectRatio", "none");
+      loading.push(
+        new Promise((done) => {
+          img.addEventListener("load", done, { once: true });
+          img.addEventListener("error", done, { once: true });
+        }),
+      );
+      this.tileLayer.append(img);
+      this.tiles.set(key, img);
+    }
+    // The previous zoom's tiles stay under the new ones until those arrive: no blank flash.
+    const generation = ++this.tileGeneration;
+    void Promise.all(loading).then(() => {
+      if (generation !== this.tileGeneration) return;
+      for (const [key, img] of this.tiles)
+        if (!keep.has(key)) {
+          img.remove();
+          this.tiles.delete(key);
+        }
+    });
+  }
+
   /** Calls back with the area's index when one is clicked (a drag to pan is not a click). */
   onAreaClick(callback: (i: number) => void): void {
     this.svg.addEventListener("click", (e) => {
-      const target = e.target;
-      if (target instanceof SVGPathElement && target.dataset.i !== undefined)
-        callback(Number(target.dataset.i));
+      // By tag, not instanceof SVGPathElement: the same check then runs under jsdom too.
+      const target = e.target as Element | null;
+      const i = target?.localName === "path" ? (target as SVGElement).dataset.i : undefined;
+      if (i !== undefined) callback(Number(i));
     });
   }
 

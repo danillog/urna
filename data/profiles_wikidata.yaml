@@ -1,0 +1,11 @@
+# Wikidata items fixed by hand for the 2026 profiles (pipeline.profiles_web).
+#
+# The automatic match (name + birth date) leaves some people out and, rarely, could pick a
+# namesake. Here a person's profile id (the `p=` in the address) points to their item, or
+# to null to block an automatic match. Check the item's page before writing it: birth date,
+# offices, photo. `uv run python -m pipeline.profiles_web --checklist` lists everyone left
+# without an item, with the search's suggestions, in data/raw/profiles/ (not in git).
+#
+#   fulana-de-tal-sp-deputado-federal: Q12345678
+#   beltrano-rj-senador: null
+items: {}

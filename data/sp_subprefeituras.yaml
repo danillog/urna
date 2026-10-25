@@ -1,0 +1,50 @@
+# São Paulo's 32 subprefeituras and the districts in each (pipeline.capitals).
+#
+# Law 13.399/2002, art. 7 (31 subprefeituras), as amended by laws 14.059/2005, 15.764/2013
+# (Sapopemba split from Vila Prudente, Annex XV) and 17.035/2019. Copied from the city's
+# own list, checked on 06/10/2026:
+#   https://prefeitura.sp.gov.br/web/licenciamento/w/servicos/312207
+#   https://www.prefeitura.sp.gov.br/cidade/upload/lei_13_399_1254940922.pdf
+#
+# Subprefeitura names as the city's subprefeituras site writes them today
+# (https://prefeitura.sp.gov.br/web/subprefeituras/subprefeituras/mapa); the law's older names
+# noted where they differ. District names as the city writes them; they are matched to the
+# IBGE's 96 districts ignoring accents and case, and the pipeline fails if any is left over on either side.
+source: https://prefeitura.sp.gov.br/web/licenciamento/w/servicos/312207
+subprefeituras:
+  Perus: [Perus, Anhanguera]  # law: Perus/Anhanguera
+  Pirituba/Jaraguá: [Pirituba, Jaraguá, São Domingos]
+  Freguesia do Ó: [Freguesia do Ó, Brasilândia]  # law: Freguesia/Brasilândia
+  Casa Verde: [Casa Verde, Cachoeirinha, Limão]  # law: Casa Verde/Cachoeirinha
+  Santana/Tucuruvi: [Mandaqui, Santana, Tucuruvi]
+  Jaçanã/Tremembé: [Jaçanã, Tremembé]  # law: Tremembé/Jaçanã
+  Vila Maria/Vila Guilherme: [Vila Maria, Vila Guilherme, Vila Medeiros]
+  Lapa: [Barra Funda, Lapa, Perdizes, Vila Leopoldina, Jaguara, Jaguaré]
+  Sé: [Consolação, Santa Cecília, Bom Retiro, República, Sé, Bela Vista, Liberdade, Cambuci]
+  Butantã: [Butantã, Morumbi, Raposo Tavares, Rio Pequeno, Vila Sônia]
+  Pinheiros: [Pinheiros, Alto de Pinheiros, Itaim Bibi, Jardim Paulista]
+  Vila Mariana: [Vila Mariana, Saúde, Moema]
+  Ipiranga: [Cursino, Ipiranga, Sacomã]
+  Santo Amaro: [Santo Amaro, Campo Belo, Campo Grande]
+  Jabaquara: [Jabaquara]
+  Cidade Ademar: [Cidade Ademar, Pedreira]
+  Campo Limpo: [Campo Limpo, Capão Redondo, Vila Andrade]
+  M'Boi Mirim: [Jardim Ângela, Jardim São Luiz]
+  Capela do Socorro: [Socorro, Cidade Dutra, Grajaú]  # law: Socorro
+  Parelheiros: [Marsilac, Parelheiros]
+  Penha: [Penha, Cangaíba, Vila Matilde, Arthur Alvim]
+  Ermelino Matarazzo: [Ermelino Matarazzo, Ponte Rasa]
+  São Miguel: [São Miguel, Vila Jacuí, Jardim Helena]
+  Itaim Paulista: [Itaim Paulista, Vila Curuçá]
+  Mooca: [Brás, Água Rasa, Moóca, Pari, Belém, Tatuapé]  # law: Moóca
+  Aricanduva: [Carrão, Aricanduva, Vila Formosa]
+  Itaquera: [Itaquera, Parque do Carmo, Cidade Líder, José Bonifácio]
+  Guaianases: [Guaianases, Lajeado]
+  Vila Prudente: [Vila Prudente, São Lucas]
+  São Mateus: [São Mateus, São Rafael, Iguatemi]
+  Cidade Tiradentes: [Cidade Tiradentes]
+  Sapopemba: [Sapopemba]
+# The city's spelling → the IBGE's, where they differ.
+ibge_names:
+  Arthur Alvim: Artur Alvim
+  Jardim São Luiz: Jardim São Luís
