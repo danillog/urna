@@ -22,6 +22,14 @@ export interface ShareSpec {
   sourceText?: () => string;
   /** File name: urna-<name>.png. */
   name: string;
+  /** Drawn by script after load (the party modal), not in index.html. */
+  dynamic?: true;
+  /** Text lines for a card without a figure (a profile): each wrapped to the card's width. */
+  lines?: () => string[];
+  /** A card drawn its own way, instead of from the panel's parts (the quiz result). */
+  render?: () => Promise<Blob>;
+  /** Text sent along with the image: what the share sheet's apps use as the caption. */
+  text?: () => string;
 }
 
 export const SHARES: Record<string, ShareSpec> = {
@@ -64,6 +72,14 @@ export const SHARES: Record<string, ShareSpec> = {
     sources: "cv-sources",
     name: "voto-e-censo",
   },
+  where: {
+    title: "wh-title",
+    meta: "wh-meta",
+    figures: ["wh-map"],
+    legends: ["wh-legend"],
+    sources: "wh-sources",
+    name: "quem-mora-onde",
+  },
   capital: {
     title: "cp-title",
     meta: "cp-meta",
@@ -79,11 +95,53 @@ export const SHARES: Record<string, ShareSpec> = {
     sources: "cv-sources",
     name: "evolucao",
   },
+  profile: {
+    title: "pp-name",
+    meta: "pp-sub",
+    figures: [],
+    legends: [],
+    lines: () =>
+      [
+        ...document.querySelectorAll<HTMLElement>(
+          "#pp-profile .pp-facts > div, #pp-profile .pp-mandate > li",
+        ),
+      ].map((el) =>
+        // A fact is "label: value"; a term line is its first sentence, without the notes under it.
+        el.matches("div")
+          ? [...el.children].map((c) => c.textContent!.trim()).join(": ")
+          : [...el.childNodes]
+              .filter((n) => n.nodeType === Node.TEXT_NODE)
+              .map((n) => n.textContent)
+              .join("")
+              .trim(),
+      ),
+    sourceText: () => t.share.profileSource,
+    name: "perfil",
+    dynamic: true,
+  },
+  party: {
+    title: "cg-modal-title",
+    meta: "pm-sub",
+    figures: ["pm-seats-chamber", "pm-ideology"],
+    legends: [],
+    sources: "pm-sources",
+    name: "partido",
+    dynamic: true,
+  },
+  // Drawn by the quiz once there is a result (share-programs.ts).
+  programs: {
+    title: "pg-quiz-title",
+    figures: [],
+    legends: [],
+    text: () => t.share.programs.caption(window.location.href),
+    name: "programas",
+    dynamic: true,
+  },
   americas: {
     title: "am-title",
     figures: ["am-map"],
     legends: ["am-legend"],
-    sourceText: () => t.share.americasSource,
+    sources: "am-sources",
     name: "americas",
   },
 };
@@ -153,7 +211,7 @@ function image(svg: SVGSVGElement): Promise<HTMLImageElement> {
 }
 
 /** Text broken into lines that fit a width. */
-function wrap(ctx: CanvasRenderingContext2D, text: string, width: number): string[] {
+export function wrap(ctx: CanvasRenderingContext2D, text: string, width: number): string[] {
   const lines: string[] = [];
   let line = "";
   for (const word of text.split(/\s+/).filter(Boolean)) {
@@ -178,8 +236,15 @@ function legendItems(el: HTMLElement): LegendItem[] {
       if (text) out.push({ text });
       return;
     }
-    // Controls inside a legend ("Limpar") are not part of the key.
-    if (!(node instanceof HTMLElement) || node.hidden || node.dataset.focus === "clear") return;
+    // Controls inside a legend ("Limpar") and hints on using it ("Clique para…") are not part
+    // of the key: an image cannot be clicked.
+    if (
+      !(node instanceof HTMLElement) ||
+      node.hidden ||
+      node.dataset.focus === "clear" ||
+      node.dataset.shareSkip !== undefined
+    )
+      return;
     if (node.tagName === "I") {
       const s = getComputedStyle(node);
       // A line key: no height, only a top border.
@@ -278,8 +343,11 @@ export async function panelImage(spec: ShareSpec): Promise<Blob> {
     return y;
   };
 
+  scratch.font = `17px ${body}`;
+  const textLines = (spec.lines?.() ?? []).filter(Boolean).map((l) => wrap(scratch, l, inner));
+  const linesH = textLines.reduce((h, l) => h + l.length * 24 + 8, 0);
   let height = PAD + titleLines.length * 42 + (metaLines.length ? 8 + metaLines.length * 24 : 0) + 20;
-  height += figH + 16;
+  height += figH + 16 + linesH;
   height = layoutLegend(scratch, false, height) + 12;
   height += sourceLines.length * 20 + 28 + PAD;
 
@@ -316,6 +384,16 @@ export async function panelImage(spec: ShareSpec): Promise<Blob> {
     ctx.drawImage(img, PAD + k * (each + gap), y, each, h);
   });
   y += figH + 16;
+  ctx.fillStyle = ink;
+  ctx.font = `17px ${body}`;
+  for (const block of textLines) {
+    for (const line of block) {
+      y += 20;
+      ctx.fillText(line, PAD, y);
+      y += 4;
+    }
+    y += 8;
+  }
   y = layoutLegend(ctx, true, y) + 12;
   ctx.strokeStyle = muted;
   ctx.globalAlpha = 0.4;
@@ -346,12 +424,13 @@ export const shortUrl = (href: string) => href.replace(/^https?:\/\//, "").repla
 /** Shares the card through the system sheet when it takes files, else downloads it. */
 export async function sharePanel(key: string): Promise<"shared" | "downloaded" | "cancelled"> {
   const spec = SHARES[key]!;
-  const blob = await panelImage(spec);
+  const blob = await (spec.render?.() ?? panelImage(spec));
   const file = new File([blob], `urna-${spec.name}.png`, { type: "image/png" });
   const title = document.getElementById(spec.title)?.textContent ?? "";
   if (navigator.canShare?.({ files: [file] })) {
     try {
-      await navigator.share({ files: [file], title, url: window.location.href });
+      const text = spec.text?.();
+      await navigator.share({ files: [file], title, ...(text ? { text } : { url: window.location.href }) });
       return "shared";
     } catch (e) {
       if (e instanceof DOMException && e.name === "AbortError") return "cancelled";
@@ -367,8 +446,11 @@ export async function sharePanel(key: string): Promise<"shared" | "downloaded" |
 
 /** Wires every "Compartilhar" button ([data-share] in index.html). */
 export function setupShare(): void {
-  document.querySelectorAll<HTMLButtonElement>("[data-share]").forEach((b) => {
-    b.addEventListener("click", async () => {
+  // Delegated: the party modal's button is drawn after the page loads.
+  document.addEventListener("click", (e) => {
+    const b = (e.target as HTMLElement).closest<HTMLButtonElement>("[data-share]");
+    if (!b || b.disabled) return;
+    void (async () => {
       const label = b.textContent;
       b.disabled = true;
       b.textContent = t.share.working;
@@ -381,6 +463,6 @@ export function setupShare(): void {
         b.disabled = false;
         setTimeout(() => (b.textContent = label), 2000);
       }
-    });
+    })();
   });
 }
