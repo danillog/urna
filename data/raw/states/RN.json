@@ -38,7 +38,8 @@
       {"p": "Quaest", "date": "2026-08-23", "n": 804, "method": "", "v": {"Allyson": 35, "Cadu Xavier": 34, "undecided": 31}},
       {"p": "Real Time Big Data", "date": "2026-09-09", "n": 1600, "method": "", "v": {"Allyson": 50, "Cadu Xavier": 32, "undecided": 18}},
       {"p": "Quaest", "date": "2026-09-24", "n": 804, "method": "", "v": {"Allyson": 50, "Cadu Xavier": 30, "undecided": 20}},
-      {"p": "AtlasIntel", "date": "2026-09-28", "n": 1207, "method": "online", "v": {"Allyson": 41.6, "Cadu Xavier": 41.9, "undecided": 16.4}}
+      {"p": "AtlasIntel", "date": "2026-09-28", "n": 1207, "method": "online", "v": {"Allyson": 41.6, "Cadu Xavier": 41.9, "undecided": 16.4}},
+      {"p": "Quaest", "date": "2026-10-03", "n": 1800, "method": "in_person", "v": {"Allyson": 44, "Cadu Xavier": 34, "undecided": 22}}
     ]
   },
   "senate_r1": {

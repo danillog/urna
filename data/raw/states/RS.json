@@ -18,7 +18,8 @@
       {"p": "AtlasIntel", "date": "2026-09-20", "n": 1819, "method": "online", "v": {"Zucco": 41.6, "Juliana Brizola": 36.1, "Gabriel Souza": 13.5, "Maranata": 0.8, "others": 0.1, "undecided": 7.9}},
       {"p": "Quaest", "date": "2026-09-23", "n": 900, "method": "", "v": {"Zucco": 29, "Juliana Brizola": 23, "Gabriel Souza": 10, "Maranata": 3, "others": 2, "undecided": 33}},
       {"p": "Neokemp", "date": "2026-09-24", "n": 1008, "method": "", "v": {"Zucco": 44.9, "Juliana Brizola": 28.8, "Gabriel Souza": 15.7, "Maranata": 2.0, "others": 0.4, "undecided": 8.3}},
-      {"p": "Real Time Big Data", "date": "2026-09-28", "n": 1600, "method": "phone", "v": {"Zucco": 40, "Juliana Brizola": 35, "Gabriel Souza": 19, "Maranata": 2, "others": 1, "undecided": 3}}
+      {"p": "Real Time Big Data", "date": "2026-09-28", "n": 1600, "method": "phone", "v": {"Zucco": 40, "Juliana Brizola": 35, "Gabriel Souza": 19, "Maranata": 2, "others": 1, "undecided": 3}},
+      {"p": "Quaest", "date": "2026-10-03", "n": 2004, "method": "in_person", "v": {"Zucco": 39, "Juliana Brizola": 25, "Gabriel Souza": 9, "Maranata": 2, "others": 1, "undecided": 24}}
     ]
   },
   "governor_r2": {
@@ -35,7 +36,8 @@
       {"p": "Real Time Big Data", "date": "2026-09-09", "n": 1600, "method": "", "v": {"Zucco": 44, "Juliana Brizola": 44, "undecided": 12}},
       {"p": "AtlasIntel", "date": "2026-09-20", "n": 1819, "method": "online", "v": {"Zucco": 49.7, "Juliana Brizola": 39.3, "undecided": 11}},
       {"p": "Quaest", "date": "2026-09-23", "n": 900, "method": "", "v": {"Zucco": 40, "Juliana Brizola": 34, "undecided": 26}},
-      {"p": "Real Time Big Data", "date": "2026-09-28", "n": 1600, "method": "phone", "v": {"Zucco": 49, "Juliana Brizola": 44, "undecided": 7}}
+      {"p": "Real Time Big Data", "date": "2026-09-28", "n": 1600, "method": "phone", "v": {"Zucco": 49, "Juliana Brizola": 44, "undecided": 7}},
+      {"p": "Quaest", "date": "2026-10-03", "n": 2004, "method": "in_person", "v": {"Zucco": 46, "Juliana Brizola": 35, "undecided": 19}}
     ]
   },
   "senate_r1": {
@@ -48,7 +50,9 @@
       {"p": "Real Time Big Data", "date": "2026-09-09", "n": 1600, "method": "", "v": {"Marcel van Hattem": 22, "Manuela d'Ávila": 18, "Sanderson": 18, "Paulo Pimenta": 16, "Rigotto": 14, "Frederico Antunes": 5, "others": 2, "undecided": 5}},
       {"p": "Quaest", "date": "2026-09-23", "n": 900, "method": "", "v": {"Manuela d'Ávila": 14, "Marcel van Hattem": 11, "Paulo Pimenta": 10, "Sanderson": 10, "Rigotto": 9, "Frederico Antunes": 2, "others": 3, "undecided": 41}},
       {"p": "Neokemp", "date": "2026-09-24", "n": 1008, "method": "", "v": {"Marcel van Hattem": 26.3, "Sanderson": 23.0, "Manuela d'Ávila": 19.2, "Paulo Pimenta": 14.9, "Rigotto": 5.8, "Frederico Antunes": 1.6, "others": 1.1, "undecided": 8.0}},
-      {"p": "Real Time Big Data", "date": "2026-09-28", "n": 1600, "method": "", "v": {"Marcel van Hattem": 23, "Sanderson": 19, "Manuela d'Ávila": 18, "Paulo Pimenta": 16, "Rigotto": 12, "Frederico Antunes": 4, "others": 2, "undecided": 5}}
+      {"p": "Real Time Big Data", "date": "2026-09-28", "n": 1600, "method": "", "v": {"Marcel van Hattem": 23, "Sanderson": 19, "Manuela d'Ávila": 18, "Paulo Pimenta": 16, "Rigotto": 12, "Frederico Antunes": 4, "others": 2, "undecided": 5}},
+      {"p": "Neokemp", "date": "2026-10-02", "n": 1008, "method": "", "v": {"Marcel van Hattem": 26.3, "Manuela d'Ávila": 18.3, "Sanderson": 26.2, "Paulo Pimenta": 18.6, "Rigotto": 4.7, "Frederico Antunes": 0.9, "others": 1.8, "undecided": 3}},
+      {"p": "Quaest", "date": "2026-10-03", "n": 2004, "method": "in_person", "v": {"Marcel van Hattem": 14, "Manuela d'Ávila": 13, "Sanderson": 15, "Paulo Pimenta": 12, "Rigotto": 6, "Frederico Antunes": 2, "others": 3, "undecided": 35}}
     ]
   },
   "notes": "Final governor field: Zucco (PL), Juliana Brizola (PDT), Gabriel Souza (MDB), Marcelo Maranata (PSDB) plus minor candidates (Priscila Voigt UP, Rejane de Oliveira PSTU, Cesar Pontes PCO) summed into Outros. RTBD 2026-03-16 and Futura 2026-04-07 use the scenario without Edegar Pretto (PT, not a candidate); Futura's scenario has no Maranata. Futura Souza value: Gazeta gives 9.1, Wikipedia 9.2. Quaest 2026-08-23: only Zucco/Brizola/Souza and BN 12 + undecided 27 were available (others <3% combined, not itemised); its 2nd round BNI not published in the source read. Real Time Big Data 2026-09-24/28 governor numbers are published only in valid votes, so its 1st and 2nd round rows were dropped (its senate row is kept). RTBD reports very low BNI (3-10%) in the stimulated question compared with Quaest (33-43%); these are the published figures. AtlasIntel 2026-09-01 fieldwork: Gazeta/Revista Fórum say Aug 27-Sep 1 (Poder360 summary suggested Sep 1-3). AtlasIntel 2nd round values for 2026-09-20 are total votes from Jornal do Comércio (Gazeta only gave valid). Methodus (Feb 2026) skipped: only scenario includes Pretto. Neokemp senate Rigotto 5.8% is far below other institutes (9-15%), verified verbatim in Gazeta.",
